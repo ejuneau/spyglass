@@ -1,38 +1,169 @@
-.App {
-  text-align: center;
+:root {
+  --black: #0C0C0C;
+  --red: #FC5130;
+  --white: #F5F5F5;
+  --green: #7CA982;
+  --blue: #0D00A4;
+
+}
+body{margin: 0;}
+
+header {
+  background: rgb(12,12,12);
+  background: linear-gradient(175deg, rgba(12,12,12,1) 50%, rgba(12,12,12,0) 50.5%, rgba(0,0,0,0) 100%);
+  position: absolute;
+  display: flex;
+  height: 15em;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+.menu-cart {
+  top: 5em;
+  left: 5em;
+  height: 5em;
+  width: 5em;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+}
+.hamburger {
+  color: var(--red);
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+  margin:0;
+  font-size: 5em;
+  padding-top:0.25em;
+
+}
+.hamburger-container {
+
+  width: 3em;
+  display: flex;
+  justify-content: center;
+}
+.hamburger-container:hover > .hamburger {
+  color: var(--white);
+  -moz-transform: scale(-1, 1);
+  -webkit-transform: scale(-1, 1);
+  -o-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+}
+#cart-count {
+margin:0;
+font-size: 5em;
+position: absolute;
+left: 1em;
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.logo {
+  justify-self: center;
+}
+main {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+.main-left {
+  width: 30vw;
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+
+}
+.main-left .model  {
+  display: flex;
+  align-items: flex-end;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.model img {
+  height: 90vh;
+}
+.header-spacer {
+  height: 15em;
+}
+.main-right {
+  width: 70vw;
+  background: rgb(252,81,48);
+background: linear-gradient(250deg, rgba(252,81,48,1) 67.4vw, rgba(12,12,12,0) 67.6vw, rgba(0,0,0,0) 70vw);
+overflow: hidden;
+z-index: 2;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.button {
+ font-family: "A Box For 1";
+ font-size: 4em;
+ padding: 0 1em;
+ text-decoration: none;
+ z-index: 4;
+ 
+}
+a.button:visited {
+  color: var(--black);
+  text-decoration: none;
+}
+a.button:hover {
+  color: var(--red);
+  font-family: "A Box For 3";
+}
+.main-hero-buttons {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 20em;
+  width: 25em;
+  justify-content: space-evenly;
+  transform: translateX(-5em) translateY(-10em);
+  padding-right: 0.1em;
+  overflow:visible;
+}
+#shopMen {
+  transform:  translateX(1em) rotate(-6deg);
+  margin-right: 0;
+  padding-right: 1em;
+
+}
+#shopWomen {
+  transform:  translateX(1em) rotate(4deg);
+  padding-right: 0.5;
+}
+#shopEnby {
+  transform: translateX(0.8em) rotate(-5deg);
+  padding-right: 0em;
+  padding-left: 0em;
+
+
 }
 
-.App-link {
-  color: #61dafb;
+main h1 {
+  font-family: "Mustasurma";
+  color: var(--black);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+  word-wrap: nowrap;
+  margin: 0;
 }
+#youWont {
+  transform: rotate(-10deg);
+  padding-left: 7vw;
+  width: 63vw;
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+}
+#believe {
+  transform: rotate(-5deg);
+  padding-left: 45vw;
+  margin-top: 0.3em;
+  width: 21vw;
+}
+#yourEyes {
+  transform: rotate(10deg);
+  padding-left: 20%;
+  width: 85%;
+  margin-top: -5%;
 }

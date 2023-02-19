@@ -1,0 +1,7 @@
+2552 x 1266 px - red diagonal clips
+
+Menu button fixed margins looks weird when angle gets too sharp
+
+Buttons and YWBYE clip over
+
+Model size too fixed

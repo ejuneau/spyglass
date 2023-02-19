@@ -9,14 +9,14 @@ import "./Assets/Fonts/Mustasurma.ttf";
 import "./Assets/Fonts/Portia.otf";
 import "./Assets/Fonts/A Box For.ttf";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { AnimatePresence, motion } from "framer-motion";
-import ReactModal from 'react-modal';
 
 function App() {
   const [cart, setCart] = useState(0);
   const [showMenu, setShowMenu] = useState(false);
+  const [isFirstMount, setisFirstMount] = useState(true);
   const handleMenuToggle = () => {
     console.log(showMenu);
     setShowMenu(!showMenu);
@@ -28,25 +28,38 @@ function App() {
     },
     {
       path: "/Shop",
-      element: <ShopPage cart={cart} handleMenuToggle={handleMenuToggle}/>
+      element: <ShopPage cart={cart} handleMenuToggle={handleMenuToggle} showMenu={showMenu}/>
     }
-  ])
+  ]);
+
+useEffect(()=> {
+  const handleRouteChange = () => {
+    isFirstMount && setisFirstMount(false);
+  };
+
+  router.events.on("routeChangeStart", handleRouteChange);
+
+  //If the component is unmounted, unsubscribe
+  //from the event with the 'off' method:
+  return () => {
+    router.events.off("routeChangeStart", handleRouteChange);
+  }
+}, []);
+
 
 
 
   return (
     <AnimatePresence>
-      {/* {showMenu?<Menu cart={cart} handleMenuToggle={handleMenuToggle} />:<><Header cart ={cart} handleMenuToggle={handleMenuToggle} showMenu={showMenu}/> <RouterProvider router={router} /></>} */}
-      {/* {showMenu?<Menu cart={cart} handleMenuToggle={handleMenuToggle} />:<></>} */}
-      <motion.div 
-      key="menu" 
-      layout 
-      animate={{
-        height: showMenu?"100vh":"0vh",  
-        overflow:"hidden"}}
-      transition={{duration: 0.5, delay: showMenu?0:0.3}}
+        <motion.div 
+        key="menu" 
+        layout 
+        animate={{
+          height: showMenu?"100vh":"0vh",  
+          overflow:"hidden"}}
+        transition={{duration: 1}}
         >
-          <Menu cart={cart} handleMenuToggle={handleMenuToggle} showMenu={showMenu}/>
+          <Menu cart={cart} handleMenuToggle={handleMenuToggle} />
         </motion.div>
 
         <motion.div 
@@ -55,7 +68,7 @@ function App() {
           height: !showMenu?"100vh":"0vh", 
           overflow:"hidden",
           }}
-        transition={{duration: 0.5, delay: showMenu?0:0.3}}
+        transition={{duration: 1}}
           >
           <Header cart ={cart} handleMenuToggle={handleMenuToggle} showMenu={showMenu}/>
           <RouterProvider router={router} />

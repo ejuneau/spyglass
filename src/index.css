@@ -1,13 +1,33 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+    font-family: "Mustasurma";
+    src: local("Mustasurma"),
+        url("./Assets/Fonts/Mustasurma.ttf") format("truetype");
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@font-face {
+    font-family: "Varygraphie";
+    src: local("VarygraphiePersonalUseOnlyRegular-nRWX1"),
+        url("./Assets/Fonts/VarygraphiePersonalUseOnlyRegular-nRWX1.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Portia";
+    src: local("Portia"),
+        url("./Assets/Fonts/Portia.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "A Box For 1";
+    src: local("A Box For"),
+        url("./Assets/Fonts/A\ Box\ For.ttf") format("truetype");
+}
+@font-face {
+    font-family: "A Box For 2";
+    src: local("A Box For 2"),
+        url("./Assets/Fonts/A\ Box\ For\ 2.ttf") format("truetype");
+}
+@font-face {
+    font-family: "A Box For 3";
+    src: local("A Box For 3"),
+        url("./Assets/Fonts/A\ Box\ For\ 3.ttf") format("truetype");
 }
