@@ -76,7 +76,9 @@ show: {
     },
     show: {
       opacity: 1,
+      y: 0,
       transition: {
+
         staggerChildren: 0.5,
         when: "beforeChildren"
       }
@@ -183,6 +185,13 @@ show: {
   
   
     return (
+      <>
+        <motion.div variants={header} initial="hidden" animate={props.showMenu?"show":"hidden"} key="menu">
+          <Menu cart={props.cart} handleMenuToggle={props.handleMenuToggle} showMenu={props.showMenu} />
+        </motion.div>
+        <motion.div variants={content} initial="show" animate={!props.showMenu?"show":"hidden"} key="content">
+          <Header cart ={props.cart} handleMenuToggle={props.handleMenuToggle} showMenu={props.showMenu}/>
+        
         <motion.div className="shoppage" key="shopPage" variants={pageTransition} initial="hidden" animate={props.showMenu?"hidden":"show"}>
           <main>
             <motion.div layout className="filterButtonsContainer">
@@ -193,6 +202,8 @@ show: {
             </motion.div>
         </main>
       </motion.div>
+      </motion.div>
+      </>
     )
 }
 

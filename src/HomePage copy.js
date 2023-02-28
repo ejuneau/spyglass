@@ -24,22 +24,70 @@ import "./Assets/Fonts/A Box For.ttf";
 
 export default function HomePage(props) {
 
+  const header = {
+    hidden: {
+        height: 0,
+        overflow: "hidden",
+        transition: {
+          delay: 0.3,
+          duration: 0.2
+        }
+    },
+    show: {
+        height: "100vh",
+        overflow: "visible",
+        transition: {
+          staggerChildren: 5,
+          duration: 0.2,
+          when: "beforeChildren"
+        }
+    }
+}
+
+const content = {
+  hidden: {
+    height: 0,
+    overflow: "hidden",
+    transition: {
+      delay: 0.3,
+      duration: 0.2
+    }
+},
+show: {
+    height: "100vh",
+    overflow: "visible",
+    transition: {
+      staggerChildren: 0.5,
+      duration: 0.2,
+      when: "beforeChildren"
+    }
+}
+}
 
   const pageTransition = {
     hidden: {
-      height: "0vh",
+      opacity: 0,
       transition: {
-        duration: 1
+
       }
     },
     show: {
+      opacity: 1,
       height: "100vh",
       transition: {
-        duration: 1
+        staggerChildren: 0.5,
+        when: "beforeChildren"
       }
     }
   }
     return (
+      <>
+        <motion.div variants={header} initial="hidden" animate={props.showMenu?"show":"hidden"} key="menu">
+          <Menu cart={props.cart} handleMenuToggle={props.handleMenuToggle} showMenu={props.showMenu} />
+        </motion.div>
+        <motion.div variants={content} initial="show" animate={!props.showMenu?"show":"hidden"} key="content">
+        <Header cart ={props.cart} handleMenuToggle={props.handleMenuToggle} showMenu={props.showMenu}/>
+
           <motion.div className="homepage" variants={pageTransition} initial="hidden" animate={props.showMenu?"hidden":"show"}>
             <motion.div layout className="main-hero-buttons" key="main-hero-buttons">
               <Link to="/Shop" className="button" id="shopMen">Men's</Link>
@@ -56,6 +104,8 @@ export default function HomePage(props) {
               </div>
             </main>
           </motion.div>
+        </motion.div>
+      </>
     )
 }
 
