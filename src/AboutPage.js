@@ -1,20 +1,32 @@
 import './AboutPage.css';
 import './AboutPageDesktop.css';
 import bridge from './Assets/Images/bridge.png';
-import React, { useRef } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import React, { useEffect, useState, useRef } from 'react';
+import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 export default function AboutPage(props) {
-    const opacity = useScroll({
-        offset: ["end 100%", "start 0vh"],
+    const filterRef = useRef(null)
+    const { scrollYProgress } = useScroll({
+        container: filterRef,
     });
+  
+    const [OA, setOA] = useState(((window.innerHeight/100)*15) / (window.innerWidth));
+    const [angle, setAngle] = useState(Math.atan(OA));
+    const [rotateBy, setRotateBy] = useState(-1 * angle)
+    const [height, setHeight] = useState("200vh");
 
+
+        useMotionValueEvent(scrollYProgress, "change", (latest) => {
+            // console.log("Page scroll: ", latest);
+            setHeight(`${Math.min(((1 - latest) * 200), 50)}vh`);
+            console.log("Filter Height: " +height);
+          })
 
 
 
     return (
-        <motion.div className="AboutPageComponent" key="AboutPageComponent" variants={AboutPage}>
+        <motion.div className="AboutPageComponent" key="AboutPageComponent" ref={filterRef} variants={AboutPage}>
 
             <div className="AboutUsContainer">
                 <div className="AboutUsSpacer"></div>
@@ -29,6 +41,7 @@ export default function AboutPage(props) {
                 
             </div>
             <motion.div className="MYL-container">
+            
                 <motion.div key="MYL" className="MYL" >
                     <motion.div key="MYL-text" className="MYL-text" > 
                         <p>Made</p>
@@ -39,10 +52,12 @@ export default function AboutPage(props) {
                             <p>ok.</p>
                         </div>
                     </motion.div>
+                    
                 </motion.div>
-                <motion.div key="MYL-filter" className="MYL-filter">  </motion.div>
+                <motion.div key="MYL-filter" className="MYL-filter" style={{height: height}} >  </motion.div>
                 
             </motion.div>
+            <div className="AboutUsSpacer"></div>
             <div className="AboutUsSpacer"></div>
         </motion.div>
     )

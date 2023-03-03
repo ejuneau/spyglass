@@ -3,25 +3,22 @@
         margin-top: -9rem;
     }
     .MYL-container {
-        clip-path: polygon(0 9rem, 100% 0, 100% calc(40vh - 9rem), 0 100%);
+        clip-path: polygon(0 9rem, 100% 0, 100% calc(50vh - 9rem), 0 100%);
 
     }
     .MYL-container {
-        clip-path: polygon(0 9rem, 100% 0, 100% calc(40vh - 9rem), 0 100%);
+        clip-path: polygon(100% 9rem, 100% 100%, 0 calc(50vh - 9rem), 0 0);
     }
     .MYL-filter {
-        height: 15rem;
-        clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 9rem);
+        /* clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 9rem); */
+
 
     }
 }
 
 @media only screen and (min-width: 992px) {
-    .MYL {
-        font-size: 5em;
-    }
     .MYL-text {
-        font-size: 6vw;
+        font-size: 7vw;
         line-height: 5vw;
     }
 
@@ -44,7 +41,7 @@
         clip-path: polygon(0 0, 100% 0, 100% 30%, 0 30%);
     }
     .MYL-filter {
-        height: 20vh;
+
         clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 15vh);
     }
 }
