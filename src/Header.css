@@ -1,0 +1,63 @@
+header{
+    position:absolute;
+    overflow:hidden;
+    z-index: 10;
+    width: 100vw;
+    height: 15vh;
+    min-height: 9rem;
+    background-color: var(--black);
+    clip-path: polygon(0 0, 0 100%, 100% 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-cart {
+display: flex;
+min-height: 3rem;
+max-height: 3rem;
+margin-left: 5vw;
+margin-right: auto;
+width: 4rem;
+justify-content: space-between;
+align-items: center;
+
+}
+.SpacerLogo {
+ transition: mix-blend-mode 0.2s ease;
+}
+.hamburger {
+    color: var(--red);
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+    height: 3rem;
+}
+.menu-cart p {
+    font-size: 3em;
+    margin: 0;
+    margin-bottom: -0.5rem;
+}
+
+.hamburger-container {
+
+    width: 5rem;
+    display: flex;
+    justify-content: center;
+  }
+  .hamburger-container:hover > .hamburger {
+    color: var(--white);
+    -moz-transform: scale(1, -1);
+    -webkit-transform: scale(1, -1);
+    -o-transform: scale(1, -1);
+    -ms-transform: scale(1, -1);
+    transform: scale(1, -1);
+  }
+  .hamburger-container:hover ~ p#cart-count {
+    color: var(--white);
+  }
+
+.logo {
+  width: 50vw;
+position: absolute;
+max-width: 840px;
+}

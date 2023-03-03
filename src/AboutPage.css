@@ -1,0 +1,100 @@
+.AboutPageComponent {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    margin-top: -15vh;
+    max-height: 100vh;
+    background-color: var(--black);
+    align-items: center;
+    overflow-y: scroll;
+}
+.MYL-container {
+    min-height: 40vh;
+    width: 100%;
+    /* position: fixed; */
+    background-color: var(--red);
+    display: flex;
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+    clip-path: polygon(0 15vh, 100% 0, 100% 25vh, 0 100%);
+    /* background-image: url('./Assets/Images/eyeExam.png'); */
+    background-blend-mode: darken;
+    background-attachment: local;
+}
+.MYL-filter {
+    height: 30vh;
+    width: 100vw;
+    -webkit-backdrop-filter: blur(10vh);
+    backdrop-filter: blur(10vh);
+    position: absolute;
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 15vh);
+    z-index: 10;
+    bottom: 0;
+}
+.MYL {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.MYL-text {
+    font-size: 15vw;
+    text-align: center;
+    width: 100%;
+    font-family: 'Varygraphie';
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    line-height: 12.5vw;
+    color: var(--black);
+    transform: rotate(calc(-1deg * 1vh)) translateY(-1.15vh);
+}
+.MYL-text p {
+
+    margin: 0;
+}
+#look {
+    display: flex;
+    flex-direction: row;
+
+}
+
+#bridge {
+    height: 4vw;
+    margin: 0;
+    margin-top: 3.5vh;
+    margin-left: -1.5vw;
+    margin-right: -1.5vw;
+    clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+}
+.AboutUsContainer {
+    color: var(--white);
+    font-family: 'Noir'; 
+    background-color: var(--black);
+    
+}
+.AboutUsContainer h2 {
+    text-align: right;
+    margin-right: 5vw;
+    font-family: 'Portia';
+    font-size: 4rem;
+    margin-top: 0vh;
+
+}
+.AboutUsContainer p {
+    font-size: 5vw;
+    padding: 0 1em;
+}
+.AboutUsContainer a {
+    margin-left: 50%;
+    font-size: 2rem;
+    font-family: 'A Box For 1';
+}
+.AboutUsSpacer {
+    width: 100vw;
+    height: 15vh;
+    min-height: 9rem;
+    background-color: var(--black);
+    clip-path: polygon(0 100%, 100% 100%, 100% 0);
+}

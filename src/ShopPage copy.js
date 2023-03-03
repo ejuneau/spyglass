@@ -64,24 +64,12 @@ show: {
       setSort(sortBy)
     }
   }
-  const randomNumber = (min, max) => {
-    return Math.random() * (max - min) + min;
-  }
   const pageTransition = {
     hidden: {
-      opacity: 0,
-      transition: {
-
-      }
+      height: 0
     },
     show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-
-        staggerChildren: 0.5,
-        when: "beforeChildren"
-      }
+      height: "100vh"
     }
   }
   const filterButton1 = {
@@ -185,25 +173,16 @@ show: {
   
   
     return (
-      <>
-        <motion.div variants={header} initial="hidden" animate={props.showMenu?"show":"hidden"} key="menu">
-          <Menu cart={props.cart} handleMenuToggle={props.handleMenuToggle} showMenu={props.showMenu} />
-        </motion.div>
-        <motion.div variants={content} initial="show" animate={!props.showMenu?"show":"hidden"} key="content">
-          <Header cart ={props.cart} handleMenuToggle={props.handleMenuToggle} showMenu={props.showMenu}/>
-        
-        <motion.div className="shoppage" key="shopPage" variants={pageTransition} initial="hidden" animate={props.showMenu?"hidden":"show"}>
-          <main>
-            <motion.div layout className="filterButtonsContainer">
+        <motion.div className="shopPage" key="shopPage" variants={pageTransition} initial={false} animate={props.showMenu?"hidden":"show"}>
+          <motion.main layout key="ShopPageMain">
+            <motion.div layout className="filterButtonsContainer" key="filterButtonsContainer">
               <motion.div key="filterbuttonmen" variants={filterButton1} initial="initial" whileHover="hover" animate layout className={`filterButtonBackground filterButtonBackgroundMen ${sort==="men"?"activeSort":""}`} ><motion.p variants={filterButton1} initial="initial" className="button filterButtons filterButtonsMen" onClick={() => handleSortChange("men")}>Men's</motion.p></motion.div>
               <motion.div key="filterbuttonwomen" variants={filterButton2} initial="initial" whileHover="hover" animate layout className={`filterButtonBackground filterButtonBackgroundWomen ${sort==="women"?"activeSort":""}`}><motion.p variants={filterButton2} initial="initial" className="button filterButtons filterButtonsWomen" onClick={() => handleSortChange("women")}>Women's</motion.p></motion.div>
               <motion.div key ="filterbuttonenby" variants={filterButton3} initial="initialDiv" whileHover="hover" animate layout className={`filterButtonBackground filterButtonBackgroundEnby ${sort==="enby"?"activeSort":""}`}><motion.p variants={filterButton3} initial="initialP" className ="button filterButtons filterButtonsEnbys" onClick={() => handleSortChange("enby")}>Neutral's</motion.p></motion.div>
               <motion.div key ="filterbuttonclear" variants={filterButton4} whileHover="hover" layout initial="hidden" animate={sort?props.showMenu?"hidden":"show":"hidden"} className="filterButtonBackground filterButtonBackgroundclear"><p className ="button filterButtons filterButtonsClear" onClick={() => handleSortChange("")}>clear</p></motion.div>
             </motion.div>
-        </main>
+        </motion.main>
       </motion.div>
-      </motion.div>
-      </>
     )
 }
 

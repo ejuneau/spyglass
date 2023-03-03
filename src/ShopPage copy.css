@@ -1,0 +1,80 @@
+.shopPage {
+    background: var(--white);
+    overflow:hidden;
+    height: 100vh;
+}
+.ShopPageMain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    width: 60vw;
+    justify-content: center;
+    overflow:visible;
+
+}
+
+.filterButtonsContainer{
+    display: flex;
+    width: 100vw;
+    justify-content: space-evenly;
+
+
+
+}
+
+.filterButtons {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    pointer-events: auto;
+    margin: 0;
+    padding: 0;
+    font-family: 'A Box For 1';
+}
+.filterButtons:hover {
+
+    font-family: 'A Box For 2';
+
+}
+
+.filterButtonBackground {
+    pointer-events: none;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-evenly;
+    transition: background-color 0.2s ease;
+     height: 5em; 
+}
+.filterButtonBackground:hover {
+    background: var(--red);
+    transform: skew(.312rad); 
+}
+
+.activeSort {
+    background-color: var(--red) !important;
+    font-family: 'A Box For 3' !important;
+}
+.activeSort:hover {
+    font-family: 'A Box For 3';
+}
+.filterButtonBackgroundclear {
+    overflow: hidden;
+    font-size: 0.7em;
+    position: fixed;
+    bottom: 5vh;
+}
+
+.filterButtonBackgroundMen {
+
+    margin-top: 2.3%;
+}
+.filterButtonBackgroundWomen {
+
+    margin-top: 3.4%;
+}
+
+.filterButtonBackgroundEnby {
+    margin-top: 2.8%;
+} 

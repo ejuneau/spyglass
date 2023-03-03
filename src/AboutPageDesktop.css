@@ -1,0 +1,50 @@
+@media only screen and (max-height: 960px) {
+    .AboutPageComponent {
+        margin-top: -9rem;
+    }
+    .MYL-container {
+        clip-path: polygon(0 9rem, 100% 0, 100% calc(40vh - 9rem), 0 100%);
+
+    }
+    .MYL-container {
+        clip-path: polygon(0 9rem, 100% 0, 100% calc(40vh - 9rem), 0 100%);
+    }
+    .MYL-filter {
+        height: 15rem;
+        clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 9rem);
+
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .MYL {
+        font-size: 5em;
+    }
+    .MYL-text {
+        font-size: 6vw;
+        line-height: 5vw;
+    }
+
+    .AboutUsContainer {
+        width: 100%;
+        padding: 0;
+
+    }
+    .AboutUsContainer h2 {
+        margin-right: 30vw;
+        margin-top: 10vh;
+    }
+    .AboutUsContainer p {
+        font-size: 2vw;
+        padding-left: 20vw;
+        padding-right: 20vw;
+    }
+    #bridge {
+        margin-top: 0.5vh;
+        clip-path: polygon(0 0, 100% 0, 100% 30%, 0 30%);
+    }
+    .MYL-filter {
+        height: 20vh;
+        clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 15vh);
+    }
+}

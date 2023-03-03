@@ -1,25 +1,33 @@
 import './Menu.css';
-import React from 'react';
+import './MenuDesktop.css';
+import React, {useState} from 'react';
 import {motion, AnimatePresence} from 'framer-motion';
 import {Link} from 'react-router-dom';
-import { faBorderNone } from '@fortawesome/free-solid-svg-icons';
-import HomePage from './HomePage';
-import ShopPage from './ShopPage';
-import Header from './Header';
 export default function Menu(props) {
-
 
     const menuListContainer = {
         hidden: {
             opacity: 0,
-            x: -100
+            x: "-100vw",
+            transition: {
+                duration: 0.2,
+                delay: 0.01,
+                when: "afterChildren",
+                staggerChildren: 0.05,
+                staggerDirection: -1
+            }
         },
         show: {
             opacity: 1,
             x:0,
             transition: {
+                x: {
+                    delay: 0.2,
+                    duration: 0.2
+                },
                 staggerChildren: 0.05,
-                when: "beforeChildren"
+                when: "beforeChildren",
+                type: "linear"
                 
             }
         }
@@ -27,94 +35,90 @@ export default function Menu(props) {
     const menuListItem = {
         hidden: { 
             opacity: 0,
-            x: -1000
+            x: "-100vw",
+            transition: {
+                x: {duration: 0.2}
+            }
          },
         show: { 
             opacity: 1,
             x: 0,
+         },
+         hover: {
+            scale: 0.75
          }
     }
 
     const menuTopAccent = {
         hidden: {
-            height: 0,
-        },
-        show: {
-            height: "15em",
+            y: "-50vh",
             transition: {
                 duration: 0.2,
-                delay: 0.3,
-                when: "beforeChildren"
+                
+            }
+        },
+        show: {
+            y: "0",
+            transition: {
+                delay: 0.2,
+                when: "beforeChildren",
+                type: "linear"
             }
         }}
 
     const menuCartItem = {
         hidden: {
             opacity: 0,
-            x: 1000
+            x: "70vw",
         },
         show: {
             opacity: 1,
             x: 0,
-            transition: {
-                delay: 0.2
-            }
         }
     }
-    const closeMenu = {
+    const closeMenuVariants = {
         hidden: {
             opacity: 0,
             display: "none",
             transition: {
-                duration: 0.2,
-                display: {delay: 0.4}
+                opacity: { duration: 0.1 },
+                display: { delay: 0.2},
             }
         },
         show: {
-            opacity: 1,
             display: "inherit",
+            opacity: 1,
             transition: {
-                delay: 0.1,
-                duration: 0.2,
-                display: {delay: 0.1}
+                opacity: {
+                }
             }
         }
     }
-
-    const pageTransition = {
+    const menu = {
         hidden: {
-            height: "0vh",
-            transition: {
-                delay: 0.2,
-              duration: 0.2,
-              when: "afterChildren",
-            }
+            height: 0,
+            transition: {when: "afterChildren"}
         },
         show: {
-            height: "100vh",
+            height: "85vh",
             transition: {
-              duration: 0.5,
-              when: "beforeChildren"
+                when: "beforeChildren"
             }
         }
     }
     return (
-
-        <motion.div className="menu" variants={pageTransition} initial="hidden" animate={props.showMenu?"show":"hidden"} key="menu">
-            <motion.div key="menuTopAccent" className="menuTopAccent" variants={menuTopAccent} initial={props.showMenu?"hidden":"show" } animate={props.showMenu?"show":"hidden"}>
-                <motion.p className="menuCart" variants={menuCartItem}>Cart: {props.cart}</motion.p>
+        <motion.div className="menu" key="menu" variants={menu} initial="hidden" animate={props.showMenu?"show":"hidden"} >
+            <motion.div key="menuTopAccent" className="menuTopAccent" variants={menuTopAccent} ></motion.div>
+            <motion.div className="menuCart" variants={menuCartItem} ><p>Cart: {props.cart}</p> </motion.div>
+            <motion.div className="menuMain" key="menuMain">
+                    <motion.nav className="menuList" key="menuList" variants={menuListContainer} >
+                        <motion.li key="homeButton" variants={menuListItem} onClick={() => {window.scrollTo({top:0,behavior:'smooth'}); setTimeout(()=>{props.handleMenuToggle()}, 200)}}><Link className="menuButton" to="/">Home</Link></motion.li>
+                        <motion.li key="shopButton" variants={menuListItem} onClick={() => {window.scrollTo({top:0,behavior:'smooth'});setTimeout(()=>{props.handleMenuToggle()}, 200)}}><Link className="menuButton" to="/Shop">Shop</Link></motion.li>
+                        <motion.li key="aboutButton" variants={menuListItem} onClick={() => {window.scrollTo({top:0,behavior:'smooth'});setTimeout(()=>{props.handleMenuToggle()}, 200)}}><Link className="menuButton" to="/About">About</Link></motion.li>
+                        <motion.li key="contactButton" variants={menuListItem} onClick={() => {window.scrollTo({top:0,behavior:'smooth'});setTimeout(()=>{props.handleMenuToggle()}, 200)}}><Link className="menuButton" to="/Contact">Contact</Link></motion.li>
+                    </motion.nav>
+                <motion.div key="closeMenuContainer" className="closeMenuContainer" onClick={() => window.scrollTo({top:0,behavior:'smooth'})| props.handleMenuToggle()} variants={closeMenuVariants} ><p>X</p></motion.div>
             </motion.div>
-            <div className="menuMain">
-                <motion.nav className="menuList" key="menuList" variants={menuListContainer} initial={!props.showMenu?"show":"hidden"} animate={props.showMenu?"show":"hidden"}>
-                    <motion.li key="homeButton" variants={menuListItem} onClick={() => {setTimeout(()=>{props.handleMenuToggle()}, 200)}}><Link className="menuButton" to="/">Home</Link></motion.li>
-                    <motion.li key="shopButton" variants={menuListItem} onClick={() => {setTimeout(()=>{props.handleMenuToggle()}, 200)}}><Link className="menuButton" to="/Shop">Shop</Link></motion.li>
-                    <motion.li key="aboutButton" variants={menuListItem} onClick={() => {props.handleMenuToggle()}}><a className="menuButton" href="/About">About</a></motion.li>
-                    <motion.li key="contactButton" variants={menuListItem} onClick={() => {props.handleMenuToggle()}}><a className="menuButton" href="/Contact">Contact</a></motion.li>
-                </motion.nav>
-                <motion.div className="closeMenuContainer" onClick={props.handleMenuToggle} variants={closeMenu} animate={props.showMenu?"show":"hidden"}><p>X</p></motion.div>
-            </div>
-            
-        </motion.div>
-
+            </motion.div>
     )
 }

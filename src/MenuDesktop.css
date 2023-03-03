@@ -1,0 +1,127 @@
+
+@media only screen and (min-width: 992px) {
+.menu {
+    width: 100vw;
+    background-color: #0C0C0C;
+    overflow: hidden;
+    overflow-x: hidden;
+    z-index: 10;
+}
+.closeMenuContainer {
+
+    position: absolute;
+    bottom: 10rem;
+    right: 5em;
+    margin: 0;
+    padding: 1em;
+    cursor: pointer;
+}
+.closeMenuContainer p {
+    color: #FC5130;
+    font-family: "Portia";
+    font-size: 10em;
+    margin: 0;
+    transition: color 0.2s ease, transform 0.2s ease,
+    
+}
+.closeMenuContainer:hover > p {
+    color: #F5F5F5;
+    -moz-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    -ms-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+}
+
+.menuTopAccent {
+    background: rgba(252,81,48,1);
+    background: linear-gradient(175deg, rgba(252,81,48,1) 50%, rgba(252,81,48,0) 50.5%, rgba(0,0,0,0) 100%);
+    display: flex;
+    width: 100vw;
+    align-items: center;
+    justify-content: flex-end;
+    position: absolute;
+  }
+  .menuCart {
+    font-family: Portia;
+    font-size: 8em;
+    color: var(--red);
+    rotate: -5deg;
+    margin-right: 1em;
+    margin-top: 1.3em;
+    
+}
+.menuMain {
+    display: flex;
+    justify-content: center;
+
+}
+  .menuContainer {
+      display: flex;
+      width: 50%;
+  }
+  .menuList {
+      display: flex;
+      flex-direction: column;
+      width: 50vw;
+      justify-content: center;
+      align-items: flex-start;
+  }
+  .menuList li {
+      color: var(--white);
+      list-style:none;
+
+      font-size: 8em;
+      width: -moz-fit-content;
+      width: fit-content;
+      
+  }
+  .menuList li a {
+      color: var(--white);
+      text-decoration: none;
+      -webkit-user-select: none;
+      user-select: none;
+      -moz-user-select: none;
+      -webkit-user-select: none;
+
+  }
+ .menuList li:nth-child(1) {
+    margin-top: 0vh;
+     rotate: -10deg;
+}
+
+.menuList li:nth-child(2) {
+    rotate: -8deg;
+    margin-left: 2em;
+}
+.menuList li:nth-child(3) {
+    rotate: -12deg;
+    margin-left: 3em;
+}
+.menuList li:nth-child(4) {
+    rotate: -7deg;
+    margin-left: 4em;
+    margin-bottom : 1em;
+} 
+.menuList li:nth-child(1), .menuList li:nth-child(3) {
+    font-family: 'A Box For 1';
+}
+.menuList li:nth-child(2), .menuList li:nth-child(4) {
+    font-family: 'A Box For 2';
+}
+.menuList li a:hover {
+    font-family: 'A Box For 3';
+    color: var(--red);
+}
+.menuList li a:active {
+    color: var(--white);
+    background-color: var(--red);
+}
+
+
+.menuMain header {
+margin-bottom: 0;
+
+outline: 1px solid white;
+}
+}

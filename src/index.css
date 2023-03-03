@@ -31,3 +31,8 @@
     src: local("A Box For 3"),
         url("./Assets/Fonts/A\ Box\ For\ 3.ttf") format("truetype");
 }
+@font-face {
+    font-family: "Noir";
+    src: local("Noir"),
+        url("./Assets/Fonts/Noir_regular.otf") format("opentype");
+}
