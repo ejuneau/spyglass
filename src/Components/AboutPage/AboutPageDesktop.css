@@ -3,10 +3,6 @@
         margin-top: -9rem;
     }
     .MYL-container {
-        clip-path: polygon(0 9rem, 100% 0, 100% calc(50vh - 9rem), 0 100%);
-
-    }
-    .MYL-container {
         clip-path: polygon(100% 9rem, 100% 100%, 0 calc(50vh - 9rem), 0 0);
     }
     .MYL-filter {
@@ -18,7 +14,7 @@
 
 @media only screen and (min-width: 992px) {
     .MYL-text {
-        font-size: 7vw;
+        font-size: 12vw;
         line-height: 5vw;
     }
 
@@ -40,8 +36,8 @@
         margin-top: 0.5vh;
         clip-path: polygon(0 0, 100% 0, 100% 30%, 0 30%);
     }
-    .MYL-filter {
+    /* .MYL-filter {
 
         clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 15vh);
-    }
+    } */
 }

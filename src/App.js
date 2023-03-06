@@ -1,9 +1,9 @@
 import './App.css';
-import HomePage from './HomePage';
-import ShopPage from './ShopPage';
-import AboutPage from './AboutPage';
-import Menu from './Menu';
-import Header from './Header';
+import HomePage from './Components/HomePage/HomePage';
+import ShopPage from './Components/ShopPage/ShopPage';
+import AboutPage from './Components/AboutPage/AboutPage';
+import Menu from './Util/Menu';
+import Header from './Util/Header';
 
 
 import "./Assets/Fonts/Mustasurma.ttf";
@@ -40,8 +40,9 @@ function App() {
   const [cart, setCart] = useState(1);
   const [showMenu, setShowMenu] = useState(false);
   const handleMenuToggle = () => {
-    console.log(showMenu);
+    console.log("Show Menu: " + !showMenu);
     setShowMenu(!showMenu);
+
   }
 
 const AppLayout = () => {
@@ -55,18 +56,15 @@ return (
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route element={<AppLayout />}>
-        <Route path="/Shop" element={<ShopPage handleMenuToggle={handleMenuToggle} showMenu={showMenu} key="HomePageComponent"/>} />
+        <Route path="/Shop" element={<ShopPage handleMenuToggle={handleMenuToggle} showMenu={showMenu}  key="ShopPageComponent"/>} />
         <Route path="/About" element={<AboutPage handleMenuToggle={handleMenuToggle} showMenu={showMenu} key="AboutPageComponent"/>} />
-        <Route path="/" element={<HomePage handleMenuToggle={handleMenuToggle} showMenu={showMenu} key="ShopPageComponent"/>} />
+        <Route path="/" element={<HomePage handleMenuToggle={handleMenuToggle} showMenu={showMenu} key="HomePageComponent"/>} />
       </Route>
     )
   )
   const menuRouter = createBrowserRouter(
     createRoutesFromElements(
-      <Route element={<Menu cart={cart} handleMenuToggle={handleMenuToggle} showMenu={showMenu} key="MenuComponent"/>}>
-        <Route path='/*' />
-      </Route>
-
+        <Route path='/*' element={<Menu cart={cart} handleMenuToggle={handleMenuToggle} showMenu={showMenu} key="MenuComponent"/>}/>
     )
   )
 

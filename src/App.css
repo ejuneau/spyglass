@@ -32,3 +32,8 @@ html {
 @media only screen and (min-width: 992px) {
   .HomePage {height: 120vh;}
 }
+.button {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}

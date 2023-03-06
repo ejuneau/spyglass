@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro';
-import logoWhite from './Assets/Images/Logo (White, slogan).png';
-import logoBlack from './Assets/Images/Logo (Black, slogan).png';
+import logoWhite from '../Assets/Images/Logo (White, slogan).png';
+import logoBlack from '../Assets/Images/Logo (Black, slogan).png';
 import {motion} from 'framer-motion';
 import React from 'react';
 import Menu from './Menu';

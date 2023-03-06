@@ -1,6 +1,6 @@
 import './App.css';
-import Menu from './Menu.js';
-import Header from './Header.js';
+import Menu from '../../src/Menu.js';
+import Header from '../../src/Header.js';
 import HomePage from './HomePage';
 import ShopPage from './ShopPage';
 

@@ -1,6 +1,6 @@
 import './AboutPage.css';
 import './AboutPageDesktop.css';
-import bridge from './Assets/Images/bridge.png';
+import bridge from '../../Assets/Images/bridge.png';
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -13,17 +13,23 @@ export default function AboutPage(props) {
   
     const [OA, setOA] = useState(((window.innerHeight/100)*15) / (window.innerWidth));
     const [angle, setAngle] = useState(Math.atan(OA));
-    const [rotateBy, setRotateBy] = useState(-1 * angle)
+    const [rotateBy, setRotateBy] = useState(`${1 - angle}rad`)
     const [height, setHeight] = useState("200vh");
 
-
-        useMotionValueEvent(scrollYProgress, "change", (latest) => {
-            // console.log("Page scroll: ", latest);
-            setHeight(`${Math.min(((1 - latest) * 200), 50)}vh`);
-            console.log("Filter Height: " +height);
-          })
+    //Calculate minimum angle to rotate by when 15vh becomes 9rem
+    //9rem in pixels
+    const minHeight = 9 * parseFloat(getComputedStyle(document.documentElement).fontSize); 
+    const [minAngle, setMinAngle] = useState(Math.atan(minHeight / window.innerWidth));
 
 
+        useMotionValueEvent(scrollYProgress, "change", (latest) => {setHeight(`${Math.min(((1 - latest) * 60), 50)}vh`);});
+        useEffect(() => {
+            setOA(((window.innerHeight/100)*15) / (window.innerWidth));
+            setAngle(Math.atan(OA));
+            setMinAngle(Math.atan(minHeight / window.innerWidth));
+            setRotateBy(`${Math.max(angle, minAngle)}rad`);
+            console.log("MYL Rotation: "+rotateBy);
+        }, [window.innerHeight, window.innerWidth]);
 
     return (
         <motion.div className="AboutPageComponent" key="AboutPageComponent" ref={filterRef} variants={AboutPage}>
@@ -43,7 +49,7 @@ export default function AboutPage(props) {
             <motion.div className="MYL-container">
             
                 <motion.div key="MYL" className="MYL" >
-                    <motion.div key="MYL-text" className="MYL-text" > 
+                    <motion.div key="MYL-text" className="MYL-text" initial={{rotate: rotateBy}} animate={{rotate: rotateBy}} > 
                         <p>Made</p>
                         <p>You</p>
                         <div id="look">

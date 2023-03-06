@@ -60,4 +60,7 @@ align-items: center;
   width: 50vw;
 position: absolute;
 max-width: 840px;
+-moz-user-select: none;
+-webkit-user-select: none;
+user-select: none;
 }

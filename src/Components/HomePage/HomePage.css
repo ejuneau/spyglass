@@ -44,7 +44,7 @@
 .HomePage-main-left {
     width: 100vw;
     display: flex;
-    background-image: url('./Assets/Images/background-3.gif');
+    background-image: url('../../Assets/Images/background-3.gif');
     background-size: cover;
     margin-top: 15vh;
     clip-path: polygon(100% 0, 100% 100%, 0 90%, 0 0);

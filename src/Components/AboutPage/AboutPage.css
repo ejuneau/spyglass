@@ -40,7 +40,7 @@
     min-width: 100vw;
     -webkit-backdrop-filter: blur(10vh);
     backdrop-filter: blur(10vh);
-    clip-path: polygon(100% 0, 100% 70%, 0 100%, 0 30%);
+    clip-path: polygon(0 0, 100% 30%, 100% 100%, 0 70%);
     z-index: 10;
 }
 .MYL {
