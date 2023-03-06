@@ -1,6 +1,7 @@
 import './AboutPage.css';
 import './AboutPageDesktop.css';
 import bridge from '../../Assets/Images/bridge.png';
+import MYL from '../../Assets/Images/MYL.png';
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -49,7 +50,7 @@ export default function AboutPage(props) {
             <motion.div className="MYL-container">
             
                 <motion.div key="MYL" className="MYL" >
-                    <motion.div key="MYL-text" className="MYL-text" initial={{rotate: rotateBy}} animate={{rotate: rotateBy}} > 
+                    {/* <motion.div key="MYL-text" className="MYL-text" initial={{rotate: rotateBy}} animate={{rotate: rotateBy}} > 
                         <p>Made</p>
                         <p>You</p>
                         <div id="look">
@@ -57,8 +58,8 @@ export default function AboutPage(props) {
                             <img id="bridge" alt="edited text to look like a glasses bridge between the two o's in the word look" src={bridge} />
                             <p>ok.</p>
                         </div>
-                    </motion.div>
-                    
+                    </motion.div> */}
+                    <motion.img key="MYL-text" className="MYL-text" initial={{rotate: rotateBy}} animate={{rotate: rotateBy}} src={MYL}/>
                 </motion.div>
                 <motion.div key="MYL-filter" className="MYL-filter" style={{height: height}} >  </motion.div>
                 

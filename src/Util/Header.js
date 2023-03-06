@@ -3,13 +3,16 @@ import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/
 import logoWhite from '../Assets/Images/Logo (White, slogan).png';
 import logoBlack from '../Assets/Images/Logo (Black, slogan).png';
 import {motion} from 'framer-motion';
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Menu from './Menu';
 import './Header.css';
 
 
 
 export default function Header(props) {
+    const [isHover, setIsHover] = useState(false);
+    const handleHoverChange = () => {setIsHover(!isHover)};
 
     const hamburger = {
         hidden: {
@@ -30,7 +33,8 @@ export default function Header(props) {
         tap: {
             scale: 0.2,
             transition: {
-                duration: 0.2
+                duration: 0.2,
+                delay: 0.1
             }
         },
         hover: {
@@ -38,25 +42,60 @@ export default function Header(props) {
         }
     }
 
+    const spacerLogo = {
+        show: {
+            filter: "blur(0px) invert(100%)",
+            opacity: 1,
+            mixBlendMode: "normal",
+            transition: {
+                duration: 0.1,
+                mixBlendMode: {delay: 0.1}
+            }
+        },
+        hidden: {
+            mixBlendMode: isHover?"normal":"exclusion",
+            filter: `blur(${isHover?0:3}px) invert(0%)`,
+            opacity: isHover?1:0.75,
+            scale: isHover?1.1:1,
+            transition: {
+                duration: 0.1,
+                
+            }
+        },
+    }
+    const Logo = {
+        show: {
+            scale: 1,
+            transition: {
+                duration: 0.1
+            }
+        },
+        hidden: {
+            scale: isHover?1.1:1,
+            transition: {
+                duration: 0.1
+            }
+        },
+    }
+
     return (
         <div className="HeaderComponent">
-    <header>
-            <motion.div className="menu-cart" key="menu-cart" variants={hamburger} initial="show" whileTap="tap" whileHover="hover" onClick={props.handleMenuToggle} animate={props.showMenu?"hidden":"show"}>
-                <div className="hamburger-container"  >
-                    {/* <p className="hamburger" style={{"fontFamily": "Portia"}} >II</p> */}
-                    <FontAwesomeIcon className="hamburger" icon={solid('bars')} key="HeaderIcon"/>
-                </div>
-                <p id="cart-count" style={{"fontFamily": "Portia", "color": "#FC5130", "display":props.cart>0?"initial":"none"}}>{props.cart}</p>
-            </motion.div>
-            <div className="logo">
-                <img src={logoWhite} alt="Spyglass Logo" id="logo" />
+            <header>
+                <motion.div className="menu-cart" key="menu-cart" variants={hamburger} initial="show"  onClick={props.handleMenuToggle} animate={props.showMenu?"hidden":"show"}>
+                    <div className="hamburger-container"  >
+                        <FontAwesomeIcon className="hamburger" icon={solid('bars')} key="HeaderIcon"/>
+                    </div>
+                    <p id="cart-count" style={{"fontFamily": "Portia", "color": "#FC5130", "display":props.cart>0?"initial":"none"}}>{props.cart}</p>
+                </motion.div>
+                <Link to="/" className="logo" onClick={() => {this.forceUpdate()}}>
+                    <motion.img src={logoWhite} variants={Logo} animate={props.showMenu?"show":"hidden"} onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)} alt="Spyglass Logo" id="logo" />
+                </Link>
+            </header>
+            <div className="header-spacer">
+                <Link to="/" className="logo" onClick={() => {this.forceUpdate()}}>
+                    <motion.img src={logoWhite} variants={spacerLogo} animate={props.showMenu?"show":"hidden"} onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)} alt="Spyglass Logo" id="logo" className="SpacerLogo" />
+                </Link>
             </div>
-    </header>
-                <div className="header-spacer"  style={{backgroundColor: props.showMenu?"":"transparent"}}>
-                <div className="logo">
-                  <img src={props.showMenu?logoBlack:logoWhite} style={{mixBlendMode: props.showMenu?"initial":"difference"}} alt="Spyglass Logo" id="logo" className="SpacerLogo" />
-                </div>
-              </div>
-              </div>
+        </div>
     )
 }

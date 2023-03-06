@@ -29,3 +29,8 @@
 .activeSort p {
     font-family: "A Box For 2";
 }
+.product-list-container {
+    display: flex;
+    width: 90vw;
+    flex-wrap: wrap;
+}

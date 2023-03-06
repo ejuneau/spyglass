@@ -50,6 +50,9 @@
     position: relative;
 }
 .MYL-text {
+    width: 95%;
+}
+/* .MYL-text {
     font-size: max(12vw, 30px);
     text-align: center;
     width: 100%;
@@ -61,7 +64,7 @@
     line-height: 12.5vw;
     color: var(--black);
     transform: translateY(-1.15vh);
-}
+} */
 .MYL-text p {
 
     margin: 0 1vw;

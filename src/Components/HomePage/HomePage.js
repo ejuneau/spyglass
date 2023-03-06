@@ -2,7 +2,7 @@ import youWont from '../../Assets/Images/You won\'t.webp';
 import believe from '../../Assets/Images/believe.webp';
 import yourEyes from '../../Assets/Images/your eyes.webp';
 import React from 'react';
-import {Link} from "react-router-dom";
+import {Link, useSearchParams} from "react-router-dom";
 import './HomePage.css';
 import './HomePageDesktop.css';
 
@@ -18,6 +18,9 @@ import "../../Assets/Fonts/A Box For.ttf";
 
 
 export default function HomePage(props) {
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
 const absolute = {
   hidden: {
     x: "80vw",
@@ -48,7 +51,7 @@ const absolute = {
               </div>
               <motion.div className="HomePage-main-center" variants={absolute} initial={false} animate={props.showMenu?"hidden":"show"}>
                 <div className="HomePage-main-buttons" key="main-hero-buttons">
-                  <Link to="/Shop" className="button" id="shopMen" onClick={() => {props.sort==="men"?console.log('men'):props.handleSortChange("men")}}>Men's</Link>
+                  <Link to="/Shop" className="button" id="shopMen" onClick={() => { props.sort==="men"?console.log('men'):props.handleSortChange("men")}}>Men's</Link>
                   <Link to="/Shop" className="button" id="shopWomen" onClick={() => {props.sort==="women"?console.log('women'):props.handleSortChange("women")}}>Women's</Link>
                   <Link to="/Shop" className="button" id="shopEnby" onClick={() => {props.sort==="women"?console.log('enby'):props.handleSortChange("enby")}}>Neutral's</Link>
                 </div>

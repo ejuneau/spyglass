@@ -25,6 +25,9 @@ align-items: center;
 }
 .SpacerLogo {
  transition: mix-blend-mode 0.2s ease;
+ isolation: isolate;
+ /* mix-blend-mode:difference; */
+
 }
 .hamburger {
     color: var(--red);
@@ -46,11 +49,11 @@ align-items: center;
   }
   .hamburger-container:hover > .hamburger {
     color: var(--white);
-    -moz-transform: scale(1, -1);
-    -webkit-transform: scale(1, -1);
-    -o-transform: scale(1, -1);
-    -ms-transform: scale(1, -1);
-    transform: scale(1, -1);
+    -moz-transform: scale(0.9, -1);
+    -webkit-transform: scale(0.9, -1);
+    -o-transform: scale(0.9, -1);
+    -ms-transform: scale(0.9, -1);
+    transform: scale(0.9, -1);
   }
   .hamburger-container:hover ~ p#cart-count {
     color: var(--white);
@@ -58,9 +61,11 @@ align-items: center;
 
 .logo {
   width: 50vw;
+  max-height: calc(var(--vh, 1vh) * 15);
 position: absolute;
 max-width: 840px;
 -moz-user-select: none;
 -webkit-user-select: none;
 user-select: none;
+cursor: pointer;
 }

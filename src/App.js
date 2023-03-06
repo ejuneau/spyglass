@@ -12,24 +12,42 @@ import "./Assets/Fonts/A Box For.ttf";
 import "./Assets/Fonts/Noir_regular.otf";
 
 import React, { useState } from 'react';
-import { createBrowserRouter, createRoutesFromElements, Outlet, RouterProvider, Route } from 'react-router-dom';
+import { createBrowserRouter, createRoutesFromElements, Routes, Outlet, RouterProvider, Route } from 'react-router-dom';
 import { AnimatePresence, motion, LayoutGroup } from "framer-motion";
 
 function App() {
+  //Calculate vh for mobile
+  let vh = window.innerHeight * 0.01;
+  //set vh to CSS Variable
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+
+
+  const [sort, setSort] = useState('');
+  const handleSortChange = (sortBy) => {
+    if ( sort === sortBy ) {
+      setSort('');
+      console.log("Active Sort: None");
+    } else {
+      setSort(sortBy);
+      console.log("Active Sort: " + sortBy);
+    }
+  }
+
 
   const pageTransition = {
     hidden: {
-      opacity: 0,
-      y: "15vh",
+
+      y: "20vh",
       display: "none",
       transition: {
-        opacity: {duration: 0.1},
-        display: {delay: 0.2},
-        staggerChildren: 0.2
+        display: {delay: 1},
+        staggerChildren: 0.2,
+        y: {type: "linear", delay: 0.2, duration: 0.2},
       }
     },
     show: {
-      opacity: 1,
+
       y:0,
       display: "inherit",
       transition: {
@@ -53,18 +71,24 @@ return (
 }
 
 
-  const router = createBrowserRouter(
+  const router = createBrowserRouter( 
     createRoutesFromElements(
-      <Route element={<AppLayout />}>
-        <Route path="/Shop" element={<ShopPage handleMenuToggle={handleMenuToggle} showMenu={showMenu}  key="ShopPageComponent"/>} />
+      <>
+      <Route path="/" element={<HomePage handleMenuToggle={handleMenuToggle} showMenu={showMenu} sort={sort} handleSortChange={handleSortChange} key="HomePageComponent"/>} />
+      <Route path="/Shop" element={<ShopPage handleMenuToggle={handleMenuToggle} showMenu={showMenu}  sort={sort} handleSortChange={handleSortChange} key="ShopPageComponent"/>} />
         <Route path="/About" element={<AboutPage handleMenuToggle={handleMenuToggle} showMenu={showMenu} key="AboutPageComponent"/>} />
-        <Route path="/" element={<HomePage handleMenuToggle={handleMenuToggle} showMenu={showMenu} key="HomePageComponent"/>} />
-      </Route>
-    )
-  )
+        
+    </>
+    ))
+  
   const menuRouter = createBrowserRouter(
     createRoutesFromElements(
         <Route path='/*' element={<Menu cart={cart} handleMenuToggle={handleMenuToggle} showMenu={showMenu} key="MenuComponent"/>}/>
+    )
+  )
+  const headerRouter = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path='/*' element={<Header key="HeaderComponent" cart ={cart} handleMenuToggle={handleMenuToggle} showMenu={showMenu}/>}/>
     )
   )
 
@@ -72,7 +96,8 @@ return (
     <AnimatePresence>
       <LayoutGroup>
         <RouterProvider router={menuRouter} />
-        <Header key="HeaderComponent" cart ={cart} handleMenuToggle={handleMenuToggle} showMenu={showMenu}/>
+        {/* <Header key="HeaderComponent" cart ={cart} handleMenuToggle={handleMenuToggle} showMenu={showMenu}/> */}
+        <RouterProvider router={headerRouter} />
         <motion.div key="Content" className="Content" variants={pageTransition} initial="show" animate={showMenu?"hidden":"show"}>
           <RouterProvider router={router} />
         </motion.div>

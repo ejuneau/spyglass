@@ -1,12 +1,6 @@
 
 @media only screen and (min-width: 992px) {
-.menu {
-    width: 100vw;
-    background-color: #0C0C0C;
-    overflow: hidden;
-    overflow-x: hidden;
-    z-index: 10;
-}
+
 .closeMenuContainer {
 
     position: absolute;
@@ -24,18 +18,9 @@
     transition: color 0.2s ease, transform 0.2s ease,
     
 }
-.closeMenuContainer:hover > p {
-    color: #F5F5F5;
-    -moz-transform: scale(-1, 1);
-    -webkit-transform: scale(-1, 1);
-    -o-transform: scale(-1, 1);
-    -ms-transform: scale(-1, 1);
-    transform: scale(-1, 1);
-}
+
 
 .menuTopAccent {
-    background: rgba(252,81,48,1);
-    background: linear-gradient(175deg, rgba(252,81,48,1) 50%, rgba(252,81,48,0) 50.5%, rgba(0,0,0,0) 100%);
     display: flex;
     width: 100vw;
     align-items: center;
@@ -46,7 +31,6 @@
     font-family: Portia;
     font-size: 8em;
     color: var(--red);
-    rotate: -5deg;
     margin-right: 1em;
     margin-top: 1.3em;
     
@@ -68,7 +52,6 @@
       align-items: flex-start;
   }
   .menuList li {
-      color: var(--white);
       list-style:none;
 
       font-size: 8em;
@@ -76,15 +59,7 @@
       width: fit-content;
       
   }
-  .menuList li a {
-      color: var(--white);
-      text-decoration: none;
-      -webkit-user-select: none;
-      user-select: none;
-      -moz-user-select: none;
-      -webkit-user-select: none;
 
-  }
  .menuList li:nth-child(1) {
     margin-top: 0vh;
      rotate: -10deg;

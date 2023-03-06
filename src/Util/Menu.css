@@ -2,11 +2,13 @@
 
 .menu {
     width: 100vw;
-    background-color: #0C0C0C;
+    background-color: var(--black);
     overflow: hidden;
     overflow-x: hidden;
     z-index: 10;
-    max-height: 85vh;
+    height: 85vh; 
+    height: calc(var(--vh, 1vh) * 85);
+    
 
 }
 .closeMenuContainer {
@@ -19,7 +21,7 @@
     cursor: pointer;
 }
 .closeMenuContainer p {
-    color: #FC5130;
+    color: var(--red);
     font-family: "Portia";
     font-size: 4em;
     margin: 0;
@@ -27,12 +29,16 @@
     
 }
 .closeMenuContainer:hover > p {
-    color: #F5F5F5;
-    -moz-transform: scale(-1, 1);
-    -webkit-transform: scale(-1, 1);
-    -o-transform: scale(-1, 1);
-    -ms-transform: scale(-1, 1);
-    transform: scale(-1, 1);
+    color: var(--white);
+    -moz-transform: scale(-0.9, 0.9);
+    -webkit-transform: scale(-0.9, 0.9);
+    -o-transform: scale(-0.9, 0.9);
+    -ms-transform: scale(-0.9, 0.9);
+    transform: scale(-0.9, 0.9);
+}
+
+.activeNavButton {
+    color: var(--blue);
 }
 
 .menuTopAccent {
@@ -47,21 +53,21 @@
   }
   .menuCart {
     display: flex;
-    font-family: Portia;
+    font-family: 'Portia';
     font-size: 4em;
     color: var(--red);
     width: 100vw;
-    margin-top: 0vh;
+    margin-top: -5vh;
+    margin-bottom: 5vh;
     justify-content: flex-end;
     align-items: center;
-    rotate: -18deg;
     
 }
 .menuCart p {
     width: -moz-fit-content;
     width: fit-content;
     margin: 0;
-    margin-right: 1em;
+    margin-right: 1rem;
 }
 .menuMain {
     display: flex;
@@ -80,12 +86,13 @@
       align-items: flex-start;
   }
   .menuList li {
-      color: var(--white);
-      list-style:none;
-
-      font-size: 4em;
-      width: -moz-fit-content;
-      width: fit-content;
+    color: var(--white);
+    list-style:none;
+    display: flex;
+    font-size: 4em;
+    width: -moz-fit-content;
+    width: fit-content;
+    
       
   }
   .menuList li a {
@@ -95,14 +102,14 @@
       user-select: none;
       -moz-user-select: none;
       -webkit-user-select: none;
-
+    transition: color 0.2s ease, transform 0.2s ease;
   }
  .menuList li:nth-child(1) {
     margin-top: 0;
      rotate: -10deg;
      margin-left: 1em;
      margin-bottom: 0.5rem;
-     margin-top: 1em;
+     margin-top: -1em;
 }
 
 .menuList li:nth-child(2) {
@@ -129,12 +136,27 @@
     font-family: 'A Box For 3';
     color: var(--red);
 }
-.menuList li a:active {
-    color: var(--white);
-    background-color: var(--red);
+
+.activeNavButton {
+    /* background-image: url('../Assets/Images/activeNavButtonBackground.png');
+    background-size: contain;
+    background-repeat: no-repeat; */
+    transform: skew(-0.06turn, 18deg);
+    color: var(--red) !important;
+}
+
+#activeNavButton {
+    width: 10rem;
+    height: 3rem;
+    position: absolute;
+    margin-left: -3rem;
+
+}
+#activeNavButton * {
+    fill: var(--red);
 }
 @media only screen and (max-height: 960px) {
     .menu {
-        max-height: calc(100vh - 9rem);
+        max-height: calc(var(--vh, 1vh) * 100 - 9rem);
     }
 }
