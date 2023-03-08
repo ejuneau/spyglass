@@ -11,17 +11,21 @@ import "./Assets/Fonts/Portia.otf";
 import "./Assets/Fonts/A Box For.ttf";
 import "./Assets/Fonts/Noir_regular.otf";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createBrowserRouter, createRoutesFromElements, Routes, Outlet, RouterProvider, Route } from 'react-router-dom';
 import { AnimatePresence, motion, LayoutGroup } from "framer-motion";
 
 function App() {
+  const emoji = ["🤓","👀","🕶️","😎","🥸","👓"];
+  document.title = `Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;
   //Calculate vh for mobile
   let vh = window.innerHeight * 0.01;
   //set vh to CSS Variable
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 
-
+  useEffect(() => {
+    document.title = `Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;
+  }, [])
 
   const [sort, setSort] = useState('');
   const handleSortChange = (sortBy) => {

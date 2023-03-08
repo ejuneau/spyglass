@@ -15,6 +15,11 @@
     src: local("Portia"),
         url("./Assets/Fonts/Portia.otf") format("opentype");
 }
+@font-face {
+    font-family: "Portia Oblique";
+    src: local("Portia Oblique"),
+        url("./Assets/Fonts/Portia-Oblique.otf") format("opentype");
+}
 
 @font-face {
     font-family: "A Box For 1";
