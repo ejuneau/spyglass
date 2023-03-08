@@ -29,10 +29,11 @@ import back7 from '../Assets/Images/ProductPhotos/7/back.JPEG';
 const Products = [
     {
         id: 1,
-        name: "PlaceHolders-1",
+        name: "Mercury",
         sunglasses: true,
         gender: ["women", "enby"],
         variants: [],
+        price: 290.00,
         photos: {
             front: front1,
             back: back1,
@@ -41,10 +42,11 @@ const Products = [
     },
     {
         id: 2,
-        name: "PlaceHolders-2",
+        name: "Lovestruck",
         sunglasses: true,
         gender: ["women"],
         variants: [],
+        price: 140.00,
         photos: {
             front: front2,
             back: back2,
@@ -53,9 +55,10 @@ const Products = [
     },
     {
         id: 3,
-        name: "PlaceHolders-3",
+        name: "Blend",
         sunglasses: false,
         gender: ["enby", "men", "women"],
+        price: 240.00,
         variants: [],
         photos: {
             front: front3,
@@ -65,10 +68,11 @@ const Products = [
     },
     {
         id: 4,
-        name: "PlaceHolders-4",
+        name: "Rascal",
         sunglasses: false,
         gender: ["enby", "women"],
         variants: [5],
+        price: 140.00,
         photos: {
             front: front4,
             back: back4,
@@ -77,10 +81,11 @@ const Products = [
     },
     {
         id: 5,
-        name: "PlaceHolders-5",
+        name: "Rascal",
         sunglasses: false,
         gender: ["enby", "women"],
         variants: [4],
+        price: 140.00,
         photos: {
             front: front5,
             back: back5,
@@ -89,10 +94,11 @@ const Products = [
     },
     {
         id: 6,
-        name: "PlaceHolders-6",
+        name: "Fiend",
         sunglasses: true,
         gender: ["women"],
         variants: [],
+        price: 190.00,
         photos: {
             front: front6,
             back: back6,
@@ -101,10 +107,11 @@ const Products = [
     },
     {
         id: 7,
-        name: "PlaceHolders-7",
+        name: "Sucker",
         sunglasses: true,
         gender: ["women"],
         variants: [],
+        price: 190.00,
         photos: {
             front: front7,
             back: back7,

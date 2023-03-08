@@ -21,19 +21,19 @@ export default function HomePage(props) {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-const absolute = {
-  hidden: {
-    x: "80vw",
+// const absolute = {
+//   hidden: {
+//     x: "80vw",
 
-  },
-  show: {
-    x: 0,
+//   },
+//   show: {
+//     x: 0,
 
-    transition: {
-      delay: 1
-    }
-  }
-}
+//     transition: {
+     
+//     }
+//   }
+// }
 
     return (
           <div className="HomePage">
@@ -49,7 +49,7 @@ const absolute = {
                 <div className='Model'><img src={model} alt="a sylised photo female model wearing sunglasses"/></div>
 
               </div>
-              <motion.div className="HomePage-main-center" variants={absolute} initial={false} animate={props.showMenu?"hidden":"show"}>
+              <motion.div className="HomePage-main-center" >
                 <div className="HomePage-main-buttons" key="main-hero-buttons">
                   <Link to="/Shop" className="button" id="shopMen" onClick={() => { props.sort==="men"?console.log('men'):props.handleSortChange("men")}}>Men's</Link>
                   <Link to="/Shop" className="button" id="shopWomen" onClick={() => {props.sort==="women"?console.log('women'):props.handleSortChange("women")}}>Women's</Link>

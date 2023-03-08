@@ -1,5 +1,5 @@
 import React, {useState } from 'react';
-import {motion} from 'framer-motion';
+import {motion, AnimatePresence} from 'framer-motion';
 import './ShopPage.css';
 import Products from '../../Util/Products';
 import Product from './Product/Product';
@@ -135,19 +135,28 @@ const filterButton3 = {
       }
   }
 }
+function isInArray(value, array) {
+  if (value === "") {return true}
+  console.log("checking if "+ value + " is in "+array);
+  return array.indexOf(value) > -1;
+}
+
   return (
     <div className="ShopPageComponent">
+      <script src="vanilla-tilt.js"></script>
       <div className="filter-buttons-container">
         <motion.div key="filterbuttonmen"    variants={filterButton1} initial="initial" whileHover="hover" className={`button filterButtons filterButtonsMen   ${props.sort === "men"?"activeSort":""}`}   onClick={() => props.handleSortChange("men")}  ><p>Men</p></motion.div>
         <motion.div key="filterbuttonwomen"  variants={filterButton2} initial="initial" whileHover="hover" className={`button filterButtons filterButtonsWomen ${props.sort === "women"?"activeSort":""}`} onClick={() => props.handleSortChange("women")}><p>Women</p></motion.div>
         <motion.div key="filterbuttonenby"   variants={filterButton3} initial="initial" whileHover="hover" className={`button filterButtons filterButtonsEnby  ${props.sort === "enby"?"activeSort":""}`}  onClick={() => props.handleSortChange("enby")} ><p>Neutral</p></motion.div>
       </div>
       <div className="product-list-container">
+        <AnimatePresence>
         {
           Products.map((product) => {
-            return <Product product={product} key={product.id}/>
+            return isInArray(props.sort, product.gender)&&<motion.div key={`Product ${product.id}`} layout initial={{ opacity: 0, y: "200vh"}} animate={{opacity: 1, y:0, transition: {duration: 1} }} exit={{ opacity: 0 }} ><Product product={product} key={product.id} sort={props.sort} /></motion.div>
           })
         }
+        </AnimatePresence>
       </div>
   </div>
 )

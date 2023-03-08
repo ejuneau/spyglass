@@ -4,7 +4,7 @@
     max-width: 100vw;
     margin-top: -15vh;
     max-height: 100vh;
-    background-color: var(--white);
+    background-color: var(--red);
     align-items: center;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -14,7 +14,7 @@
     width: 100vw;
     display: flex;
     justify-content: space-evenly;
-    margin-top: 15vh;
+    margin-top: 25vh;
     margin-bottom: 5vh;
 
 }
@@ -23,14 +23,34 @@
     font-family: "A Box For 1";
     font-size: min(7.5vw, 5em);
 }
+.filterButtons p:hover {
+color: var(--white);
+
+}
 .activeSort {
-    background-color: var(--red);
+    background-color: var(--black);
 }
 .activeSort p {
     font-family: "A Box For 2";
+    color: var(--red);
 }
 .product-list-container {
     display: flex;
     width: 90vw;
     flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+
+/* SOMETHING WITH TRANSITIONS */
+
+@media only screen and (max-height: 960px) {
+    .filter-buttons-container {
+        margin-top: calc(9rem + 10vh);
+    }
+    .ShopPageComponent {
+        margin-top: -9rem;
+    }
+
+
 }
