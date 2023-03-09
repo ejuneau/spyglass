@@ -1,5 +1,6 @@
 import React, {useState } from 'react';
 import {motion, AnimatePresence} from 'framer-motion';
+import { Link } from 'react-router-dom';
 import './ShopPage.css';
 import Products from '../../Util/Products';
 import Product from './Product/Product';
@@ -149,15 +150,15 @@ function isInArray(value, array) {
         <motion.div key="filterbuttonwomen"  variants={filterButton2} initial="initial" whileHover="hover" className={`button filterButtons filterButtonsWomen ${props.sort === "women"?"activeSort":""}`} onClick={() => props.handleSortChange("women")}><p>Women</p></motion.div>
         <motion.div key="filterbuttonenby"   variants={filterButton3} initial="initial" whileHover="hover" className={`button filterButtons filterButtonsEnby  ${props.sort === "enby"?"activeSort":""}`}  onClick={() => props.handleSortChange("enby")} ><p>Neutral</p></motion.div>
       </div>
-      <div className="product-list-container">
+      <motion.div className="product-list-container" key="product-list-container">
         <AnimatePresence>
         {
           Products.map((product) => {
-            return isInArray(props.sort, product.gender)&&<motion.div key={`Product ${product.id}`} layout initial={{ opacity: 0, y: "200vh"}} animate={{opacity: 1, y:0, transition: {duration: 1} }} exit={{ opacity: 0 }} ><Product product={product} key={product.id} sort={props.sort} /></motion.div>
+            return isInArray(props.sort, product.gender)&&<motion.div key={`Product ${product.id}`} layout initial={{ opacity: 0, y: "200vh"}} animate={{opacity: 1, y:0, transition: {duration: 1} }} exit={{ opacity: 0, y: "200vh", transition: {duration: 0.2} }} ><Link to={`/Shop/Product/${product.name}`}><Product product={product} key={product.id} sort={props.sort} /></Link></motion.div>
           })
         }
         </AnimatePresence>
-      </div>
+      </motion.div>
   </div>
 )
 }

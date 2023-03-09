@@ -12,7 +12,7 @@ import "./Assets/Fonts/A Box For.ttf";
 import "./Assets/Fonts/Noir_regular.otf";
 
 import React, { useState, useEffect } from 'react';
-import { createBrowserRouter, createRoutesFromElements, Routes, Outlet, RouterProvider, Route } from 'react-router-dom';
+import { createBrowserRouter, createRoutesFromElements, Outlet, RouterProvider, Route } from 'react-router-dom';
 import { AnimatePresence, motion, LayoutGroup } from "framer-motion";
 
 function App() {
@@ -67,12 +67,6 @@ function App() {
 
   }
 
-const AppLayout = () => {
-return (
-
-      <Outlet key="Outlet"/>
-)
-}
 
 
   const router = createBrowserRouter( 

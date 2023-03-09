@@ -1,14 +1,14 @@
-import action1 from '../Assets/Images/ProductPhotos/1/action.JPEG';
-import front1 from '../Assets/Images/ProductPhotos/1/front.JPEG';
-import back1 from '../Assets/Images/ProductPhotos/1/back.JPEG';
+import action1 from '../Assets/Images/ProductPhotos/1/action.png';
+import front1 from '../Assets/Images/ProductPhotos/1/front.png';
+import back1 from '../Assets/Images/ProductPhotos/1/back.png';
 
-import action2 from '../Assets/Images/ProductPhotos/2/action.jpeg';
-import front2 from '../Assets/Images/ProductPhotos/2/front.JPEG';
-import back2 from '../Assets/Images/ProductPhotos/2/back.JPEG';
+import action2 from '../Assets/Images/ProductPhotos/2/action.png';
+import front2 from '../Assets/Images/ProductPhotos/2/front.png';
+import back2 from '../Assets/Images/ProductPhotos/2/back.png';
 
-import action3 from '../Assets/Images/ProductPhotos/3/action.JPEG';
-import front3 from '../Assets/Images/ProductPhotos/3/front.JPEG';
-import back3 from '../Assets/Images/ProductPhotos/3/back.JPEG';
+import action3 from '../Assets/Images/ProductPhotos/3/action.png';
+import front3 from '../Assets/Images/ProductPhotos/3/front.png';
+import back3 from '../Assets/Images/ProductPhotos/3/back.png';
 
 import action4 from '../Assets/Images/ProductPhotos/4/action.JPEG';
 import front4 from '../Assets/Images/ProductPhotos/4/front.JPEG';
