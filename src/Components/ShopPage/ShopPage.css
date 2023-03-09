@@ -11,11 +11,12 @@
     scroll-behavior: smooth;
 }
 .filter-buttons-container {
-    width: 100vw;
+    width: 85vw;
     display: flex;
     justify-content: space-evenly;
     margin-top: 25vh;
     margin-bottom: 5vh;
+    align-self: flex-end;
 
 }
 .filterButtons p {
@@ -36,10 +37,16 @@ color: var(--white);
 }
 .product-list-container {
     display: flex;
-    width: 90vw;
+    width: 85vw;
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: space-evenly;
+    align-self: flex-end;
+}
+.spacer {
+    min-height: calc(max(30vh, 18rem));
+    width: 100vw;
+    background-color: var(--red);
 }
 
 /* SOMETHING WITH TRANSITIONS */

@@ -1,7 +1,10 @@
 import './App.css';
+import Products from './Util/Products';
+
 import HomePage from './Components/HomePage/HomePage';
 import ShopPage from './Components/ShopPage/ShopPage';
 import AboutPage from './Components/AboutPage/AboutPage';
+import ProductPage from './Components/ProductPage/ProductPage';
 import Menu from './Util/Menu';
 import Header from './Util/Header';
 
@@ -12,20 +15,22 @@ import "./Assets/Fonts/A Box For.ttf";
 import "./Assets/Fonts/Noir_regular.otf";
 
 import React, { useState, useEffect } from 'react';
-import { createBrowserRouter, createRoutesFromElements, Outlet, RouterProvider, Route } from 'react-router-dom';
+import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route, useParams } from 'react-router-dom';
 import { AnimatePresence, motion, LayoutGroup } from "framer-motion";
 
 function App() {
-  const emoji = ["🤓","👀","🕶️","😎","🥸","👓"];
-  document.title = `Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;
+
   //Calculate vh for mobile
   let vh = window.innerHeight * 0.01;
   //set vh to CSS Variable
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 
-  useEffect(() => {
-    document.title = `Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;
-  }, [])
+    // useEffect(() => {
+  //   document.title = `Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;
+  // }, [emoji])
+
+  const emoji = ["🤓","👀","🕶️","😎","🥸","👓"];
+  document.title = `Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;
 
   const [sort, setSort] = useState('');
   const handleSortChange = (sortBy) => {
@@ -72,8 +77,9 @@ function App() {
   const router = createBrowserRouter( 
     createRoutesFromElements(
       <>
-      <Route path="/" element={<HomePage handleMenuToggle={handleMenuToggle} showMenu={showMenu} sort={sort} handleSortChange={handleSortChange} key="HomePageComponent"/>} />
-      <Route path="/Shop" element={<ShopPage handleMenuToggle={handleMenuToggle} showMenu={showMenu}  sort={sort} handleSortChange={handleSortChange} key="ShopPageComponent"/>} />
+        <Route path="/" element={<HomePage handleMenuToggle={handleMenuToggle} showMenu={showMenu} sort={sort} handleSortChange={handleSortChange} key="HomePageComponent"/>} />
+        <Route path="/Shop" element={<ShopPage handleMenuToggle={handleMenuToggle} showMenu={showMenu}  sort={sort} handleSortChange={handleSortChange} key="ShopPageComponent"/>} />
+          <Route path="/Shop/Product/:name" element={<ProductPage handleMenuToggle={handleMenuToggle} showMenu={showMenu} sort={sort} key="ProductPageComponent" />} />
         <Route path="/About" element={<AboutPage handleMenuToggle={handleMenuToggle} showMenu={showMenu} key="AboutPageComponent"/>} />
         
     </>

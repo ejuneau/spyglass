@@ -22,7 +22,7 @@
 .productTitle {
 
     font-size:calc(min(3.4vw, 5rem));
-    outline: 1px solid green;
+
     margin: 0;
     
 }
@@ -32,7 +32,7 @@
     rotate: -90deg;
     margin: 0;
     width: calc(max(2vw, 5rem));
-    outline: 1px solid blue;
+
     text-align: right;
 }
 .titleContainer {
@@ -40,7 +40,7 @@
     align-items: center;
     justify-content: flex-start;
     font-family: 'Portia';
-    outline: 1px solid red;
+   
     height: 7.5vh;
     margin-top: 2vh;
     min-height: calc(9rem / 2);
@@ -48,9 +48,35 @@
 .productPrice {
 
     font-size: calc(max(2vw, 1.5rem));
+    margin: 0;
+    width: -moz-fit-content;
+    width: fit-content;
     
-    outline: 1px solid purple;
+
+}
+.productPriceVariants { 
     align-self: flex-start;
     margin: 0;
     margin-left: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 25%;
+}
+.productVariants {
+    display: flex;
+    height: 50%;
+    width: 100%;
+}
+.productVariants svg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.productVariants svg circle {
+    width: -moz-fit-content;
+    width: fit-content;
 }

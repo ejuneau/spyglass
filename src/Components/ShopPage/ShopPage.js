@@ -12,8 +12,8 @@ import Product from './Product/Product';
 
 
 export default function ShopPage(props) {
-
-
+  const emoji = ["🤓","👀","🕶️","😎","🥸","👓"];
+document.title = `Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;
 const filterButton1 = {
   initial: {
     scale: 1,
@@ -159,6 +159,7 @@ function isInArray(value, array) {
         }
         </AnimatePresence>
       </motion.div>
+      <div className="spacer"></div>
   </div>
 )
 }
