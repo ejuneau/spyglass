@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/static/css/main.c7eaaa19.css",
+    "main.js": "/static/js/main.36cbdaf5.js",
+    "static/js/787.78ad826e.chunk.js": "/static/js/787.78ad826e.chunk.js",
+    "static/media/Mustasurma.ttf": "/static/media/Mustasurma.c4f0e97dd6a3b0884853.ttf",
+    "static/media/back.JPEG": "/static/media/back.95bfa3852ed978665e34.JPEG",
+    "static/media/front.JPEG": "/static/media/front.eff39a2869cbdc4b3d37.JPEG",
+    "static/media/action.JPEG": "/static/media/action.47ceb09ff964e49c0e7c.JPEG",
+    "static/media/Model.png": "/static/media/Model.7b25a4151b0a50644b4d.png",
+    "static/media/background.gif": "/static/media/background.d283da34966893650100.gif",
+    "static/media/action.jpeg": "/static/media/action.e49efc4d7d5c1a4ad592.jpeg",
+    "static/media/A Box For 3.ttf": "/static/media/A Box For 3.636c12c25ad6291c0e00.ttf",
+    "static/media/VarygraphiePersonalUseOnlyRegular-nRWX1.otf": "/static/media/VarygraphiePersonalUseOnlyRegular-nRWX1.71dda03d3f8d7b4bdc1c.otf",
+    "static/media/A Box For.ttf": "/static/media/A Box For.1adc5923f1345faf83a0.ttf",
+    "static/media/A Box For 2.ttf": "/static/media/A Box For 2.de9c03b33edb0f613c59.ttf",
+    "static/media/your eyes.webp": "/static/media/your eyes.d3b8bef32057290a54fc.webp",
+    "static/media/You won't.webp": "/static/media/You won't.2dcb0c1f581a59af8d0f.webp",
+    "static/media/activeNavButton.svg": "/static/media/activeNavButton.c3024eaf75fe9e194915c8d1eaad689c.svg",
+    "static/media/Portia.otf": "/static/media/Portia.37d0b97bcc33d5c4647d.otf",
+    "static/media/Logo (White, slogan).png": "/static/media/Logo (White, slogan).16d8169314de2ab4905e.png",
+    "static/media/Logo (Black, slogan).png": "/static/media/Logo (Black, slogan).cecb9361a02c45f640dd.png",
+    "static/media/MYL.png": "/static/media/MYL.7c15347f71938b871805.png",
+    "static/media/believe.webp": "/static/media/believe.1c32978a09f593ff467d.webp",
+    "static/media/Noir_regular.otf": "/static/media/Noir_regular.60dea6f6bd568d740696.otf",
+    "index.html": "/index.html",
+    "main.c7eaaa19.css.map": "/static/css/main.c7eaaa19.css.map",
+    "main.36cbdaf5.js.map": "/static/js/main.36cbdaf5.js.map",
+    "787.78ad826e.chunk.js.map": "/static/js/787.78ad826e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c7eaaa19.css",
+    "static/js/main.36cbdaf5.js"
+  ]
+}
