@@ -3,8 +3,13 @@ import './MenuDesktop.css';
 import { ReactComponent as ActiveNavButton} from '../Assets/Images/activeNavButton.svg';
 import React, {useState, useEffect} from 'react';
 import {motion, AnimatePresence} from 'framer-motion';
+import { useSelector, useDispatch } from 'react-redux';
 import {Link} from 'react-router-dom';
 export default function Menu(props) {
+
+    const cart = useSelector((state) => state.cart.contents);
+
+
     const [OA, setOA] = useState(((window.innerHeight/100)*15) / (window.innerWidth));
     const [angle, setAngle] = useState(Math.atan(OA));
     const [rotateBy, setRotateBy] = useState(`${1 - angle}rad`)
@@ -127,7 +132,8 @@ export default function Menu(props) {
     return (
         <motion.div className="menu" key="menu" variants={menu} initial="hidden" animate={props.showMenu?"show":"hidden"} >
             <motion.div key="menuTopAccent" className="menuTopAccent" variants={menuTopAccent} ></motion.div>
-            <motion.div className="menuCart" variants={menuCartItem} style={{rotate: rotateBy}}><p>Cart: {props.cart}</p> </motion.div>
+            <motion.div className="menuCart" variants={menuCartItem} style={{rotate: rotateBy}}><p>Cart: {cart.length}</p> </motion.div>
+            {/* <motion.div className="menuCart" variants={menuCartItem} style={{rotate: rotateBy}}><p>Cart: {props.cart}</p> </motion.div> */}
             <motion.div className="menuMain" key="menuMain">
                     <motion.nav className="menuList" key="menuList" variants={menuListContainer} animate={props.showMenu?"show":"hidden"}>
                         <motion.li key="homeButton" variants={menuListItem} onClick={() => {window.scrollTo({top:0,behavior:'smooth'}); props.handleMenuToggle()}}><Link className={`menuButton ${window.location.pathname === "/spyglass/" && "activeNavButton"}`} to="/spyglass/">Home</Link>{window.location.pathname === "/spyglass/" && <motion.div animate={{ rotate: [10, 45], y: "-1.5rem", x: "-2rem" }} transition={{ rotate: {duration: 2, repeat: Infinity, repeatType: "reverse"}, y: {duration: 1.6, repeat: Infinity, repeatType: "reverse"}, x: {duration: 2.1, repeat: Infinity, repeatType: "reverse"}}}><ActiveNavButton  id="activeNavButton" alt="Active Page indicator"/></motion.div>}</motion.li>

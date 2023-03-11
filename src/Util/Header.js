@@ -7,10 +7,12 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Menu from './Menu';
 import './Header.css';
+import {useSelector} from 'react-redux';
 
 
 
 export default function Header(props) {
+    const cart = useSelector((state) => state.cart.contents);
     const [isHover, setIsHover] = useState(false);
     const handleHoverChange = () => {setIsHover(!isHover)};
 
@@ -85,7 +87,7 @@ export default function Header(props) {
                     <div className="hamburger-container"  >
                         <FontAwesomeIcon className="hamburger" icon={solid('bars')} key="HeaderIcon"/>
                     </div>
-                    <p id="cart-count" style={{"fontFamily": "Portia", "color": "#FC5130", "display":props.cart>0?"initial":"none"}}>{props.cart}</p>
+                    <p id="cart-count" style={{"fontFamily": "Portia", "color": "#FC5130", "display":cart.length>0?"initial":"none"}}>{cart.length}</p>
                 </motion.div>
                 <Link to="/spyglass" className="logo" onClick={() => {this.forceUpdate()}}>
                     <motion.img src={logoWhite} variants={Logo} animate={props.showMenu?"show":"hidden"} onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)} alt="Spyglass Logo" id="logo" />
