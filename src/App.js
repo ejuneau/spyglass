@@ -15,7 +15,7 @@ import "./Assets/Fonts/A Box For.ttf";
 import "./Assets/Fonts/Noir_regular.otf";
 
 import React, { useState, useEffect } from 'react';
-import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route, useParams } from 'react-router-dom';
+import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route, useLocation, Router } from 'react-router-dom';
 import { AnimatePresence, motion, LayoutGroup } from "framer-motion";
 
 function App() {
@@ -98,14 +98,12 @@ function App() {
 
   return (
     <AnimatePresence>
-      <LayoutGroup>
-        <RouterProvider router={menuRouter} />
+        <RouterProvider router={menuRouter} key ="menu"/>
         {/* <Header key="HeaderComponent" cart ={cart} handleMenuToggle={handleMenuToggle} showMenu={showMenu}/> */}
-        <RouterProvider router={headerRouter} />
-        <motion.div key="Content" className="Content" variants={pageTransition} initial="show" animate={showMenu?"hidden":"show"}>
-          <RouterProvider router={router} />
+        <RouterProvider router={headerRouter} key="header"/>
+        <motion.div key="Content" className="Content" variants={pageTransition} initial="show" layout animate={showMenu?"hidden":"show"}>
+          <RouterProvider router={router} key={window.location.pathname} />
         </motion.div>
-      </LayoutGroup>
     </AnimatePresence>
   );
 }

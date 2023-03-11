@@ -90,12 +90,12 @@ export default function Header(props) {
                     <p id="cart-count" style={{"fontFamily": "Portia", "color": "#FC5130", "display":cart.length>0?"initial":"none"}}>{cart.length}</p>
                 </motion.div>
                 <Link to="/spyglass" className="logo" onClick={() => {this.forceUpdate()}}>
-                    <motion.img src={logoWhite} variants={Logo} animate={props.showMenu?"show":"hidden"} onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)} alt="Spyglass Logo" id="logo" />
+                    <motion.img key="logo" src={logoWhite} variants={Logo} animate={props.showMenu?"show":"hidden"} onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)} alt="Spyglass Logo" id="logo" />
                 </Link>
             </header>
             <div className="header-spacer">
                 <Link to="/spyglass/" className="logo" onClick={() => {this.forceUpdate()}}>
-                    <motion.img src={logoWhite} variants={spacerLogo} animate={props.showMenu?"show":"hidden"} onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)} alt="Spyglass Logo" id="logo" className="SpacerLogo" />
+                    <motion.img key="logo1" src={logoWhite} variants={spacerLogo} animate={props.showMenu?"show":"hidden"} onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)} alt="Spyglass Logo" id="logo" className="SpacerLogo" />
                 </Link>
             </div>
         </div>
