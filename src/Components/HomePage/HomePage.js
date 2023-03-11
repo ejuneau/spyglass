@@ -51,9 +51,9 @@ export default function HomePage(props) {
               </div>
               <motion.div className="HomePage-main-center" >
                 <div className="HomePage-main-buttons" key="main-hero-buttons">
-                  <Link to="/Shop" className="button" id="shopMen" onClick={() => { props.sort==="men"?console.log('men'):props.handleSortChange("men")}}>Men's</Link>
-                  <Link to="/Shop" className="button" id="shopWomen" onClick={() => {props.sort==="women"?console.log('women'):props.handleSortChange("women")}}>Women's</Link>
-                  <Link to="/Shop" className="button" id="shopEnby" onClick={() => {props.sort==="women"?console.log('enby'):props.handleSortChange("enby")}}>Neutral's</Link>
+                  <Link to="./Shop" className="button" id="shopMen" onClick={() => { props.sort==="men"?console.log('men'):props.handleSortChange("men")}}>Men's</Link>
+                  <Link to="./Shop" className="button" id="shopWomen" onClick={() => {props.sort==="women"?console.log('women'):props.handleSortChange("women")}}>Women's</Link>
+                  <Link to="./Shop" className="button" id="shopEnby" onClick={() => {props.sort==="women"?console.log('enby'):props.handleSortChange("enby")}}>Neutral's</Link>
                 </div>
               </motion.div>
               <div className="HomePage-main-accent"></div>

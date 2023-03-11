@@ -87,12 +87,12 @@ export default function Header(props) {
                     </div>
                     <p id="cart-count" style={{"fontFamily": "Portia", "color": "#FC5130", "display":props.cart>0?"initial":"none"}}>{props.cart}</p>
                 </motion.div>
-                <Link to="/" className="logo" onClick={() => {this.forceUpdate()}}>
+                <Link to="/spyglass" className="logo" onClick={() => {this.forceUpdate()}}>
                     <motion.img src={logoWhite} variants={Logo} animate={props.showMenu?"show":"hidden"} onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)} alt="Spyglass Logo" id="logo" />
                 </Link>
             </header>
             <div className="header-spacer">
-                <Link to="/" className="logo" onClick={() => {this.forceUpdate()}}>
+                <Link to="/spyglass/" className="logo" onClick={() => {this.forceUpdate()}}>
                     <motion.img src={logoWhite} variants={spacerLogo} animate={props.showMenu?"show":"hidden"} onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)} alt="Spyglass Logo" id="logo" className="SpacerLogo" />
                 </Link>
             </div>

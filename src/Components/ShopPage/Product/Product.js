@@ -19,10 +19,10 @@ export default function Product(props) {
     const clipX= 15;
     const clipY= 100 - clipX;
     return (
-        <motion.div key={`Product ID: ${props.product.id}`} style={{ outline: "1px solid #0A0A0A"}} layout animate={{rotate: isHover?0:`${rotateBy}rad`, scale: isHover?1.1:1}} className="ProductComponent" id={props.product.id} onMouseEnter={() => {handleHoverChange(true)}} onMouseLeave={()=>{handleHoverChange(false)}}>
-            <motion.img key={`Product ID:${props.product.id} image`} src={isImageHover?props.product.variants[currentVariant].photos.action:props.product.variants[currentVariant].photos.front} animate={{rotate: isHover?`0`:`-${rotateBy}rad`, clipPath: `polygon(${isHover?0:clipX}% 0%, 100% ${isHover?0:clipX}%, ${isHover?100:clipY}% 100%, 0% ${isHover?100:clipY}%)`}} onMouseEnter={() => {setIsImageHover(true)}} onMouseLeave={()=>{setIsImageHover(false)}}/>
+        <motion.div key={`Product ID: ${props.product.id}`} style={{ outline: "1px solid #0A0A0A"}} layout animate={{rotate: isHover?0:`${rotateBy}rad`, scale: isHover?1.1:1, transition: {duration: 0.2, type: "spring", damping: 10, stiffness: 100}}} className="ProductComponent" id={props.product.id} onMouseEnter={() => {handleHoverChange(true)}} onMouseLeave={()=>{handleHoverChange(false)}}>
+            <motion.img key={`Product ID:${props.product.id} image`} layout src={isImageHover?props.product.variants[currentVariant].photos.action:props.product.variants[currentVariant].photos.front} animate={{rotate: isHover?`0`:`-${rotateBy}rad`, clipPath: `polygon(${isHover?0:clipX}% 0%, 100% ${isHover?0:clipX}%, ${isHover?100:clipY}% 100%, 0% ${isHover?100:clipY}%)`, transition: {duration: 0.3, type: "spring", damping: 10, stiffness: 100}}} onMouseEnter={() => {setIsImageHover(true)}} onMouseLeave={()=>{setIsImageHover(false)}}/>
             <div className="titleContainer">
-                <p className="the">the</p>
+                <p className="the">THE</p>
                 <p className="productTitle">{props.product.name}</p>
                 <div className="productPriceVariants">
                     <p className="productPrice">{`$${props.product.price}.00`}</p>
