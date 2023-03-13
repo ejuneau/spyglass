@@ -151,9 +151,9 @@ function isInArray(value, array) {
     <div className="ShopPageComponent">
       <script src="vanilla-tilt.js"></script>
       <div className="filter-buttons-container">
-        <motion.div key="filterbuttonmen"    variants={filterButton1} initial="initial" whileHover="hover" className={`button filterButtons filterButtonsMen   ${props.sort === "men"?"activeSort":""}`}   onClick={() => dispatch(handleSortChange("men"))}  ><p>Men</p></motion.div>
-        <motion.div key="filterbuttonwomen"  variants={filterButton2} initial="initial" whileHover="hover" className={`button filterButtons filterButtonsWomen ${props.sort === "women"?"activeSort":""}`} onClick={() => dispatch(handleSortChange("women"))}><p>Women</p></motion.div>
-        <motion.div key="filterbuttonenby"   variants={filterButton3} initial="initial" whileHover="hover" className={`button filterButtons filterButtonsEnby  ${props.sort === "enby"?"activeSort":""}`}  onClick={() => dispatch(handleSortChange("enby"))} ><p>Neutral</p></motion.div>
+        <motion.div key="filterbuttonmen"    variants={filterButton1} initial="initial" whileHover="hover" className={`button filterButtons filterButtonsMen   ${sort === "men"?"activeSort":""}`}   onClick={() => dispatch(handleSortChange("men"))}  ><p>Men</p></motion.div>
+        <motion.div key="filterbuttonwomen"  variants={filterButton2} initial="initial" whileHover="hover" className={`button filterButtons filterButtonsWomen ${sort === "women"?"activeSort":""}`} onClick={() => dispatch(handleSortChange("women"))}><p>Women</p></motion.div>
+        <motion.div key="filterbuttonenby"   variants={filterButton3} initial="initial" whileHover="hover" className={`button filterButtons filterButtonsEnby  ${sort === "enby"?"activeSort":""}`}  onClick={() => dispatch(handleSortChange("enby"))} ><p>Neutral</p></motion.div>
       </div>
       <motion.div className="product-list-container" key="product-list-container" layout >
         <AnimatePresence>

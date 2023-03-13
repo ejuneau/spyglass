@@ -18,8 +18,11 @@ import "./Assets/Fonts/Noir_regular.otf";
 import React, { useState, useEffect } from 'react';
 import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route, useLocation, Routes } from 'react-router-dom';
 import { AnimatePresence, motion, LayoutGroup } from "framer-motion";
+import {useSelector, useDispatch} from 'react-redux';
+
 
 function App() {
+	const showMenu = useSelector((state) => state.menu.showMenu);
 
   //Calculate vh for mobile
   let vh = window.innerHeight * 0.01;
@@ -47,7 +50,6 @@ function App() {
 
   const pageTransition = {
     hidden: {
-
       y: "20vh",
       display: "none",
       transition: {
@@ -65,24 +67,19 @@ function App() {
       }
     }
   }
-  const [showMenu, setShowMenu] = useState(false);
-  const handleMenuToggle = () => {
-    console.log("Show Menu: " + !showMenu);
-    setShowMenu(!showMenu);
-  }
 
 
 
-  const router = createBrowserRouter( 
-    createRoutesFromElements(
-      <>
-        <Route path="/" element={<HomePage handleMenuToggle={handleMenuToggle} showMenu={showMenu} sort={sort} handleSortChange={handleSortChange} key="HomePageComponent"/>} />
-        <Route path="/Shop" element={<ShopPage handleMenuToggle={handleMenuToggle} showMenu={showMenu}  sort={sort} handleSortChange={handleSortChange} key="ShopPageComponent"/>} />
-          <Route path="/Shop/Product/:name" element={<ProductPage handleMenuToggle={handleMenuToggle} showMenu={showMenu} sort={sort} key="ProductPageComponent" />} />
-        <Route path="/About" element={<AboutPage handleMenuToggle={handleMenuToggle} showMenu={showMenu} key="AboutPageComponent"/>} />
-        <Route path="/Cart" element={< CartPage handleMenuToggle={handleMenuToggle} showMenu={showMenu} key="CartPageComponent"/>} />
-    </>
-    ))
+//   const router = createBrowserRouter( 
+//     createRoutesFromElements(
+//       <>
+//         <Route path="/" element={<HomePage handleMenuToggle={handleMenuToggle} showMenu={showMenu} sort={sort} handleSortChange={handleSortChange} key="HomePageComponent"/>} />
+//         <Route path="/Shop" element={<ShopPage handleMenuToggle={handleMenuToggle} showMenu={showMenu}  sort={sort} handleSortChange={handleSortChange} key="ShopPageComponent"/>} />
+//           <Route path="/Shop/Product/:name" element={<ProductPage handleMenuToggle={handleMenuToggle} showMenu={showMenu} sort={sort} key="ProductPageComponent" />} />
+//         <Route path="/About" element={<AboutPage handleMenuToggle={handleMenuToggle} showMenu={showMenu} key="AboutPageComponent"/>} />
+//         <Route path="/Cart" element={< CartPage handleMenuToggle={handleMenuToggle} showMenu={showMenu} key="CartPageComponent"/>} />
+//     </>
+//     ))
   
 
   return (
@@ -95,13 +92,15 @@ function App() {
     //     </motion.div>
     // </AnimatePresence>
 	<AnimatePresence>
-		<Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/About" element={<AboutPage />} />
-			<Route path="/Shop" element={<ShopPage />} />
-				<Route path="/Shop/Product/:name" element={<ProductPage key="ProductPageComponent" />} />
-			<Route path="/Cart" element={<CartPage />} />
-		</Routes>
+		<motion.div className="Content" key="Content" variants={pageTransition} initial="show" layout animate={showMenu?"hidden":"show"} > 
+			<Routes>
+				<Route path="/" element={<HomePage />} />
+				<Route path="/About" element={<AboutPage />} />
+				<Route path="/Shop" element={<ShopPage />} />
+					<Route path="/Shop/Product/:name" element={<ProductPage key="ProductPageComponent" />} />
+				<Route path="/Cart" element={<CartPage />} />
+			</Routes>
+		</motion.div>
 	</AnimatePresence>
   );
 }
