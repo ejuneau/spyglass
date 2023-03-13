@@ -6,6 +6,7 @@ import ShopPage from './Components/ShopPage/ShopPage';
 import AboutPage from './Components/AboutPage/AboutPage';
 import ProductPage from './Components/ProductPage/ProductPage';
 import CartPage from './Components/CartPage/CartPage';
+import ContactPage from './Components/ContactPage/ContactPage';
 import Menu from './Util/Menu';
 import Header from './Util/Header';
 
@@ -68,29 +69,7 @@ function App() {
     }
   }
 
-
-
-//   const router = createBrowserRouter( 
-//     createRoutesFromElements(
-//       <>
-//         <Route path="/" element={<HomePage handleMenuToggle={handleMenuToggle} showMenu={showMenu} sort={sort} handleSortChange={handleSortChange} key="HomePageComponent"/>} />
-//         <Route path="/Shop" element={<ShopPage handleMenuToggle={handleMenuToggle} showMenu={showMenu}  sort={sort} handleSortChange={handleSortChange} key="ShopPageComponent"/>} />
-//           <Route path="/Shop/Product/:name" element={<ProductPage handleMenuToggle={handleMenuToggle} showMenu={showMenu} sort={sort} key="ProductPageComponent" />} />
-//         <Route path="/About" element={<AboutPage handleMenuToggle={handleMenuToggle} showMenu={showMenu} key="AboutPageComponent"/>} />
-//         <Route path="/Cart" element={< CartPage handleMenuToggle={handleMenuToggle} showMenu={showMenu} key="CartPageComponent"/>} />
-//     </>
-//     ))
-  
-
   return (
-    // <AnimatePresence>
-    //     <RouterProvider router={menuRouter} key ="menu"/>
-    //     {/* <Header key="HeaderComponent" cart ={cart} handleMenuToggle={handleMenuToggle} showMenu={showMenu}/> */}
-    //     <RouterProvider router={headerRouter} key="header"/>
-    //     <motion.div key="Content" className="Content" variants={pageTransition} initial="show" layout animate={showMenu?"hidden":"show"}>
-    //       <RouterProvider router={router} key={window.location.pathname} />
-    //     </motion.div>
-    // </AnimatePresence>
 	<AnimatePresence>
 		<motion.div className="Content" key="Content" variants={pageTransition} initial="show" layout animate={showMenu?"hidden":"show"} > 
 			<Routes>
@@ -99,6 +78,7 @@ function App() {
 				<Route path="/Shop" element={<ShopPage />} />
 					<Route path="/Shop/Product/:name" element={<ProductPage key="ProductPageComponent" />} />
 				<Route path="/Cart" element={<CartPage />} />
+				<Route path="/Contact" element={<ContactPage />} />
 			</Routes>
 		</motion.div>
 	</AnimatePresence>

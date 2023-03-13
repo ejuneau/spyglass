@@ -21,12 +21,14 @@ export const cartSlice = createSlice({
             else {
                 console.log("adding " + action.payload.quantity + " x " + action.payload.id + " to cart...")
                 console.log("Checking if "); console.log(action.payload.id); console.log(" is in "); console.log(current(state.contents))
-                if (!current(state.contents).find(item => item.id === action.payload.id)) {
+                if (!current(state.contents).find(item => item.id === action.payload.id && item.variant === action.payload.variant)) {
                     console.log(current(state.contents).find(item => item.id === action.payload.id))
                     console.log(action.payload.id +" not found in cart, adding...")
                     state.contents.push(action.payload)
                 } 
-                else (console.log(action.payload.id+" already in cart. skipping action"))
+                else {
+					console.log(action.payload.id+" already in cart. skipping action")
+					}
             }
             console.log("Current cart contents: "); console.log(current(state.contents));
         },
@@ -34,7 +36,7 @@ export const cartSlice = createSlice({
             //expects a payload of an id of the frame to be removed
 			console.log("Removing "+action.payload.id+" from cart") 
 			console.log(current(state.contents));
-			state.contents.splice(state.contents.indexOf(state.contents.find(item => item.id === action.payload.id)), 1)
+			state.contents.splice(state.contents.indexOf(state.contents.find(item => item.id === action.payload.id && item.variant === action.payload.variant)), 1)
 			// console.log(current(state.contents).indexOf(current(state.contents).find(item => item.id === action.payload.id)))
             // state.contents.splice(state.contents.indexOf(action.payload.id), 1);
 			console.log("Current cart status: ");
@@ -43,7 +45,7 @@ export const cartSlice = createSlice({
         modifyQuantity: (state, action) => {
             //expects a payload of an object containing the id of the frame and the new quantity
             console.log("setting the quantity of "+action.payload.id+" to "+action.payload.newQuantity)
-            state.contents.find(item => item.id === action.payload.id).quantity = action.payload.newQuantity;
+            state.contents.filter(item => item.id === action.payload.id).find(item => item.variant === action.payload.variant).quantity = action.payload.newQuantity;
             console.log("Current cart status: ");
             console.log(current(state.contents));
         }   

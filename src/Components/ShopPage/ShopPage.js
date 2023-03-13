@@ -155,25 +155,21 @@ function isInArray(value, array) {
         <motion.div key="filterbuttonwomen"  variants={filterButton2} initial="initial" whileHover="hover" className={`button filterButtons filterButtonsWomen ${sort === "women"?"activeSort":""}`} onClick={() => dispatch(handleSortChange("women"))}><p>Women</p></motion.div>
         <motion.div key="filterbuttonenby"   variants={filterButton3} initial="initial" whileHover="hover" className={`button filterButtons filterButtonsEnby  ${sort === "enby"?"activeSort":""}`}  onClick={() => dispatch(handleSortChange("enby"))} ><p>Neutral</p></motion.div>
       </div>
-      <motion.div className="product-list-container" key="product-list-container" layout >
-        <AnimatePresence>
+      <div className="product-list-container" key="product-list-container">
         {
           Products.map((product) => {
-            return isInArray(sort, product.gender)&&(
+            return (
             <motion.div 
             key={`Product ${product.id}`} 
             layout 
             initial={{ opacity: 0}} 
             animate={{opacity: 1, transition: {delay: 0.2}}} 
             exit={{opacity: 0, y:"50vh"}} >
-              <Link to={`/Shop/Product/${product.name}`}>
                 <Product product={product} key={product.id} sort={sort} />
-              </Link>
             </motion.div>
             )})
         }
-        </AnimatePresence>
-      </motion.div>
+      </div>
       <div className="spacer"></div>
   </div>
 )

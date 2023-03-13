@@ -17,13 +17,13 @@ export default function CartPage(props) {
                 {
                     cart.contents.length > 0 && cart.contents.map((item) => {
                         return (
-                            <div className="cartListItem" key={item.id}>
+                            <div className="cartListItem" key={`${item.id}-${item.variant}`}>
                                 <h1>The {Products.find(items => items.id === item.id).name}</h1>
-                                <img src={Products.find(items => items.id === item.id).variants[0].photos.front} alt={`The ${Products.find(items => items.id === item.id).name}, seen from the front`} />
+                                <img src={Products.find(items => items.id === item.id).variants[item.variant].photos.front} alt={`The ${Products.find(items => items.id === item.id).name}, seen from the front`} />
                                 <input min="1" 
                                 type="number" 
                                 defaultValue={item.quantity}
-                                onChange={(e)=>{dispatch(modifyQuantity({id: item.id, newQuantity: e.target.value}))}} />
+                                onChange={(e)=>{dispatch(modifyQuantity({id: item.id, newQuantity: Number(e.target.value)}))}} />
                                 <button onClick={()=>dispatch(removeFromCart({id: item.id}))}>Remove from cart</button>
                             </div>
                         )
