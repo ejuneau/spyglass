@@ -5,6 +5,7 @@ import HomePage from './Components/HomePage/HomePage';
 import ShopPage from './Components/ShopPage/ShopPage';
 import AboutPage from './Components/AboutPage/AboutPage';
 import ProductPage from './Components/ProductPage/ProductPage';
+import CartPage from './Components/CartPage/CartPage';
 import Menu from './Util/Menu';
 import Header from './Util/Header';
 
@@ -81,7 +82,7 @@ function App() {
         <Route path="/spyglass/Shop" element={<ShopPage handleMenuToggle={handleMenuToggle} showMenu={showMenu}  sort={sort} handleSortChange={handleSortChange} key="ShopPageComponent"/>} />
           <Route path="/spyglass/Shop/Product/:name" element={<ProductPage handleMenuToggle={handleMenuToggle} showMenu={showMenu} sort={sort} key="ProductPageComponent" />} />
         <Route path="/spyglass/About" element={<AboutPage handleMenuToggle={handleMenuToggle} showMenu={showMenu} key="AboutPageComponent"/>} />
-        
+        <Route path="/spyglass/Cart" element={< CartPage handleMenuToggle={handleMenuToggle} showMenu={showMenu} key="CartPageComponent"/>} />
     </>
     ))
   
