@@ -16,7 +16,7 @@ import "./Assets/Fonts/A Box For.ttf";
 import "./Assets/Fonts/Noir_regular.otf";
 
 import React, { useState, useEffect } from 'react';
-import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route, useLocation, Router } from 'react-router-dom';
+import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route, useLocation, Routes } from 'react-router-dom';
 import { AnimatePresence, motion, LayoutGroup } from "framer-motion";
 
 function App() {
@@ -65,12 +65,10 @@ function App() {
       }
     }
   }
-  const [cart, setCart] = useState(1);
   const [showMenu, setShowMenu] = useState(false);
   const handleMenuToggle = () => {
     console.log("Show Menu: " + !showMenu);
     setShowMenu(!showMenu);
-
   }
 
 
@@ -78,34 +76,33 @@ function App() {
   const router = createBrowserRouter( 
     createRoutesFromElements(
       <>
-        <Route path="/spyglass/" element={<HomePage handleMenuToggle={handleMenuToggle} showMenu={showMenu} sort={sort} handleSortChange={handleSortChange} key="HomePageComponent"/>} />
-        <Route path="/spyglass/Shop" element={<ShopPage handleMenuToggle={handleMenuToggle} showMenu={showMenu}  sort={sort} handleSortChange={handleSortChange} key="ShopPageComponent"/>} />
-          <Route path="/spyglass/Shop/Product/:name" element={<ProductPage handleMenuToggle={handleMenuToggle} showMenu={showMenu} sort={sort} key="ProductPageComponent" />} />
-        <Route path="/spyglass/About" element={<AboutPage handleMenuToggle={handleMenuToggle} showMenu={showMenu} key="AboutPageComponent"/>} />
-        <Route path="/spyglass/Cart" element={< CartPage handleMenuToggle={handleMenuToggle} showMenu={showMenu} key="CartPageComponent"/>} />
+        <Route path="/" element={<HomePage handleMenuToggle={handleMenuToggle} showMenu={showMenu} sort={sort} handleSortChange={handleSortChange} key="HomePageComponent"/>} />
+        <Route path="/Shop" element={<ShopPage handleMenuToggle={handleMenuToggle} showMenu={showMenu}  sort={sort} handleSortChange={handleSortChange} key="ShopPageComponent"/>} />
+          <Route path="/Shop/Product/:name" element={<ProductPage handleMenuToggle={handleMenuToggle} showMenu={showMenu} sort={sort} key="ProductPageComponent" />} />
+        <Route path="/About" element={<AboutPage handleMenuToggle={handleMenuToggle} showMenu={showMenu} key="AboutPageComponent"/>} />
+        <Route path="/Cart" element={< CartPage handleMenuToggle={handleMenuToggle} showMenu={showMenu} key="CartPageComponent"/>} />
     </>
     ))
   
-  const menuRouter = createBrowserRouter(
-    createRoutesFromElements(
-        <Route path='/spyglass/*' element={<Menu cart={cart} handleMenuToggle={handleMenuToggle} showMenu={showMenu} key="MenuComponent"/>}/>
-    )
-  )
-  const headerRouter = createBrowserRouter(
-    createRoutesFromElements(
-      <Route path='/spyglass/*' element={<Header key="HeaderComponent" cart ={cart} handleMenuToggle={handleMenuToggle} showMenu={showMenu}/>}/>
-    )
-  )
 
   return (
-    <AnimatePresence>
-        <RouterProvider router={menuRouter} key ="menu"/>
-        {/* <Header key="HeaderComponent" cart ={cart} handleMenuToggle={handleMenuToggle} showMenu={showMenu}/> */}
-        <RouterProvider router={headerRouter} key="header"/>
-        <motion.div key="Content" className="Content" variants={pageTransition} initial="show" layout animate={showMenu?"hidden":"show"}>
-          <RouterProvider router={router} key={window.location.pathname} />
-        </motion.div>
-    </AnimatePresence>
+    // <AnimatePresence>
+    //     <RouterProvider router={menuRouter} key ="menu"/>
+    //     {/* <Header key="HeaderComponent" cart ={cart} handleMenuToggle={handleMenuToggle} showMenu={showMenu}/> */}
+    //     <RouterProvider router={headerRouter} key="header"/>
+    //     <motion.div key="Content" className="Content" variants={pageTransition} initial="show" layout animate={showMenu?"hidden":"show"}>
+    //       <RouterProvider router={router} key={window.location.pathname} />
+    //     </motion.div>
+    // </AnimatePresence>
+	<AnimatePresence>
+		<Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/About" element={<AboutPage />} />
+			<Route path="/Shop" element={<ShopPage />} />
+				<Route path="/Shop/Product/:name" element={<ProductPage key="ProductPageComponent" />} />
+			<Route path="/Cart" element={<CartPage />} />
+		</Routes>
+	</AnimatePresence>
   );
 }
 

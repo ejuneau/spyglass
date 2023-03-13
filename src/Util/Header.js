@@ -7,12 +7,16 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Menu from './Menu';
 import './Header.css';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import { toggleMenu } from './menuSlice';
 
 
 
 export default function Header(props) {
     const cart = useSelector((state) => state.cart.contents);
+    const showMenu = useSelector((state) => state.menu.showMenu);
+    const dispatch = useDispatch();
+
     const [isHover, setIsHover] = useState(false);
     const handleHoverChange = () => {setIsHover(!isHover)};
 
@@ -83,19 +87,19 @@ export default function Header(props) {
     return (
         <div className="HeaderComponent">
             <header>
-                <motion.div className="menu-cart" key="menu-cart" variants={hamburger} initial="show"  onClick={props.handleMenuToggle} animate={props.showMenu?"hidden":"show"}>
+                <motion.div className="menu-cart" key="menu-cart" variants={hamburger} initial="show"  onClick={()=>{dispatch(toggleMenu())}} animate={showMenu?"hidden":"show"}>
                     <div className="hamburger-container"  >
                         <FontAwesomeIcon className="hamburger" icon={solid('bars')} key="HeaderIcon"/>
                     </div>
                     <p id="cart-count" style={{"fontFamily": "Portia", "color": "#FC5130", "display":cart.length>0?"initial":"none"}}>{cart.length}</p>
                 </motion.div>
                 <Link to="/spyglass" className="logo" onClick={() => {this.forceUpdate()}}>
-                    <motion.img key="logo" src={logoWhite} variants={Logo} animate={props.showMenu?"show":"hidden"} onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)} alt="Spyglass Logo" id="logo" />
+                    <motion.img key="logo" src={logoWhite} variants={Logo} animate={showMenu?"show":"hidden"} onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)} alt="Spyglass Logo" id="logo" />
                 </Link>
             </header>
             <div className="header-spacer">
                 <Link to="/spyglass/" className="logo" onClick={() => {this.forceUpdate()}}>
-                    <motion.img key="logo1" src={logoWhite} variants={spacerLogo} animate={props.showMenu?"show":"hidden"} onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)} alt="Spyglass Logo" id="logo" className="SpacerLogo" />
+                    <motion.img key="logo1" src={logoWhite} variants={spacerLogo} animate={showMenu?"show":"hidden"} onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)} alt="Spyglass Logo" id="logo" className="SpacerLogo" />
                 </Link>
             </div>
         </div>

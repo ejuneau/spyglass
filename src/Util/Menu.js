@@ -4,11 +4,13 @@ import { ReactComponent as ActiveNavButton} from '../Assets/Images/activeNavButt
 import React, {useState, useEffect} from 'react';
 import {motion, AnimatePresence} from 'framer-motion';
 import { useSelector, useDispatch } from 'react-redux';
+import { toggleMenu } from './menuSlice';
 import {Link} from 'react-router-dom';
 export default function Menu(props) {
 
     const cart = useSelector((state) => state.cart.contents);
-
+    const showMenu = useSelector((state) => state.menu.showMenu);
+    const dispatch = useDispatch();
 
     const [OA, setOA] = useState(((window.innerHeight/100)*15) / (window.innerWidth));
     const [angle, setAngle] = useState(Math.atan(OA));
@@ -130,11 +132,11 @@ export default function Menu(props) {
         }
     }
     return (
-        <motion.div className="menu" key="menu" variants={menu} initial="hidden" animate={props.showMenu?"show":"hidden"} >
+        <motion.div className="menu" key="menu" variants={menu} initial="hidden" animate={showMenu?"show":"hidden"} >
             <motion.div key="menuTopAccent" className="menuTopAccent" variants={menuTopAccent} ></motion.div>
             <motion.div className="menuCart" variants={menuCartItem} style={{rotate: rotateBy}}>
-                <Link className={`cartButton ${window.location.pathname === "/spyglass/Cart" && "activeNavButton"}`} to="/spyglass/Cart" onClick={() => {window.scrollTo({top:0,behavior:'smooth'}); props.handleMenuToggle()}}>Cart: {cart.length}</Link> 
-                {window.location.pathname === "/spyglass/Cart" && 
+                <Link className={`cartButton ${window.location.hash === "#/Cart" && "activeNavButton"}`} to="/Cart" onClick={() => {window.scrollTo({top:0,behavior:'smooth'}); dispatch(toggleMenu())}}>Cart: {cart.length}</Link> 
+                {window.location.hash === "#/Cart" && 
                 <motion.div 
                     key="activeCart" 
                     animate={{ rotate: [10, 45], y: ["-3.5rem", "-5rem"], x: ["-10rem", "-5rem"], scaleX: -1 }} 
@@ -147,11 +149,11 @@ export default function Menu(props) {
             </motion.div>
 
             <motion.div className="menuMain" key="menuMain">
-                    <motion.nav className="menuList" key="menuList" variants={menuListContainer} animate={props.showMenu?"show":"hidden"}>
+                    <motion.nav className="menuList" key="menuList" variants={menuListContainer} animate={showMenu?"show":"hidden"}>
 
-                        <motion.li key="homeButton" variants={menuListItem} onClick={() => {window.scrollTo({top:0,behavior:'smooth'}); props.handleMenuToggle()}}>
-                            <Link className={`menuButton ${window.location.pathname === "/spyglass/" && "activeNavButton"}`} to="/spyglass/">Home</Link>
-                            {window.location.pathname === "/spyglass/" && 
+                        <motion.li key="homeButton" variants={menuListItem} onClick={() => {window.scrollTo({top:0,behavior:'smooth'}); dispatch(toggleMenu())}}>
+                            <Link className={`menuButton ${window.location.hash === "#/" && "activeNavButton"}`} to="/">Home</Link>
+                            {window.location.hash === "#/" && 
                             <motion.div 
                                 key="activeNav1" 
                                 animate={{ rotate: [10, 45], y: "-1.5rem", x: "-2rem" }} 
@@ -163,9 +165,9 @@ export default function Menu(props) {
                             </motion.div>}
                         </motion.li>
 
-                        <motion.li key="shopButton" variants={menuListItem} onClick={() => {window.scrollTo({top:0,behavior:'smooth'}); props.handleMenuToggle()}}>
-                            <Link className={`menuButton ${window.location.pathname === "/spyglass/Shop" && "activeNavButton"}`} to="/spyglass/Shop">Shop</Link>
-                            {window.location.pathname === "/spyglass/Shop" && 
+                        <motion.li key="shopButton" variants={menuListItem} onClick={() => {window.scrollTo({top:0,behavior:'smooth'}); dispatch(toggleMenu())}}>
+                            <Link className={`menuButton ${window.location.hash === "#/Shop" && "activeNavButton"}`} to="/Shop">Shop</Link>
+                            {window.location.hash === "#/Shop" && 
                                 <motion.div 
                                 key="activeNav2" 
                                 animate={{ rotate: [7, 39], y: "-1.7rem", x: "-2.1rem" }} 
@@ -177,9 +179,9 @@ export default function Menu(props) {
                             </motion.div>}
                         </motion.li>
 
-                        <motion.li key="aboutButton" variants={menuListItem} onClick={() => {window.scrollTo({top:0,behavior:'smooth'});props.handleMenuToggle()}}>
-                            <Link className={`menuButton ${window.location.pathname === "/spyglass/About" && "activeNavButton"}`} to="/spyglass/About">About</Link>
-                            {window.location.pathname === "/spyglass/About" && 
+                        <motion.li key="aboutButton" variants={menuListItem} onClick={() => {window.scrollTo({top:0,behavior:'smooth'});dispatch(toggleMenu())}}>
+                            <Link className={`menuButton ${window.location.hash === "#/About" && "activeNavButton"}`} to="/About">About</Link>
+                            {window.location.hash === "#/About" && 
                                 <motion.div 
                                 key="activeNav3" 
                                 animate={{ rotate: [6, 43], y: "-1.3rem", x: "-2.4rem" }} 
@@ -191,9 +193,9 @@ export default function Menu(props) {
                             </motion.div>}
                         </motion.li>
 
-                        <motion.li key="contactButton" variants={menuListItem} onClick={() => {window.scrollTo({top:0,behavior:'smooth'});props.handleMenuToggle()}}>
-                            <Link className={`menuButton ${window.location.pathname === "/spyglass/Contact" && "activeNavButton"}`} to="/spyglass/Contact">Contact</Link>
-                            {window.location.pathname === "/spyglass/Contact" && 
+                        <motion.li key="contactButton" variants={menuListItem} onClick={() => {window.scrollTo({top:0,behavior:'smooth'});dispatch(toggleMenu())}}>
+                            <Link className={`menuButton ${window.location.hash === "#/Contact" && "activeNavButton"}`} to="/Contact">Contact</Link>
+                            {window.location.hash === "#/Contact" && 
                                 <motion.div 
                                 key="activeNav4" 
                                 animate={{ rotate: [13, 50], y: "-1rem", x: "-1.5rem" }} 
@@ -210,7 +212,7 @@ export default function Menu(props) {
                 <motion.div 
                 key="closeMenuContainer" 
                 className="closeMenuContainer" 
-                onClick={() => window.scrollTo({top:0,behavior:'smooth'})| props.handleMenuToggle()} 
+                onClick={() => window.scrollTo({top:0,behavior:'smooth'})| dispatch(toggleMenu())} 
                 variants={closeMenuVariants}>
                     <p>X</p>
                 </motion.div>
