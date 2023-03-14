@@ -1,11 +1,11 @@
-import React, {useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import {motion, AnimatePresence} from 'framer-motion';
 import { Link } from 'react-router-dom';
 import './ShopPage.css';
 import Products from '../../Util/Products';
 import Product from './Product/Product';
 import {useSelector, useDispatch} from 'react-redux';
-import { handleSortChange } from '../../Util/sortSlice';
+import { handleFilterChange } from '../../Util/filterSlice';
 
 
 
@@ -16,7 +16,8 @@ import { handleSortChange } from '../../Util/sortSlice';
 
 
 export default function ShopPage(props) {
-  const sort = useSelector((state) => state.sort.sortBy)
+  const [sortedProducts, setSortedProducts] = useState(Products)
+  const genderFilter = useSelector((state) => state.filter.gender)
   const dispatch = useDispatch();
   const emoji = ["🤓","👀","🕶️","😎","🥸","👓"];
 document.title = `Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;
@@ -142,33 +143,103 @@ const filterButton3 = {
       }
   }
 }
+
+// useEffect(()=>{console.log(sortedProducts)}, [sortedProducts])
+function priceAsc(obj1, obj2) {
+  if ( obj1.price  <  obj2.price ) { return -1 }
+  if ( obj1.price  >  obj2.price ) { return  1 }
+  if ( obj1.price === obj2.price ) { return  0 }
+}
+function priceDesc(obj1, obj2) {
+  return priceAsc(obj2, obj1);
+}
+function AtoZ(obj1, obj2) {
+  const name1 = obj1.name.toUpperCase()
+  const name2 = obj2.name.toUpperCase()
+  if ( name1  <  name2 ) { return -1 }
+  if ( name1  >  name2 ) { return  1 }
+  if ( name1 === name2 ) { return  0 }
+}
+function ZtoA(obj1, obj2) {
+  return AtoZ(obj2, obj1);
+}
+const sortedProductsPriceAsc = [...Products.sort(priceAsc)];
+const sortedProductsPriceDesc = [...Products.sort(priceDesc)];
+const sortedProductsAtoZ = [...Products.sort(AtoZ)];
+const sortedProductsZtoA = [...Products.sort(ZtoA)];
 function isInArray(value, array) {
   if (value === "") {return true}
   return array.indexOf(value) > -1;
 }
-
+const animationVariants = {
+  initial: {
+    scaleX: 0,
+    opaicty: 0,
+    transition: {
+      duration: 0.2
+    }
+  },
+  animate: {
+    scaleX: [1, -1, 1], 
+    opacity: 1,
+    transition: {
+      duration: 0.25
+    }
+  },
+  exit: {
+    scaleY: 0,
+    opacity: 0,
+    transition: {
+      duration: 0.1
+    }
+  }
+}
   return (
     <div className="ShopPageComponent">
-      <script src="vanilla-tilt.js"></script>
       <div className="filter-buttons-container">
-        <motion.div key="filterbuttonmen"    variants={filterButton1} initial="initial" whileHover="hover" className={`button filterButtons filterButtonsMen   ${sort === "men"?"activeSort":""}`}   onClick={() => dispatch(handleSortChange("men"))}  ><p>Men</p></motion.div>
-        <motion.div key="filterbuttonwomen"  variants={filterButton2} initial="initial" whileHover="hover" className={`button filterButtons filterButtonsWomen ${sort === "women"?"activeSort":""}`} onClick={() => dispatch(handleSortChange("women"))}><p>Women</p></motion.div>
-        <motion.div key="filterbuttonenby"   variants={filterButton3} initial="initial" whileHover="hover" className={`button filterButtons filterButtonsEnby  ${sort === "enby"?"activeSort":""}`}  onClick={() => dispatch(handleSortChange("enby"))} ><p>Neutral</p></motion.div>
+        <motion.div key="filterbuttonmen"    variants={filterButton1} initial="initial" whileHover="hover" className={`button filterButtons filterButtonsMen   ${genderFilter === "men"?"activeSort":""}`}   onClick={() => dispatch(handleFilterChange("men"))}  ><p>Men</p></motion.div>
+        <motion.div key="filterbuttonwomen"  variants={filterButton2} initial="initial" whileHover="hover" className={`button filterButtons filterButtonsWomen ${genderFilter === "women"?"activeSort":""}`} onClick={() => dispatch(handleFilterChange("women"))}><p>Women</p></motion.div>
+        <motion.div key="filterbuttonenby"   variants={filterButton3} initial="initial" whileHover="hover" className={`button filterButtons filterButtonsEnby  ${genderFilter === "enby"?"activeSort":""}`}  onClick={() => dispatch(handleFilterChange("enby"))} ><p>Neutral</p></motion.div>
       </div>
+
+      <div className="sortButtonsContainer">
+        <form>
+        <input type="radio" name="sort" value="priceAsc" id="priceAsc" onClick={()=>{setSortedProducts(sortedProductsPriceAsc)}}/>
+          <label htmlFor="priceAsc">Price (Asc)</label>
+
+        <input type="radio" name="sort" value="priceDesc" id="priceDesc" onClick={()=>{setSortedProducts(sortedProductsPriceDesc)}}/>
+          <label htmlFor="priceDesc">Price (Desc)</label>
+
+        <input type="radio" name="sort" value="AtoZ" id="AtoZ"  onClick={()=>{setSortedProducts(sortedProductsAtoZ)}} />
+          <label htmlFor="AtoZ">A to Z</label>
+        
+        <input type="radio" name="sort" value="ZtoA" id="ZtoA"  onClick={()=>{setSortedProducts(sortedProductsZtoA)}} />
+          <label htmlFor="AtoZ">Z to A</label>
+          </form>
+      </div>
+
       <div className="product-list-container" key="product-list-container">
+        <AnimatePresence mode="popLayout">
         {
-          Products.map((product) => {
+          sortedProducts.map((product) => {
+            if (isInArray(genderFilter, product.gender))
             return (
+             
             <motion.div 
             key={`Product ${product.id}`} 
+            variants={animationVariants}
             layout 
-            initial={{ opacity: 0}} 
-            animate={{opacity: 1, transition: {delay: 0.2}}} 
-            exit={{opacity: 0, y:"50vh"}} >
-                <Product product={product} key={product.id} sort={sort} />
+            initial="initial" 
+            animate="animate" 
+            exit="exit" >
+
+                <Product product={product} key={product.id} genderFilter={genderFilter} />
+
             </motion.div>
+              
             )})
         }
+         </AnimatePresence>
       </div>
       <div className="spacer"></div>
   </div>

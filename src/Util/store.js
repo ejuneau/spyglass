@@ -6,7 +6,7 @@ import thunk from "redux-thunk";
 
 import cartReducer from './cartSlice';
 import menuReducer from './menuSlice';
-import sortReducer from "./sortSlice";
+import filterReducer from "./filterSlice";
 
 // export default configureStore({
 //     reducer: {
@@ -25,7 +25,7 @@ export const store = configureStore({
     reducer: {
         cart: persistedReducer,
         menu: menuReducer,
-        sort: sortReducer},
+        filter: filterReducer},
     devTools: process.env.NODE_ENV !== 'production',
     middleware: [thunk]
 })

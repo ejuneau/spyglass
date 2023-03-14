@@ -9,10 +9,11 @@ export default function CartPage(props) {
     const dispatch = useDispatch();
     return (
         <div className="CartPageComponent">
-            <div>Like what you see?</div>
             <div className="cartList">
                 {
-                    cart.contents.length > 0 && <button onClick={()=> {dispatch(clearCart())}}>Dump entire cart</button>
+                    cart.contents.length > 0 && <>
+                    <button onClick={()=> {dispatch(clearCart())}}>Dump entire cart</button>
+                    <h1>Like What you See?</h1> </>
                 }
                 {
                     cart.contents.length > 0 && cart.contents.map((item) => {
@@ -23,8 +24,8 @@ export default function CartPage(props) {
                                 <input min="1" 
                                 type="number" 
                                 defaultValue={item.quantity}
-                                onChange={(e)=>{dispatch(modifyQuantity({id: item.id, newQuantity: Number(e.target.value)}))}} />
-                                <button onClick={()=>dispatch(removeFromCart({id: item.id}))}>Remove from cart</button>
+                                onChange={(e)=>{dispatch(modifyQuantity({id: item.id, variant: item.variant, newQuantity: Number(e.target.value)}))}} />
+                                <button onClick={()=>dispatch(removeFromCart({id: item.id, variant: item.variant}))}>Remove from cart</button>
                             </div>
                         )
                     })
@@ -35,6 +36,7 @@ export default function CartPage(props) {
                         <h1>Nothing to see here</h1>
                     </div>
                 }
+
             </div>
         </div>
 

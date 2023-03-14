@@ -5,7 +5,7 @@ import React from 'react';
 import {Link, useSearchParams} from "react-router-dom";
 import './HomePage.css';
 import './HomePageDesktop.css';
-import { handleSortChange } from '../../Util/sortSlice';
+import { handleFilterChange } from '../../Util/filterSlice';
 import model from '../../Assets/Images/Model.png';
 import {motion} from 'framer-motion';
 
@@ -51,9 +51,9 @@ const dispatch = useDispatch();
               </div>
               <motion.div className="HomePage-main-center" >
                 <div className="HomePage-main-buttons" key="main-hero-buttons">
-                  <Link to="./Shop" className="button" id="shopMen" onClick={() => { dispatch(handleSortChange("men"))}}>Men's</Link>
-                  <Link to="./Shop" className="button" id="shopWomen" onClick={() => {dispatch(handleSortChange("women"))}}>Women's</Link>
-                  <Link to="./Shop" className="button" id="shopEnby" onClick={() => {dispatch(handleSortChange("enby"))}}>Neutral's</Link>
+                  <Link to="./Shop" className="button" id="shopMen" onClick={() => { dispatch(handleFilterChange("men"))}}>Men's</Link>
+                  <Link to="./Shop" className="button" id="shopWomen" onClick={() => {dispatch(handleFilterChange("women"))}}>Women's</Link>
+                  <Link to="./Shop" className="button" id="shopEnby" onClick={() => {dispatch(handleFilterChange("enby"))}}>Neutral's</Link>
                 </div>
               </motion.div>
               <div className="HomePage-main-accent"></div>

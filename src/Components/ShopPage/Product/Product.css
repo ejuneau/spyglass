@@ -10,7 +10,7 @@
     flex-direction: column;
     background-color: var(--white);
     box-shadow: 1vh 1vw;
-
+    transition: rotate 0.2s ease;
 }
 .ProductComponent img {
     display: block;
