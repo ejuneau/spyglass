@@ -2,6 +2,7 @@ import React, {useEffect, useState } from 'react';
 import {motion, AnimatePresence} from 'framer-motion';
 import { Link } from 'react-router-dom';
 import './ShopPage.css';
+import './ShopPageDesktop.css';
 import Products from '../../Util/Products';
 import Product from './Product/Product';
 import {useSelector, useDispatch} from 'react-redux';

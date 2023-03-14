@@ -17,6 +17,7 @@ export default function CartPage(props) {
                 }
                 {
                     cart.contents.length > 0 && cart.contents.map((item) => {
+                        console.log(item);
                         return (
                             <div className="cartListItem" key={`${item.id}-${item.variant}`}>
                                 <h1>The {Products.find(items => items.id === item.id).name}</h1>

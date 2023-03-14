@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import './Product.css';
+import './ProductDesktop.css';
 import { Link, useSearchParams } from "react-router-dom";
 
 //SOMETHING WITH FRAMER MOTION - implement filtering
@@ -60,7 +61,7 @@ export default function Product(props) {
                                     <div className="productVariants">
                                     {props.product.variants.map(variant => {
                                         return  (
-                                            <img key={`variant${props.product.variants.indexOf(variant)}`}   style={{borderRadius: "50%", outline: currentVariant===props.product.variants.indexOf(variant)?"3px solid var(--red)":"3px solid var(--black)"}} src={variant.circleColor} stroke={props.product.variants.indexOf(variant)===currentVariant?"#FC5130":"#0A0A0A"} fill={variant.circleColor} onClick={()=>{setCurrentVariant(props.product.variants.indexOf(variant)); }  } />
+                                            <img key={`variant${props.product.variants.indexOf(variant)}`}   style={{borderRadius: "50%", border: currentVariant===props.product.variants.indexOf(variant)?"3px solid var(--red)":"3px solid var(--black)"}} src={variant.circleColor} onClick={()=>{setCurrentVariant(props.product.variants.indexOf(variant)); }  } />
                                             )})}
                                     </div>
                                 )}
