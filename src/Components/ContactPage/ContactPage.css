@@ -1,0 +1,25 @@
+.ContactPageComponent {
+    background-color: var(--red);
+    margin-top: min(-15vh, -9rem);
+}
+
+.ContactPageComponent * {
+    font-family: 'Noir';
+}
+.ContactPageComponent h1 {
+    width: 100%;
+    text-align: center;
+    padding-top: max(15vh, 9rem);
+}
+.ContactPageComponent form {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.ContactPageComponent form * {
+    font-size: min(3vw, 0.8rem);
+    line-height: 1rem;
+    margin-bottom: 2vh;
+}
