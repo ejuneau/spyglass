@@ -37,10 +37,7 @@ export const cartSlice = createSlice({
 			console.log("Removing "+action.payload.id+" from cart") 
 			console.log(current(state.contents));
             console.log(action.payload)
-            state.contents.splice(state.contents.indexOf(state.contents.filter(item => item.id === action.payload.id).find(item => item.variant === action.payload.variant)), 1)
-			//state.contents.splice(state.contents.indexOf(state.contents.find(item => item.id === action.payload.id && item.variant === action.payload.variant)), 1)
-			// console.log(current(state.contents).indexOf(current(state.contents).find(item => item.id === action.payload.id)))
-            // state.contents.splice(state.contents.indexOf(action.payload.id), 1);
+            state.contents.splice(state.contents.indexOf(state.contents.filter(item => item.id === action.payload.id).find(item => item.variant === action.payload.variant)), 1);
 			console.log("Current cart status: ");
             console.log(current(state.contents));
         },

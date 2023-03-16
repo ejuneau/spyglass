@@ -18,7 +18,9 @@ import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/
 
 
 export default function ShopPage(props) {
-  const [sortedProducts, setSortedProducts] = useState(Products)
+  const [sortedProducts, setSortedProducts] = useState(Products);
+  const [nameSort, setNameSort] = useState(undefined);
+  const [priceSort, setPriceSort] = useState(undefined);
   const genderFilter = useSelector((state) => state.filter.gender)
   const dispatch = useDispatch();
   const emoji = ["🤓","👀","🕶️","😎","🥸","👓"];
@@ -196,11 +198,14 @@ const animationVariants = {
     }
   }
 } 
+const sortModes = [undefined, "asc", "desc"];
 function clearRadio(group) {
   var ele = document.getElementsByName(group);
   for(var i=0;i<ele.length;i++)
     ele[i].checked = false;
-  setSortedProducts(Products)
+  setSortedProducts(Products);
+  setPriceSort(undefined);
+  setNameSort(undefined);
 }
   return (
     <div className="ShopPageComponent">
@@ -212,17 +217,12 @@ function clearRadio(group) {
 
       <div className="sortButtonsContainer">
         <form>
-        <input type="radio" name="sort" value="priceAsc" id="priceAsc" onClick={()=>{setSortedProducts(sortedProductsPriceAsc)}}/>
-          <label htmlFor="priceAsc">Price <FontAwesomeIcon className="sortIcon" icon={solid('sort-up')} /></label>
+        <input type="radio" name="sort" value="priceAsc" id="priceAsc" onClick={()=>{setSortedProducts(priceSort==="asc"?sortedProductsPriceAsc:sortedProductsPriceDesc);setPriceSort(priceSort===undefined?"asc":priceSort==="asc"?"desc":"asc");setNameSort(undefined)}}/>
+          <label htmlFor="priceAsc">Price {priceSort===undefined?<></>:priceSort==="asc"?<FontAwesomeIcon className="sortIcon" icon={solid('sort-up')} />:<FontAwesomeIcon className="sortIcon" icon={solid('sort-down')} />}</label>
 
-        <input type="radio" name="sort" value="priceDesc" id="priceDesc" onClick={()=>{setSortedProducts(sortedProductsPriceDesc)}}/>
-          <label htmlFor="priceDesc">Price <FontAwesomeIcon className="sortIcon" icon={solid('sort-down')} /></label>
-
-        <input type="radio" name="sort" value="AtoZ" id="AtoZ"  onClick={()=>{setSortedProducts(sortedProductsAtoZ)}} />
-          <label htmlFor="AtoZ">Name <FontAwesomeIcon className="sortIcon" icon={solid('sort-up')} /></label>
-        
-        <input type="radio" name="sort" value="ZtoA" id="ZtoA"  onClick={()=>{setSortedProducts(sortedProductsZtoA)}} />
-          <label htmlFor="ZtoA">Name <FontAwesomeIcon className="sortIcon" icon={solid('sort-down')} /></label>
+        <input type="radio" name="sort" value="AtoZ" id="AtoZ"  onClick={()=>{setSortedProducts(nameSort==="asc"?sortedProductsPriceAsc:sortedProductsAtoZ);setNameSort(nameSort===undefined?"asc":nameSort==="asc"?"desc":"asc");setPriceSort(undefined)}} />
+          <label htmlFor="AtoZ">Name {nameSort===undefined?<></>:nameSort==="asc"?<FontAwesomeIcon className="sortIcon" icon={solid('sort-up')} />:<FontAwesomeIcon className="sortIcon" icon={solid('sort-down')} />}</label>
+      
 
         <button  onClick={()=>{clearRadio("sort")}} >clear sort</button>
           </form>
