@@ -7,7 +7,8 @@ import Products from '../../Util/Products';
 import Product from './Product/Product';
 import {useSelector, useDispatch} from 'react-redux';
 import { handleFilterChange } from '../../Util/filterSlice';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 
 
@@ -194,6 +195,12 @@ const animationVariants = {
       duration: 0.1
     }
   }
+} 
+function clearRadio(group) {
+  var ele = document.getElementsByName(group);
+  for(var i=0;i<ele.length;i++)
+    ele[i].checked = false;
+  setSortedProducts(Products)
 }
   return (
     <div className="ShopPageComponent">
@@ -206,16 +213,18 @@ const animationVariants = {
       <div className="sortButtonsContainer">
         <form>
         <input type="radio" name="sort" value="priceAsc" id="priceAsc" onClick={()=>{setSortedProducts(sortedProductsPriceAsc)}}/>
-          <label htmlFor="priceAsc">Price (Asc)</label>
+          <label htmlFor="priceAsc">Price <FontAwesomeIcon className="sortIcon" icon={solid('sort-up')} /></label>
 
         <input type="radio" name="sort" value="priceDesc" id="priceDesc" onClick={()=>{setSortedProducts(sortedProductsPriceDesc)}}/>
-          <label htmlFor="priceDesc">Price (Desc)</label>
+          <label htmlFor="priceDesc">Price <FontAwesomeIcon className="sortIcon" icon={solid('sort-down')} /></label>
 
         <input type="radio" name="sort" value="AtoZ" id="AtoZ"  onClick={()=>{setSortedProducts(sortedProductsAtoZ)}} />
-          <label htmlFor="AtoZ">A to Z</label>
+          <label htmlFor="AtoZ">Name <FontAwesomeIcon className="sortIcon" icon={solid('sort-up')} /></label>
         
         <input type="radio" name="sort" value="ZtoA" id="ZtoA"  onClick={()=>{setSortedProducts(sortedProductsZtoA)}} />
-          <label htmlFor="AtoZ">Z to A</label>
+          <label htmlFor="ZtoA">Name <FontAwesomeIcon className="sortIcon" icon={solid('sort-down')} /></label>
+
+        <button  onClick={()=>{clearRadio("sort")}} >clear sort</button>
           </form>
       </div>
 

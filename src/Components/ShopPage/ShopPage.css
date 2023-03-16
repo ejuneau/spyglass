@@ -14,8 +14,8 @@
     width: 85vw;
     display: flex;
     justify-content: space-evenly;
-    margin-top: 25vh;
-    margin-bottom: 5vh;
+    margin-top: max(15vh, 9rem);
+    margin-bottom: max(5vh, 3rem);
     align-self: flex-end;
 
 }
@@ -49,11 +49,60 @@ color: var(--white);
     background-color: var(--red);
 }
 
+
+input[type=radio] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 7.5vh;
+    flex-wrap: wrap;
+    width: 15vw !important;
+	height: 15vh !important;
+    border-radius: 20px;
+	background: var(--white);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	margin: 2vh 2vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 7.5vh;
+    flex-wrap: wrap;
+}
+input[type=radio]:checked ~ input[type=text] {opacity: 1;}
+input:checked + label {background-color: var(--green); color: var(--white);}
+input:hover + label {background-color: var(--white);}
+input:checked:hover + label {background-color: var(--black);}
+
+input + label {
+	position: relative;
+	font-size: 20px;
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	transition: background-color 0.2s ease, font-weight 0.2s ease, outline 0.2s ease, color 0.2s ease;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    font-family: 'Noir';
+	padding: 0.5vh 0.5vw;
+}
+
+input[type=text] {
+	width: 80%;
+	transform: translateY(-5em);
+  opacity: 0;
+	transition: opacity 0.2s ease;
+}
+.sortButtonsContainer form {display: flex;}
+.sortButtonsContainer input {display: none;}
 /* SOMETHING WITH TRANSITIONS */
 
 @media only screen and (max-height: 960px) {
     .filter-buttons-container {
-        margin-top: calc(9rem + 10vh);
+        /* margin-top: calc(9rem + 10vh); */
     }
     .ShopPageComponent {
         margin-top: -9rem;

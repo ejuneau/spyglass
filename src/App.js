@@ -51,7 +51,7 @@ function App() {
 
   const pageTransition = {
     hidden: {
-      y: "20vh",
+      y: window.innerHeight<=960?"9rem":"15vh",
       display: "none",
       transition: {
         display: {delay: 1},
@@ -61,7 +61,7 @@ function App() {
     },
     show: {
 
-      y:0,
+      y: window.innerHeight<=960?"0rem":"0vh",
       display: "inherit",
       transition: {
         y: {type: "linear", duration: 0.2, delay: 0.2}

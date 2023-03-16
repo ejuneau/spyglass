@@ -48,7 +48,8 @@ export default function Product(props) {
                 className="ProductComponent" 
                 id={props.product.id} 
                 onMouseEnter={() => {handleHoverChange(true)}} 
-                onMouseLeave={()=>{handleHoverChange(false)}}>
+                onMouseLeave={()=>{handleHoverChange(false)}}
+                onPointerLeave={()=>{setIsImageHover(false);handleHoverChange(false)}}>
                     <Link to={props.product.variants.length>1?`/Shop/Product/${props.product.name}?variant=${currentVariant}`:`/Shop/Product/${props.product.name}`}>
                         <motion.img key={`Product ID:${props.product.id} image`} layout src={isImageHover?props.product.variants[currentVariant].photos.action:props.product.variants[currentVariant].photos.front} animate={{rotate: isHover?`0`:`-${rotateBy}rad`, clipPath: `polygon(${isHover?0:clipX}% 0%, 100% ${isHover?0:clipX}%, ${isHover?100:clipY}% 100%, 0% ${isHover?100:clipY}%)`, transition: {duration: 0.3, type: "spring", damping: 10, stiffness: 100}}} onMouseEnter={() => {setIsImageHover(true)}} onMouseLeave={()=>{setIsImageHover(false)}}/>
                     </Link>    
