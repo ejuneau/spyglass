@@ -21,6 +21,8 @@ export default function ShopPage(props) {
   const [sortedProducts, setSortedProducts] = useState(Products);
   const [nameSort, setNameSort] = useState(undefined);
   const [priceSort, setPriceSort] = useState(undefined);
+  const [priceSortCounter, setPriceSortCounter] = useState(0);
+  const [nameSortCounter, setNameSortCounter] = useState(0);
   const genderFilter = useSelector((state) => state.filter.gender)
   const dispatch = useDispatch();
   const emoji = ["🤓","👀","🕶️","😎","🥸","👓"];
@@ -204,9 +206,54 @@ function clearRadio(group) {
   for(var i=0;i<ele.length;i++)
     ele[i].checked = false;
   setSortedProducts(Products);
-  setPriceSort(undefined);
-  setNameSort(undefined);
+  setNameSortCounter(0);
+  setPriceSortCounter(0)
 }
+async function handlePriceClick(e) {
+  // setSortedProducts(priceSort==="asc"?sortedProductsPriceAsc:priceSort==="desc"?sortedProductsPriceDesc:Products);
+  setNameSortCounter(0);
+  setTimeout(()=>{setPriceSortCounter(priceSortCounter + 1);},100)
+  
+}
+function handleNameClick() {
+  setPriceSortCounter(0);
+  setTimeout(()=>{setNameSortCounter(nameSortCounter + 1);},100)
+}
+
+useEffect(()=>{
+  setPriceSort(sortModes[(priceSortCounter) & sortModes.length]);
+
+},[priceSortCounter]);
+useEffect(()=>{
+  console.log("useEffect-2: dispatched, setting sortedProducts according to "+priceSort)
+  if (priceSort === undefined) {
+    setSortedProducts(Products);
+    setPriceSortCounter(0);
+    clearRadio("sort");
+  } else if (priceSort === "asc") {
+    setSortedProducts(sortedProductsPriceAsc)
+  } else if (priceSort === "desc") {
+    setSortedProducts(sortedProductsPriceDesc);
+  }
+
+
+}, [priceSort]);
+
+useEffect(()=>{
+  setNameSort(sortModes[(nameSortCounter) & sortModes.length]);
+},[nameSortCounter]);
+useEffect(()=>{
+  console.log("useEffect-2: dispatched, setting sortedProducts according to "+nameSort)
+  if (nameSort === undefined) {
+    setSortedProducts(Products);
+    setNameSortCounter(0);
+    clearRadio("sort");
+  } else if (nameSort === "asc") {
+    setSortedProducts(sortedProductsAtoZ)
+  } else if (nameSort === "desc") {
+    setSortedProducts(sortedProductsZtoA);
+  }
+}, [nameSort]);
   return (
     <div className="ShopPageComponent">
       <div className="filter-buttons-container">
@@ -217,14 +264,13 @@ function clearRadio(group) {
 
       <div className="sortButtonsContainer">
         <form>
-        <input type="radio" name="sort" value="priceAsc" id="priceAsc" onClick={()=>{setSortedProducts(priceSort==="asc"?sortedProductsPriceAsc:sortedProductsPriceDesc);setPriceSort(priceSort===undefined?"asc":priceSort==="asc"?"desc":"asc");setNameSort(undefined)}}/>
-          <label htmlFor="priceAsc">Price {priceSort===undefined?<></>:priceSort==="asc"?<FontAwesomeIcon className="sortIcon" icon={solid('sort-up')} />:<FontAwesomeIcon className="sortIcon" icon={solid('sort-down')} />}</label>
+        <input type="radio" name="sort" value="priceAsc" id="priceAsc" onClick={(e)=>{handlePriceClick(e)}}/>
+          {/* <label htmlFor="priceAsc">Price {priceSort===undefined?<></>:priceSort==="asc"?<FontAwesomeIcon className="sortIcon" icon={solid('sort-down')} />:<FontAwesomeIcon className="sortIcon" icon={solid('sort-up')} />}</label> */}
+          <label htmlFor="priceAsc">Price {priceSort===undefined && <></>} {priceSort==="asc" && <FontAwesomeIcon className="sortIcon" icon={solid('sort-up')} />} {priceSort === "desc" && <FontAwesomeIcon className="sortIcon" icon={solid('sort-down')} />}</label>
 
-        <input type="radio" name="sort" value="AtoZ" id="AtoZ"  onClick={()=>{setSortedProducts(nameSort==="asc"?sortedProductsPriceAsc:sortedProductsAtoZ);setNameSort(nameSort===undefined?"asc":nameSort==="asc"?"desc":"asc");setPriceSort(undefined)}} />
-          <label htmlFor="AtoZ">Name {nameSort===undefined?<></>:nameSort==="asc"?<FontAwesomeIcon className="sortIcon" icon={solid('sort-up')} />:<FontAwesomeIcon className="sortIcon" icon={solid('sort-down')} />}</label>
-      
 
-        <button  onClick={()=>{clearRadio("sort")}} >clear sort</button>
+        <input type="radio" name="sort" value="AtoZ" id="AtoZ"  onClick={()=>{handleNameClick()}} />
+        <label htmlFor="AtoZ">Name {nameSort===undefined && <></>} {nameSort==="asc" && <FontAwesomeIcon className="sortIcon" icon={solid('sort-up')} />} {nameSort === "desc" && <FontAwesomeIcon className="sortIcon" icon={solid('sort-down')} />}</label>
           </form>
       </div>
 

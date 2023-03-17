@@ -1,3 +1,7 @@
 .ProductPageComponent img {
     height: 20vh;
 }
+#BackButton {
+    fill: var(--black);
+    height: 5vh;
+}

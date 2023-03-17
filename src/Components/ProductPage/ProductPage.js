@@ -5,6 +5,7 @@ import {useSelector, useDispatch } from 'react-redux';
 import { addToCart, modifyQuantity, removeFromCart } from "../../Util/cartSlice";
 import './ProductPage.css';
 import { useSearchParams } from "react-router-dom";
+import { ReactComponent as BackButton} from '../../Assets/Images/result.svg';
 
 export default function ProductPage(props) {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -18,7 +19,7 @@ export default function ProductPage(props) {
     
     return (
         <div className="ProductPageComponent">
-            <Link to="/Shop">Back</Link>
+            <Link to="/Shop"><BackButton throwIfNamespace={false}  id="BackButton" alt="Back Button Graphic"/></Link>
             <h1>{product.name}</h1> 
             {product.variants.map(variant => {
                                     return  (

@@ -90,14 +90,18 @@ input + label {
 	padding: 0.5vh 0.5vw;
 }
 
-input[type=text] {
+.sortButtonsContainer input[type=text] {
 	width: 80%;
 	transform: translateY(-5em);
   opacity: 0;
 	transition: opacity 0.2s ease;
 }
+.sortButtonsContainer { width: 90%;}
 .sortButtonsContainer form {display: flex;}
 .sortButtonsContainer input {display: none;}
+.sortIcon {
+    margin-left: 0.5rem;
+}
 /* SOMETHING WITH TRANSITIONS */
 
 @media only screen and (max-height: 960px) {

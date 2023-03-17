@@ -7,6 +7,7 @@ import thunk from "redux-thunk";
 import cartReducer from './cartSlice';
 import menuReducer from './menuSlice';
 import filterReducer from "./filterSlice";
+import rotateReducer from "./rotateSlice";
 
 // export default configureStore({
 //     reducer: {
@@ -19,12 +20,14 @@ const persistConfig = {
     stateReconciler: autoMergeLevel2,
 }
 
-const persistedReducer = persistReducer(persistConfig, cartReducer)
+const persistedCartReducer = persistReducer(persistConfig, cartReducer)
+const persistedRotateReducer = persistReducer(persistConfig, rotateReducer)
 
 export const store = configureStore({
     reducer: {
-        cart: persistedReducer,
+        cart: persistedCartReducer,
         menu: menuReducer,
+        rotate: persistedRotateReducer,
         filter: filterReducer},
     devTools: process.env.NODE_ENV !== 'production',
     middleware: [thunk]

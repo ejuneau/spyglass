@@ -52,12 +52,12 @@ export default function ContactPage(props) {
                 <textarea
                     type='text'
                     name='message'
-                    placeholder='Your message'
+                    placeholder='Tell me your secrets...'
                     value={toSend.message}
                     onChange={handleChange}
                 />
 
-                <button type='submit'>Submit</button>
+                <button type='submit'>Send!</button>
             </form>
         </div>
     )
