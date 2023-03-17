@@ -20,15 +20,43 @@ import React, { useState, useEffect } from 'react';
 import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route, useLocation, Routes } from 'react-router-dom';
 import { AnimatePresence, motion, LayoutGroup } from "framer-motion";
 import {useSelector, useDispatch} from 'react-redux';
+import { handleRotateChange } from './Util/rotateSlice';
+import { faCropSimple } from '@fortawesome/free-solid-svg-icons';
 
 
 function App() {
 	const showMenu = useSelector((state) => state.menu.showMenu);
-
+  const rotateBy = useSelector((state) => state.rotate.rotateBy);
+  const dispatch = useDispatch();
   //Calculate vh for mobile
   let vh = window.innerHeight * 0.01;
   //set vh to CSS Variable
   document.documentElement.style.setProperty('--vh', `${vh}px`);
+  const [OA, setOA] = useState(((window.innerHeight/100)*15) / (window.innerWidth));
+  const [angle, setAngle] = useState(Math.atan(OA));
+  //const [rotateBy, setRotateBy] = useState(`${1 - angle}rad`)
+  const size = useWindowSize();
+  //Calculate minimum angle to rotate by when 15vh becomes 9rem
+  //9rem in pixels
+  const minHeight = 9 * parseFloat(getComputedStyle(document.documentElement).fontSize); 
+  const [minAngle, setMinAngle] = useState(Math.atan(minHeight / size.width));
+ 
+
+      useEffect(() => {
+            setOA(((size.height/100)*15) / (size.width));
+            setAngle(Math.atan(OA));
+            setMinAngle(Math.atan(minHeight / size.width));
+          
+      }, [size]);
+      useEffect(()=> {
+        setAngle(Math.atan(OA));
+      }, [OA]);
+      useEffect(()=>{
+        dispatch(handleRotateChange(Math.max(angle, minAngle)));
+      }, [angle])
+      useEffect(()=>{
+        console.log("Rotation: "+ rotateBy);
+      },[rotateBy])
 
     // useEffect(() => {
   //   document.title = `Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;
@@ -83,6 +111,32 @@ function App() {
 		</motion.div>
 	</AnimatePresence>
   );
+}
+
+function useWindowSize() {
+  // Initialize state with undefined width/height so server and client renders match
+  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+    height: undefined,
+  });
+  useEffect(() => {
+    // Handler to call on window resize
+    function handleResize() {
+      // Set window width/height to state
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+    // Call handler right away so state gets updated with initial window size
+    handleResize();
+    // Remove event listener on cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []); // Empty array ensures that effect is only run on mount
+  return windowSize;
 }
 
 export default App;

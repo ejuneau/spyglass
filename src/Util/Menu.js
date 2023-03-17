@@ -11,24 +11,9 @@ export default function Menu(props) {
     const cart = useSelector((state) => state.cart.contents);
     const showMenu = useSelector((state) => state.menu.showMenu);
     const dispatch = useDispatch();
-
-    const [OA, setOA] = useState(((window.innerHeight/100)*15) / (window.innerWidth));
-    const [angle, setAngle] = useState(Math.atan(OA));
-    const [rotateBy, setRotateBy] = useState(`${1 - angle}rad`)
-
-    //Calculate minimum angle to rotate by when 15vh becomes 9rem
-    //9rem in pixels
-    const minHeight = 9 * parseFloat(getComputedStyle(document.documentElement).fontSize); 
-    const [minAngle, setMinAngle] = useState(Math.atan(minHeight / window.innerWidth));
+    const rotateBy = useSelector((state) => state.rotate.rotateBy);
 
 
-        useEffect(() => {
-            setOA(((window.innerHeight/100)*15) / (window.innerWidth));
-            setAngle(Math.atan(OA));
-            setMinAngle(Math.atan(minHeight / window.innerWidth));
-            setRotateBy(`${-1 * Math.max(angle, minAngle)}rad`);
-            console.log("Cart Rotation: "+rotateBy);
-        }, [window.innerHeight, window.innerWidth]);
 
     const menuListContainer = {
         hidden: {

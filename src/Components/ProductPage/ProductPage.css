@@ -1,7 +1,26 @@
 .ProductPageComponent img {
     height: 20vh;
 }
+.titleContainer {
+    display: flex;
+    justify-content: flex-end;
+    width: 100vw;
+    margin-top: 0;
+}
 #BackButton {
     fill: var(--black);
     height: 5vh;
+}
+.backButton {
+    display: inherit;
+    width: max(15vw, 9rem);
+
+    
+}
+.ProductPageComponent h1 {
+    font-family: 'Portia';
+    font-size: min(20vw, 4rem);
+    margin: 0;
+    text-align: right;
+    padding-right: 10%;
 }

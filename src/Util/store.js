@@ -27,7 +27,7 @@ export const store = configureStore({
     reducer: {
         cart: persistedCartReducer,
         menu: menuReducer,
-        rotate: persistedRotateReducer,
+        rotate: rotateReducer,
         filter: filterReducer},
     devTools: process.env.NODE_ENV !== 'production',
     middleware: [thunk]
