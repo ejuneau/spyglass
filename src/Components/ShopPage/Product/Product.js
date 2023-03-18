@@ -12,13 +12,17 @@ export default function Product(props) {
     const [currentVariant, setCurrentVariant] = useState(0);
     const [isHover, setIsHover] = useState(false);
     const [isImageHover, setIsImageHover] = useState(false);
-    const [rotateBy, setRotateBy] = useState((Math.random() * (0.2 - 0.01)) + 0.01);
+    const [frontOffset, setFrontOffset] = useState("0%");
+    const [actionOffset, setActionOffset] = useState("120%")
+    const [rotateBy, setRotateBy] = useState((Math.random() * (0.1 - 0.01) + 0.01)*(Math.random() > 0.5?1:-1));
     const handleHoverChange = (state) => {
         setIsHover(state);
+
     }
     
     useEffect(() => {
-        setRotateBy(Math.random() * (0.2 - 0.01) + 0.01)
+        setRotateBy((Math.random() * (0.1 - 0.01) + 0.01)*(Math.random() > 0.5?1:-1));
+        console.log(rotateBy)
     },[isHover])
     const clipX= 15;
     const clipY= 100 - clipX;
@@ -34,9 +38,40 @@ export default function Product(props) {
         return array.indexOf(value) > -1;
       }
 
-    return (
+      const [imgsLoaded, setImgsLoaded] = useState(false)
+
+      useEffect(() => {
+        const loadImage = images => {
+          return new Promise((resolve, reject) => {
+            const loadFront = new Image()
+            const loadAction = new Image()
+            loadFront.src = images.front
+            loadAction.src = images.action
+            // wait 2 seconds to simulate loading time
+            loadFront.onload = () =>
+              setTimeout(() => {
+                resolve(images.front)
+              }, 0)
+            loadAction.onload = () =>
+              setTimeout(() => {
+                resolve(images.action)
+              }, 0)
+      
+            loadFront.onerror = err => reject(err)
+            loadAction.onerror = err => reject(err)
+          })
+        }
+      
+        Promise.all(props.product.variants.map(variant => {loadImage(variant.photos)}))
+          .then(() => setImgsLoaded(true))
+          .catch(err => console.log("Failed to load images", err))
+      }, [])
+
+function FrontImage() { return  <img key={`Product ID:${props.product.id} image-front`} src={props.product.variants[currentVariant].photos.front} style={{paddingRight: "2rem"}}  /> }
+function ActionImage() { return  <img key={`Product ID:${props.product.id} image-action`} src={props.product.variants[currentVariant].photos.action} style={{paddingLeft: "2rem"}} />}
+    return imgsLoaded?(
         <div>
-            {/* {isInArray(genderFilter, props.product.gender) &&  */}
+
                 <motion.div 
                 key={`Product ID: ${props.product.id}`} 
                 style={{ outline: "1px solid #0A0A0A"}} 
@@ -50,9 +85,17 @@ export default function Product(props) {
                 onMouseEnter={() => {handleHoverChange(true)}} 
                 onMouseLeave={()=>{handleHoverChange(false)}}
                 onPointerLeave={()=>{setIsImageHover(false);handleHoverChange(false)}}>
-                    <Link to={props.product.variants.length>1?`/Shop/Product/${props.product.name}?variant=${currentVariant}`:`/Shop/Product/${props.product.name}`}>
-                        <motion.img key={`Product ID:${props.product.id} image`} layout src={isImageHover?props.product.variants[currentVariant].photos.action:props.product.variants[currentVariant].photos.front} animate={{rotate: isHover?`0`:`-${rotateBy}rad`, clipPath: `polygon(${isHover?0:clipX}% 0%, 100% ${isHover?0:clipX}%, ${isHover?100:clipY}% 100%, 0% ${isHover?100:clipY}%)`, transition: {duration: 0.3, type: "spring", damping: 10, stiffness: 100}}} onMouseEnter={() => {setIsImageHover(true)}} onMouseLeave={()=>{setIsImageHover(false)}}/>
-                    </Link>    
+                                        <Link to={props.product.variants.length>1?`/Shop/Product/${props.product.name}?variant=${currentVariant}`:`/Shop/Product/${props.product.name}`}>
+
+                    <motion.div key={`container for ${props.product.id} ${currentVariant}`} style={{overflow:"hidden"}} animate={{rotate: isHover?`0`:`-${rotateBy}rad`, clipPath: `polygon(${isHover?0:clipX}% 0%, 100% ${isHover?0:clipX}%, ${isHover?100:clipY}% 100%, 0% ${isHover?100:clipY}%)`, transition: {duration: 0.3, type: "spring", damping: 10, stiffness: 100}}}>
+                        <motion.div id="productImages" layout key={`Images for ${props.product.id} ${currentVariant}`} onMouseEnter={() => {setIsImageHover(true); setActionOffset("0%"); setFrontOffset("-120%")}} onMouseLeave={()=>{setIsImageHover(false); setActionOffset("120%"); setFrontOffset("0%")}} whileHover={{x: "calc(-100% - 4rem)"}}>
+                        {/* <motion.img key={`Product ID:${props.product.id} image`} layout src={isImageHover?props.product.variants[currentVariant].photos.action:props.product.variants[currentVariant].photos.front} animate={{rotate: isHover?`0`:`-${rotateBy}rad`, clipPath: `polygon(${isHover?0:clipX}% 0%, 100% ${isHover?0:clipX}%, ${isHover?100:clipY}% 100%, 0% ${isHover?100:clipY}%)`, transition: {duration: 0.3, type: "spring", damping: 10, stiffness: 100}}} onMouseEnter={() => {setIsImageHover(true)}} onMouseLeave={()=>{setIsImageHover(false)}}/> */}
+                            <FrontImage />
+                            <ActionImage />
+                        </motion.div>
+                     
+                    </motion.div> 
+                    </Link>  
                     <div className="titleContainer">
                         <p className="the">THE</p>
                             <p className="productTitle">{props.product.name}</p>
@@ -70,7 +113,7 @@ export default function Product(props) {
                         </div>
 
                     </motion.div>
-{/* } */}
+
         </div>
-    )
+    ):<h1>loading</h1>
 }

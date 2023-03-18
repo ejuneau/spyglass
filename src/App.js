@@ -4,7 +4,7 @@ import Products from './Util/Products';
 import HomePage from './Components/HomePage/HomePage';
 import ShopPage from './Components/ShopPage/ShopPage';
 import AboutPage from './Components/AboutPage/AboutPage';
-import ProductPage from './Components/ProductPage/ProductPage';
+import ProductPage from './Components/ShopPage/ProductPage/ProductPage.js';
 import CartPage from './Components/CartPage/CartPage';
 import ContactPage from './Components/ContactPage/ContactPage';
 import Menu from './Util/Menu';

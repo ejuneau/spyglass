@@ -39,6 +39,8 @@ align-items: center;
     font-size: 3em;
     margin: 0;
     margin-bottom: -0.5rem;
+    width: 3rem;
+    text-align: center;
 }
 
 .hamburger-container {

@@ -1,39 +1,37 @@
 
-  
+  .SlideShow {
+    min-height: 40vh;
+  }
 .SlideShow img {
-    width: 90vw;
+    width: 100vw;
     height: auto;
-    margin-left: 5vw;
-    margin-right: 5vw;
+    clip-path: polygon(100% 0, 100% 70%, 30% 100%, 0 100%, 0 0);
+    position: relative;
+
 }
   
   .next,
   .prev {
     top: calc(50%);
     position: absolute;
-    background: var(--black);
     color: var(--red);
-    border-radius: 30px;
-    width: 40px;
-    height: 40px;
+    width: 20vw;
     display: flex;
     justify-content: center;
     align-items: center;
     -webkit-user-select: none;
     user-select: none;
     cursor: pointer;
-    font-weight: bold;
-    font-size: 18px;
     z-index: 2;
   }
   
   .next {
     right: 10px;
+    transform: scale(-1, 1);
   }
   
   .prev {
     left: 10px;
-    transform: scale(-1);
   }
   
 
@@ -52,4 +50,10 @@
     align-items: center;
     cursor: pointer;
   }
-  
+  #BackButton, #NextButton {
+    fill: var(--black);
+    height: 5vh;
+}
+#NextButton {
+
+}

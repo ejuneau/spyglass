@@ -23,10 +23,11 @@ export default function ShopPage(props) {
   const [priceSort, setPriceSort] = useState(undefined);
   const [priceSortCounter, setPriceSortCounter] = useState(0);
   const [nameSortCounter, setNameSortCounter] = useState(0);
+
   const genderFilter = useSelector((state) => state.filter.gender)
   const dispatch = useDispatch();
   const emoji = ["🤓","👀","🕶️","😎","🥸","👓"];
-document.title = `Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;
+  document.title = `Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;
 const filterButton1 = {
   initial: {
     scale: 1,
@@ -116,8 +117,7 @@ const filterButton3 = {
       }
     }
 }
-
-  const filterButtonsContainer = {
+const filterButtonsContainer = {
     hidden: {
       opacity: 0,
       height: 0,
@@ -149,8 +149,6 @@ const filterButton3 = {
       }
   }
 }
-
-// useEffect(()=>{console.log(sortedProducts)}, [sortedProducts])
 function priceAsc(obj1, obj2) {
   if ( obj1.price  <  obj2.price ) { return -1 }
   if ( obj1.price  >  obj2.price ) { return  1 }
@@ -219,13 +217,11 @@ function handleNameClick() {
   setPriceSortCounter(0);
   setTimeout(()=>{setNameSortCounter(nameSortCounter + 1);},100)
 }
-
 useEffect(()=>{
   setPriceSort(sortModes[(priceSortCounter) & sortModes.length]);
 
 },[priceSortCounter]);
 useEffect(()=>{
-  console.log("useEffect-2: dispatched, setting sortedProducts according to "+priceSort)
   if (priceSort === undefined) {
     setSortedProducts(Products);
     setPriceSortCounter(0);
@@ -238,12 +234,10 @@ useEffect(()=>{
 
 
 }, [priceSort]);
-
 useEffect(()=>{
   setNameSort(sortModes[(nameSortCounter) & sortModes.length]);
 },[nameSortCounter]);
 useEffect(()=>{
-  console.log("useEffect-2: dispatched, setting sortedProducts according to "+nameSort)
   if (nameSort === undefined) {
     setSortedProducts(Products);
     setNameSortCounter(0);
@@ -254,7 +248,41 @@ useEffect(()=>{
     setSortedProducts(sortedProductsZtoA);
   }
 }, [nameSort]);
-  return (
+
+
+const [imgsLoaded, setImgsLoaded] = useState(false)
+
+useEffect(() => {
+  const loadImage = images => {
+    return new Promise((resolve, reject) => {
+      const loadFront = new Image()
+      const loadAction = new Image()
+      loadFront.src = images.front
+      loadAction.src = images.action
+      // wait 2 seconds to simulate loading time
+      loadFront.onload = () =>
+        setTimeout(() => {
+          resolve(images.front)
+        }, 0)
+      loadAction.onload = () =>
+        setTimeout(() => {
+          resolve(images.action)
+        }, 0)
+
+      loadFront.onerror = err => reject(err)
+      loadAction.onerror = err => reject(err)
+    })
+  }
+
+  Promise.all(Products.map(product => product.variants.map(variant => {loadImage(variant.photos)})))
+    .then(() => setImgsLoaded(true))
+    .catch(err => console.log("Failed to load images", err))
+}, [])
+
+
+
+
+  return <AnimatePresence>{imgsLoaded?(
     <div className="ShopPageComponent">
       <div className="filter-buttons-container">
         <motion.div key="filterbuttonmen"    variants={filterButton1} initial="initial" whileHover="hover" className={`button filterButtons filterButtonsMen   ${genderFilter === "men"?"activeSort":""}`}   onClick={() => dispatch(handleFilterChange("men"))}  ><p>Men</p></motion.div>
@@ -266,11 +294,11 @@ useEffect(()=>{
         <form>
         <input type="radio" name="sort" value="priceAsc" id="priceAsc" onClick={(e)=>{handlePriceClick(e)}}/>
           {/* <label htmlFor="priceAsc">Price {priceSort===undefined?<></>:priceSort==="asc"?<FontAwesomeIcon className="sortIcon" icon={solid('sort-down')} />:<FontAwesomeIcon className="sortIcon" icon={solid('sort-up')} />}</label> */}
-          <label htmlFor="priceAsc">Price {priceSort===undefined && <></>} {priceSort==="asc" && <FontAwesomeIcon className="sortIcon" icon={solid('sort-up')} />} {priceSort === "desc" && <FontAwesomeIcon className="sortIcon" icon={solid('sort-down')} />}</label>
+          <label style={{clipPath: "polygon(42% 12%, 59% 4%, 57% 98%, 37% 87%)"}}htmlFor="priceAsc">Price {priceSort===undefined && <></>} {priceSort==="asc" && <FontAwesomeIcon className="sortIcon" icon={solid('sort-up')} />} {priceSort === "desc" && <FontAwesomeIcon className="sortIcon" icon={solid('sort-down')} />}</label>
 
 
         <input type="radio" name="sort" value="AtoZ" id="AtoZ"  onClick={()=>{handleNameClick()}} />
-        <label htmlFor="AtoZ">Name {nameSort===undefined && <></>} {nameSort==="asc" && <FontAwesomeIcon className="sortIcon" icon={solid('sort-up')} />} {nameSort === "desc" && <FontAwesomeIcon className="sortIcon" icon={solid('sort-down')} />}</label>
+        <label style={{clipPath: "polygon(43% 0, 66% 30%, 58% 99%, 34% 56%)"}} htmlFor="AtoZ">Name {nameSort===undefined && <></>} {nameSort==="asc" && <FontAwesomeIcon className="sortIcon" icon={solid('sort-up')} />} {nameSort === "desc" && <FontAwesomeIcon className="sortIcon" icon={solid('sort-down')} />}</label>
           </form>
       </div>
 
@@ -299,6 +327,7 @@ useEffect(()=>{
       </div>
       <div className="spacer"></div>
   </div>
-)
+):<motion.div className="LoadingPage">Loading...</motion.div>}
+</AnimatePresence>
 }
 

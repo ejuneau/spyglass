@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 import logoWhite from '../Assets/Images/Logo (White, slogan).png';
 import logoBlack from '../Assets/Images/Logo (Black, slogan).png';
-import {motion} from 'framer-motion';
+import {AnimatePresence, motion} from 'framer-motion';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Menu from './Menu';
@@ -87,11 +87,21 @@ export default function Header(props) {
     return (
         <div className="HeaderComponent">
             <header>
-                <motion.div className="menu-cart" key="menu-cart" variants={hamburger} initial="show"  onClick={()=>{dispatch(toggleMenu())}} animate={showMenu?"hidden":"show"}>
+                <motion.div layout className="menu-cart" key="menu-cart" variants={hamburger} initial="show"  onClick={()=>{dispatch(toggleMenu())}} animate={showMenu?"hidden":"show"}>
                     <div className="hamburger-container"  >
                         <FontAwesomeIcon className="hamburger" icon={solid('bars')} key="HeaderIcon"/>
                     </div>
-                    <p id="cart-count" style={{"fontFamily": "Portia", "color": "#FC5130", "display":cart.length>0?"initial":"none"}}>{cart.length}</p>
+                    <AnimatePresence mode="popLayout">
+                        <motion.p 
+                        key={`KartKount ${cart.length}`} 
+                        initial={{y:0}} 
+                        animate={{y: ["0rem", "0.5rem", "0rem"], scaleX: [-1,1], transition: {duration: 0.25}}} 
+                        exit={{opacity:0, y:"-1rem"}}
+                        id="cart-count" 
+                        style={{"fontFamily": "Portia", "color": "#FC5130", "display":cart.length>0?"initial":"none"}}>
+                            {cart.length}
+                            </motion.p>
+                    </AnimatePresence>
                 </motion.div>
                 <Link to="/" className="logo" onClick={() => {this.forceUpdate()}}>
                     <motion.img key="logo" src={logoWhite} variants={Logo} animate={showMenu?"show":"hidden"} onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)} alt="Spyglass Logo" id="logo" />

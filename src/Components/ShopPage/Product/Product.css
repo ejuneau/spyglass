@@ -4,6 +4,7 @@
     width: 100vw;
     padding: 2vh 1vw;
     margin: 3vh 1.5vw;
+    margin-bottom: 10vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -80,4 +81,7 @@
 .productVariants img {
     border-radius: 50%;
     width: 30%;
+}
+#productImages {
+    display: flex;
 }

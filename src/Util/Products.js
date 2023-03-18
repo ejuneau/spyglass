@@ -42,7 +42,8 @@ const Products = [
                     front: front1,
                     back: back1,
                     action: action1
-                }
+                },
+                description: "The Mercury is a sleek and stylish pair of aviator sunglasses that are perfect for any occasion. These sunglasses feature a classic design with a modern twist, including pearls at the ends of the temple tips, adding a touch of elegance and sophistication. The Mercury is the perfect accessory for those who want to look fashionable while protecting their eyes from the sun."
             }
         ],
 
@@ -60,7 +61,8 @@ const Products = [
                     front: front2,
                     back: back2,
                     action: action2
-                }
+                },
+                description: "The Lovestruck sunglasses are the answer for those looking to add a touch of romance to their look. These sunglasses feature heart-shaped, slightly pinkened lenses that create a unique and stylish look. With its minimalist frame, The Lovestruck is ideal for any outdoor festival or a romantic date if you're feeling brave."
             }
         ],
     },
@@ -77,7 +79,8 @@ const Products = [
                     front: front3,
                     back: back3,
                     action: action3
-                    }
+                    },
+                description: "The Blend glasses are a stylish and versatile option for anyone looking for a gender-neutral frame. With a sleek and modern design, these frames feature a keyhole nose bridge that adds a touch of sophistication to your look. The Blend is perfect for those who want to blend style and functionality in one frame."
             }
         ],  
     },
@@ -95,6 +98,7 @@ const Products = [
                     back: back4,
                     action: action4
                 },
+                description: "Make a splash with the Rascal frames. Ideal for anyone looking to add a touch of playfulness to their look, these frames are available in transparent or leopard print variants. With a lightweight frame that's both durable and comfortable, they're perfect to wear all day while causing a ruckus.",
                 circleColor: transparent
             },
             {
@@ -104,6 +108,7 @@ const Products = [
                     back: back5,
                     action: action5
                 },
+                description: "Make a splash with the Rascal frames. Ideal for anyone looking to add a touch of playfulness to their look, these frames are available in transparent or leopard print variants. With a lightweight frame that's both durable and comfortable, they're perfect to wear all day while causing a ruckus.",
                 circleColor: leopardPrint
             }
         ],
@@ -122,7 +127,8 @@ const Products = [
                     front: front6,
                     back: back6,
                     action: action6
-                }
+                },
+                description: "The Fiend sunglasses are a bold and daring choice for anyone who wants to stand out from the crowd. With a chunky pink frame that wraps around the face of the wearer, these sunglasses create a unique and fashionable look. The lenses provide excellent UV protection, making them equally suited for lounging by the beach, or fetching a midnight snack."
             }
         ],
     },
@@ -139,7 +145,8 @@ const Products = [
                         front: front7,
                         back: back7,
                         action: action7
-                    }
+                    },
+                    description: "The Sucker sunglasses are a chic and sophisticated option for those who want to add a touch of glamour to their look. With a refined, slightly translucent pink frame, these sunglasses create a look that's sure to turn heads. The lenses provide excellent sun protection while maintaining a clear view, making them perfect for any outdoor activity.",
             }
         ],
     }

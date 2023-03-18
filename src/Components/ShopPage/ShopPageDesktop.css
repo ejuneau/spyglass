@@ -16,8 +16,8 @@
         display: flex;
         justify-content: space-evenly;
         margin-top: 25vh;
-        margin-bottom: 5vh;
-        align-self: flex-end;
+        
+        align-self: center;
     
     }
     .filterButtons p {
@@ -38,11 +38,11 @@
     }
     .product-list-container {
         display: flex;
-        width: 85vw;
+        width: 90vw;
         flex-wrap: wrap;
         align-items: flex-start;
         justify-content: space-evenly;
-        align-self: flex-end;
+        align-self: center;
     }
     .spacer {
         min-height: calc(max(30vh, 18rem));

@@ -1,11 +1,10 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, lazy } from "react";
 import { Link, useParams } from "react-router-dom";
-import Products from "../../Util/Products";
+import Products from "../../../Util/Products";
 import {useSelector, useDispatch } from 'react-redux';
-import { addToCart, modifyQuantity, removeFromCart } from "../../Util/cartSlice";
+import { addToCart, modifyQuantity, removeFromCart } from "../../../Util/cartSlice";
 import './ProductPage.css';
 import { useSearchParams } from "react-router-dom";
-import { ReactComponent as BackButton} from '../../Assets/Images/result.svg';
 import {motion, AnimatePresence} from 'framer-motion';
 import { SlideShow } from "./SlideShow.tsx";
 
@@ -18,23 +17,28 @@ export default function ProductPage(props) {
 
     const cart = useSelector((state) => state.cart.contents);
     const rotateBy = useSelector((state) => state.rotate.rotateBy);
+    const antiRotateBy = useSelector((state) => state.rotate.antiRotateBy);
     const product = Products[Products.map(function(e) { return e.name; }).indexOf(name)];
     const {front, back, action} = product.variants[searchParams.get("variant")?searchParams.get("variant"):0].photos;
     const srcArray = [front, back, action];
-    console.log(srcArray)
     return (
-        <div className="ProductPageComponent">
-            <Link style={{rotate: rotateBy}} to="/Shop" className="backButton"><motion.div key="backButton" initial={{x: "0vw"}} animate={{x:["5vw", "3vw", "3vw"], transition: {repeat: Infinity}}} ><BackButton throwIfNamespace={false}  id="BackButton"  alt="Back Button Graphic"/></motion.div></Link>
-            <div className="titleContainer"><h2>The</h2><h1>{product.name}</h1> </div>
+        <div className="ProductPageComponent" >
+           
+            {/* <img src={product.variants[searchParams.get("variant")?searchParams.get("variant"):0].photos.front} /> */}
+            <SlideShow srcArray={srcArray} antiRotateBy={antiRotateBy} rotateBy={rotateBy}/>
+            <Link style={{rotate: rotateBy}} to="/Shop" className="backButton"><motion.div key="backButton" initial={{x: "200vw"}} animate={{x: "4vw", transition: {x:{duration: 0.5}, repeat: Infinity, repeatType:"reverse"}}} >{"back"}</motion.div></Link>
+            <div className="productTitleContainer"><h2>The</h2><h1>{product.name}</h1> </div>
             {product.variants.length > 1 && product.variants.map(variant => {
                                     return  (
                                         <img key={`variant${product.variants.indexOf(variant)}`}   style={{borderRadius: "50%", }} src={variant.circleColor} fill={variant.circleColor} onClick={()=>{setSearchParams({variant: product.variants.indexOf(variant)}); setQuantity(cart.filter(item => item.id === product.id).find(item=>item.variant !== Number(searchParams.get("variant")))?cart.filter(item => item.id === product.id).find(item=>item.variant !== Number(searchParams.get("variant"))).quantity:1) }  } />
                                         )})}
-            {/* <img src={product.variants[searchParams.get("variant")?searchParams.get("variant"):0].photos.front} /> */}
-            <SlideShow srcArray={srcArray} />
             <div className="cartOptionsContainer">
                 <CartButtons product={product} quantity={quantity} setQuantity={setQuantity}/>
             </div>
+            <div className="descriptionContainer">
+                <p className="productDescription">{product.variants[searchParams.get("variant")?searchParams.get("variant"):0].description}</p>
+            </div>
+            <div className="spacer" />
         </div>
     )
 }

@@ -1,8 +1,10 @@
 import * as React from "react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useSelector } from "react-redux";
 import { wrap } from "popmotion";
 import './SlideShow.css';
+import { ReactComponent as BackButton} from '../../../Assets/Images/result.svg';
 
 const variants = {
   enter: (direction: number) => {
@@ -48,12 +50,13 @@ export const SlideShow = (props) => {
   const paginate = (newDirection: number) => {
     setPage([page + newDirection, newDirection]);
   };
-
+  
   return (
-    <div className="SlideShow">
+    <div className="SlideShow" style={{rotate: props.rotateBy}}>
       <AnimatePresence initial={false} custom={direction} mode="popLayout">
         <motion.img
           key={page}
+          style={{rotate: props.antiRotateBy}}
           src={props.srcArray[imageIndex]}
           custom={direction}
           variants={variants}
@@ -79,10 +82,10 @@ export const SlideShow = (props) => {
         />
       </AnimatePresence>
       <div className="next" onClick={() => paginate(1)}>
-        {"‣"}
+        <BackButton  id="BackButton" />
       </div>
       <div className="prev" onClick={() => paginate(-1)}>
-        {"‣"}
+        <BackButton id="NextButton"   />
       </div>
     </div>
   );
