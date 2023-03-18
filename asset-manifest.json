@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/spyglass/static/css/main.d6b5ead5.css",
-    "main.js": "/spyglass/static/js/main.ba66e0a4.js",
+    "main.css": "/spyglass/static/css/main.dbf63bf4.css",
+    "main.js": "/spyglass/static/js/main.175eb8ea.js",
     "static/js/496.690113d3.chunk.js": "/spyglass/static/js/496.690113d3.chunk.js",
     "static/media/front.png": "/spyglass/static/media/front.63d9438fc87541977e0b.png",
     "static/media/back.png": "/spyglass/static/media/back.67a377b8023a0ce1cf86.png",
@@ -27,12 +27,12 @@
     "static/media/Noir_regular.otf": "/spyglass/static/media/Noir_regular.60dea6f6bd568d740696.otf",
     "static/media/result.svg": "/spyglass/static/media/result.dbf26cca6b53c360af5fd47e28ef1e89.svg",
     "index.html": "/spyglass/index.html",
-    "main.d6b5ead5.css.map": "/spyglass/static/css/main.d6b5ead5.css.map",
-    "main.ba66e0a4.js.map": "/spyglass/static/js/main.ba66e0a4.js.map",
+    "main.dbf63bf4.css.map": "/spyglass/static/css/main.dbf63bf4.css.map",
+    "main.175eb8ea.js.map": "/spyglass/static/js/main.175eb8ea.js.map",
     "496.690113d3.chunk.js.map": "/spyglass/static/js/496.690113d3.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d6b5ead5.css",
-    "static/js/main.ba66e0a4.js"
+    "static/css/main.dbf63bf4.css",
+    "static/js/main.175eb8ea.js"
   ]
 }
