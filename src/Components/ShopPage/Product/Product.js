@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
+import { isMobile } from "react-device-detect";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import './Product.css';
@@ -8,22 +9,20 @@ import { Link, useSearchParams } from "react-router-dom";
 //SOMETHING WITH FRAMER MOTION - implement filtering
 
 export default function Product(props) {
+	const boundaries = useRef(null);
     const genderFilter = useSelector((state) => state.filter.gender);
     const [currentVariant, setCurrentVariant] = useState(0);
     const [isHover, setIsHover] = useState(false);
-    const [isImageHover, setIsImageHover] = useState(false);
-    const [frontOffset, setFrontOffset] = useState("0%");
-    const [actionOffset, setActionOffset] = useState("120%")
     const [rotateBy, setRotateBy] = useState((Math.random() * (0.1 - 0.01) + 0.01)*(Math.random() > 0.5?1:-1));
     const handleHoverChange = (state) => {
-        setIsHover(state);
+        state && setIsHover(state);
+		if (!state) {setIsHover(!isHover)}
 
     }
     
-    useEffect(() => {
-        setRotateBy((Math.random() * (0.1 - 0.01) + 0.01)*(Math.random() > 0.5?1:-1));
-        console.log(rotateBy)
-    },[isHover])
+    // useEffect(() => {
+    //     setRotateBy((Math.random() * (0.1 - 0.01) + 0.01)*(Math.random() > 0.5?1:-1));
+    // },[isHover])
     const clipX= 15;
     const clipY= 100 - clipX;
 
@@ -33,10 +32,7 @@ export default function Product(props) {
             rotate: isHover?0:`${rotateBy}rad`,
         }
     }
-    function isInArray(value, array) {
-        if (value === "") {return true}
-        return array.indexOf(value) > -1;
-      }
+
 
       const [imgsLoaded, setImgsLoaded] = useState(false)
 
@@ -67,53 +63,107 @@ export default function Product(props) {
           .catch(err => console.log("Failed to load images", err))
       }, [])
 
-function FrontImage() { return  <img key={`Product ID:${props.product.id} image-front`} src={props.product.variants[currentVariant].photos.front} style={{paddingRight: "2rem"}}  /> }
-function ActionImage() { return  <img key={`Product ID:${props.product.id} image-action`} src={props.product.variants[currentVariant].photos.action} style={{paddingLeft: "2rem"}} />}
+function FrontImage() { return  <img key={`Product ID:${props.product.id} image-front`} src={props.product.variants[currentVariant].photos.front} style={{paddingRight: "2rem"}}  id={isMobile?"mobileImg1":"Img1"}/> }
+function ActionImage() { return  <img key={`Product ID:${props.product.id} image-action`} src={props.product.variants[currentVariant].photos.action} style={{paddingLeft: "2rem"}} id={isMobile?"mobileImg2":"Img2"}/>}
     return imgsLoaded?(
         <div>
+         {isMobile && <motion.div 
+          key={`Product ID: ${props.product.id}`} 
+          style={{ outline: "1px solid #0A0A0A"}} 
+          layout 
+          exit={{opacity: 0}}
+          className="ProductComponent" 
+          id={props.product.id} 
+		  initial={{opacity: 0}}
+		  whileInView={{opacity: 1}}
+          >
+            <Link to={props.product.variants.length>1?`/Shop/Product/${props.product.name}?variant=${currentVariant}`:`/Shop/Product/${props.product.name}`}>
+              <motion.div  
+			  key={`container for ${props.product.id} ${currentVariant}`} 
+			   
+			  >
+                <motion.div  
+				id="productImages" 
+				layout 
+				key={`Images for ${props.product.id} ${currentVariant}`} 
+				style ={{   overflowX: "scroll",
+					scrollSnapType: "x mandatory"}}
+				>
+                  <FrontImage id="mobileImg1"/>
+                  <ActionImage id="mobileImg2" />
+                </motion.div>
+              </motion.div> 
+            </Link>  
+            <div className="titleContainer">
+                <p className="the">THE</p>
+                <p className="productTitle">{props.product.name}</p>
+                <div className="productPriceVariants">
+                  <p className="productPrice">{`$${props.product.price}.00`}</p>
+                  {props.product.variants.length > 1 && (
+                    <div className="productVariants">
+                      {props.product.variants.map(variant => {
+                        return  (
+                          <img 
+						  key={`variant${props.product.variants.indexOf(variant)}`}   
+						  style={{border: currentVariant===props.product.variants.indexOf(variant)?"3px solid var(--red)":"3px solid var(--black)"}} 
+						  src={variant.circleColor} onClick={()=>{setCurrentVariant(props.product.variants.indexOf(variant)); }} />
+                          )})}
+                    </div>
+                  )}
+                </div>
+            </div>
+          </motion.div>}
 
-                <motion.div 
-                key={`Product ID: ${props.product.id}`} 
-                style={{ outline: "1px solid #0A0A0A"}} 
-                variants={variants} 
-                layout 
-                initial="show" 
-                animate="show" 
-                exit={{opacity: 0}}
-                className="ProductComponent" 
-                id={props.product.id} 
-                onMouseEnter={() => {handleHoverChange(true)}} 
-                onMouseLeave={()=>{handleHoverChange(false)}}
-                onPointerLeave={()=>{setIsImageHover(false);handleHoverChange(false)}}>
-                                        <Link to={props.product.variants.length>1?`/Shop/Product/${props.product.name}?variant=${currentVariant}`:`/Shop/Product/${props.product.name}`}>
-
-                    <motion.div key={`container for ${props.product.id} ${currentVariant}`} style={{overflow:"hidden"}} animate={{rotate: isHover?`0`:`-${rotateBy}rad`, clipPath: `polygon(${isHover?0:clipX}% 0%, 100% ${isHover?0:clipX}%, ${isHover?100:clipY}% 100%, 0% ${isHover?100:clipY}%)`, transition: {duration: 0.3, type: "spring", damping: 10, stiffness: 100}}}>
-                        <motion.div id="productImages" layout key={`Images for ${props.product.id} ${currentVariant}`} onMouseEnter={() => {setIsImageHover(true); setActionOffset("0%"); setFrontOffset("-120%")}} onMouseLeave={()=>{setIsImageHover(false); setActionOffset("120%"); setFrontOffset("0%")}} whileHover={{x: "calc(-100% - 4rem)"}}>
-                        {/* <motion.img key={`Product ID:${props.product.id} image`} layout src={isImageHover?props.product.variants[currentVariant].photos.action:props.product.variants[currentVariant].photos.front} animate={{rotate: isHover?`0`:`-${rotateBy}rad`, clipPath: `polygon(${isHover?0:clipX}% 0%, 100% ${isHover?0:clipX}%, ${isHover?100:clipY}% 100%, 0% ${isHover?100:clipY}%)`, transition: {duration: 0.3, type: "spring", damping: 10, stiffness: 100}}} onMouseEnter={() => {setIsImageHover(true)}} onMouseLeave={()=>{setIsImageHover(false)}}/> */}
-                            <FrontImage />
-                            <ActionImage />
-                        </motion.div>
-                     
-                    </motion.div> 
-                    </Link>  
-                    <div className="titleContainer">
-                        <p className="the">THE</p>
-                            <p className="productTitle">{props.product.name}</p>
-                            <div className="productPriceVariants">
-                                <p className="productPrice">{`$${props.product.price}.00`}</p>
-                                {props.product.variants.length > 1 && (
-                                    <div className="productVariants">
-                                    {props.product.variants.map(variant => {
-                                        return  (
-                                            <img key={`variant${props.product.variants.indexOf(variant)}`}   style={{borderRadius: "50%", border: currentVariant===props.product.variants.indexOf(variant)?"3px solid var(--red)":"3px solid var(--black)"}} src={variant.circleColor} onClick={()=>{setCurrentVariant(props.product.variants.indexOf(variant)); }  } />
-                                            )})}
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-
-                    </motion.div>
-
+		  {!isMobile && <motion.div 
+          key={`Product ID: ${props.product.id}`} 
+          style={{ outline: "1px solid #0A0A0A"}} 
+          variants={variants} 
+          layout 
+          initial="show" 
+          animate="show" 
+          exit={{opacity: 0}}
+          className="ProductComponent" 
+          id={props.product.id} 
+          onMouseEnter={() => {handleHoverChange(true)}} 
+          onMouseLeave={()=>{handleHoverChange(false)}} 
+          >
+            <Link to={props.product.variants.length>1?`/Shop/Product/${props.product.name}?variant=${currentVariant}`:`/Shop/Product/${props.product.name}`}>
+              <motion.div  
+			  key={`container for ${props.product.id} ${currentVariant}`} 
+			  style={{overflow:"hidden"}} 
+			  animate={{rotate: isHover?`0`:`-${rotateBy}rad`, clipPath: `polygon(${isHover?0:clipX}% 0%, 100% ${isHover?0:clipX}%, ${isHover?100:clipY}% 100%, 0% ${isHover?100:clipY}%)`, 
+			  transition: {duration: 0.3, type: "spring", damping: 10, stiffness: 100}}}>
+                <motion.div  
+				id="productImages" 
+				layout 
+				key={`Images for ${props.product.id} ${currentVariant}`} 
+				initial={{x: "0%"}}
+				whileHover={{x: "calc(-100% - 4rem)"}}
+				>
+                  <FrontImage />
+                  <ActionImage />
+                </motion.div>
+              </motion.div> 
+            </Link>  
+            <div className="titleContainer">
+                <p className="the">THE</p>
+                <p className="productTitle">{props.product.name}</p>
+                <div className="productPriceVariants">
+                  <p className="productPrice">{`$${props.product.price}.00`}</p>
+                  {props.product.variants.length > 1 && (
+                    <div className="productVariants">
+                      {props.product.variants.map(variant => {
+                        return  (
+                          <img 
+						  key={`variant${props.product.variants.indexOf(variant)}`}   
+						  style={{border: currentVariant===props.product.variants.indexOf(variant)?"3px solid var(--red)":"3px solid var(--black)"}} 
+						  src={variant.circleColor} onClick={()=>{setCurrentVariant(props.product.variants.indexOf(variant)); }} />
+                          )})}
+                    </div>
+                  )}
+                </div>
+            </div>
+          </motion.div>}
         </div>
     ):<h1>loading</h1>
 }

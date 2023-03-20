@@ -8,7 +8,7 @@ import Product from './Product/Product';
 import {useSelector, useDispatch} from 'react-redux';
 import { handleFilterChange } from '../../Util/filterSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 
 
@@ -207,7 +207,7 @@ function clearRadio(group) {
   setNameSortCounter(0);
   setPriceSortCounter(0)
 }
-async function handlePriceClick(e) {
+async function handlePriceClick() {
   // setSortedProducts(priceSort==="asc"?sortedProductsPriceAsc:priceSort==="desc"?sortedProductsPriceDesc:Products);
   setNameSortCounter(0);
   setTimeout(()=>{setPriceSortCounter(priceSortCounter + 1);},100)
@@ -291,15 +291,29 @@ useEffect(() => {
       </div>
 
       <div className="sortButtonsContainer">
-        <form>
-        <input type="radio" name="sort" value="priceAsc" id="priceAsc" onClick={(e)=>{handlePriceClick(e)}}/>
-          {/* <label htmlFor="priceAsc">Price {priceSort===undefined?<></>:priceSort==="asc"?<FontAwesomeIcon className="sortIcon" icon={solid('sort-down')} />:<FontAwesomeIcon className="sortIcon" icon={solid('sort-up')} />}</label> */}
-          <label style={{clipPath: "polygon(42% 12%, 59% 4%, 57% 98%, 37% 87%)"}}htmlFor="priceAsc">Price {priceSort===undefined && <></>} {priceSort==="asc" && <FontAwesomeIcon className="sortIcon" icon={solid('sort-up')} />} {priceSort === "desc" && <FontAwesomeIcon className="sortIcon" icon={solid('sort-down')} />}</label>
+        <motion.form key="sortButtonsForm" layout>
 
+        <input type="radio" name="sort" value="priceAsc" id="priceAsc" onClick={()=>{handlePriceClick()}}/>
+          <motion.label key="labelPrice" layout htmlFor="priceAsc">
+            Price 
+            <AnimatePresence mode="popLayout">
+              {priceSort===undefined && <motion.div key="priceUnsort" style={{visibility: "hidden"}}><FontAwesomeIcon className="sortIcon" icon={solid('sort')} /></motion.div>}
+              {priceSort==="asc" && <motion.div key="priceAsc" initial={{y: "10vh", opacity: 0}} animate={{y:0, opacity: 1}} exit={{scaleY:0, transition:{duration: 0.2}}}><FontAwesomeIcon className="sortIcon" icon={solid('sort-up')} /></motion.div>}
+              {priceSort === "desc" && <motion.div key="priceDesc" initial={{scaleY: 0}} animate={{scaleY:1, transition:{duration: 0.2}}} exit={{y:"10vh", opacity: 0, transition: {y: {duration:1}, opacity: {duration: 0.2}}}}><FontAwesomeIcon className="sortIcon" icon={solid('sort-down')} /></motion.div>}
+            </AnimatePresence>
+          </motion.label>
 
         <input type="radio" name="sort" value="AtoZ" id="AtoZ"  onClick={()=>{handleNameClick()}} />
-        <label style={{clipPath: "polygon(43% 0, 66% 30%, 58% 99%, 34% 56%)"}} htmlFor="AtoZ">Name {nameSort===undefined && <></>} {nameSort==="asc" && <FontAwesomeIcon className="sortIcon" icon={solid('sort-up')} />} {nameSort === "desc" && <FontAwesomeIcon className="sortIcon" icon={solid('sort-down')} />}</label>
-          </form>
+          <motion.label key="labelName" layout htmlFor="AtoZ">
+          Name 
+            <AnimatePresence mode="popLayout">
+            {nameSort===undefined && <motion.div key="nameUnsort" style={{visibility: "hidden"}}><FontAwesomeIcon className="sortIcon" icon={solid('sort')} /></motion.div>}
+              {nameSort==="asc" && <motion.div key="nameAsc" initial={{y: "10vh", opacity: 0}} animate={{y:0, opacity: 1}} exit={{scaleY:0, transition:{duration: 0.2}}}><FontAwesomeIcon className="sortIcon" icon={solid('sort-up')} /></motion.div>}
+              {nameSort === "desc" && <motion.div key="nameDesc" initial={{scaleY: 0}} animate={{scaleY:1, transition:{duration: 0.2}}} exit={{y:"10vh", opacity: 0, transition: {y: {duration:1}, opacity: {duration: 0.2}}}}><FontAwesomeIcon className="sortIcon" icon={solid('sort-down')} /></motion.div>}
+            </AnimatePresence>
+          </motion.label>
+
+          </motion.form>
       </div>
 
       <div className="product-list-container" key="product-list-container">

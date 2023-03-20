@@ -61,7 +61,7 @@ export default function Header(props) {
         hidden: {
             mixBlendMode: isHover?"normal":"exclusion",
             filter: `blur(${isHover?0:3}px) invert(0%)`,
-            opacity: isHover?1:0.75,
+            // opacity: isHover?1:0.75,
             scale: isHover?1.1:1,
             transition: {
                 duration: 0.1,

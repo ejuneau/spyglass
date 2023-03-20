@@ -1,77 +1,27 @@
 @media only screen and (min-width: 992px) {
-    
-
 .ProductComponent {
-
     max-width: 30rem;
     width: 20vw;
     padding: 2vh 1vw;
-
-    flex-direction: column;
-    background-color: var(--white);
-    box-shadow: 1vh 1vw;
     transition: rotate 0.2s ease;
-}
-.ProductComponent img {
-    display: block;
-    max-width:100%;
-    max-height:100%;
-    width: auto;
-    height: auto;
+    
     
 }
 
 .productTitle {
-
     font-size:calc(min(3.4vw, 5rem));
-
-    margin: 0;
-    
 }
 .the {
-    font-family: 'Portia Oblique';
-    font-size:calc(max(2vw,1.5rem));
-    rotate: -90deg;
     margin: 0;
-    width: calc(max(2vw, 5rem));
-
-    text-align: right;
-}
-.titleContainer {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    font-family: 'Portia';
-   
-    height: 7.5vh;
-    margin-top: 2vh;
-    min-height: calc(9rem / 2);
 }
 .productPrice {
-
-    font-size: calc(max(2vw, 1.5rem));
-    margin: 0;
-    width: -moz-fit-content;
-    width: fit-content;
-    
-
+    font-size: calc(max(2vw, 1.5rem)); 
 }
 .productPriceVariants { 
-    align-self: flex-start;
-    margin: 0;
-    margin-left: auto;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-end;
     width: 25%;
 }
 .productVariants {
-    display: flex;
     height: 50%;
-    width: 100%;
-    position: relative;
 }
 
 }

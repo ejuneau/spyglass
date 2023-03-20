@@ -73,22 +73,22 @@ input[type=radio] {
     flex-wrap: wrap;
 }
 input[type=radio]:checked ~ input[type=text] {opacity: 1;}
-input:checked + label {background-color: var(--green); color: var(--white);}
+/* input:checked + label { color: var(--white);}
 input:hover + label {background-color: var(--white);}
-input:checked:hover + label {background-color: var(--black);}
+input:checked:hover + label {background-color: var(--black);} */
 
 input + label {
 	position: relative;
 	font-size: 20px;
 	height: 100%;
-	width: 100%;
 	text-align: center;
 	transition: background-color 0.2s ease, font-weight 0.2s ease, outline 0.2s ease, color 0.2s ease;
 	display: flex;
 	justify-content: center;
 	align-items: center;
     font-family: 'varygraphie';
-	padding: 0.5vh 0.5vw;
+	padding: 1vh 2vw;
+
 }
 
 .sortButtonsContainer input[type=text] {

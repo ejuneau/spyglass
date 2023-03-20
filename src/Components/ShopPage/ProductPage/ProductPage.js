@@ -24,10 +24,9 @@ export default function ProductPage(props) {
     return (
         <div className="ProductPageComponent" >
            
-            {/* <img src={product.variants[searchParams.get("variant")?searchParams.get("variant"):0].photos.front} /> */}
-            <SlideShow srcArray={srcArray} antiRotateBy={antiRotateBy} rotateBy={rotateBy}/>
             <Link style={{rotate: rotateBy}} to="/Shop" className="backButton"><motion.div key="backButton" initial={{x: "200vw"}} animate={{x: "4vw", transition: {x:{duration: 0.5}, repeat: Infinity, repeatType:"reverse"}}} >{"back"}</motion.div></Link>
             <div className="productTitleContainer"><h2>The</h2><h1>{product.name}</h1> </div>
+            <SlideShow srcArray={srcArray} antiRotateBy={antiRotateBy} rotateBy={rotateBy}/>
             {product.variants.length > 1 && product.variants.map(variant => {
                                     return  (
                                         <img key={`variant${product.variants.indexOf(variant)}`}   style={{borderRadius: "50%", }} src={variant.circleColor} fill={variant.circleColor} onClick={()=>{setSearchParams({variant: product.variants.indexOf(variant)}); setQuantity(cart.filter(item => item.id === product.id).find(item=>item.variant !== Number(searchParams.get("variant")))?cart.filter(item => item.id === product.id).find(item=>item.variant !== Number(searchParams.get("variant"))).quantity:1) }  } />
