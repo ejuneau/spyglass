@@ -13,7 +13,7 @@ import { toggleMenu } from './menuSlice';
 
 
 export default function Header(props) {
-    const cart = useSelector((state) => state.cart.contents);
+    const cart = useSelector((state) => state.cart.count);
     const showMenu = useSelector((state) => state.menu.showMenu);
     const dispatch = useDispatch();
 
@@ -93,13 +93,13 @@ export default function Header(props) {
                     </div>
                     <AnimatePresence mode="popLayout">
                         <motion.p 
-                        key={`KartKount ${cart.length}`} 
+                        key={`KartKount ${cart}`} 
                         initial={{y:0}} 
                         animate={{y: ["0rem", "0.5rem", "0rem"], scaleX: [-1,1], transition: {duration: 0.25}}} 
                         exit={{opacity:0, y:"-1rem"}}
                         id="cart-count" 
-                        style={{"fontFamily": "Portia", "color": "#FC5130", "display":cart.length>0?"initial":"none"}}>
-                            {cart.length}
+                        style={{"fontFamily": "Portia", "color": "#FC5130", "display":cart>0?"initial":"none"}}>
+                            {cart}
                             </motion.p>
                     </AnimatePresence>
                 </motion.div>

@@ -8,7 +8,7 @@ import { toggleMenu } from './menuSlice';
 import {Link} from 'react-router-dom';
 export default function Menu(props) {
 
-    const cart = useSelector((state) => state.cart.contents);
+    const cart = useSelector((state) => state.cart.count);
     const showMenu = useSelector((state) => state.menu.showMenu);
     const dispatch = useDispatch();
     const rotateBy = useSelector((state) => state.rotate.rotateBy);
@@ -120,7 +120,7 @@ export default function Menu(props) {
         <motion.div className="menu" key="menu" variants={menu} initial="hidden" animate={showMenu?"show":"hidden"} >
             <motion.div key="menuTopAccent" className="menuTopAccent" variants={menuTopAccent} ></motion.div>
             <motion.div className="menuCart" variants={menuCartItem} style={{rotate: rotateBy}}>
-                <Link className={`cartButton ${window.location.hash === "#/Cart" && "activeNavButton"}`} to="/Cart" onClick={() => {window.scrollTo({top:0,behavior:'smooth'}); dispatch(toggleMenu())}}>Cart: {cart.length}</Link> 
+                <Link className={`cartButton ${window.location.hash === "#/Cart" && "activeNavButton"}`} to="/Cart" onClick={() => {window.scrollTo({top:0,behavior:'smooth'}); dispatch(toggleMenu())}}>Cart: {cart}</Link> 
                 {window.location.hash === "#/Cart" && 
                 <motion.div 
                     key="activeCart" 

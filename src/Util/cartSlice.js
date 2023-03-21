@@ -1,10 +1,10 @@
 import { createSlice, current } from "@reduxjs/toolkit";
-
 export const cartSlice = createSlice({
     name: 'cart',
     initialState: {
         //initialise cart slice as an array of objects containing the id of the frame and a quantity
         contents: [],
+        count: 0
     },
     reducers: {
         clearCart: (state) => {
@@ -12,6 +12,7 @@ export const cartSlice = createSlice({
             state.contents.length = 0;
 			console.log("Current cart status: ");
 			console.log(current(state.contents));
+            state.count = 0;
         },
         addToCart: (state, action) => {
             //expects a payload of an object containing the id of the frame and a quantity
@@ -31,6 +32,14 @@ export const cartSlice = createSlice({
 					}
             }
             console.log("Current cart contents: "); console.log(current(state.contents));
+
+            //loop to update state.count and log it
+            var total = 0
+            for( var i = 0; i < state.contents.length; i++) {
+                total += state.contents[i].quantity 
+            }
+            state.count = total;
+            console.log(state.count)
         },
         removeFromCart: (state, action) => {
             //expects a payload of an id of the frame to be removed
@@ -40,13 +49,38 @@ export const cartSlice = createSlice({
             state.contents.splice(state.contents.indexOf(state.contents.filter(item => item.id === action.payload.id).find(item => item.variant === action.payload.variant)), 1);
 			console.log("Current cart status: ");
             console.log(current(state.contents));
+
+                        //loop to update state.count and log it
+                        var total = 0
+                        for( var i = 0; i < state.contents.length; i++) {
+                            total += state.contents[i].quantity 
+                        }
+                        state.count = total;
+                        console.log(state.count)
         },
         modifyQuantity: (state, action) => {
             //expects a payload of an object containing the id of the frame and the new quantity
+            if (action.payload.newQuantity === 0) {
+                console.log("Removing "+action.payload.id+" from cart") 
+                console.log(current(state.contents));
+                console.log(action.payload)
+                state.contents.splice(state.contents.indexOf(state.contents.filter(item => item.id === action.payload.id).find(item => item.variant === action.payload.variant)), 1);
+                console.log("Current cart status: ");
+                console.log(current(state.contents));
+            } else {
             console.log("setting the quantity of "+action.payload.id+" to "+action.payload.newQuantity)
             state.contents.filter(item => item.id === action.payload.id).find(item => item.variant === action.payload.variant).quantity = action.payload.newQuantity;
             console.log("Current cart status: ");
             console.log(current(state.contents));
+            }
+
+                        //loop to update state.count and log it
+                        var total = 0
+                        for( var i = 0; i < state.contents.length; i++) {
+                            total += state.contents[i].quantity 
+                        }
+                        state.count = total;
+                        console.log(state.count)
         }   
     }
 })

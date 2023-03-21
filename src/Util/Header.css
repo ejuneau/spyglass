@@ -3,8 +3,7 @@ header{
     overflow:hidden;
     z-index: 10;
     width: 100vw;
-    height: 15vh;
-    min-height: 9rem;
+    height: max(15vh, 9rem);
     background-color: var(--black);
     clip-path: polygon(0 0, 0 100%, 100% 0);
     display: flex;

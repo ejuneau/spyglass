@@ -8,9 +8,8 @@
     
 }
 .header-spacer {
-    height: 15vh;
+    height: max(15vh, 9rem);
     width: 100vw;
-    min-height: 9rem;
     display: flex;
     justify-content: center;
     align-items: center;

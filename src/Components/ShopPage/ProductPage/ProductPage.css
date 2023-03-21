@@ -18,13 +18,22 @@
     font-size: min(15vw, 3rem);
     font-family: 'A Box For 1';
     margin: 0;
-    margin-top: max(0vh, 0rem);
-    margin-left: 3vw;
+    margin-top: min(-3vh, -1rem);
+    margin-left: 15vw;
     width: 10%;
     align-self: flex-start;
-    
-
-    
+    z-index: 10;
+    display: none;
+}
+.productTitleContainer {
+     min-height: max(30vh, 18rem);
+     background: var(--white);
+     width: 100vw;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     z-index: 5;
+     clip-path: polygon(0 0, 100% 0, 100% 75%, 0% 50%);
 }
 .ProductPageComponent h1, .ProductPageComponent h2 {
     
@@ -33,10 +42,14 @@
 
     
 }
+.slideShowContainer {
+    margin-top: min(-15vh, -9rem);
+    min-height: 83.3vw;
+}
 .ProductPageComponent h1 {
     font-family: 'Portia';
     font-size: min(20vw, 4rem);
-    padding-right: 5%;
+    padding-right: 2vw;
 }
 .ProductPageComponent h2 {
     font-family: 'Portia';
@@ -49,10 +62,75 @@
     height: -moz-fit-content;
     height: fit-content;
     width: 100vw;
-    padding-left: 5vw;
-    padding-right: 5vw;
+    background: var(--black);
+    position: relative;
+    z-index: 3;
+
 }
 .descriptionContainer p {
     font-family: 'Noir';
     font-size: min(5vw, 2rem);
+    color: var(--white);
+
+    margin: 0;
+    padding-top: 10vh;
+    padding-left: 5vw;
+    padding-right: 5vw;
+}
+.cartOptionsContainer {
+    background-color: var(--black);
+    width: 100vw;
+    margin: 0;
+    min-height: max(30vh, 18rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    clip-path: polygon(100% 50%, 100% 100%, 0 100%, 0 25%);
+    margin-top: min(-15vh, -9rem);
+    position: relative;
+    z-index: 2;
+    padding-right: 5vw;
+}
+.cartOptionsContainer button {
+    background-color: var(--red);
+    border: none;
+    font-family: 'Noir';
+    color: var(--black);
+    font-size: 1.5rem;
+    height: -moz-fit-content;
+    height: -webkit-fit-content;
+    height: fit-content;
+}
+
+.ProductPageComponent .spacer {
+    background-color: var(--black);
+}
+#quantButton {
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+
+.variantsContainer {
+    position: relative;
+    z-index: 50;
+    width: 100vw;
+    background-color: var(--white);
+    height: 0;
+    /* clip-path: polygon(100% 50%, 100% 100%, 0 100%, 0 20%); */
+}
+.variantsContainer img {
+    
+    position: absolute;
+    height: max(5vh, 3rem);
+}
+.variantsContainer img:nth-child(1) {
+    margin-left: 30vw;
+    background-color: var(--white);
+    margin-top: 0
+}
+.variantsContainer img:nth-child(2) {
+    margin-left: 10vw;
+    background-color: var(--white);
+    margin-top: 2vh;
 }

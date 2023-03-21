@@ -1,0 +1,14 @@
+@media only screen and (min-width: 992px) {
+    .productTitleContainer {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 50%);
+   }
+   .cartOptionsContainer {
+    clip-path: polygon(100% 50%, 100% 100%, 0 100%, 0 0%);
+}
+.variantsContainer img:nth-child(1) {
+    margin-top: min(-5vh, -3rem);
+}
+.variantsContainer img:nth-child(2) {
+    margin-top: min(-5vh, -3rem);
+}
+    }

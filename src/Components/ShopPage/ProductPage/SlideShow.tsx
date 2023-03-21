@@ -1,31 +1,10 @@
 import * as React from "react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useSelector } from "react-redux";
 import { wrap } from "popmotion";
 import './SlideShow.css';
 import { ReactComponent as BackButton} from '../../../Assets/Images/result.svg';
 
-const variants = {
-  enter: (direction: number) => {
-    return {
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0
-    };
-  },
-  center: {
-    zIndex: 1,
-    x: 0,
-    opacity: 1
-  },
-  exit: (direction: number) => {
-    return {
-      zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0
-    };
-  }
-};
 
 /**
  * Experimenting with distilling swipe offset and velocity into a single variable, so the
@@ -37,8 +16,36 @@ const swipeConfidenceThreshold = 10000;
 const swipePower = (offset: number, velocity: number) => {
   return Math.abs(offset) * velocity;
 };
+const XYSwipePower = (offsetX: number, velocityX: number, offsetY: number, velocityY: number) => {
+  return Math.abs(offsetX) * velocityX + Math.abs(offsetY) * velocityY;
+}
 
 export const SlideShow = (props) => {
+
+  const variants = {
+    enter: (direction: number) => {
+      return {
+        x: direction > 0 ? 1000 : -1000,
+        // y: direction > 0 ? props.tanRotateBy * 1000 :  props.tanRotateBy * -1000,
+        opacity: 0
+      };
+    },
+    center: {
+      zIndex: 1,
+      x: 0,
+      // y: 0,
+      opacity: 1
+    },
+    exit: (direction: number) => {
+      return {
+        zIndex: 0,
+        x: direction < 0 ? 1000 : -1000,
+        // y: direction < 0 ? props.tanRotateBy * 1000 :  props.tanRotateBy * -1000,
+        opacity: 0
+      };
+    }
+  };
+
   const [[page, direction], setPage] = useState([0, 0]);
 
   // We only have 3 images, but we paginate them absolutely (ie 1, 2, 3, 4, 5...) and
@@ -50,13 +57,16 @@ export const SlideShow = (props) => {
   const paginate = (newDirection: number) => {
     setPage([page + newDirection, newDirection]);
   };
-  
+
+
   return (
-    <div className="SlideShow" style={{rotate: props.rotateBy}}>
-      <AnimatePresence initial={false} custom={direction} mode="popLayout">
+    <div className="SlideShow" style={{rotate: props.antiRotateBy}}>
+      <AnimatePresence custom={direction} mode="popLayout">
         <motion.img
           key={page}
-          style={{rotate: props.antiRotateBy}}
+          style={{
+            rotate: props.rotateBy
+          }}
           src={props.srcArray[imageIndex]}
           custom={direction}
           variants={variants}
@@ -65,14 +75,16 @@ export const SlideShow = (props) => {
           exit="exit"
           transition={{
             x: { type: "spring", stiffness: 300, damping: 30 },
+            // y: { type: "spring", stiffness: 300, damping: 30 },
             opacity: { duration: 0.2 }
           }}
+          // drag={true}
           drag="x"
-          dragConstraints={{ left: 0, right: 0 }}
+          dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
           dragElastic={1}
           onDragEnd={(e, { offset, velocity }) => {
-            const swipe = swipePower(offset.x, velocity.x);
-
+            // const swipe = XYSwipePower(offset.x, velocity.x, offset.y, velocity.y);
+            const swipe = swipePower(offset.x, velocity.x)
             if (swipe < -swipeConfidenceThreshold) {
               paginate(1);
             } else if (swipe > swipeConfidenceThreshold) {

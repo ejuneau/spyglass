@@ -32,6 +32,11 @@ function App() {
   let vh = window.innerHeight * 0.01;
   //set vh to CSS Variable
   document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+  var rotateByNoUnit = rotateBy && rotateBy.slice(0, -3);
+  var rotateByNumber = Number(rotateByNoUnit)
+  document.documentElement.style.setProperty('--rotatedClipHeight', Math.tan(Math.tan(rotateByNumber)));
+
   const [OA, setOA] = useState(((window.innerHeight/100)*15) / (window.innerWidth));
   const [angle, setAngle] = useState(Math.atan(OA));
   //const [rotateBy, setRotateBy] = useState(`${1 - angle}rad`)
@@ -54,9 +59,6 @@ function App() {
       useEffect(()=>{
         dispatch(handleRotateChange(Math.max(angle, minAngle)));
       }, [angle])
-      useEffect(()=>{
-        console.log("Rotation: "+ rotateBy);
-      },[rotateBy])
 
     // useEffect(() => {
   //   document.title = `Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;

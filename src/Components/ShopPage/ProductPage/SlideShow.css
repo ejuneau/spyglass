@@ -1,21 +1,22 @@
 
   .SlideShow {
-    
+    width: 100vw;
     touch-action: pan-x;
   }
 .SlideShow img {
     width: 100vw;
-    min-height: max(45vh, 18rem);
+    height: auto;
     position: relative;
+    /* clip-path: polygon(0 0, 100% calc(var(--rotatedClipHeight) * -100%), 100% 100%, 0 calc(100% -(var(--rotatedClipHeight) * -100%)));  */
+    /* clip-path: polygon(100% 15%, 100% 100%, 0 85%, 0% 0%); */
 
-}
+  }
   
   .next,
   .prev {
-    top: calc(50%);
     position: absolute;
     color: var(--red);
-    width: 20vw;
+    width: 10vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,15 +24,17 @@
     user-select: none;
     cursor: pointer;
     z-index: 2;
+    bottom: max(10vh, 6rem);
   }
   
   .next {
-    right: 10px;
+    right: 0;
     transform: scale(-1, 1);
   }
   
   .prev {
-    left: 10px;
+    left: 0;
+    top: 0;
   }
   
 
@@ -53,7 +56,4 @@
   #BackButton, #NextButton {
     fill: var(--black);
     height: 5vh;
-}
-#NextButton {
-
 }
