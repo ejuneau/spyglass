@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/spyglass/static/css/main.6d12809a.css",
-    "main.js": "/spyglass/static/js/main.7b7c3c1d.js",
+    "main.css": "/spyglass/static/css/main.b4d7aecb.css",
+    "main.js": "/spyglass/static/js/main.94549b17.js",
     "static/js/496.4f6299c2.chunk.js": "/spyglass/static/js/496.4f6299c2.chunk.js",
     "static/media/front.png": "/spyglass/static/media/front.63d9438fc87541977e0b.png",
     "static/media/back.png": "/spyglass/static/media/back.67a377b8023a0ce1cf86.png",
@@ -14,6 +14,7 @@
     "static/media/A Box For.ttf": "/spyglass/static/media/A Box For.1adc5923f1345faf83a0.ttf",
     "static/media/A Box For 2.ttf": "/spyglass/static/media/A Box For 2.de9c03b33edb0f613c59.ttf",
     "static/media/your eyes.webp": "/spyglass/static/media/your eyes.d3b8bef32057290a54fc.webp",
+    "service-worker.js": "/spyglass/service-worker.js",
     "static/media/You won't.webp": "/spyglass/static/media/You won't.2dcb0c1f581a59af8d0f.webp",
     "static/media/activeNavButton.svg": "/spyglass/static/media/activeNavButton.c3024eaf75fe9e194915c8d1eaad689c.svg",
     "static/media/Portia-Oblique.otf": "/spyglass/static/media/Portia-Oblique.ea62b4706fb1bbf7042e.otf",
@@ -27,12 +28,12 @@
     "static/media/Noir_regular.otf": "/spyglass/static/media/Noir_regular.60dea6f6bd568d740696.otf",
     "static/media/result.svg": "/spyglass/static/media/result.dbf26cca6b53c360af5fd47e28ef1e89.svg",
     "index.html": "/spyglass/index.html",
-    "main.6d12809a.css.map": "/spyglass/static/css/main.6d12809a.css.map",
-    "main.7b7c3c1d.js.map": "/spyglass/static/js/main.7b7c3c1d.js.map",
+    "main.b4d7aecb.css.map": "/spyglass/static/css/main.b4d7aecb.css.map",
+    "main.94549b17.js.map": "/spyglass/static/js/main.94549b17.js.map",
     "496.4f6299c2.chunk.js.map": "/spyglass/static/js/496.4f6299c2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6d12809a.css",
-    "static/js/main.7b7c3c1d.js"
+    "static/css/main.b4d7aecb.css",
+    "static/js/main.94549b17.js"
   ]
 }
