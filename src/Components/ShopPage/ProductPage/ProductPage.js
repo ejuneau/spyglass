@@ -20,9 +20,8 @@ export default function ProductPage(props) {
     const rotateBy = useSelector((state) => state.rotate.rotateBy);
     const antiRotateBy = useSelector((state) => state.rotate.antiRotateBy);
     const product = Products[Products.map(function(e) { return e.name; }).indexOf(name)];
-    const {front, back, action} = product.variants[searchParams.get("variant")?searchParams.get("variant"):0].photos;
+    const {front, back, action} = product.variants[searchParams.get("variant")?searchParams.get("variant"):0].detailPhotos;
     const srcArray = [front, back, action];
-
     const componentVariants = {
         initial: {
 
@@ -30,33 +29,59 @@ export default function ProductPage(props) {
         show: {
 
             transition: {
-                staggerChildren: 0.3
+                staggerChildren: 0.3,
+                staggerDirection: -1
             }
         }
     }
     const backButtonVariants = {
-        initial: {x: "-200vw"}, 
+        initial: {x: "200vw"}, 
         show:{x: 0, transition: {x:{duration: 0.2}}}
     }
 
     const productTitleVariants = {
-        initial:{x: 1000}, 
-        show:{x:0}
+        initial:{
+            x: "100vw", 
+            y: `calc(-100vw * ${tanRotateBy})`,
+        }, 
+        show:{
+            x:0, 
+            y:0,     
+        }
     }
     const slideShowVariants = {
-        initial:{opacity: 0}, 
-        show:{opacity:1}
+        initial:{
+            x: "-100vw",
+            y: `calc(100vw * ${tanRotateBy})`,
+            opacity: 0
+        }, 
+        show:{
+            x:0,
+            y: 0,
+            opacity: 1,
+            transition: {
+                x: { type: "spring", stiffness: 300, damping: 30 },
+                y: { type: "spring", stiffness: 300, damping: 30 },
+                opacity: { duration: 0.2 }
+        }}
     }
     return (
         <motion.div key="ProductPageComponent" className="ProductPageComponent" variants={componentVariants} initial="initial" animate="show">
            
-            <Link style={{rotate: rotateBy}} to="/Shop" className="backButton"><motion.div key="backButton" variants={backButtonVariants} >{"back"}</motion.div></Link>
-            <div key="productTitleContainer" className="productTitleContainer" ><motion.h2 key="The" variants={productTitleVariants}>The</motion.h2><motion.h1 key="productName" variants={productTitleVariants}>{product.name}</motion.h1> </div>
-            <motion.div key="slideShowContainer" className="slideShowContainer" varinats={slideShowVariants} > 
-            <SlideShow id="test" srcArray={srcArray} antiRotateBy={antiRotateBy} rotateBy={rotateBy} tanRotateBy={tanRotateBy}/>
+            <Link style={{rotate: rotateBy}} to="/Shop" className="backButton">
+                <motion.div key="backButton" variants={backButtonVariants} >
+                    {"back"}
+                </motion.div>
+            </Link>
+            <div key="productTitleContainer" className="productTitleContainer" >
+                <motion.h1 key="productName" style={{rotate: rotateBy}} variants={productTitleVariants}><em>the {product.name}</em> </motion.h1>
+            </div>
+            <motion.div key="slideShowContainer" className="slideShowContainer" variants={slideShowVariants} > 
+                <SlideShow id="test" srcArray={srcArray} antiRotateBy={antiRotateBy} rotateBy={rotateBy} tanRotateBy={tanRotateBy}/>
             </motion.div>
             {product.variants.length > 1 &&  
-                <div className="variantsContainer" style={{rotate: antiRotateBy}}>
+                <div className="variantsContainer" >
+                    <p>Available in:</p>
                 {
                 product.variants.map(variant => {
                     return  (
@@ -64,6 +89,7 @@ export default function ProductPage(props) {
                         key={`variant${product.variants.indexOf(variant)}`}   
                         style={{borderRadius: "50%", }} src={variant.circleColor} 
                         fill={variant.circleColor} 
+                        className={`Variant ${Number(searchParams.get("variant")) === product.variants.indexOf(variant) && "activeVariant"}`}
                         onClick={()=>{
                             setSearchParams({variant: product.variants.indexOf(variant)}); 
                             setQuantity(cart.filter(item => item.id === product.id)
@@ -79,8 +105,11 @@ export default function ProductPage(props) {
             }
             <div className="cartOptionsContainer">
                 <CartButtons product={product} quantity={quantity} setQuantity={setQuantity}/>
+                <div className="priceContainer"><p id="price">${product.price}</p><p id="cents">.<u>00</u></p></div>
+
             </div>
             <div className="descriptionContainer">
+                <h2>About these frames</h2>
                 <p className="productDescription">{product.variants[searchParams.get("variant")?searchParams.get("variant"):0].description}</p>
             </div>
             <div className="spacer" />
@@ -90,35 +119,105 @@ export default function ProductPage(props) {
 
 function CartButtons(props) {
     const [searchParams, setSearchParams] = useSearchParams();
+    const rotateBy = useSelector((state) => state.rotate.rotateBy);
     const variant = Number(searchParams.get("variant")); 
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cart.contents)
-    function increaseQuantity() {props.setQuantity(props.quantity + 1)}
-    function decreaseQuantity() { props.quantity>1?props.setQuantity(props.quantity - 1):props.setQuantity(1)}
-
-    if (cart.filter(item => item.id === props.product.id).find(item => item.variant === variant)) {
+    const [decCounter, setDecCounter] = useState(0);
+    const [incCounter, setIncCounter] = useState(0);
+    function increaseQuantity() {props.setQuantity(props.quantity + 1);                                        setDecCounter(0); setIncCounter(incCounter + 1)}
+    function decreaseQuantity() { props.quantity>1?props.setQuantity(props.quantity - 1):props.setQuantity(1); setIncCounter(0); setDecCounter(decCounter + 1)}
+return(
+   <AnimatePresence mode="wait">
+    {cart.filter(item => item.id === props.product.id).find(item => item.variant === variant) && 
             // if the item that is in the cart is the same variant
+            <AnimatePresence mode="wait">
+                <motion.button 
+                key="removeCart" 
+                id="removeCart" 
+                initial={{scaleX: 0, x: "-5vw"}} 
+                animate={{scaleX: 1, x: 0}} 
+                exit={{scaleX: 0}} 
+                onClick={()=>{dispatch(removeFromCart({id: props.product.id}));props.setQuantity(1)}}>
+                    <p>Remove all?</p>
+                </motion.button>
 
-            return (
-            <>
-                <div id="addToCartButtons">
-                    <button id="quantButton" onClick={()=>{decreaseQuantity(); dispatch(modifyQuantity({id: props.product.id, variant: searchParams.get("variant")?Number(searchParams.get("variant")):0, newQuantity: props.quantity - 1}))}}>-</button>
-                    <button>{cart.filter(item => item.id === props.product.id).find(item=>item.variant === variant).quantity} in cart</button>
-                    <button id="quantButton" onClick={()=>{increaseQuantity(); dispatch(modifyQuantity({id: props.product.id, variant: searchParams.get("variant")?Number(searchParams.get("variant")):0, newQuantity: props.quantity + 1}))}}>+</button>
+                <div className="CartButtonsContainer" id="isInCart" style={{rotate: rotateBy}}>
+                    <button id="quantButton" onClick={()=>{decreaseQuantity(); dispatch(modifyQuantity({id: props.product.id, variant: searchParams.get("variant")?Number(searchParams.get("variant")):0, newQuantity: props.quantity - 1}))}}>
+                        <AnimatePresence mode="wait">
+                            <motion.p 
+                            layout
+                            key={`decQuant${props.quantity}IC`} 
+                            initial={{x: decCounter<incCounter?"-1rem":"1rem", opacity: 0, transition:{duration: 0.1}}} 
+                            animate={{x: 0, opacity: 1, transition:{duration: 0.1}}} 
+                            exit={{x: decCounter<incCounter?"1rem":"-1rem", opacity: 0, transition:{duration: 0.1}}}>-</motion.p>
+                        </AnimatePresence>
+                    </button>
+                    <AnimatePresence mode="popLayout">
+                        <motion.div 
+                        key="inCart" 
+                        initial={{opacity: 0, y: "5vh"}} 
+                        animate={{opacity: 1, y: 0}} 
+                        exit={{opacity: 0, y: "5vh"}} 
+                        style={{position: "relative", display: 'flex', color:"var(--white)", fontFamily:"Noir", margin: 0, display: "flex", alignItems: "center", fontSize:"1.2rem"}}>
+                            <AnimatePresence>
+                                <motion.p key={cart.filter(item => item.id === props.product.id).find(item=>item.variant === variant).quantity} initial={{opacity: 0, y:incCounter>decCounter?"5vh":"-5vh"}} animate={{opacity: 1, y:0}} exit={{opacity: 0, y:incCounter>decCounter?"-5vh":"5vh"}}  style={{position: "absolute", margin: 0}}>{cart.filter(item => item.id === props.product.id).find(item=>item.variant === variant).quantity}</motion.p> 
+                            </AnimatePresence>
+                            <p style={{margin: 0, marginLeft: "2rem"}}>in cart</p>
+                        </motion.div>
+                    </AnimatePresence>
+                    <button id="quantButton" onClick={()=>{increaseQuantity(); dispatch(modifyQuantity({id: props.product.id, variant: searchParams.get("variant")?Number(searchParams.get("variant")):0, newQuantity: props.quantity + 1}))}}>
+                        <motion.p
+                        key={`incQuant${props.quantity}IC`}  
+                        initial={{rotate: decCounter>incCounter?"90deg":"-90deg"}}
+                        animate={{rotate: 0, transition:{duration: 0.2}}}
+                        exit={{rotate: decCounter>incCounter?"-90deg":"90deg"}}>+</motion.p>
+                    </button>
                 </div> 
-                <button onClick={()=>{dispatch(removeFromCart({id: props.product.id}));props.setQuantity(1)}}>Remove from cart</button>
-            </>)
-    } else {
+                
+            </AnimatePresence>
+}
+{    !cart.filter(item => item.id === props.product.id).find(item => item.variant === variant) && 
 
-            return (
-            <div id="addToCartButtons"> 
-                <button id="quantButton" onClick={()=>{decreaseQuantity()}}>-</button>
-                <button onClick={()=>{dispatch(addToCart({id: props.product.id, quantity: props.quantity, variant: searchParams.get("variant")?Number(searchParams.get("variant")):0}))}}>Add {props.quantity} to cart</button>
-                <button id="quantButton" onClick={()=>{increaseQuantity()}}>+</button>
-            </div>)
-        }
+                <div className="CartButtonsContainer" id="isNotInCart" style={{rotate: rotateBy}}> 
+                    <button id="quantButton" onClick={()=>{decreaseQuantity()}}>
+                        <AnimatePresence mode="wait">
+                            <motion.p 
+                            layout
+                            key={`decQuant${props.quantity}NIC`}  
+                            initial={{x: decCounter<incCounter?"-1rem":"1rem", opacity: 0, transition:{duration: 0.1}}} 
+                            animate={{x: 0, opacity: 1, transition:{duration: 0.1}}} 
+                            exit={{x: decCounter<incCounter?"1rem":"-1rem", opacity: 0, transition:{duration: 0.1}}}>-</motion.p>
+                        </AnimatePresence>
+                    </button>
+                    <AnimatePresence mode="popLayout">
+                        <motion.div 
+                        key="notInCart"  
+                        initial={{opacity: 0, y: "-5vh"}} 
+                        animate={{opacity: 1, y: 0}} 
+                        exit={{opacity: 0, y: "-5vh"}} 
+                        style={{position: "relative", display: 'flex', color:"var(--white)", fontFamily:"Noir", margin: 0, display: "flex", alignItems: "center", fontSize:"1.2rem"}} 
+                        onClick={()=>{dispatch(addToCart({id: props.product.id, quantity: props.quantity, variant: searchParams.get("variant")?Number(searchParams.get("variant")):0}))}}>
+                                <p style={{margin: 0, marginRight: "1rem"}}>Add</p>
+                                <AnimatePresence>
+                                <motion.p style={{position: "absolute", margin: 0, marginLeft: "3rem"}} key={props.quantity} initial={{opacity: 0, y:incCounter>decCounter?"5vh":"-5vh"}} animate={{opacity: 1, y:0}} exit={{opacity: 0, y:incCounter>decCounter?"-5vh":"5vh"}} >{props.quantity}</motion.p> 
+                            </AnimatePresence> 
+                                <p style={{margin: 0, marginLeft: "1rem"}}>to cart</p>
+                        </motion.div>
+                    </AnimatePresence>
+                    <button id="quantButton" onClick={()=>{increaseQuantity()}}>
+                        <motion.p
+                        key={`incQuant${props.quantity}NIC`}  
+                        initial={{rotate: decCounter>incCounter?"90deg":"-90deg"}}
+                        animate={{rotate: 0, transition:{duration: 0.2}}}
+                        exit={{rotate: decCounter>incCounter?"-90deg":"90deg"}}>+</motion.p>
+                    </button>
+                </div>
+
+    }
+        
     
-
+    </AnimatePresence>)
 }
 
 

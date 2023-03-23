@@ -1,11 +1,12 @@
 
   .SlideShow {
     width: 100vw;
+    min-height: 60vh;
     touch-action: pan-x;
   }
 .SlideShow img {
+    /* height: max(60vh, 36rem); */
     width: 100vw;
-    height: auto;
     position: relative;
     /* clip-path: polygon(0 0, 100% calc(var(--rotatedClipHeight) * -100%), 100% 100%, 0 calc(100% -(var(--rotatedClipHeight) * -100%)));  */
     /* clip-path: polygon(100% 15%, 100% 100%, 0 85%, 0% 0%); */
@@ -24,17 +25,18 @@
     user-select: none;
     cursor: pointer;
     z-index: 2;
-    bottom: max(10vh, 6rem);
+    top: 50%;
   }
   
   .next {
-    right: 0;
+    bottom: -7.5%;
+    right: 20%;
     transform: scale(-1, 1);
   }
   
   .prev {
-    left: 0;
-    top: 0;
+    bottom: -7.5%;
+    left: -5%;
   }
   
 

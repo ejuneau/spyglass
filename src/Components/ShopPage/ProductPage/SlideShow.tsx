@@ -1,8 +1,10 @@
+
 import * as React from "react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { wrap } from "popmotion";
 import './SlideShow.css';
+import './SlideShowDesktop.css';
 import { ReactComponent as BackButton} from '../../../Assets/Images/result.svg';
 
 
@@ -26,6 +28,7 @@ export const SlideShow = (props) => {
     enter: (direction: number) => {
       return {
         x: direction > 0 ? 1000 : -1000,
+        scale: 1.2,
         // y: direction > 0 ? props.tanRotateBy * 1000 :  props.tanRotateBy * -1000,
         opacity: 0
       };
@@ -33,8 +36,9 @@ export const SlideShow = (props) => {
     center: {
       zIndex: 1,
       x: 0,
-      // y: 0,
-      opacity: 1
+      // y: 50,
+      opacity: 1,
+      scale: 1.2,
     },
     exit: (direction: number) => {
       return {
@@ -60,12 +64,12 @@ export const SlideShow = (props) => {
 
 
   return (
-    <div className="SlideShow" style={{rotate: props.antiRotateBy}}>
+    <div className="SlideShow" style={{rotate: props.rotateBy}}>
       <AnimatePresence custom={direction} mode="popLayout">
         <motion.img
           key={page}
           style={{
-            rotate: props.rotateBy
+            rotate: props.antiRotateBy
           }}
           src={props.srcArray[imageIndex]}
           custom={direction}

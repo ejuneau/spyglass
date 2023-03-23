@@ -26,25 +26,63 @@
     display: none;
 }
 .productTitleContainer {
-     min-height: max(30vh, 18rem);
-     background: var(--white);
-     width: 100vw;
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
+    background-color: var(--white);
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+
+
+     min-height: max(25vh, 15rem);
+     clip-path: polygon(0 0, 100% 0, 100% 40%, 0 100%);
+
      z-index: 5;
-     clip-path: polygon(0 0, 100% 0, 100% 75%, 0% 50%);
+
+}
+.cartOptionsContainer {
+    background-color: var(--black);
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    min-height: max(25vh, 15rem);
+    clip-path: polygon(0 60%, 100% 0, 100% 100%, 0 100%);
+    
+    position: relative;
+    z-index: 2;
+    margin-top: min(-15vh, -9rem);
+
+}
+.priceContainer {
+    display: flex;
+    color: var(--white);
+    font-family: 'portia';
+    justify-content: flex-end;
+    margin-right: 2vw;
+
+}
+#price {
+    font-size: max(4rem);
+
+}
+#cents {
+    font-size: max(2rem);
+
+    line-height: 7rem;
 }
 .ProductPageComponent h1, .ProductPageComponent h2 {
     
     margin: 0;
-    text-align: right;
+    text-align: left;
 
     
 }
 .slideShowContainer {
-    margin-top: min(-15vh, -9rem);
-    min-height: 83.3vw;
+/* min-height: max(60vh, 36rem); */
+margin-top: min(-15vh, -9rem);
 }
 .ProductPageComponent h1 {
     font-family: 'Portia';
@@ -66,6 +104,7 @@
     position: relative;
     z-index: 3;
 
+
 }
 .descriptionContainer p {
     font-family: 'Noir';
@@ -73,44 +112,40 @@
     color: var(--white);
 
     margin: 0;
-    padding-top: 10vh;
+
     padding-left: 5vw;
     padding-right: 5vw;
 }
-.cartOptionsContainer {
-    background-color: var(--black);
-    width: 100vw;
-    margin: 0;
-    min-height: max(30vh, 18rem);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-end;
-    clip-path: polygon(100% 50%, 100% 100%, 0 100%, 0 25%);
-    margin-top: min(-15vh, -9rem);
-    position: relative;
-    z-index: 2;
-    padding-right: 5vw;
+.descriptionContainer h2 {
+    padding-top: 10vh;
+    padding-bottom: 5vh;
+    padding-left: 6vw;
+    font-size: 3rem;
+    color: var(--white);
 }
+
 .cartOptionsContainer button {
-    background-color: var(--red);
+    background-color: transparent;
     border: none;
     font-family: 'Noir';
-    color: var(--black);
-    font-size: 1.5rem;
-    height: -moz-fit-content;
-    height: -webkit-fit-content;
-    height: fit-content;
+    color: var(--white);
+    font-size: 1.2rem;
+    height: 10vh;
 }
 
 .ProductPageComponent .spacer {
     background-color: var(--black);
 }
 #quantButton {
-    padding-left: 1vw;
-    padding-right: 1vw;
-}
+    width: 10vh;
+    font-size: 2rem;
 
+    
+}
+#quantButton p {
+
+    margin: 0;
+}
 .variantsContainer {
     position: relative;
     z-index: 50;
@@ -122,15 +157,52 @@
 .variantsContainer img {
     
     position: absolute;
-    height: max(5vh, 3rem);
+    height: max(5vh, 2rem);
+    right: 2vw;
+    bottom: -10vh;
 }
 .variantsContainer img:nth-child(1) {
-    margin-left: 30vw;
     background-color: var(--white);
-    margin-top: 0
 }
 .variantsContainer img:nth-child(2) {
-    margin-left: 10vw;
     background-color: var(--white);
-    margin-top: 2vh;
+    right: 4rem;
+
+}
+.CartButtonsContainer {
+    align-self: center;
+    position: relative;
+    flex-grow: 1;
+    max-width: 70%;
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 5vh;
+}
+#removeCart {
+    position: absolute;
+    bottom: 0vh;
+    left: 15vw;
+    background: var(--red);
+    z-index: 10;
+    clip-path: polygon(13% 31%, 100% 0, 90% 81%, 0 100%);
+}
+#removeCart p {
+    margin: 0;
+    margin-top: 10%;
+    transform: skew(0.1rad, -0.2rad)
+}
+.variantsContainer p {
+    color: var(--white);
+    position: absolute;
+    right: 5vw;
+    font-family: 'Noir';
+    bottom: -5vh;
+}
+.Variant {
+    border: 3px solid var(--black);
+    transition: border 0.2s ease;
+}
+.activeVariant {
+    border: 3px solid var(--red);
 }
