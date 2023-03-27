@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/spyglass/static/css/main.6304219b.css",
-    "main.js": "/spyglass/static/js/main.4768f4ed.js",
+    "main.css": "/spyglass/static/css/main.bf1013f7.css",
+    "main.js": "/spyglass/static/js/main.8ae89ebd.js",
     "static/js/496.4f6299c2.chunk.js": "/spyglass/static/js/496.4f6299c2.chunk.js",
     "static/media/ProductPageFront.png": "/spyglass/static/media/ProductPageFront.a8a5d25afcf05f51e6e9.png",
     "static/media/ProductPageBack.png": "/spyglass/static/media/ProductPageBack.58d9c683978e16574d74.png",
@@ -31,12 +31,12 @@
     "static/media/Noir_regular.otf": "/spyglass/static/media/Noir_regular.60dea6f6bd568d740696.otf",
     "static/media/result.svg": "/spyglass/static/media/result.dbf26cca6b53c360af5fd47e28ef1e89.svg",
     "index.html": "/spyglass/index.html",
-    "main.6304219b.css.map": "/spyglass/static/css/main.6304219b.css.map",
-    "main.4768f4ed.js.map": "/spyglass/static/js/main.4768f4ed.js.map",
+    "main.bf1013f7.css.map": "/spyglass/static/css/main.bf1013f7.css.map",
+    "main.8ae89ebd.js.map": "/spyglass/static/js/main.8ae89ebd.js.map",
     "496.4f6299c2.chunk.js.map": "/spyglass/static/js/496.4f6299c2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6304219b.css",
-    "static/js/main.4768f4ed.js"
+    "static/css/main.bf1013f7.css",
+    "static/js/main.8ae89ebd.js"
   ]
 }
