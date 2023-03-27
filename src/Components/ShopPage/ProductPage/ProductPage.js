@@ -68,17 +68,14 @@ export default function ProductPage(props) {
     return (
         <motion.div key="ProductPageComponent" className="ProductPageComponent" variants={componentVariants} initial="initial" animate="show">
            
-            <Link style={{rotate: rotateBy}} to="/Shop" className="backButton">
-                <motion.div key="backButton" variants={backButtonVariants} >
-                    {"back"}
-                </motion.div>
-            </Link>
+
             <div key="productTitleContainer" className="productTitleContainer" >
                 <motion.h1 key="productName" style={{rotate: rotateBy}} variants={productTitleVariants}><em>the {product.name}</em> </motion.h1>
             </div>
             <motion.div key="slideShowContainer" className="slideShowContainer" variants={slideShowVariants} > 
                 <SlideShow id="test" srcArray={srcArray} antiRotateBy={antiRotateBy} rotateBy={rotateBy} tanRotateBy={tanRotateBy}/>
             </motion.div>
+            <div className="desktopDivider">
             {product.variants.length > 1 &&  
                 <div className="variantsContainer" >
                     <p>Available in:</p>
@@ -112,6 +109,12 @@ export default function ProductPage(props) {
                 <h2>About these frames</h2>
                 <p className="productDescription">{product.variants[searchParams.get("variant")?searchParams.get("variant"):0].description}</p>
             </div>
+            </div>
+            <Link style={{rotate: rotateBy}} to="/Shop" className="backButton">
+                <motion.div key="backButton" variants={backButtonVariants} >
+                    {"back"}
+                </motion.div>
+            </Link>
             <div className="spacer" />
         </motion.div>
     )
@@ -125,13 +128,30 @@ function CartButtons(props) {
     const cart = useSelector((state) => state.cart.contents)
     const [decCounter, setDecCounter] = useState(0);
     const [incCounter, setIncCounter] = useState(0);
-    function increaseQuantity() {props.setQuantity(props.quantity + 1);                                        setDecCounter(0); setIncCounter(incCounter + 1)}
-    function decreaseQuantity() { props.quantity>1?props.setQuantity(props.quantity - 1):props.setQuantity(1); setIncCounter(0); setDecCounter(decCounter + 1)}
-return(
+    const [decDirection, setDecDirection] = useState({initial: "1rem", exit: "-1rem"});
+
+    function increaseQuantity() {
+        props.setQuantity(prevNumber => prevNumber + 1);
+        setDecCounter(0);
+        setIncCounter(prevNumber => prevNumber + 1);
+    }
+    function decreaseQuantity() { 
+        props.quantity>1?props.setQuantity(props.quantity - 1):props.setQuantity(1);  
+        setIncCounter(0);
+        setDecCounter(prevNumber => prevNumber + 1);
+    }
+    useEffect(()=> {
+        console.log(incCounter, decCounter);
+        setDecDirection(incCounter > decCounter ? {initial: "1rem", exit: "-1rem"} : {initial: "-1rem", exit: "1rem"});
+        console.log(decDirection)
+    }, [incCounter, decCounter])
+
+
+    return(
    <AnimatePresence mode="wait">
     {cart.filter(item => item.id === props.product.id).find(item => item.variant === variant) && 
             // if the item that is in the cart is the same variant
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="sync">
                 <motion.button 
                 key="removeCart" 
                 id="removeCart" 
@@ -148,20 +168,55 @@ return(
                             <motion.p 
                             layout
                             key={`decQuant${props.quantity}IC`} 
-                            initial={{x: decCounter<incCounter?"-1rem":"1rem", opacity: 0, transition:{duration: 0.1}}} 
-                            animate={{x: 0, opacity: 1, transition:{duration: 0.1}}} 
-                            exit={{x: decCounter<incCounter?"1rem":"-1rem", opacity: 0, transition:{duration: 0.1}}}>-</motion.p>
+                            initial={{
+                                x: decDirection.initial, 
+                                opacity: 0, 
+                                transition: {duration: 0.1}
+                            }} 
+                            animate={{
+                                x: 0, 
+                                opacity: 1, 
+                                transition: {duration: 0.1}
+                            }} 
+                            exit={{
+                                x: decDirection.exit, 
+                                opacity: 0, 
+                                transition:{duration: 0.1}
+                                }}>-</motion.p>
                         </AnimatePresence>
                     </button>
                     <AnimatePresence mode="popLayout">
                         <motion.div 
                         key="inCart" 
-                        initial={{opacity: 0, y: "5vh"}} 
-                        animate={{opacity: 1, y: 0}} 
-                        exit={{opacity: 0, y: "5vh"}} 
+                        initial={{
+                            opacity: 0, 
+                            y: "5vh"}} 
+                        animate={{
+                            opacity: 1, 
+                            y: 0}} 
+                        exit={{
+                            opacity: 0, 
+                            y: "5vh"}} 
                         style={{position: "relative", display: 'flex', color:"var(--white)", fontFamily:"Noir", margin: 0, display: "flex", alignItems: "center", fontSize:"1.2rem"}}>
                             <AnimatePresence>
-                                <motion.p key={cart.filter(item => item.id === props.product.id).find(item=>item.variant === variant).quantity} initial={{opacity: 0, y:incCounter>decCounter?"5vh":"-5vh"}} animate={{opacity: 1, y:0}} exit={{opacity: 0, y:incCounter>decCounter?"-5vh":"5vh"}}  style={{position: "absolute", margin: 0}}>{cart.filter(item => item.id === props.product.id).find(item=>item.variant === variant).quantity}</motion.p> 
+                                <motion.p 
+                                key={cart.filter(item => item.id === props.product.id).find(item=>item.variant === variant).quantity} 
+                                initial={{
+                                    opacity: 0, 
+                                    y: incCounter > decCounter ? "5vh" : "-5vh",
+                                    scaleY: 0
+                                }} 
+                                    animate={{
+                                        opacity: 1, 
+                                        y: 0,
+                                        scaleY: 1
+                                    }} 
+                                    exit={{
+                                        opacity: 0, 
+                                        y: incCounter > decCounter ? "-5vh"  :"5vh",
+                                        scaleY: 0
+                                    }}  
+                                    style={{position: "absolute", margin: 0}}>{cart.filter(item => item.id === props.product.id).find(item=>item.variant === variant).quantity}</motion.p> 
                             </AnimatePresence>
                             <p style={{margin: 0, marginLeft: "2rem"}}>in cart</p>
                         </motion.div>
@@ -169,9 +224,9 @@ return(
                     <button id="quantButton" onClick={()=>{increaseQuantity(); dispatch(modifyQuantity({id: props.product.id, variant: searchParams.get("variant")?Number(searchParams.get("variant")):0, newQuantity: props.quantity + 1}))}}>
                         <motion.p
                         key={`incQuant${props.quantity}IC`}  
-                        initial={{rotate: decCounter>incCounter?"90deg":"-90deg"}}
+                        initial={{rotate: incCounter > decCounter ? "-90deg" : "90deg" }}
                         animate={{rotate: 0, transition:{duration: 0.2}}}
-                        exit={{rotate: decCounter>incCounter?"-90deg":"90deg"}}>+</motion.p>
+                        exit={{rotate: incCounter > decCounter ? "90deg" : "-90deg"}}>+</motion.p>
                     </button>
                 </div> 
                 
@@ -200,7 +255,22 @@ return(
                         onClick={()=>{dispatch(addToCart({id: props.product.id, quantity: props.quantity, variant: searchParams.get("variant")?Number(searchParams.get("variant")):0}))}}>
                                 <p style={{margin: 0, marginRight: "1rem"}}>Add</p>
                                 <AnimatePresence>
-                                <motion.p style={{position: "absolute", margin: 0, marginLeft: "3rem"}} key={props.quantity} initial={{opacity: 0, y:incCounter>decCounter?"5vh":"-5vh"}} animate={{opacity: 1, y:0}} exit={{opacity: 0, y:incCounter>decCounter?"-5vh":"5vh"}} >{props.quantity}</motion.p> 
+                                <motion.p 
+                                style={{position: "absolute", margin: 0, marginLeft: "3rem"}} 
+                                key={props.quantity} 
+                                initial={{
+                                    opacity: 0, 
+                                    y: incCounter>decCounter?"5vh":"-5vh",
+                                    scaleY: 0
+                                    }} animate={{
+                                        opacity: 1, 
+                                        y:0,
+                                        scaleY: 1}} 
+                                    exit={{
+                                        opacity: 0, 
+                                        y:incCounter>decCounter?"-5vh":"5vh",
+                                        scaleY: 0
+                                        }}>{props.quantity}</motion.p> 
                             </AnimatePresence> 
                                 <p style={{margin: 0, marginLeft: "1rem"}}>to cart</p>
                         </motion.div>
@@ -208,9 +278,9 @@ return(
                     <button id="quantButton" onClick={()=>{increaseQuantity()}}>
                         <motion.p
                         key={`incQuant${props.quantity}NIC`}  
-                        initial={{rotate: decCounter>incCounter?"90deg":"-90deg"}}
+                        initial={{rotate: incCounter > decCounter ? "-90deg" : "90deg" }}
                         animate={{rotate: 0, transition:{duration: 0.2}}}
-                        exit={{rotate: decCounter>incCounter?"-90deg":"90deg"}}>+</motion.p>
+                        exit={{rotate: incCounter > decCounter ? "90deg" : "-90deg"}}>+</motion.p>
                     </button>
                 </div>
 

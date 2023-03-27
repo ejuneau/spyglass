@@ -11,6 +11,8 @@ export const rotateSlice = createSlice({
         handleRotateChange: (state, action) => {
 			state.rotateBy = !action.payload?"0rad":`${-1 * action.payload}rad`;
             state.antiRotateBy = !action.payload?"0rad":`${ action.payload}rad`;
+            document.documentElement.style.setProperty('--rotateBy', !action.payload?"0rad":`${-1 * action.payload}rad`);
+            document.documentElement.style.setProperty('--antiRotateBy', !action.payload?"0rad":`${ action.payload}rad`);
             state.tanRotateBy = !action.payload?0:Math.tan(action.payload);
             console.log("Rotation:", state.rotateBy)
         },

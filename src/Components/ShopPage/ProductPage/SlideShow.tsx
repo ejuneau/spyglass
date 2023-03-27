@@ -17,9 +17,6 @@ import { ReactComponent as BackButton} from '../../../Assets/Images/result.svg';
 const swipeConfidenceThreshold = 10000;
 const swipePower = (offset: number, velocity: number) => {
   return Math.abs(offset) * velocity;
-};
-const XYSwipePower = (offsetX: number, velocityX: number, offsetY: number, velocityY: number) => {
-  return Math.abs(offsetX) * velocityX + Math.abs(offsetY) * velocityY;
 }
 
 export const SlideShow = (props) => {
@@ -79,15 +76,12 @@ export const SlideShow = (props) => {
           exit="exit"
           transition={{
             x: { type: "spring", stiffness: 300, damping: 30 },
-            // y: { type: "spring", stiffness: 300, damping: 30 },
             opacity: { duration: 0.2 }
           }}
-          // drag={true}
           drag="x"
           dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
           dragElastic={1}
           onDragEnd={(e, { offset, velocity }) => {
-            // const swipe = XYSwipePower(offset.x, velocity.x, offset.y, velocity.y);
             const swipe = swipePower(offset.x, velocity.x)
             if (swipe < -swipeConfidenceThreshold) {
               paginate(1);

@@ -126,9 +126,9 @@ a {
     text-decoration: none;
     color: inherit
 }
-a:visited {
+/* a:visited {
     color: inherit;
-}
+} */
 
 .HomePage-main-buttons > a {
     font-family: 'A Box For 1';

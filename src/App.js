@@ -36,7 +36,6 @@ function App() {
   var rotateByNoUnit = rotateBy && rotateBy.slice(0, -3);
   var rotateByNumber = Number(rotateByNoUnit)
   document.documentElement.style.setProperty('--rotatedClipHeight', Math.tan(rotateByNumber));
-  console.log(Math.tan(rotateByNumber))
 
   const [OA, setOA] = useState(((window.innerHeight/100)*15) / (window.innerWidth));
   const [angle, setAngle] = useState(Math.atan(OA));

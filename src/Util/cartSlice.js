@@ -1,10 +1,32 @@
 import { createSlice, current } from "@reduxjs/toolkit";
+import Products from './Products';
+
+function updateTotal(state) {
+    var total = 0;
+    for (var i = 0; i < state.contents.length; i++) {
+        // console.log(Products.filter(product => product.id === current(state.contents)[i].id)[0].price)
+        total += (Products.filter(product => product.id === current(state.contents)[i].id)[0].price) * current(state.contents)[i].quantity;
+    }
+    console.log(total);
+    return total
+}
+function updateQuantity(state) {
+    var quantity = 0;
+    for( var i = 0; i < state.contents.length; i++) {
+        quantity += state.contents[i].quantity 
+    }
+    
+    state.total = updateTotal(state);
+    return quantity;
+}
+
 export const cartSlice = createSlice({
     name: 'cart',
     initialState: {
         //initialise cart slice as an array of objects containing the id of the frame and a quantity
         contents: [],
-        count: 0
+        count: 0,
+        total: 0
     },
     reducers: {
         clearCart: (state) => {
@@ -33,13 +55,7 @@ export const cartSlice = createSlice({
             }
             console.log("Current cart contents: "); console.log(current(state.contents));
 
-            //loop to update state.count and log it
-            var total = 0
-            for( var i = 0; i < state.contents.length; i++) {
-                total += state.contents[i].quantity 
-            }
-            state.count = total;
-            console.log(state.count)
+            state.count = updateQuantity(state);
         },
         removeFromCart: (state, action) => {
             //expects a payload of an id of the frame to be removed
@@ -49,14 +65,8 @@ export const cartSlice = createSlice({
             state.contents.splice(state.contents.indexOf(state.contents.filter(item => item.id === action.payload.id).find(item => item.variant === action.payload.variant)), 1);
 			console.log("Current cart status: ");
             console.log(current(state.contents));
+            state.count = updateQuantity(state);
 
-                        //loop to update state.count and log it
-                        var total = 0
-                        for( var i = 0; i < state.contents.length; i++) {
-                            total += state.contents[i].quantity 
-                        }
-                        state.count = total;
-                        console.log(state.count)
         },
         modifyQuantity: (state, action) => {
             //expects a payload of an object containing the id of the frame and the new quantity
@@ -73,14 +83,7 @@ export const cartSlice = createSlice({
             console.log("Current cart status: ");
             console.log(current(state.contents));
             }
-
-                        //loop to update state.count and log it
-                        var total = 0
-                        for( var i = 0; i < state.contents.length; i++) {
-                            total += state.contents[i].quantity 
-                        }
-                        state.count = total;
-                        console.log(state.count)
+                        state.count = updateQuantity(state);
         }   
     }
 })

@@ -1,0 +1,58 @@
+@media only screen and (min-width: 992px) {
+    .CartPageComponent {
+        width: 100vw;
+        margin-top: min(-15vh, -9rem);
+        overflow: scroll;
+        background-color: var(--white);
+        height: 100vh;
+    }
+    .CartPageSpacer { height: max(15vh, 9rem);}
+    .cartList {
+        width: 80vw;
+        outline: 1px solid red;
+        margin-left: 10vw;
+        margin-right: 10vw;
+        display: flex;
+        flex-direction: column;
+    }
+    .cartListItem:nth-child(even) {
+        background-color: var(--red);
+        transform: rotate(calc(var(--rotateBy) /2 ));
+        margin-top: -2vh; 
+        margin-bottom: -2vh;
+    }
+    .cartListItem:nth-child(even) > * {
+        transform: rotate(calc(var(--antiRotateBy) /2 ));
+    }
+    .cartListItem:nth-child(odd) {
+        background-color: var(--black);
+    }
+
+    .cartListItem {
+        padding: 3vh 5vw;
+        margin-top: 2vh;
+        margin-bottom: 2vh;
+        color: var(--white);
+        display: flex;
+        height: 30vh;
+    }
+    .cartPageOptionsContainer button {
+        background-color: transparent;
+        border: none;
+        font-family: 'Noir';
+        color: var(--white);
+        font-size: 1.2rem;
+        height: 10vh;
+    }    
+    .cartPageOptionsContainer {
+        width: 20vw;
+        outline: 1px solid blue;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: flex-start;
+    }
+    .cartList img {
+        height: 20vh;
+    }
+    }

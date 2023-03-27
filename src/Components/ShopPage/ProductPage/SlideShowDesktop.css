@@ -1,0 +1,13 @@
+@media only screen and (min-width: 992px) {
+    .SlideShow {
+        transform: translateY(min(-15vh, -9rem));
+    }
+    .SlideShow img {
+        object-fit: cover;
+        width: 100%;
+        object-position: 50%;
+    }
+    .prev, .next {
+        display: none;
+    }
+    }
