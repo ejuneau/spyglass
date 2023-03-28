@@ -4,6 +4,9 @@ import './CartPageDesktop.css';
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { addToCart, modifyQuantity, removeFromCart, clearCart } from "../../Util/cartSlice";
+import binos from '../../Assets/Images/binos.png';
+import NTSH from '../../Assets/Images/NTSH.png';
+import { motion } from "framer-motion";
 import Products from "../../Util/Products";
 
 export default function CartPage(props) {
@@ -30,7 +33,7 @@ export default function CartPage(props) {
                             <div className="cartListItem" key={`${item.id}-${item.variant}`}>
                                 <Link to={`/Shop/Product/${Products.find(items => items.id === item.id).name}${item.variant && `?variant=${item.variant}`}`} >
                                     <h1>The {Products.find(items => items.id === item.id).name}</h1>
-                                <img src={Products.find(items => items.id === item.id).variants[item.variant].photos.front} alt={`The ${Products.find(items => items.id === item.id).name}, seen from the front`} />
+                                <img id="cartImg" src={Products.find(items => items.id === item.id).variants[item.variant].photos.front} alt={`The ${Products.find(items => items.id === item.id).name}, seen from the front`} />
                                 </Link>
                                 <div className="cartPageOptionsContainer">
                                     <button id="quantButton" onClick={()=>{dispatch(modifyQuantity({id: item.id, variant: item.variant, newQuantity: item.quantity - 1}))}}>-</button>
@@ -47,7 +50,9 @@ export default function CartPage(props) {
                 {
                     cart.contents.length === 0 &&
                     <div className="NTSH">
-                        <h1>Nothing to see here</h1>
+                        <img id="NTSH" src={NTSH} alt="Nothing to see here" />
+                        <motion.img  key="binos" id="binos" animate={{x: ["-20%", "20%"], y: ["0%", "15%", "0%"], rotate: ["0deg", "-20deg", "-40deg"], transition: {duration: 2, repeat: Infinity, repeatType: "mirror"}}} src={binos} alt="binoculars in search of frames" />
+                        <Link to="/Shop">Shop</Link>
                     </div>
                 }
                 {

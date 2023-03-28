@@ -4,8 +4,9 @@
 .closeMenuContainer {
 
     position: absolute;
-    bottom: 10rem;
+    top: max(30vh, 9rem);
     right: 5em;
+    height: max(15vh, 9rem);
     margin: 0;
     padding: 1em;
     cursor: pointer;
@@ -13,7 +14,7 @@
 .closeMenuContainer p {
     color: #FC5130;
     font-family: "Portia";
-    font-size: 10em;
+    font-size: max(15vh, 9rem);
     margin: 0;
     transition: color 0.2s ease, transform 0.2s ease,
     
@@ -38,6 +39,7 @@
 .menuMain {
     display: flex;
     justify-content: center;
+    position: relative;
 
 }
   .menuContainer {
@@ -50,6 +52,8 @@
       width: 50vw;
       justify-content: center;
       align-items: flex-start;
+      position: absolute;
+      top: min(-15vh, -9rem);
   }
   .menuList li {
       list-style:none;

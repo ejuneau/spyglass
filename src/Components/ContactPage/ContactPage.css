@@ -13,11 +13,12 @@
 
 .ContactPageComponent * {
     font-family: 'Noir';
+    transition: background-color 0.2s ease;
 }
 .ContactPageComponent h1 {
     width: 100%;
     text-align: center;
-    padding-top: max(15vh, 9rem);
+    
 }
 .ContactPageComponent form {
     display: flex;
@@ -25,9 +26,40 @@
     width: 90%;
     margin-left: 5%;
     margin-right: 5%;
+    padding-top: max(20vh, 12rem);
 }
 .ContactPageComponent form * {
     font-size: min(3vw, 0.8rem);
     line-height: 1rem;
     margin-bottom: 2vh;
+    background-color: var(--white);
+    color: var(--black);
+    border: none;
+}
+.ContactPageComponent form textarea {
+    padding-top: 2vh;
+}
+#gramophone {
+    width: 20vw;
+}
+#submit {
+    background-color: var(--black);
+    color: var(--white);
+    font-family: 'Got Heroin?';
+    font-size: max(3vw, 3rem);
+    padding: 2vh 2vw;
+}
+.ContactPageComponent input:focus, .ContactPageComponent textarea:focus {
+    outline: none;
+    background-color: #e0e0e0;
+}
+.contactPics {
+    display: flex;
+    /* position: relative;
+    bottom: 15vh; */
+}
+#WLTHFY {
+    object-fit: contain;
+    width: 20vw;
+    overflow: hidden;
 }

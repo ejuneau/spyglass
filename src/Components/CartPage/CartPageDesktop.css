@@ -52,7 +52,19 @@
         justify-content: space-evenly;
         align-items: flex-start;
     }
-    .cartList img {
+    #cartImg {
         height: 20vh;
+    }
+    .NTSH {
+        display: flex;
+        flex-direction: column;
+    }
+    #binos {
+        object-fit: contain;
+        height: 30vh;
+    }
+    .NTSH h1 {
+        font-family: 'Got Heroin?';
+        font-size: max(3vw, 2rem);
     }
     }
