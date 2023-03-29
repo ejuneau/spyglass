@@ -118,6 +118,13 @@ export default function Menu(props) {
     }
     return (
         <motion.div className="menu" key="menu" variants={menu} initial="hidden" animate={showMenu?"show":"hidden"} >
+                            <motion.div 
+                key="closeMenuContainer" 
+                className="closeMenuContainer" 
+                onClick={() => window.scrollTo({top:0,behavior:'smooth'})| dispatch(toggleMenu())} 
+                variants={closeMenuVariants}>
+                    <p>X</p>
+                </motion.div>
             <motion.div key="menuTopAccent" className="menuTopAccent" variants={menuTopAccent} ></motion.div>
             <motion.div className="menuCart" variants={menuCartItem} style={{rotate: rotateBy}}>
                 <Link className={`cartButton ${window.location.hash === "#/Cart" && "activeNavButton"}`} to="/Cart" onClick={() => {window.scrollTo({top:0,behavior:'smooth'}); dispatch(toggleMenu())}}>Cart: {cart}</Link> 
@@ -194,13 +201,7 @@ export default function Menu(props) {
 
                     </motion.nav>
 
-                <motion.div 
-                key="closeMenuContainer" 
-                className="closeMenuContainer" 
-                onClick={() => window.scrollTo({top:0,behavior:'smooth'})| dispatch(toggleMenu())} 
-                variants={closeMenuVariants}>
-                    <p>X</p>
-                </motion.div>
+
 
             </motion.div>
         </motion.div>

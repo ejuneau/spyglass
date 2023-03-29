@@ -39,9 +39,7 @@
 .ContactPageComponent form textarea {
     padding-top: 2vh;
 }
-#gramophone {
-    width: 20vw;
-}
+
 #submit {
     background-color: var(--black);
     color: var(--white);
@@ -57,9 +55,15 @@
     display: flex;
     /* position: relative;
     bottom: 15vh; */
+    width: 90%;
+    justify-content: center;
+    margin-top: max(15vh, 9rem);
 }
 #WLTHFY {
     object-fit: contain;
-    width: 20vw;
+    width: 40vw;
     overflow: hidden;
+}
+#gramophone {
+    width: 40vw;
 }

@@ -51,6 +51,8 @@ export default function ContactPage(props) {
         )
           .then((response) => {
             console.log('SUCCESS!', response.status, response.text);
+            window.alert("Your message has been sent. Thank you for your feedback!")
+            window.location="~/"
           })
           .catch((err) => {
             console.log('FAILED...', err);
@@ -70,13 +72,16 @@ export default function ContactPage(props) {
                     name='from_name'
                     placeholder='Your name'
                     value={toSend.from_name}
+                    required
                     onChange={handleChange}
                 />
                 <input
                     id="your_email"
-                    type='text'
+                    type='email'
                     name='reply_to'
                     placeholder='Your email'
+                    pattern="^[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*$"
+                    required
                     value={toSend.reply_to}
                     onChange={handleChange}
                 />
@@ -84,6 +89,7 @@ export default function ContactPage(props) {
                     id="message"
                     type='text'
                     name='message'
+                    required
                     placeholder='Tell me your secrets...'
                     value={toSend.message}
                     onChange={handleChange}

@@ -14,16 +14,19 @@
 
 .backButton {
     position: absolute;
-    top: max(15vh, 9rem);
+    bottom: max(6.67vh, 4rem);
+    right: 15vw;
+    color: var(--white);
     font-size: min(15vw, 3rem);
     font-family: 'A Box For 1';
     margin: 0;
     margin-top: min(-3vh, -1rem);
-    margin-left: 15vw;
     width: 10%;
-    align-self: flex-start;
+    align-self: flex-end;
     z-index: 10;
-    display: none;
+    mix-blend-mode: difference;
+
+
 }
 .productTitleContainer {
     background-color: var(--white);

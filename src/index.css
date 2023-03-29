@@ -3,6 +3,11 @@
     src: local("Mustasurma"),
         url("./Assets/Fonts/Mustasurma.ttf") format("truetype");
 }
+@font-face {
+    font-family: "Got Heroin?";
+    src: local("Got_Heroin"),
+        url("./Assets/Fonts/Got_Heroin.ttf") format("truetype");
+}
 
 @font-face {
     font-family: "Varygraphie";

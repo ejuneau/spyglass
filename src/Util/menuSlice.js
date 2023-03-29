@@ -7,8 +7,9 @@ export const menuSlice = createSlice({
         showMenu: false,
     },
     reducers: {
-        toggleMenu: (state) => {
-			state.showMenu = !state.showMenu;
+        toggleMenu: (state, action) => {
+            //if called with no arguments, toggles showMenu - otherwise sets state explicitly
+            action.payload!==undefined?state.showMenu = action.payload:state.showMenu = !state.showMenu;
         },
          
     }

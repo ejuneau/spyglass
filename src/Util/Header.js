@@ -9,6 +9,7 @@ import Menu from './Menu';
 import './Header.css';
 import {useSelector, useDispatch} from 'react-redux';
 import { toggleMenu } from './menuSlice';
+import shoppingBag from '../Assets/Images/shoppingBag.png';
 
 
 
@@ -91,6 +92,16 @@ export default function Header(props) {
                     <div className="hamburger-container"  >
                         <FontAwesomeIcon className="hamburger" icon={solid('bars')} key="HeaderIcon"/>
                     </div>
+                </motion.div>
+                <Link to="/" className="logo" onClick={() => {dispatch(toggleMenu(false))}}>
+                    <motion.img key="logo" src={logoWhite} variants={Logo} animate={showMenu?"show":"hidden"} onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)} alt="Spyglass Logo" id="logo" />
+                </Link>
+            </header>
+            <div className="header-spacer">
+                <Link to="/" className="logo" onClick={() => {dispatch(toggleMenu(false))}}>
+                    <motion.img key="logo1" src={logoWhite} variants={spacerLogo} animate={showMenu?"show":"hidden"} onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)} alt="Spyglass Logo" id="logo" className="SpacerLogo" />
+                </Link>
+                <Link to="/Cart" className="cartCountContainer" onClick={()=>{dispatch(toggleMenu(false))}}>
                     <AnimatePresence mode="popLayout">
                         <motion.p 
                         key={`KartKount ${cart}`} 
@@ -98,19 +109,12 @@ export default function Header(props) {
                         animate={{y: ["0rem", "0.5rem", "0rem"], scaleX: [-1,1], transition: {duration: 0.25}}} 
                         exit={{opacity:0, y:"-1rem"}}
                         id="cart-count" 
-                        style={{"fontFamily": "Portia", "color": "#FC5130", "display":cart>0?"initial":"none"}}>
+                        style={{"fontFamily": "Portia", "color": "var(--white)", "opacity":cart>0?1:0}}>
                             {cart}
                             </motion.p>
+                            <img src={shoppingBag} id="shoppingBag" alt="icon of shopping bag"/>
                     </AnimatePresence>
-                </motion.div>
-                <Link to="/" className="logo" onClick={() => {this.forceUpdate()}}>
-                    <motion.img key="logo" src={logoWhite} variants={Logo} animate={showMenu?"show":"hidden"} onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)} alt="Spyglass Logo" id="logo" />
-                </Link>
-            </header>
-            <div className="header-spacer">
-                <Link to="/" className="logo" onClick={() => {this.forceUpdate()}}>
-                    <motion.img key="logo1" src={logoWhite} variants={spacerLogo} animate={showMenu?"show":"hidden"} onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)} alt="Spyglass Logo" id="logo" className="SpacerLogo" />
-                </Link>
+                    </Link>
             </div>
         </div>
     )

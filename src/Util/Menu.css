@@ -13,20 +13,28 @@
 }
 .closeMenuContainer {
 
-    position: relative;
-    bottom: 1rem;
-    right: 2em;
+    position: absolute;
+    z-index: 10;
+    left: 5vw;
+    height: max(15vh, 9rem);
     margin: 0;
-    padding: 1rem;
+    padding: 1em;
     cursor: pointer;
-}
-.closeMenuContainer p {
-    color: var(--red);
-    font-family: "Portia";
-    font-size: 4em;
-    margin: 0;
-    transition: color 0.2s ease, transform 0.2s ease,
+    width: -moz-fit-content;
+    width: fit-content;
     
+}
+
+.closeMenuContainer p {
+    rotate: var(--rotateBy);
+    color: var(--black);
+    font-family: "Portia";
+    font-size: max(10vh, 6rem);
+    margin: 0;
+    transition: color 0.2s ease, transform 0.2s ease;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
 }
 .closeMenuContainer:hover > p {
     color: var(--white);

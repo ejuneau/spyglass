@@ -1,33 +1,14 @@
 @media only screen and (min-width: 992px) {
-    .CartPageComponent {
-        width: 100vw;
-        margin-top: min(-15vh, -9rem);
-        overflow: scroll;
-        background-color: var(--white);
-        height: 100vh;
+    #NTSH {
+        margin-top: 0;
     }
-    .CartPageSpacer { height: max(15vh, 9rem);}
-    .cartList {
-        width: 80vw;
-        outline: 1px solid red;
-        margin-left: 10vw;
-        margin-right: 10vw;
-        display: flex;
-        flex-direction: column;
+    #binos {
+        height: 30vh;
+        margin-top: 0;
     }
-    .cartListItem:nth-child(even) {
-        background-color: var(--red);
-        transform: rotate(calc(var(--rotateBy) /2 ));
-        margin-top: -2vh; 
-        margin-bottom: -2vh;
+    #cartImg {
+        height: 20vh;
     }
-    .cartListItem:nth-child(even) > * {
-        transform: rotate(calc(var(--antiRotateBy) /2 ));
-    }
-    .cartListItem:nth-child(odd) {
-        background-color: var(--black);
-    }
-
     .cartListItem {
         padding: 3vh 5vw;
         margin-top: 2vh;
@@ -36,35 +17,16 @@
         display: flex;
         height: 30vh;
     }
-    .cartPageOptionsContainer button {
-        background-color: transparent;
-        border: none;
-        font-family: 'Noir';
-        color: var(--white);
-        font-size: 1.2rem;
-        height: 10vh;
-    }    
-    .cartPageOptionsContainer {
-        width: 20vw;
-        outline: 1px solid blue;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        align-items: flex-start;
+    .cartList {
+        width: 80vw;
+        margin-left: 10vw;
+        margin-right: 10vw;
     }
-    #cartImg {
-        height: 20vh;
+    .cartListItem:nth-child(even) {
+        background-color: var(--red);
+        transform: rotate(calc(var(--rotateBy) /2 ));
+        margin-top: -2vh; 
+        margin-bottom: -2vh;
     }
-    .NTSH {
-        display: flex;
-        flex-direction: column;
-    }
-    #binos {
-        object-fit: contain;
-        height: 30vh;
-    }
-    .NTSH h1 {
-        font-family: 'Got Heroin?';
-        font-size: max(3vw, 2rem);
-    }
+
     }

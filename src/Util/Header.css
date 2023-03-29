@@ -40,8 +40,40 @@ align-items: center;
     margin-bottom: -0.5rem;
     width: 3rem;
     text-align: center;
-}
 
+}
+.cartCountContainer {
+  position: relative;
+  margin: 0;
+  z-index: 10;
+  width: 2vw;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: auto;
+  margin-left: auto;
+  right: max(5vw, 3rem);
+
+}
+#shoppingBag {
+  height: 125%;
+  min-width: 5rem;
+  object-fit: contain;
+  position: absolute;
+  margin-left: 1vw;
+  top: min(-2vh, -1rem);
+  min-height: 3rem;
+
+}
+.cartCountContainer p {
+  font-size: max(4vw, 3rem);
+  margin: 0;
+  position: relative;
+  z-index: 5;
+
+
+
+}
 .hamburger-container {
 
     width: 5rem;
@@ -56,8 +88,9 @@ align-items: center;
     -ms-transform: scale(0.9, -1);
     transform: scale(0.9, -1);
   }
-  .hamburger-container:hover ~ p#cart-count {
-    color: var(--white);
+  p#cart-count {
+position: relative;
+bottom : 0vh;
   }
 
 .logo {

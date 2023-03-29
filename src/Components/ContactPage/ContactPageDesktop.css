@@ -16,4 +16,15 @@
         flex-wrap: wrap;
         justify-content: space-between;
     }
+    .contactPics {
+        margin-top: 0;
+    }
+    #WLTHFY {
+        object-fit: contain;
+        width: 20vw;
+        overflow: hidden;
+    }
+    #gramophone {
+        width: 20vw;
+    }
 }

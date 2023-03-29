@@ -1,6 +1,146 @@
+#LWYS {
+    width: 100vw;
+}
 input[type=number]::-webkit-inner-spin-button {
     opacity: 1
 }
 #cartImg {
     height: 15vh;
+}
+#dumpCart {
+    border: none;
+    background-color: var(--red);
+    color: var(--white);
+    font-family: 'Noir';
+    padding: 2vh 2vw;
+    float: right;
+    clip-path: polygon(30% 0%, 92% 0, 100% 30%, 100% 86%, 63% 100%, 13% 100%, 0% 70%, 0 11%);
+
+}
+.CartPageComponent {
+    width: 100vw;
+    margin-top: min(-15vh, -9rem);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: var(--white);
+    height: 100vh;
+}
+.CartPageSpacer { height: max(15vh, 9rem);}
+.cartList {
+    width: 100vw;
+
+    display: flex;
+    flex-direction: column;
+}
+.cartListItem:nth-child(even) {
+    background-color: var(--red);
+    transform: rotate(calc(var(--rotateBy) /4 ));
+    margin-top: -1vh; 
+    margin-bottom: -1vh;
+}
+.cartListItem:nth-child(even) > * {
+    /* transform: rotate(calc(var(--antiRotateBy) /2 )); */
+}
+.cartListItem:nth-child(odd) {
+    background-color: var(--black);
+}
+
+.cartListItem {
+    padding: 1vh 2vw;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    color: var(--white);
+    display: flex;
+    height: 20vh;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.cartPageOptionsContainer button {
+    background-color: transparent;
+    border: none;
+    font-family: 'Noir';
+    color: var(--white);
+    font-size: 1.2rem;
+    height: 10vh;
+}    
+.cartPageOptionsContainer {
+    width: 20vw;
+    height: -moz-fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+#cartPageOptions {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+#cartPageOptions > .cartPageOptionsContainer {
+    width: 100%;
+
+}
+#quant { width: 2rem; text-align: center;}
+#removeFromCart {
+    font-family: 'Noir';
+    font-size: max(1.2vw, 1rem);
+    background: var(--white);
+    color: var(--black);
+    padding: 1vh 1vw;
+    border: none;
+}
+#titlePic {
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#cartImg {
+
+}
+.NTSH {
+    display: flex;
+    flex-direction: column;
+    margin-top: max(15vh, 9rem);
+}
+#binos {
+    object-fit: contain;
+    height: 10vh;
+    margin-top: max(5vh, 3rem);
+}
+
+.NTSH h1 {
+    font-family: 'Got Heroin?';
+    font-size: max(3vw, 2rem);
+}
+#emptyCartShop {
+    font-family: "A Box For 2";
+    font-size: max(5vw, 3rem);
+    align-self: flex-end;
+    margin-top: max(5vh, 3rem);
+    margin-right: 5vw;
+}
+.cartListItem h1 {
+    font-family: 'Portia';
+    width: 100%;
+
+    margin: 0;
+}
+.total {
+    font-family: 'Noir';
+    font-size: max(3vw, 2rem);
+    text-align: right;
+    margin-right: 1rem;
+}
+#checkoutButton {
+    background: var(--black);
+    color: var(--red);
+    padding: 2vh 2vw;
+
 }

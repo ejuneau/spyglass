@@ -15,6 +15,7 @@ import "./Assets/Fonts/Mustasurma.ttf";
 import "./Assets/Fonts/Portia.otf";
 import "./Assets/Fonts/A Box For.ttf";
 import "./Assets/Fonts/Noir_regular.otf";
+import "./Assets/Fonts/Got_Heroin.ttf";
 
 import React, { useState, useEffect } from 'react';
 import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route, useLocation, Routes } from 'react-router-dom';
