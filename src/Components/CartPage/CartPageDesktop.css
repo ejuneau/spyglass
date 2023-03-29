@@ -22,11 +22,11 @@
         margin-left: 10vw;
         margin-right: 10vw;
     }
-    .cartListItem:nth-child(even) {
+    /* .cartListItem:nth-child(even) {
         background-color: var(--red);
         transform: rotate(calc(var(--rotateBy) /2 ));
         margin-top: -2vh; 
         margin-bottom: -2vh;
-    }
+    } */
 
     }
