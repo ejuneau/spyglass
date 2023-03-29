@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/spyglass/static/css/main.e17c6b17.css",
-    "main.js": "/spyglass/static/js/main.acf24b91.js",
+    "main.css": "/spyglass/static/css/main.56542dda.css",
+    "main.js": "/spyglass/static/js/main.349b59d2.js",
     "static/js/496.4f6299c2.chunk.js": "/spyglass/static/js/496.4f6299c2.chunk.js",
     "static/media/ProductPageFront.png": "/spyglass/static/media/ProductPageFront.a8a5d25afcf05f51e6e9.png",
     "static/media/ProductPageBack.png": "/spyglass/static/media/ProductPageBack.58d9c683978e16574d74.png",
@@ -14,6 +14,7 @@
     "static/media/background.gif": "/spyglass/static/media/background.d283da34966893650100.gif",
     "static/media/A Box For 3.ttf": "/spyglass/static/media/A Box For 3.636c12c25ad6291c0e00.ttf",
     "static/media/binos.png": "/spyglass/static/media/binos.b3c819667715b13e1d3a.png",
+    "static/media/Got_Heroin.ttf": "/spyglass/static/media/Got_Heroin.10a96edd773f9045535c.ttf",
     "static/media/NTSH.png": "/spyglass/static/media/NTSH.30fbcfd5de8d23a4462a.png",
     "static/media/gramophone.png": "/spyglass/static/media/gramophone.9b57abb19fe2a75f1299.png",
     "static/media/VarygraphiePersonalUseOnlyRegular-nRWX1.otf": "/spyglass/static/media/VarygraphiePersonalUseOnlyRegular-nRWX1.71dda03d3f8d7b4bdc1c.otf",
@@ -26,6 +27,7 @@
     "static/media/Portia-Oblique.otf": "/spyglass/static/media/Portia-Oblique.ea62b4706fb1bbf7042e.otf",
     "static/media/leopardPrint.png": "/spyglass/static/media/leopardPrint.730ad5b4e9e41e2f38ac.png",
     "static/media/transparent.png": "/spyglass/static/media/transparent.1ab4004eee6a63de7c6c.png",
+    "static/media/LWYS.webp": "/spyglass/static/media/LWYS.448ef4ff908e2b136632.webp",
     "static/media/Portia.otf": "/spyglass/static/media/Portia.37d0b97bcc33d5c4647d.otf",
     "static/media/Logo (White, slogan).png": "/spyglass/static/media/Logo (White, slogan).16d8169314de2ab4905e.png",
     "static/media/Logo (Black, slogan).png": "/spyglass/static/media/Logo (Black, slogan).cecb9361a02c45f640dd.png",
@@ -35,12 +37,12 @@
     "static/media/WLTHFY.webp": "/spyglass/static/media/WLTHFY.36fa60e766a5449d040e.webp",
     "static/media/result.svg": "/spyglass/static/media/result.dbf26cca6b53c360af5fd47e28ef1e89.svg",
     "index.html": "/spyglass/index.html",
-    "main.e17c6b17.css.map": "/spyglass/static/css/main.e17c6b17.css.map",
-    "main.acf24b91.js.map": "/spyglass/static/js/main.acf24b91.js.map",
+    "main.56542dda.css.map": "/spyglass/static/css/main.56542dda.css.map",
+    "main.349b59d2.js.map": "/spyglass/static/js/main.349b59d2.js.map",
     "496.4f6299c2.chunk.js.map": "/spyglass/static/js/496.4f6299c2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e17c6b17.css",
-    "static/js/main.acf24b91.js"
+    "static/css/main.56542dda.css",
+    "static/js/main.349b59d2.js"
   ]
 }
