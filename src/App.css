@@ -28,9 +28,27 @@ html {
 .red-bg {
   background-color: var(--red);
 }
+#logo {
+  width: 100%;
+  position: relative;
+  z-index: 3;
+}
+
+.header-spacer {
+  height: max(15vh, 9rem);
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent; 
+}
+a {
+  text-decoration: none;
+  color: inherit
+}
 
 @media only screen and (min-width: 992px) {
-  .HomePage {height: 120vh;}
+
 }
 .button {
   -moz-user-select: none;

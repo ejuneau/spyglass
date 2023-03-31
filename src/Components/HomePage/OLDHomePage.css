@@ -1,0 +1,155 @@
+.HomePage {
+
+    width: 100vw;
+    margin-top: -15vh;
+    overflow: scroll;
+    background-color: var(--black);
+    height: 100vh;
+    
+}
+.header-spacer {
+    height: max(15vh, 9rem);
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    
+}
+
+
+.HomePage-main {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: calc(100vh - 15vh);
+    /* max-height: calc(100vh - 9rem); */
+    
+    
+}
+
+#logo {
+    width: 100%;
+    position: relative;
+    z-index: 3;
+}
+
+.HomePage-main-right {
+    width: 100%;
+    height: 10vh;
+    position: relative;
+    z-index: 2;
+}
+.HomePage-main-left {
+    width: 100vw;
+    display: flex;
+    background-image: url('../../Assets/Images/background.gif');
+    background-size: cover;
+    margin-top: 15vh;
+    clip-path: polygon(100% 0, 100% 100%, 0 90%, 0 0);
+    
+
+}
+.YWBYEContainer {
+   display: flex;
+   flex-direction: column;
+   width: 100vw;
+   align-items: center;
+   height: 60%;
+   margin-top: 15vh;
+}
+#youWont {
+    transform: rotate(-15deg);
+    max-width: 90vw;
+}
+#believe {
+    max-width: 50vw;
+    transform: rotate(3deg) translateX(15vw) translateY(5vh);
+}
+#yourEyes {
+    max-width: 92vw;
+    transform: rotate(22deg) translateX(10vw) translateY(10vh);
+}
+.HomePage-Background {
+    position: relative; 
+    width: 100vw;
+    height: 90vh;
+    max-height: calc(120vh - 9rem);
+    top: -85vh;
+    background-color: var(--red);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 50vh);
+    z-index: 0;
+    
+}
+.Model{
+    display: flex;
+    margin-top: 25vh;
+    
+
+}
+.Model img {
+    width: 100vw;
+    transform: scale(-1, 1);
+    object-fit:contain;
+
+}
+
+.HomePage-main-center {
+    position: relative;
+
+    width: 100vw;
+    height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    
+
+}
+.HomePage-main-accent {
+    display: none;
+}
+
+.HomePage-main-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80vw;
+
+    height: 100%;
+    align-items: flex-start;
+
+
+}
+a {
+    text-decoration: none;
+    color: inherit
+}
+/* a:visited {
+    color: inherit;
+} */
+
+.HomePage-main-buttons > a {
+    font-family: 'A Box For 1';
+    color: var(--white);
+    font-size: 4rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.HomePage-main-buttons > a:hover, .HomePage-main-buttons > a:active {
+    font-family: 'A Box For 2';
+    color: var(--red);
+    transform: scale(0.9);
+    transition: transform 0.2s ease;
+}
+#shopMen {
+    transform: translateX(10vw) rotate(10deg) scale(1.1);
+}
+#shopWomen {
+    transform: translateX(34vw) rotate(-7deg) scale(1.12);
+}
+#shopEnby {
+    transform: translateX(6vw) rotate(22deg) scale(1.20);
+}

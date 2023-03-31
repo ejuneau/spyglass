@@ -1,0 +1,19 @@
+.ButtonComponent {
+    font-family: 'A Box For 1';
+    background-color: var(--black);
+    color: var(--white);
+    transition: background-color 0.2s ease;
+}
+.ButtonComponent > p {
+    margin: 0;
+    padding: max(1vh, 1rem);
+    font-size: max(1vw, 2rem);
+    transition: color 0.2s ease;
+}
+.ButtonComponent:hover > p {
+    color: #E0E0E0;
+    font-family: 'A Box For 2';
+}
+.ButtonComponent:hover {
+    background-color: #C92403;
+}

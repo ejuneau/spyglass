@@ -43,23 +43,23 @@ export default function CartPage(props) {
       const outlineVariants = {
         initial: {
           opacity: 0, 
-          clipPath:"none"
+          maskImage: "radial-gradient(circle, rgba(10,10,10,0) 0%, rgba(10,10,10,1) 0%, rgba(10,10,10,1) 100%)"
         },
         animate: {
           opacity: showMenu ? 0: 1, 
           maskImage: "radial-gradient(circle, rgba(10,10,10,0) 10%, rgba(10,10,10,1) 50%, rgba(10,10,10,1) 100%)", 
           top: hoverLink ? "-75vh" : [
-            "-75vh", "0vh", "-150vh", "0vh", "-150vh", "-75vh"], 
-          left: hoverLink ? "-75vw" : ["-75vw", "-150vw", "-150vw", "0vw", "0vw", "-75vw"], 
+            "0vh", "-150vh", "0vh", "-150vh", "-75vh", "0vh"], 
+          left: hoverLink ? "-75vw" : ["-150vw", "-150vw", "0vw", "0vw", "-75vw", "-150vw"], 
           transition: hoverLink ? {duration: 0.2} : {
             top: {
-              duration: 6, repeat: Infinity, repeatType: "loop"
+              duration: 10, repeat: Infinity, repeatType: "loop"
             }, 
             left: {
-              duration: 6, repeat: Infinity, repeatType: "loop"
+              duration: 10, repeat: Infinity, repeatType: "loop"
             },
-            opacity: {duration: 0.5}, 
-            maskImage: {duration: 0.2, delay: 1}
+            opacity: {duration: 0.2}, 
+            maskImage: {duration: 0.2, delay: 0.5}
             }
           }
         }

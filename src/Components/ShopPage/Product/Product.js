@@ -121,7 +121,7 @@ function ActionImage() { return  <img key={`Product ID:${props.product.id} image
 
 		  {!isMobile && <motion.div 
           key={`Product ID: ${props.product.id}`} 
-          style={{ outline: "1px solid #0A0A0A"}} 
+          style={{ outline: "1px solid #0A0A0A", backgroundColor: isInCart?"#E0E0E0":"var(--white)"}} 
           variants={variants} 
           layout 
           initial="show" 
@@ -132,6 +132,7 @@ function ActionImage() { return  <img key={`Product ID:${props.product.id} image
           onMouseEnter={() => {handleHoverChange(true)}} 
           onMouseLeave={()=>{handleHoverChange(false)}} 
           >
+            {isInCart && <img id="IGMYOY" src={IGMYOY} alt="In Cart indicator"/>}
             <Link to={props.product.variants.length>1?`/Shop/Product/${props.product.name}?variant=${currentVariant}`:`/Shop/Product/${props.product.name}`}>
               <motion.div  
 			  key={`container for ${props.product.id} ${currentVariant}`} 
