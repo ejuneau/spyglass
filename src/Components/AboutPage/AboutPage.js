@@ -45,7 +45,7 @@ export default function AboutPage(props) {
                 <p>If you'll excuse the play on words, Karl had a vision.</p>
                 <p>And we intend to stick by it.</p>
                 <p>Karl may have passed on, but we intend to do him proud. We've taken his saying to heart, and we strive to put ourselves into all we do. We like to think Karl is watching over us (through a pair of his signature frames, of course.)</p>
-                <Link to="/spyglass/Shop">Shop the looks</Link>
+                <Link to="/Shop">Shop the looks</Link>
 
                 
             </div>

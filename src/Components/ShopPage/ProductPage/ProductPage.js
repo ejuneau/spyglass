@@ -8,6 +8,8 @@ import './ProductPageDesktop.css';
 import { useSearchParams } from "react-router-dom";
 import {motion, AnimatePresence} from 'framer-motion';
 import { SlideShow } from "./SlideShow.tsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 export default function ProductPage(props) {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -151,137 +153,163 @@ function CartButtons(props) {
    <AnimatePresence mode="wait">
     {cart.filter(item => item.id === props.product.id).find(item => item.variant === variant) && 
             // if the item that is in the cart is the same variant
-            <AnimatePresence mode="sync">
-                <motion.button 
-                key="removeCart" 
-                id="removeCart" 
-                initial={{scaleX: 0, x: "-5vw"}} 
-                animate={{scaleX: 1, x: 0}} 
-                exit={{scaleX: 0}} 
-                onClick={()=>{dispatch(removeFromCart({id: props.product.id}));props.setQuantity(1)}}>
-                    <p>Remove all?</p>
-                </motion.button>
 
+            
+            <AnimatePresence mode="sync">
                 <div className="CartButtonsContainer" id="isInCart" style={{rotate: rotateBy}}>
-                    <button id="quantButton" onClick={()=>{decreaseQuantity(); dispatch(modifyQuantity({id: props.product.id, variant: searchParams.get("variant")?Number(searchParams.get("variant")):0, newQuantity: props.quantity - 1}))}}>
-                        <AnimatePresence mode="wait">
-                            <motion.p 
-                            layout
-                            key={`decQuant${props.quantity}IC`} 
-                            initial={{
-                                x: decDirection.initial, 
-                                opacity: 0, 
-                                transition: {duration: 0.1}
-                            }} 
-                            animate={{
-                                x: 0, 
-                                opacity: 1, 
-                                transition: {duration: 0.1}
-                            }} 
-                            exit={{
-                                x: decDirection.exit, 
-                                opacity: 0, 
-                                transition:{duration: 0.1}
-                                }}>-</motion.p>
-                        </AnimatePresence>
-                    </button>
                     <AnimatePresence mode="popLayout">
                         <motion.div 
+                        id="inCart"
                         key="inCart" 
-                        initial={{
-                            opacity: 0, 
-                            y: "5vh"}} 
-                        animate={{
-                            opacity: 1, 
-                            y: 0}} 
-                        exit={{
-                            opacity: 0, 
-                            y: "5vh"}} 
-                        style={{position: "relative", display: 'flex', color:"var(--white)", fontFamily:"Noir", margin: 0, display: "flex", alignItems: "center", fontSize:"1.2rem"}}>
-                            <AnimatePresence>
-                                <motion.p 
-                                key={cart.filter(item => item.id === props.product.id).find(item=>item.variant === variant).quantity} 
-                                initial={{
-                                    opacity: 0, 
-                                    y: incCounter > decCounter ? "5vh" : "-5vh",
-                                    scaleY: 0
-                                }} 
+                        initial={{scaleX: 0}}
+                        animate={{scaleX: [-1, 1], transition: {duration: 0.2}}}
+                        exit={{scaleY: 0}}
+                        style={{clipPath: "polygon(5% 0, 100% 0, 95% 100%, 0 100%)", background: "#C92403", position: "relative", display: 'flex', color:"var(--white)", fontFamily:"Noir", margin: 0, display: "flex", alignItems: "center", fontSize:"1.2rem"}}>
+                             
+                             
+                            {/* Decrease Quantity / Remove from cart*/}
+                             <button id="quantButton" onClick={()=>{decreaseQuantity(); dispatch(modifyQuantity({id: props.product.id, variant: searchParams.get("variant")?Number(searchParams.get("variant")):0, newQuantity: props.quantity - 1}))}}>
+                                <AnimatePresence mode="wait">
+                                    <motion.div 
+                                    layout
+                                    key={`decQuant${props.quantity}IC`} 
+                                    initial={{
+                                        x: decDirection.initial, 
+                                        opacity: 0, 
+                                        transition: {duration: 0.1}
+                                    }} 
                                     animate={{
+                                        x: 0, 
                                         opacity: 1, 
-                                        y: 0,
-                                        scaleY: 1
+                                        transition: {duration: 0.1}
                                     }} 
                                     exit={{
+                                        x: decDirection.exit, 
                                         opacity: 0, 
-                                        y: incCounter > decCounter ? "-5vh"  :"5vh",
-                                        scaleY: 0
-                                    }}  
-                                    style={{position: "absolute", margin: 0}}>{cart.filter(item => item.id === props.product.id).find(item=>item.variant === variant).quantity}</motion.p> 
-                            </AnimatePresence>
-                            <p style={{margin: 0, marginLeft: "2rem"}}>in cart</p>
+                                        transition:{duration: 0.1}
+                                        }}>
+                                        {
+                                            cart.filter(item => item.id === props.product.id).find(item => item.variant === variant).quantity === 1 ?
+                                            <FontAwesomeIcon id="productTrash" icon={solid("trash-can")} /> :
+                                            <p>-</p>
+                                        
+                                        }
+                                    </motion.div>
+                                </AnimatePresence>
+                            </button>
+
+                            {/* In Cart/ Not In Cart*/}
+                            <div id="ICNIC">
+                                <div id="ICquantContainer" style={{position: "relative", width: "1rem", alignSelf: "center"}}>
+                                    <AnimatePresence mode="popLayout">
+                                        <motion.p 
+                                        key={cart.filter(item => item.id === props.product.id).find(item=>item.variant === variant).quantity} 
+                                        initial={{
+                                            opacity: 0, 
+                                            y: incCounter > decCounter ? "3vh" : "-5vh",
+                                            scaleY: 0
+                                        }} 
+                                            animate={{
+                                                opacity: 1, 
+                                                y: 0,
+                                                scaleY: 1
+                                            }} 
+                                            exit={{
+                                                opacity: 0, 
+                                                y: incCounter > decCounter ? "-5vh"  :"3vh",
+                                                scaleY: 0
+                                            }}  
+                                            >{cart.filter(item => item.id === props.product.id).find(item=>item.variant === variant).quantity}
+                                        </motion.p> 
+                                    </AnimatePresence>
+                                </div>
+                                <motion.p                         
+                                    initial={{
+                                        opacity: 0, 
+                                        y: "3vh"}} 
+                                    animate={{
+                                        opacity: 1, 
+                                        y: 0}} 
+                                    exit={{
+                                        opacity: 0, 
+                                        y: "3vh"}} >in cart
+                                </motion.p>
+                            </div>
+
+                            {/* Increase Quantity*/}
+                            <button id="quantButton" onClick={()=>{increaseQuantity(); dispatch(modifyQuantity({id: props.product.id, variant: searchParams.get("variant")?Number(searchParams.get("variant")):0, newQuantity: props.quantity + 1}))}}>
+                                <motion.p
+                                    key={`incQuant${props.quantity}IC`}  
+                                    initial={{rotate: incCounter > decCounter ? "-90deg" : "90deg" }}
+                                    animate={{rotate: 0, transition:{duration: 0.2}}}
+                                    exit={{rotate: incCounter > decCounter ? "90deg" : "-90deg"}}>
+                                        +
+                                </motion.p>
+                            </button>
                         </motion.div>
                     </AnimatePresence>
-                    <button id="quantButton" onClick={()=>{increaseQuantity(); dispatch(modifyQuantity({id: props.product.id, variant: searchParams.get("variant")?Number(searchParams.get("variant")):0, newQuantity: props.quantity + 1}))}}>
-                        <motion.p
-                        key={`incQuant${props.quantity}IC`}  
-                        initial={{rotate: incCounter > decCounter ? "-90deg" : "90deg" }}
-                        animate={{rotate: 0, transition:{duration: 0.2}}}
-                        exit={{rotate: incCounter > decCounter ? "90deg" : "-90deg"}}>+</motion.p>
-                    </button>
                 </div> 
                 
             </AnimatePresence>
 }
 {    !cart.filter(item => item.id === props.product.id).find(item => item.variant === variant) && 
-
+                //if item is not in cart
                 <div className="CartButtonsContainer" id="isNotInCart" style={{rotate: rotateBy}}> 
-                    <button id="quantButton" onClick={()=>{decreaseQuantity()}}>
-                        <AnimatePresence mode="wait">
-                            <motion.p 
-                            layout
-                            key={`decQuant${props.quantity}NIC`}  
-                            initial={{x: decCounter<incCounter?"-1rem":"1rem", opacity: 0, transition:{duration: 0.1}}} 
-                            animate={{x: 0, opacity: 1, transition:{duration: 0.1}}} 
-                            exit={{x: decCounter<incCounter?"1rem":"-1rem", opacity: 0, transition:{duration: 0.1}}}>-</motion.p>
-                        </AnimatePresence>
-                    </button>
                     <AnimatePresence mode="popLayout">
                         <motion.div 
-                        key="notInCart"  
-                        initial={{opacity: 0, y: "-5vh"}} 
-                        animate={{opacity: 1, y: 0}} 
-                        exit={{opacity: 0, y: "-5vh"}} 
-                        style={{position: "relative", display: 'flex', color:"var(--white)", fontFamily:"Noir", margin: 0, display: "flex", alignItems: "center", fontSize:"1.2rem"}} 
+                        key="notInCart" 
+                        id="notInCart"  
+                        initial={{scaleY: 0}}
+                        animate={{scaleY: [-1, 1], transition: {duration: 0.2}}}
+                        exit={{scaleX: 0}}
+                        style={{clipPath: "polygon(5% 0, 100% 0, 95% 100%, 0 100%)", background: "var(--red)", position: "relative", display: 'flex', color:"var(--white)", fontFamily:"Noir", margin: 0, display: "flex", alignItems: "center", fontSize:"1.2rem"}} 
                         onClick={()=>{dispatch(addToCart({id: props.product.id, quantity: props.quantity, variant: searchParams.get("variant")?Number(searchParams.get("variant")):0}))}}>
-                                <p style={{margin: 0, marginRight: "1rem"}}>Add</p>
-                                <AnimatePresence>
+                            
+                            {/* Decrease Quantity*/}
+                            <button id="quantButton" onClick={()=>{decreaseQuantity()}}>
+                                <AnimatePresence mode="wait">
+                                    <motion.div 
+                                    layout
+                                    key={`decQuant${props.quantity}NIC`}  
+                                    initial={{x: decCounter<incCounter?"-1rem":"1rem", opacity: 0, transition:{duration: 0.1}}} 
+                                    animate={{x: 0, opacity: 1, transition:{duration: 0.1}}} 
+                                    exit={{x: decCounter<incCounter?"1rem":"-1rem", opacity: 0, transition:{duration: 0.1}}}>
+                                    {
+                                        props.quantity === 1 ?
+                                        <motion.p></motion.p>:
+                                        <motion.p 
+                                        layout
+                                        key={`decQuant${props.quantity}NIC`}  
+                                        initial={{x: decCounter<incCounter?"-1rem":"1rem", opacity: 0, transition:{duration: 0.1}}} 
+                                        animate={{x: 0, opacity: 1, transition:{duration: 0.1}}} 
+                                        exit={{x: decCounter<incCounter?"1rem":"-1rem", opacity: 0, transition:{duration: 0.1}}}>-</motion.p>
+
+                                    }
+                                    </motion.div>
+                                </AnimatePresence>
+                            </button>
+
+
+                            {/* Add to Cart*/}
+                            <div id="ICNIC">
                                 <motion.p 
-                                style={{position: "absolute", margin: 0, marginLeft: "3rem"}} 
-                                key={props.quantity} 
-                                initial={{
-                                    opacity: 0, 
-                                    y: incCounter>decCounter?"5vh":"-5vh",
-                                    scaleY: 0
-                                    }} animate={{
-                                        opacity: 1, 
-                                        y:0,
-                                        scaleY: 1}} 
-                                    exit={{
-                                        opacity: 0, 
-                                        y:incCounter>decCounter?"-5vh":"5vh",
-                                        scaleY: 0
-                                        }}>{props.quantity}</motion.p> 
-                            </AnimatePresence> 
-                                <p style={{margin: 0, marginLeft: "1rem"}}>to cart</p>
+                                key="addToCart" 
+                                initial={{opacity: 0, y: "-5vh"}} 
+                                animate={{opacity: 1, y: 0}} 
+                                exit={{opacity: 0, y: "-5vh"}} style={{margin: 0}}>
+                                    Add to cart
+                                </motion.p>
+                            </div>
+                            {/* Increase Quantity */}
+                            <button id="quantButton" onClick={()=>{dispatch(addToCart({id: props.product.id, quantity: props.quantity, variant: searchParams.get("variant")?Number(searchParams.get("variant")):0}))}}>
+                                <motion.p
+                                key={`incQuant${props.quantity}NIC`}  
+                                initial={{rotate: incCounter > decCounter ? "-90deg" : "90deg" }}
+                                animate={{rotate: 0, transition:{duration: 0.2}}}
+                                exit={{rotate: incCounter > decCounter ? "90deg" : "-90deg"}}>+</motion.p>
+                            </button>
                         </motion.div>
                     </AnimatePresence>
-                    <button id="quantButton" onClick={()=>{increaseQuantity()}}>
-                        <motion.p
-                        key={`incQuant${props.quantity}NIC`}  
-                        initial={{rotate: incCounter > decCounter ? "-90deg" : "90deg" }}
-                        animate={{rotate: 0, transition:{duration: 0.2}}}
-                        exit={{rotate: incCounter > decCounter ? "90deg" : "-90deg"}}>+</motion.p>
-                    </button>
                 </div>
 
     }

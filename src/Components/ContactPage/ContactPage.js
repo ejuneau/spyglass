@@ -19,19 +19,18 @@ export default function ContactPage(props) {
         "polygon(100% 0%, 100% 100%, 0% 100%, 0% 0%)"], 
     transition: {repeat: Infinity, repeatType: "loop"}
   },
-  flip: {
+  rotateSubmit: {
+    backgroundColor: "var(--white)",
+    color: "var(--red)",
     clipPath: [
-      "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-      "polygon(0 0, 100% 0, 100% 100%, 37% 100%)",
-      "polygon(0 0, 100% 0, 100% 100%, 100% 100%)",
-      "polygon(0 0, 100% 0, 62% 100%, 100% 100%)",
-      "polygon(0 0, 84% 0, 0 100%, 100% 100%)",
-      "polygon(20% 0, 43% 0, 0 100%, 100% 100%)",
-      "polygon(64% 0, 0 0, 0 100%, 100% 100%)",
-      "polygon(100% 0, 0 0, 0 100%, 100% 100%)"
-    ],
-    transition: {repeat: Infinity, repeatType: "loop"}
-  }
+      "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", 
+      "polygon(0% 0%, 100% 14%, 100% 100%, 0% 81%)",
+      "polygon(26% 0%, 100% 30%, 72% 100%, 0% 63%)",
+      "polygon(72% 0%, 100% 63%, 26% 100%, 0% 34%)",
+      "polygon(94% 0%, 100% 84%, 3% 100%, 0% 12%)", 
+      "polygon(100% 0%, 100% 100%, 0% 100%, 0% 0%)"], 
+  transition: {repeat: Infinity, repeatType: "loop"}
+},
 }
 
     const [toSend, setToSend] = useState({
@@ -52,7 +51,7 @@ export default function ContactPage(props) {
           .then((response) => {
             console.log('SUCCESS!', response.status, response.text);
             window.alert("Your message has been sent. Thank you for your feedback!")
-            window.location="~/"
+            window.location="/"
           })
           .catch((err) => {
             console.log('FAILED...', err);
@@ -95,7 +94,7 @@ export default function ContactPage(props) {
                     onChange={handleChange}
                 />
 
-                <motion.button key="submit" id="submit" variants={animations} whileHover="rotate" type='submit'>SEND</motion.button>
+                <motion.button key="submit" id="submit" variants={animations} whileHover="rotate" onTap="rotateSubmit" type='submit'>SEND</motion.button>
 
                 
             </form>

@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import Products from "../../Util/Products";
 import { useSearchParams } from "react-router-dom";
 import { modifyQuantity, removeFromCart } from "../../Util/cartSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 
 export default function CartListItem(props) {
     const searchParams = useSearchParams();
@@ -57,7 +59,7 @@ export default function CartListItem(props) {
                                             <div className="CartButtonsContainer" id="isInCart">
                                                 <button id="quantButton" onClick={()=>{decreaseQuantity(); dispatch(modifyQuantity({id: props.item.id, variant: props.item.variant, newQuantity: props.item.quantity - 1}))}}>
                                                     <AnimatePresence mode="wait">
-                                                        <motion.p 
+                                                        <motion.div 
                                                         layout
                                                         key={`decQuant${props.item.quantity}IC`} 
                                                         initial={{
@@ -74,7 +76,12 @@ export default function CartListItem(props) {
                                                             x: decDirection.exit, 
                                                             opacity: 0, 
                                                             transition:{duration: 0.1}
-                                                            }}>-</motion.p>
+                                                            }}>                                    {
+                                                                cart.length > 0 && cart.filter(item => item.id === props.item.id).find(item => item.variant === props.item.variant).quantity === 1 ?
+                                                                <FontAwesomeIcon id="cartTrash" icon={solid("trash-can")} /> :
+                                                                <p>-</p>
+                                                            
+                                                            }</motion.div>
                                                     </AnimatePresence>
                                                 </button>
                                                 <AnimatePresence mode="popLayout">

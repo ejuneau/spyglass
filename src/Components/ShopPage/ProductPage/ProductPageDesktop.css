@@ -8,7 +8,8 @@
 .slideShowContainer {
     max-width: 50vw;
     min-height: 85vh;
-   
+
+   min-width: 50vw;
     margin-top: min(-25vh, -18rem);
     margin-bottom: min(-15vh, -9rem);
 
@@ -27,6 +28,7 @@
     max-width: 50%;
     justify-content: center;
     margin-top: 0;
+    margin-right: 4vw;
 }
 .desktopDivider {
 
@@ -46,6 +48,10 @@
     justify-content: center;
     min-height: unset;
 }
+#productTrash {
+    color: var(--black);
+}
+
 .cartOptionsContainer p {
     color: var(--black);
     flex-direction: column;
@@ -58,7 +64,6 @@
 }
 .priceContainer {
     color: var(--black);
-    margin-right: 10vw;
     transform: rotate(var(--rotateBy)) translateY(-3vh);
 }
 .variantsContainer {
@@ -93,10 +98,10 @@
     padding-right: 15vw;
 }
 .ProductPageComponent .spacer {
-    height: max(60vh, 18rem);
+    height: max(15vh, 9rem);
     clip-path: polygon(0 25%, 100% 0%, 100% 100%, 0% 100%);
-    transform: translateY(-30vh);
-    margin-bottom: -30vh;
+    position: relative;
+
 }
 .ProductPageComponent h1, .ProductPageComponent h2 {
     text-align: right;
@@ -115,5 +120,8 @@
 #removeCart p {
     transform: skew(-0.1rad, 0.15rad);
     padding: 0 1vw;
+}
+#inCart, #notInCart {
+    width: 20vw;
 }
     }

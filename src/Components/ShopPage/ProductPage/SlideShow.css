@@ -1,13 +1,16 @@
 
   .SlideShow {
     width: 100%;
-    min-height: 60vh;
+    /* min-height: 60vh; */
+    min-width: 100%;
     touch-action: pan-x;
   }
 .SlideShow img {
     /* height: max(60vh, 36rem); */
     width: 100%;
     position: relative;
+    height: auto;
+    min-height: 40vh;
     /* clip-path: polygon(0 0, 100% calc(var(--rotatedClipHeight) * -100%), 100% 100%, 0 calc(100% -(var(--rotatedClipHeight) * -100%)));  */
     /* clip-path: polygon(100% 15%, 100% 100%, 0 85%, 0% 0%); */
 

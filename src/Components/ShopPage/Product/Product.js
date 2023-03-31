@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 import './Product.css';
 import './ProductDesktop.css';
 import { Link, useSearchParams } from "react-router-dom";
+import IGMYOY from '../../../Assets/Images/IGMYOY.png';
+
 
 //SOMETHING WITH FRAMER MOTION - implement filtering
 
@@ -12,6 +14,7 @@ export default function Product(props) {
 	const boundaries = useRef(null);
     const genderFilter = useSelector((state) => state.filter.gender);
     const [currentVariant, setCurrentVariant] = useState(0);
+    const cart = useSelector((state) => state.cart.contents)
     const [isHover, setIsHover] = useState(false);
     const [rotateBy, setRotateBy] = useState((Math.random() * (0.1 - 0.01) + 0.01)*(Math.random() > 0.5?1:-1));
     const handleHoverChange = (state) => {
@@ -35,7 +38,7 @@ export default function Product(props) {
 
 
       const [imgsLoaded, setImgsLoaded] = useState(false)
-
+      const isInCart = cart.filter(item => item.id === props.product.id).find(item=>item.variant === currentVariant);
       useEffect(() => {
         const loadImage = images => {
           return new Promise((resolve, reject) => {
@@ -63,13 +66,13 @@ export default function Product(props) {
           .catch(err => console.log("Failed to load images", err))
       }, [])
 
-function FrontImage() { return  <img key={`Product ID:${props.product.id} image-front`} src={props.product.variants[currentVariant].photos.front} style={{paddingRight: "2rem"}}  id={isMobile?"mobileImg1":"Img1"}/> }
-function ActionImage() { return  <img key={`Product ID:${props.product.id} image-action`} src={props.product.variants[currentVariant].photos.action} style={{paddingLeft: "2rem"}} id={isMobile?"mobileImg2":"Img2"}/>}
+function FrontImage() { return  <img key={`Product ID:${props.product.id} image-front`} src={props.product.variants[currentVariant].photos.front} style={{paddingRight: "2rem", }}  id={isMobile?"mobileImg1":"Img1"}/> }
+function ActionImage() { return  <img key={`Product ID:${props.product.id} image-action`} src={props.product.variants[currentVariant].photos.action} style={{paddingLeft: "2rem", }} id={isMobile?"mobileImg2":"Img2"}/>}
     return imgsLoaded?(
         <div>
          {isMobile && <motion.div 
           key={`Product ID: ${props.product.id}`} 
-          style={{ outline: "1px solid #0A0A0A"}} 
+          style={{ outline: "1px solid #0A0A0A", backgroundColor: isInCart?"#E0E0E0":"var(--white)"}} 
           layout 
           exit={{opacity: 0}}
           className="ProductComponent" 
@@ -77,20 +80,22 @@ function ActionImage() { return  <img key={`Product ID:${props.product.id} image
 		  initial={{opacity: 0}}
 		  whileInView={{opacity: 1}}
           >
+            {isInCart && <img id="IGMYOY" src={IGMYOY} alt="In Cart indicator"/>}
             <Link to={props.product.variants.length>1?`/Shop/Product/${props.product.name}?variant=${currentVariant}`:`/Shop/Product/${props.product.name}`}>
               <motion.div  
-			  key={`container for ${props.product.id} ${currentVariant}`} 
+			  key={`container for ${props.product.id}`} 
 			   
 			  >
                 <motion.div  
 				id="productImages" 
 				layout 
-				key={`Images for ${props.product.id} ${currentVariant}`} 
+				key={`Images for ${props.product.id}`} 
 				style ={{   overflowX: "scroll",
-					scrollSnapType: "x mandatory"}}
+					scrollSnapType: "x mandatory",
+        }}
 				>
-                  <FrontImage id="mobileImg1"/>
-                  <ActionImage id="mobileImg2" />
+                  <FrontImage id="mobileImg1" />
+                  <ActionImage id="mobileImg2"/>
                 </motion.div>
               </motion.div> 
             </Link>  

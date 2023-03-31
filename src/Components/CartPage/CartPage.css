@@ -140,6 +140,16 @@ input[type=number]::-webkit-inner-spin-button {
     color: var(--black);
     position: relative;
     z-index: 3;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+#cartTrash {
+    color: var(--white);
+}
+#emptyCartShop:hover {
+    color: var(--white);
+    background-color: var(--red);
+    font-family: 'A Box For';
+
 }
 .cartListItem h1 {
     font-family: 'Portia';

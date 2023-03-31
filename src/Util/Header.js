@@ -112,7 +112,7 @@ export default function Header(props) {
                         style={{"fontFamily": "Portia", "color": "var(--white)", "opacity":cart>0?1:0}}>
                             {cart}
                             </motion.p>
-                            <img src={shoppingBag} id="shoppingBag" alt="icon of shopping bag"/>
+                            <img src={shoppingBag} style={{opacity: cart>0?1:0}} id="shoppingBag" alt="icon of shopping bag"/>
                     </AnimatePresence>
                     </Link>
             </div>

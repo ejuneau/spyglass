@@ -63,6 +63,7 @@ align-items: center;
   margin-left: 1vw;
   top: min(-2vh, -1rem);
   min-height: 3rem;
+  transition: opacity 0.2s ease;
 
 }
 .cartCountContainer p {

@@ -4,6 +4,7 @@
     max-width: 100vw;
     margin-top: min(-15vh, -9rem);
     max-height: 100vh;
+    min-height: 100vh;
     align-items: center;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -86,6 +87,7 @@
 .slideShowContainer {
 /* min-height: max(60vh, 36rem); */
 margin-top: min(-15vh, -9rem);
+min-width: 100vw;
 }
 .ProductPageComponent h1 {
     font-family: 'Portia';
@@ -135,6 +137,9 @@ margin-top: min(-15vh, -9rem);
     font-size: 1.2rem;
     height: 10vh;
 }
+#productTrash {
+    color: var(--white);
+}
 
 .ProductPageComponent .spacer {
     background-color: var(--black);
@@ -175,12 +180,19 @@ margin-top: min(-15vh, -9rem);
 .CartButtonsContainer {
     align-self: center;
     position: relative;
-    flex-grow: 1;
     max-width: 70%;
     display: flex;
     justify-content: space-between;
-
     margin-top: 5vh;
+}
+
+#ICNIC {
+    flex: 1;
+    justify-content: center;
+    display: flex;
+}
+#inCart, #notInCart {
+    width: max(15vw, 300px);
 }
 #removeCart {
     position: absolute;
