@@ -65,7 +65,7 @@ function App() {
   //   document.title = `Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;
   // }, [emoji])
 
-  const emoji = ["🤓","👀","🕶️","😎","🥸","👓"];
+  const emoji = ["🤓","👀","🕶️","😎","🥸","👓","🥽","🔍","🔎","🔭"];
   document.title = `Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;
 
   const [sort, setSort] = useState('');
