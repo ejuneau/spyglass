@@ -17,7 +17,11 @@ input[type=number]::-webkit-inner-spin-button {
     font-size: 1.2rem;
     float: right;
     clip-path: polygon(30% 0%, 92% 0, 100% 30%, 100% 86%, 63% 100%, 13% 100%, 0% 70%, 0 11%);
-
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+#dumpCart:hover {
+    background-color: var(--black);
 }
 
 .CartPageComponent {

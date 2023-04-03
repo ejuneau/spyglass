@@ -12,6 +12,7 @@ export default function Menu(props) {
     const showMenu = useSelector((state) => state.menu.showMenu);
     const dispatch = useDispatch();
     const rotateBy = useSelector((state) => state.rotate.rotateBy);
+    const menuColor = useSelector((state) => state.menu.menuColor);
 
 
 
@@ -116,6 +117,7 @@ export default function Menu(props) {
             }
         }
     }
+    useEffect(() => {},[])
     return (
         <motion.div className="menu" key="menu" variants={menu} initial="hidden" animate={showMenu?"show":"hidden"} >
                             <motion.div 

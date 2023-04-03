@@ -17,7 +17,7 @@
   .menuCart {
     font-family: Portia;
     font-size: 8em;
-    color: var(--red);
+
     margin-right: 1em;
     margin-top: 1.3em;
     
@@ -76,11 +76,11 @@
 }
 .menuList li a:hover {
     font-family: 'A Box For 3';
-    color: var(--red);
+
 }
 .menuList li a:active {
     color: var(--white);
-    background-color: var(--red);
+
 }
 
 

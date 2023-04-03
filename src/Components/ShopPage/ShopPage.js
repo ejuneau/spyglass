@@ -6,9 +6,10 @@ import './ShopPageDesktop.css';
 import Products from '../../Util/Products';
 import Product from './Product/Product';
 import {useSelector, useDispatch} from 'react-redux';
-import { handleFilterChange } from '../../Util/filterSlice';
+import { handleGenderChange, handleSunglassesChange } from '../../Util/filterSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { setMenuColor } from '../../Util/menuSlice';
 
 
 
@@ -23,9 +24,13 @@ export default function ShopPage(props) {
   const [priceSort, setPriceSort] = useState(undefined);
   const [priceSortCounter, setPriceSortCounter] = useState(0);
   const [nameSortCounter, setNameSortCounter] = useState(0);
+  const [sunglassesCounter, setSunglassesCounter] = useState(0);
+
 
   const genderFilter = useSelector((state) => state.filter.gender)
+  const sunglassesFilter = useSelector((state) => state.filter.sunglasses);
   const dispatch = useDispatch();
+  dispatch(setMenuColor('var(--red'));
   const emoji = ["🤓","👀","🕶️","😎","🥸","👓"];
   document.title = `Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;
 const filterButton1 = {
@@ -199,6 +204,7 @@ const animationVariants = {
   }
 } 
 const sortModes = [undefined, "asc", "desc"];
+const sunglassesModes = [undefined, true, false];
 function clearRadio(group) {
   var ele = document.getElementsByName(group);
   for(var i=0;i<ele.length;i++)
@@ -210,16 +216,14 @@ function clearRadio(group) {
 async function handlePriceClick() {
   // setSortedProducts(priceSort==="asc"?sortedProductsPriceAsc:priceSort==="desc"?sortedProductsPriceDesc:Products);
   setNameSortCounter(0);
-  setTimeout(()=>{setPriceSortCounter(priceSortCounter + 1);},100)
-  
+  setPriceSortCounter(priceSortCounter => priceSortCounter + 1)
 }
 function handleNameClick() {
   setPriceSortCounter(0);
-  setTimeout(()=>{setNameSortCounter(nameSortCounter + 1);},100)
+  setNameSortCounter(nameSortCounter => nameSortCounter + 1)
 }
 useEffect(()=>{
-  setPriceSort(sortModes[(priceSortCounter) & sortModes.length]);
-
+  setPriceSort(sortModes[(priceSortCounter) % sortModes.length]);
 },[priceSortCounter]);
 useEffect(()=>{
   if (priceSort === undefined) {
@@ -235,7 +239,7 @@ useEffect(()=>{
 
 }, [priceSort]);
 useEffect(()=>{
-  setNameSort(sortModes[(nameSortCounter) & sortModes.length]);
+  setNameSort(sortModes[(nameSortCounter) % sortModes.length]);
 },[nameSortCounter]);
 useEffect(()=>{
   if (nameSort === undefined) {
@@ -249,45 +253,41 @@ useEffect(()=>{
   }
 }, [nameSort]);
 
-
-const [imgsLoaded, setImgsLoaded] = useState(false)
-
-useEffect(() => {
-  const loadImage = images => {
-    return new Promise((resolve, reject) => {
-      const loadFront = new Image()
-      const loadAction = new Image()
-      loadFront.src = images.front
-      loadAction.src = images.action
-      // wait 2 seconds to simulate loading time
-      loadFront.onload = () =>
-        setTimeout(() => {
-          resolve(images.front)
-        }, 0)
-      loadAction.onload = () =>
-        setTimeout(() => {
-          resolve(images.action)
-        }, 0)
-
-      loadFront.onerror = err => reject(err)
-      loadAction.onerror = err => reject(err)
-    })
+function handleSunglassesClick() {
+  switch (sunglassesFilter) {
+    case true:
+      setSunglassesSort(false);
+      break;
+    case false: 
+      setSunglassesSort(undefined);
+      break;
+    case undefined:
+      setSunglassesSort(true);
+      break;
+    default:
+      setSunglassesSort(undefined);
+      break;
   }
 
-  Promise.all(Products.map(product => product.variants.map(variant => {loadImage(variant.photos)})))
-    .then(() => setImgsLoaded(true))
-    .catch(err => console.log("Failed to load images", err))
-}, [])
+}
+function setSunglassesSort(sort) {
+  dispatch(handleSunglassesChange(sort));
+}
 
 
 
 
-  return <AnimatePresence>{imgsLoaded?(
+
+
+
+
+
+  return <AnimatePresence>
     <div className="ShopPageComponent">
       <div className="filter-buttons-container">
-        <motion.div key="filterbuttonmen"    variants={filterButton1} initial="initial" whileHover="hover" className={`button filterButtons filterButtonsMen   ${genderFilter === "men"?"activeSort":""}`}   onClick={() => dispatch(handleFilterChange("men"))}  ><p>Men</p></motion.div>
-        <motion.div key="filterbuttonwomen"  variants={filterButton2} initial="initial" whileHover="hover" className={`button filterButtons filterButtonsWomen ${genderFilter === "women"?"activeSort":""}`} onClick={() => dispatch(handleFilterChange("women"))}><p>Women</p></motion.div>
-        <motion.div key="filterbuttonenby"   variants={filterButton3} initial="initial" whileHover="hover" className={`button filterButtons filterButtonsEnby  ${genderFilter === "enby"?"activeSort":""}`}  onClick={() => dispatch(handleFilterChange("enby"))} ><p>Neutral</p></motion.div>
+        <motion.div key="filterbuttonmen"    variants={filterButton1} initial="initial" whileHover="hover" className={`button filterButtons filterButtonsMen   ${genderFilter === "men"?"activeSort":""}`}   onClick={() => dispatch(handleGenderChange("men"))}  ><p>Men</p></motion.div>
+        <motion.div key="filterbuttonwomen"  variants={filterButton2} initial="initial" whileHover="hover" className={`button filterButtons filterButtonsWomen ${genderFilter === "women"?"activeSort":""}`} onClick={() => dispatch(handleGenderChange("women"))}><p>Women</p></motion.div>
+        <motion.div key="filterbuttonenby"   variants={filterButton3} initial="initial" whileHover="hover" className={`button filterButtons filterButtonsEnby  ${genderFilter === "enby"?"activeSort":""}`}  onClick={() => dispatch(handleGenderChange("enby"))} ><p>Neutral</p></motion.div>
       </div>
 
       <div className="sortButtonsContainer">
@@ -313,6 +313,16 @@ useEffect(() => {
             </AnimatePresence>
           </motion.label>
 
+          <input type="radio" name="sort" value="sunglasses" id="sunglasses"  onClick={()=>{handleSunglassesClick()}} />
+          <motion.label key="labelSunglasses" layout htmlFor="sunglasses">
+          Sunglasses 
+            <AnimatePresence mode="popLayout">
+            {sunglassesFilter===undefined && <motion.div key="sunglassesUnsort" style={{visibility: "hidden"}}><FontAwesomeIcon className="sortIcon" icon={solid('sort')} /></motion.div>}
+              {sunglassesFilter===true && <motion.div key="sunglassesYes" initial={{y: "10vh", opacity: 0}} animate={{y:0, opacity: 1}} exit={{scaleY:0, transition:{duration: 0.2}}}><FontAwesomeIcon className="sortIcon" icon={solid("check")} /></motion.div>}
+              {sunglassesFilter === false && <motion.div key="sunglassesNo" initial={{scaleY: 0}} animate={{scaleY:1, transition:{duration: 0.2}}} exit={{y:"10vh", opacity: 0, transition: {y: {duration:1}, opacity: {duration: 0.2}}}}><FontAwesomeIcon className="sortIcon" icon={solid('xmark')} /></motion.div>}
+            </AnimatePresence>
+          </motion.label>
+
           </motion.form>
       </div>
 
@@ -320,28 +330,43 @@ useEffect(() => {
         <AnimatePresence mode="popLayout">
         {
           sortedProducts.map((product) => {
-            if (isInArray(genderFilter, product.gender))
-            return (
-             
-            <motion.div 
-            key={`Product ${product.id}`} 
-            variants={animationVariants}
-            layout 
-            initial="initial" 
-            animate="animate" 
-            exit="exit" >
+            if (isInArray(genderFilter, product.gender) ) {
+              if (sunglassesFilter !== undefined) {
+                if (product.sunglasses === sunglassesFilter) {
 
-                <Product product={product} key={product.id} genderFilter={genderFilter} />
+                  return (
+                    <motion.div 
+                    key={`Product ${product.id}`} 
+                    variants={animationVariants}
+                    layout 
+                    initial="initial" 
+                    animate="animate" 
+                    exit="exit" >
+                        <Product product={product} key={product.id} />
+                    </motion.div>
+                    )
+                  }
+                } else {
 
-            </motion.div>
-              
-            )})
+                  return (
+                    <motion.div 
+                    key={`Product ${product.id}`} 
+                    variants={animationVariants}
+                    layout 
+                    initial="initial" 
+                    animate="animate" 
+                    exit="exit" >
+                        <Product product={product} key={product.id} />
+                    </motion.div>
+                    )
+                }
+           }
+          })
         }
          </AnimatePresence>
       </div>
       <div className="spacer"></div>
   </div>
-):<motion.div className="LoadingPage">Loading...</motion.div>}
 </AnimatePresence>
 }
 

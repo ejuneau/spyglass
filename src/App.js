@@ -7,6 +7,7 @@ import AboutPage from './Components/AboutPage/AboutPage';
 import ProductPage from './Components/ShopPage/ProductPage/ProductPage.js';
 import CartPage from './Components/CartPage/CartPage';
 import ContactPage from './Components/ContactPage/ContactPage';
+import CheckoutPage from './Components/CartPage/CheckoutPage/CheckoutPage';
 import Menu from './Util/Menu';
 import Header from './Util/Header';
 
@@ -109,6 +110,7 @@ function App() {
 				<Route path="/Shop" element={<ShopPage />} />
 					<Route path="/Shop/Product/:name" element={<ProductPage key="ProductPageComponent" />} />
 				<Route path="/Cart" element={<CartPage />} />
+          <Route path="/Cart/Checkout" element={<CheckoutPage />} />
 				<Route path="/Contact" element={<ContactPage />} />
 			</Routes>
 		</motion.div>

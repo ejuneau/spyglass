@@ -4,7 +4,7 @@
     max-width: 100vw;
     margin-top: min(-9rem, -15vh);
     height: calc(var(--vh) * 100);
-    background-color: var(--red);
+    background-color: var(--green);
     align-items: center;
     overflow-y: scroll;
     overflow-x: hidden;

@@ -29,7 +29,7 @@ align-items: center;
 
 }
 .hamburger {
-    color: var(--red);
+    color: var(--menuColor);
     cursor: pointer;
     transition: color 0.2s ease, transform 0.2s ease;
     height: 3rem;

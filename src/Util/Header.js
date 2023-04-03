@@ -10,6 +10,8 @@ import './Header.css';
 import {useSelector, useDispatch} from 'react-redux';
 import { toggleMenu } from './menuSlice';
 import shoppingBag from '../Assets/Images/shoppingBag.png';
+import { useEffect } from 'react';
+
 
 
 
@@ -17,6 +19,7 @@ export default function Header(props) {
     const cart = useSelector((state) => state.cart.count);
     const showMenu = useSelector((state) => state.menu.showMenu);
     const dispatch = useDispatch();
+    const menuColor = useSelector((state) => state.menu.menuColor);
 
     const [isHover, setIsHover] = useState(false);
     const handleHoverChange = () => {setIsHover(!isHover)};
@@ -84,7 +87,7 @@ export default function Header(props) {
             }
         },
     }
-
+    useEffect(() => {console.log(menuColor)}, [])
     return (
         <div className="HeaderComponent">
             <header>

@@ -13,7 +13,7 @@
 .MYL-container {
     min-height: 50vh;
     width: 100%;
-    background-color: var(--red);
+    background-color: var(--blue);
 
         display: grid;
         grid-template-columns: 1fr;

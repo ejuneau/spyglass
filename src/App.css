@@ -4,7 +4,7 @@
   --white: #F5F5F5;
   --green: #7CA982;
   --blue: #0D00A4;
-
+  --menuColor: var(--red);
 }
 body{margin: 0;
 max-width: 100vw;

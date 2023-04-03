@@ -5,10 +5,12 @@ import React from 'react';
 import {Link, useSearchParams} from "react-router-dom";
 import './HomePage.css';
 import './HomePageDesktop.css';
-import { handleFilterChange } from '../../Util/filterSlice';
+import { handleSunglassesChange, handleGenderChange } from '../../Util/filterSlice';
+import FITS from '../../Assets/Images/FITS.png';
 import model from '../../Assets/Images/Model.png';
 import {motion} from 'framer-motion';
 import Button from '../../Util/Button';
+import { setMenuColor } from '../../Util/menuSlice';
 
 
 import "../../Assets/Fonts/Mustasurma.ttf";
@@ -21,6 +23,7 @@ import { useDispatch } from 'react-redux';
 export default function HomePage(props) {
 
 const dispatch = useDispatch();
+dispatch(setMenuColor('var(--red'))
     return (
           <div className="HomePageComponent">
               <div className="Section YWBYESection">
@@ -33,23 +36,24 @@ const dispatch = useDispatch();
                     <img src={model} className="Model" alt="a sylised photo female model wearing sunglasses"/>
                 </div>
                 <div className="HomePageShopButtons">
-                  <Link to="./Shop" className="button" id="shopMen" onClick={() => { dispatch(handleFilterChange("men"))}}><Button text="shop men's"/></Link>
-                  <Link to="./Shop" className="button" id="shopWomen" onClick={() => {dispatch(handleFilterChange("women"))}}><Button text="shop women's" /></Link>
-                  <Link to="./Shop" className="button" id="shopEnby" onClick={() => {dispatch(handleFilterChange("enby"))}}><Button text="shop neutrals'" /></Link>
+                  <Link to="./Shop" className="button" id="shopMen" onClick={() => { dispatch(handleGenderChange("men"))}}><Button text="shop men's"/></Link>
+                  <Link to="./Shop" className="button" id="shopWomen" onClick={() => {dispatch(handleGenderChange("women"))}}><Button text="shop women's" /></Link>
+                  <Link to="./Shop" className="button" id="shopEnby" onClick={() => {dispatch(handleGenderChange("enby"))}}><Button text="shop neutrals'" /></Link>
                 </div>
               </div>
               <div className="SectionSpacer" />
               <div className="Section FITSSection">
-                <h1>Fun In The Sun</h1>
-                <Link to="/Shop">Shop Sunglasses</Link>
+                <h2>Have a lIttle</h2>
+                <h1>Fun In the Sun</h1>
+                <img src={FITS} id="FITS" alt="Stylised photo of a woman wearing sunglasses on a beach" />
+                <Link to="/Shop" id="FITSButton" onClick={() => {dispatch(handleSunglassesChange(true))}}><Button text="Shop sunglasses" /></Link>
               </div>
               <div className="SectionSpacer" />
               <div className="Section AboutSection">
                 <h1>Who we are</h1>
-                <p>"Eyewear Everywhere" might be an odd sloagn for an eyeglasses boutique, but our fonder had a very specific goal in mind. If you'll indulge us, we'd love to tell you the whole story.</p>
-                <Link to="/About"><Button text="Learn More" /></Link>
+                <p>"Eyewear Everywhere" might be a rather unique sloagn for an eyeglasses boutique, but our founder was nothing if not unique. If you'll indulge us, we'd love to tell you the whole story.</p>
+                <Link to="/About" ><Button text="Learn More" /></Link>
               </div>
-              <div className="SectionSpacer" />
               <div className="Section spacerSection" />
           </div>
     )

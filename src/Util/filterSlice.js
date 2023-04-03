@@ -7,12 +7,16 @@ export const filterSlice = createSlice({
         sunglasses: undefined
     },
     reducers: {
-        handleFilterChange: (state, action) => {
+        handleGenderChange: (state, action) => {
 			state.gender = state.gender===action.payload?"":action.payload;
         },
+        handleSunglassesChange: (state, action) => {
+            console.log(action.payload);
+            state.sunglasses = action.payload;
+        }
          
     }
 })
 
-export const { handleFilterChange } = filterSlice.actions
+export const { handleGenderChange, handleSunglassesChange } = filterSlice.actions
 export default filterSlice.reducer

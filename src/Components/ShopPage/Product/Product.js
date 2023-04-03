@@ -12,7 +12,6 @@ import IGMYOY from '../../../Assets/Images/IGMYOY.png';
 
 export default function Product(props) {
 	const boundaries = useRef(null);
-    const genderFilter = useSelector((state) => state.filter.gender);
     const [currentVariant, setCurrentVariant] = useState(0);
     const cart = useSelector((state) => state.cart.contents)
     const [isHover, setIsHover] = useState(false);
@@ -23,9 +22,7 @@ export default function Product(props) {
 
     }
     
-    // useEffect(() => {
-    //     setRotateBy((Math.random() * (0.1 - 0.01) + 0.01)*(Math.random() > 0.5?1:-1));
-    // },[isHover])
+
     const clipX= 15;
     const clipY= 100 - clipX;
 

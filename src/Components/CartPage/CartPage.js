@@ -11,6 +11,7 @@ import Products from "../../Util/Products";
 import LWYS from '../../Assets/Images/LWYS.webp';
 import CartListItem from './CartListItem';
 import { useState } from 'react';
+import { setMenuColor } from "../../Util/menuSlice";
 
 export default function CartPage(props) {
     const cart = useSelector((state) => state.cart);
@@ -19,6 +20,7 @@ export default function CartPage(props) {
     const rotateBy = useSelector((state) => state.rotate.rotateBy);
     const [hoverLink, sethoverLink] = useState(false);
     const dispatch = useDispatch();
+    cart.contents.length === 0 ? dispatch(setMenuColor('var(--white')) : dispatch(setMenuColor('var(--red)'));
     const animationVariants = {
         initial: {
           opaicty: 0,
@@ -94,9 +96,10 @@ export default function CartPage(props) {
                 })
                 }
                 
-                
+
                 {
                     cart.contents.length === 0 &&
+                    
                     <motion.div initial={{opacity: 0}} animate={{opacity: 1}} layout key="NTSH" className="NTSH">
                         <img id="NTSH" src={NTSH} style={{rotate: antiRotateBy}} alt="Nothing to see here" />
                         <motion.img  key="binos" id="binos" animate={{x: hoverLink?"20%":["-20%", "20%"], y: hoverLink?"15%":["0%", "15%", "0%"], rotate: hoverLink?"-50deg":["0deg", "-20deg", "-40deg"], transition: hoverLink?{duration: 0.2}:{duration: 2, repeat: Infinity, repeatType: "mirror"}}} src={binos} alt="binoculars in search of frames" />

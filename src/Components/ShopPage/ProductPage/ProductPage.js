@@ -10,11 +10,14 @@ import {motion, AnimatePresence} from 'framer-motion';
 import { SlideShow } from "./SlideShow.tsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { setMenuColor } from "../../../Util/menuSlice";
 
 export default function ProductPage(props) {
     const [searchParams, setSearchParams] = useSearchParams();
     const [quantity, setQuantity] = useState(1);
     let { name } = useParams(); 
+    const dispatch = useDispatch();
+    dispatch(setMenuColor('var(--white'));
     const emoji = ["🤓","👀","🕶️","😎","🥸","👓"];
     document.title = `The ${name} | Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;
     const tanRotateBy = useSelector((state) => state.rotate.tanRotateBy);

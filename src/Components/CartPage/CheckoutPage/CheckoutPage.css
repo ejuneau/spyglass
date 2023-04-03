@@ -1,0 +1,45 @@
+.CheckoutPageComponent {
+    display: flex;
+    flex-direction: column;
+    max-width: 100vw;
+    margin-top: -15vh;
+    height: 100vh;
+    background-color: var(--white);
+    align-items: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+.CheckoutPageComponent .ButtonComponent {
+    display: inline-block;
+}
+.CheckoutPageComponent h1 {
+    font-family: 'Varygraphie';
+    font-size: max(5vw, 2.5rem);
+    align-self: center;
+    margin-top: max(15vh, 9rem);
+}
+.CheckoutPageComponent > p {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-family: 'Noir';
+    font-size: max(1.5vw, 1rem);
+}
+.CheckoutButtons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 60vh;
+}
+.CheckoutPageComponent .spacer {
+    background-color: var(--white);
+}
+@media only screen and (min-width: 960px) {
+    .CheckoutButtons {
+        flex-direction: row;
+    }
+}

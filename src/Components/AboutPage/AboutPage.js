@@ -7,10 +7,13 @@ import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import {useSelector, useDispatch} from 'react-redux';
 import { Link } from 'react-router-dom';
 import Button from '../../Util/Button';
+import { setMenuColor } from '../../Util/menuSlice';
 
 export default function AboutPage(props) {
     const rotateBy = useSelector((state)=>state.rotate.antiRotateBy);
-    const filterRef = useRef(null)
+    const filterRef = useRef(null);
+    const dispatch = useDispatch();
+    dispatch(setMenuColor('var(--blue)'));
     const { scrollYProgress } = useScroll({
         container: filterRef,
     });

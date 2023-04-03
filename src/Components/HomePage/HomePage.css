@@ -81,22 +81,96 @@
 
 .FITSSection {
     background-color: var(--blue);
-    clip-path: polygon(0 0, 100% 7%, 100% 98%, 0 100%);
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    clip-path: polygon(0 0, 100% 7%, 100% 93%, 0 100%);
+    position: relative;
+    z-index: 1;
+    flex-direction: column;
+}
+#FITS {
+    position: absolute;
+    width: 100%;
+    bottom: -15%;
+}
+.FITSSection > h1, .FITSSection > h2 {
+    color: var(--white);
+    font-family: 'Varygraphie';
+}
+.FITSSection > h2 {
+    margin-top: max(15vh, 9rem);
+    margin-left: max(4vw, 3rem);
+    font-size: 3rem;
+    rotate: -1.5deg;
+}
+.FITSSection > h1 {
+
+    font-size: 2.6rem;
+    margin-top: 0;
+    font-size: 8rem;
+    margin-left: 5%;
+    rotate: -2deg;
+}
+#FITSButton {
+    position: absolute;
+    bottom: 15%;
+    left: 20%;
 }
 .AboutSection {
     background-color: var(--green);
-    clip-path: polygon(0 1%, 100% 0, 100% 100%, 0 100%);
+    position: relative;
+    top: min(-10vh, -6rem);
+    flex-direction: column;
+}
+.AboutSection > h1 {
+    margin-top: max(10vh, 6rem);
+    font-family: 'Portia';
+    font-size: max(5vw, 3rem);
+    align-self: flex-end;
+    margin-right: 5%;
+    color: var(--white);
+}
+
+.AboutSection > p {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    font-family: 'Noir';
+    color: var(--white);
+    font-size: 2vw;
+}
+.AboutSection > a {
+    position: absolute;
+    bottom: 20%;
+    right: 15%;
+}
+.spacerSection {
+    background: rgb(252,81,48);
+background: linear-gradient(0deg, var(--black) 1%, rgba(124,169,130,1) 100%);
+position: relative;
+top: min(-15vh, -9rem);
+margin-bottom: min(-15vh, -9rem);
 }
 
 
 @media only screen and (max-width: 1500px) {
+    #FITS {
+
+        height: 150%;
+        width: auto;
+        bottom: min(-15vh, -9rem);
+        right: max(-60vw, -18rem);
+
+    }
     .YWBYESection{
         flex-direction: column;
     }
     .ModelContainer {
         width: 100%;
         height: 55%;
-        clip-path: polygon(0 11%, 100% 0, 100% 100%, 0 96%);    
+        clip-path: polygon(0 11%, 100% 0, 100% 100%, 0 90%);    
         background-color: rgba(0,0,0,0.5);
     }
     .Model {
@@ -138,5 +212,24 @@
         height: 50%;
         right: 4%;
         bottom: -4%;
+    }
+    .FITSSection {
+        background-position: center;
+    }
+    .FITSSection > h2 { 
+        font-size: 1.5rem;
+        align-self: center;
+        margin-top: max(10vh, 6rem);
+    }
+    .FITSSection > h1 {
+        font-size: 2.6rem;
+        align-self: center;
+    }
+    #FITSButton {
+        bottom: 25%;
+        left: 5%;
+    }
+    .AboutSection > p {
+        font-size: 5vw;
     }
 }

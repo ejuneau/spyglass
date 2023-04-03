@@ -5,9 +5,12 @@ import './ContactPageDesktop.css';
 import gramophone from '../../Assets/Images/gramophone.png';
 import WLTYFY from '../../Assets/Images/WLTHFY.webp';
 import { motion } from "framer-motion";
+import { setMenuColor } from '../../Util/menuSlice';
+import { useDispatch } from "react-redux";
 
 export default function ContactPage(props) {
-
+  const dispatch = useDispatch();
+  dispatch(setMenuColor('var(--green)'));
   const animations = {
     rotate: {
       clipPath: [
