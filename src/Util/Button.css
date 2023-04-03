@@ -6,7 +6,7 @@
 }
 .ButtonComponent > p {
     margin: 0;
-    padding: max(1vh, 1rem);
+    padding: max(1vh, 1rem) !important;
     font-size: max(1vw, 2rem);
     transition: color 0.2s ease;
 }

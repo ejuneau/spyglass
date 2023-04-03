@@ -44,7 +44,7 @@
     position: relative;
 }
 #youWont {
-    max-width: 107.5%;
+    max-width: 90%;
     min-height: 20%;
     object-fit: contain;
     top: 10%;
@@ -60,12 +60,12 @@
     top: 3.5%;
 }
 #yourEyes {
-    width: 115%;
+    width: 100%;
     min-height: 20%;
     object-fit: contain;
     rotate: 0.1rad;
     top: -5%;
-    left: -6%;
+    right: -5%;
 }
 .HomePageShopButtons {
     position: absolute;
@@ -112,7 +112,7 @@
     }
     #youWont {
         rotate: -0.1rad;
-        width: 80%;
+        width: 70%;
         left: 10%;
     }
     #believe {
