@@ -30,9 +30,13 @@ export default function ShopPage(props) {
   const genderFilter = useSelector((state) => state.filter.gender)
   const sunglassesFilter = useSelector((state) => state.filter.sunglasses);
   const dispatch = useDispatch();
-  dispatch(setMenuColor('var(--red'));
+
   const emoji = ["🤓","👀","🕶️","😎","🥸","👓"];
   document.title = `Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;
+
+  useEffect(() => {
+    dispatch(setMenuColor('var(--red'));
+  }, [])
 const filterButton1 = {
   initial: {
     scale: 1,

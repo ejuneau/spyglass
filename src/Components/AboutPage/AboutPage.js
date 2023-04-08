@@ -13,11 +13,12 @@ export default function AboutPage(props) {
     const rotateBy = useSelector((state)=>state.rotate.antiRotateBy);
     const filterRef = useRef(null);
     const dispatch = useDispatch();
-    dispatch(setMenuColor('var(--blue)'));
     const { scrollYProgress } = useScroll({
         container: filterRef,
     });
   
+
+
     // const [OA, setOA] = useState(((window.innerHeight/100)*15) / (window.innerWidth));
     // const [angle, setAngle] = useState(Math.atan(OA));
     // const [rotateBy, setRotateBy] = useState(`${1 - angle}rad`)
@@ -37,7 +38,10 @@ export default function AboutPage(props) {
     //         setRotateBy(`${Math.max(angle, minAngle)}rad`);
     //         console.log("Rotation: "+rotateBy);
     //     }, [window.innerHeight, window.innerWidth]);
+    useEffect(() => {
+        dispatch(setMenuColor('var(--green)'));
 
+    },[])
     return (
         <motion.div className="AboutPageComponent" key="AboutPageComponent" ref={filterRef} variants={AboutPage}>
 

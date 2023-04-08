@@ -7,10 +7,10 @@ import WLTYFY from '../../Assets/Images/WLTHFY.webp';
 import { motion } from "framer-motion";
 import { setMenuColor } from '../../Util/menuSlice';
 import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 export default function ContactPage(props) {
   const dispatch = useDispatch();
-  dispatch(setMenuColor('var(--green)'));
   const animations = {
     rotate: {
       clipPath: [
@@ -35,7 +35,9 @@ export default function ContactPage(props) {
   transition: {repeat: Infinity, repeatType: "loop"}
 },
 }
-
+  useEffect(()=> {
+    dispatch(setMenuColor('var(--blue)'));
+  },[])
     const [toSend, setToSend] = useState({
         from_name: '',
         to_name: '',

@@ -6,9 +6,9 @@ import './Product.css';
 import './ProductDesktop.css';
 import { Link, useSearchParams } from "react-router-dom";
 import IGMYOY from '../../../Assets/Images/IGMYOY.png';
+import ProgressiveImg from '../../../Util/ProgressiveImg';
 
 
-//SOMETHING WITH FRAMER MOTION - implement filtering
 
 export default function Product(props) {
 	const boundaries = useRef(null);
@@ -17,9 +17,7 @@ export default function Product(props) {
     const [isHover, setIsHover] = useState(false);
     const [rotateBy, setRotateBy] = useState((Math.random() * (0.1 - 0.01) + 0.01)*(Math.random() > 0.5?1:-1));
     const handleHoverChange = (state) => {
-        state && setIsHover(state);
-		if (!state) {setIsHover(!isHover)}
-
+        setIsHover(state);
     }
     
 
@@ -32,40 +30,20 @@ export default function Product(props) {
             rotate: isHover?0:`${rotateBy}rad`,
         }
     }
+    
 
+    
+useEffect(() => {
 
-      const [imgsLoaded, setImgsLoaded] = useState(false)
-      const isInCart = cart.filter(item => item.id === props.product.id).find(item=>item.variant === currentVariant);
-      useEffect(() => {
-        const loadImage = images => {
-          return new Promise((resolve, reject) => {
-            const loadFront = new Image()
-            const loadAction = new Image()
-            loadFront.src = images.front
-            loadAction.src = images.action
-            // wait 2 seconds to simulate loading time
-            loadFront.onload = () =>
-              setTimeout(() => {
-                resolve(images.front)
-              }, 0)
-            loadAction.onload = () =>
-              setTimeout(() => {
-                resolve(images.action)
-              }, 0)
-      
-            loadFront.onerror = err => reject(err)
-            loadAction.onerror = err => reject(err)
-          })
-        }
-      
-        Promise.all(props.product.variants.map(variant => {loadImage(variant.photos)}))
-          .then(() => setImgsLoaded(true))
-          .catch(err => console.log("Failed to load images", err))
-      }, [])
+}, [])
+// function FrontImage()  { return  <img key={`Product ID:${props.product.id} image-front`}  src={props.product.variants[currentVariant].photos.front} style={{paddingRight: "2rem", }} id={isMobile?"mobileImg1":"Img1"} /> }
+// function ActionImage() { return  <img key={`Product ID:${props.product.id} image-action`} src={props.product.variants[currentVariant].photos.action} style={{paddingLeft: "2rem", }} id={isMobile?"mobileImg2":"Img2"} /> }
 
-function FrontImage() { return  <img key={`Product ID:${props.product.id} image-front`} src={props.product.variants[currentVariant].photos.front} style={{paddingRight: "2rem", }}  id={isMobile?"mobileImg1":"Img1"}/> }
-function ActionImage() { return  <img key={`Product ID:${props.product.id} image-action`} src={props.product.variants[currentVariant].photos.action} style={{paddingLeft: "2rem", }} id={isMobile?"mobileImg2":"Img2"}/>}
-    return imgsLoaded?(
+function FrontImage()  { return  <ProgressiveImg key={ `Product ID:${props.product.id} image-front`  }  placeholderSrc={ props.product.variants[currentVariant].thumbnailPhotos.front  }  src={ props.product.variants[currentVariant].photos.front  }  style={{ paddingRight: "2rem" }} id={isMobile?"mobileImg1":"Img1"} /> }
+function ActionImage() { return  <ProgressiveImg key={ `Product ID:${props.product.id} image-action` } placeholderSrc={ props.product.variants[currentVariant].thumbnailPhotos.action } src={ props.product.variants[currentVariant].photos.action } style={{ paddingLeft:  "2rem" }} id={isMobile?"mobileImg2":"Img2"} /> }
+
+const isInCart = cart.filter(item => item.id === props.product.id).find(item=>item.variant === currentVariant);     
+return (
         <div>
          {isMobile && <motion.div 
           key={`Product ID: ${props.product.id}`} 
@@ -91,8 +69,8 @@ function ActionImage() { return  <img key={`Product ID:${props.product.id} image
 					scrollSnapType: "x mandatory",
         }}
 				>
-                  <FrontImage id="mobileImg1" />
-                  <ActionImage id="mobileImg2"/>
+                  <ProgressiveImg key={ `Product ID:${props.product.id} image-front`  }  placeholderSrc={ props.product.variants[currentVariant].thumbnailPhotos.front  }  src={ props.product.variants[currentVariant].photos.front  }  style={{ paddingRight: "2rem" }} id={isMobile?"mobileImg1":"Img1"} /> 
+                  <ProgressiveImg key={ `Product ID:${props.product.id} image-action` } placeholderSrc={ props.product.variants[currentVariant].thumbnailPhotos.action } src={ props.product.variants[currentVariant].photos.action } style={{ paddingLeft:  "2rem" }} id={isMobile?"mobileImg2":"Img2"} />
                 </motion.div>
               </motion.div> 
             </Link>  
@@ -132,19 +110,19 @@ function ActionImage() { return  <img key={`Product ID:${props.product.id} image
             {isInCart && <img id="IGMYOY" src={IGMYOY} alt="In Cart indicator"/>}
             <Link to={props.product.variants.length>1?`/Shop/Product/${props.product.name}?variant=${currentVariant}`:`/Shop/Product/${props.product.name}`}>
               <motion.div  
-			  key={`container for ${props.product.id} ${currentVariant}`} 
-			  style={{overflow:"hidden"}} 
-			  animate={{rotate: isHover?`0`:`-${rotateBy}rad`, clipPath: `polygon(${isHover?0:clipX}% 0%, 100% ${isHover?0:clipX}%, ${isHover?100:clipY}% 100%, 0% ${isHover?100:clipY}%)`, 
-			  transition: {duration: 0.3, type: "spring", damping: 10, stiffness: 100}}}>
+                key={`container for ${props.product.id} ${currentVariant}`} 
+                style={{overflow:"hidden"}} 
+                animate={{rotate: isHover?`0`:`-${rotateBy}rad`, clipPath: `polygon(${isHover?0:clipX}% 0%, 100% ${isHover?0:clipX}%, ${isHover?100:clipY}% 100%, 0% ${isHover?100:clipY}%)`, 
+			          transition: {duration: 0.3, type: "spring", damping: 10, stiffness: 100}}}>
                 <motion.div  
-				id="productImages" 
-				layout 
-				key={`Images for ${props.product.id} ${currentVariant}`} 
-				initial={{x: "0%"}}
-				whileHover={{x: "calc(-100% - 4rem)"}}
-				>
-                  <FrontImage />
-                  <ActionImage />
+                  id="productImages" 
+                  layout 
+                  key={`Images for ${props.product.id} ${currentVariant}`} 
+                  initial={{x: "0%"}}
+                  whileHover={{x: "calc(-100% - 4rem)"}}
+                  >
+                  <ProgressiveImg key={ `Product ID:${props.product.id} image-front`  }  placeholderSrc={ props.product.variants[currentVariant].thumbnailPhotos.front  }  src={ props.product.variants[currentVariant].photos.front  }  style={{ paddingRight: "2rem" }} id={isMobile?"mobileImg1":"Img1"} /> 
+                  <ProgressiveImg key={ `Product ID:${props.product.id} image-action` } placeholderSrc={ props.product.variants[currentVariant].thumbnailPhotos.action } src={ props.product.variants[currentVariant].photos.action } style={{ paddingLeft:  "2rem" }} id={isMobile?"mobileImg2":"Img2"} />
                 </motion.div>
               </motion.div> 
             </Link>  
@@ -168,5 +146,5 @@ function ActionImage() { return  <img key={`Product ID:${props.product.id} image
             </div>
           </motion.div>}
         </div>
-    ):<h1>loading</h1>
+    )
 }

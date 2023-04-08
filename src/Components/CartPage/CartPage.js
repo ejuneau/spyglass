@@ -12,6 +12,7 @@ import LWYS from '../../Assets/Images/LWYS.webp';
 import CartListItem from './CartListItem';
 import { useState } from 'react';
 import { setMenuColor } from "../../Util/menuSlice";
+import { useEffect } from "react";
 
 export default function CartPage(props) {
     const cart = useSelector((state) => state.cart);
@@ -20,7 +21,7 @@ export default function CartPage(props) {
     const rotateBy = useSelector((state) => state.rotate.rotateBy);
     const [hoverLink, sethoverLink] = useState(false);
     const dispatch = useDispatch();
-    cart.contents.length === 0 ? dispatch(setMenuColor('var(--white')) : dispatch(setMenuColor('var(--red)'));
+
     const animationVariants = {
         initial: {
           opaicty: 0,
@@ -66,7 +67,9 @@ export default function CartPage(props) {
           }
         }
       
-
+        useEffect(() => {
+          cart.contents.length === 0 ? dispatch(setMenuColor('var(--white')) : dispatch(setMenuColor('var(--red)'));
+        }, [])
     const  formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'CAD',

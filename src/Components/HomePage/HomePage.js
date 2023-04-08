@@ -18,13 +18,17 @@ import "../../Assets/Fonts/Portia.otf";
 import "../../Assets/Fonts/A Box For.ttf";
 
 import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
 
 export default function HomePage(props) {
 
 const dispatch = useDispatch();
-dispatch(setMenuColor('var(--red'))
-    return (
+useEffect(()=> {
+  dispatch(setMenuColor('var(--red'));
+
+}, [])
+return (
           <div className="HomePageComponent">
               <div className="Section YWBYESection">
                 <div className="YWBYEContainer">

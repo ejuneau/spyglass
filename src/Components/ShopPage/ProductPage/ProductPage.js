@@ -17,7 +17,6 @@ export default function ProductPage(props) {
     const [quantity, setQuantity] = useState(1);
     let { name } = useParams(); 
     const dispatch = useDispatch();
-    dispatch(setMenuColor('var(--white'));
     const emoji = ["🤓","👀","🕶️","😎","🥸","👓"];
     document.title = `The ${name} | Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;
     const tanRotateBy = useSelector((state) => state.rotate.tanRotateBy);
@@ -27,6 +26,10 @@ export default function ProductPage(props) {
     const product = Products[Products.map(function(e) { return e.name; }).indexOf(name)];
     const {front, back, action} = product.variants[searchParams.get("variant")?searchParams.get("variant"):0].detailPhotos;
     const srcArray = [front, back, action];
+    useEffect(() => {
+        dispatch(setMenuColor('var(--white'));
+
+    }, [])
     const componentVariants = {
         initial: {
 
