@@ -1,6 +1,5 @@
 import './AboutPage.css';
 import './AboutPageDesktop.css';
-import bridge from '../../Assets/Images/bridge.png';
 import MYL from '../../Assets/Images/MYL.png';
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
@@ -39,7 +38,7 @@ export default function AboutPage(props) {
     //         console.log("Rotation: "+rotateBy);
     //     }, [window.innerHeight, window.innerWidth]);
     useEffect(() => {
-        dispatch(setMenuColor('var(--green)'));
+        dispatch(setMenuColor('var(--red)'));
 
     },[])
     return (

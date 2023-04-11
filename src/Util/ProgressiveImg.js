@@ -14,7 +14,7 @@ const ProgressiveImg = ({ placeholderSrc, src, ...props }) => {
 
       const customClass =
         placeholderSrc && imgSrc === placeholderSrc ? "loading" : "loaded";
-      console.log(customClass)
+
     return (
       <img
         {...{ src: imgSrc, ...props }}

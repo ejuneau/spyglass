@@ -29,7 +29,6 @@ export default function CartListItem(props) {
         setDecCounter(prevNumber => prevNumber + 1);
     }
     useEffect(()=> {
-        console.log(incCounter, decCounter);
         setDecDirection(incCounter > decCounter ? {initial: "1rem", exit: "-1rem"} : {initial: "-1rem", exit: "1rem"});
     }, [incCounter, decCounter])
     return(

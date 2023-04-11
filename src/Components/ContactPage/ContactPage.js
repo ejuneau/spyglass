@@ -36,7 +36,7 @@ export default function ContactPage(props) {
 },
 }
   useEffect(()=> {
-    dispatch(setMenuColor('var(--blue)'));
+    dispatch(setMenuColor('var(--red)'));
   },[])
     const [toSend, setToSend] = useState({
         from_name: '',

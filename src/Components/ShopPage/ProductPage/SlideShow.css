@@ -1,7 +1,7 @@
 
   .SlideShow {
     width: 100%;
-    /* min-height: 60vh; */
+    min-height: 60vh; 
     min-width: 100%;
     touch-action: pan-x;
   }
@@ -19,7 +19,6 @@
   .next,
   .prev {
     position: absolute;
-    color: var(--red);
     width: 10vw;
     display: flex;
     justify-content: center;
@@ -29,6 +28,13 @@
     cursor: pointer;
     z-index: 2;
     top: 50%;
+    mix-blend-mode: exclusion;
+  }
+  .next > svg, .prev > svg {
+    width: 100% !important;
+  }
+  .next > svg * {
+    width: 100% !important;
   }
   
   .next {

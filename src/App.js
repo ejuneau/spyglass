@@ -24,6 +24,7 @@ import { AnimatePresence, motion, LayoutGroup } from "framer-motion";
 import {useSelector, useDispatch} from 'react-redux';
 import { handleRotateChange } from './Util/rotateSlice';
 import { faCropSimple } from '@fortawesome/free-solid-svg-icons';
+import LoadingPageComponent from './Util/LoadingPage';
 
 
 function App() {
@@ -62,23 +63,11 @@ function App() {
         dispatch(handleRotateChange(Math.max(angle, minAngle)));
       }, [angle])
 
-    // useEffect(() => {
-  //   document.title = `Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;
-  // }, [emoji])
-
   const emoji = ["🤓","👀","🕶️","😎","🥸","👓","🥽","🔍","🔎","🔭"];
-  document.title = `Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;
-
-  const [sort, setSort] = useState('');
-  const handleSortChange = (sortBy) => {
-    if ( sort === sortBy ) {
-      setSort('');
-      console.log("Active Sort: None");
-    } else {
-      setSort(sortBy);
-      console.log("Active Sort: " + sortBy);
-    }
-  }
+  useEffect(() => {
+    document.title = `Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;
+  }, [])
+  
 
 
   const pageTransition = {
@@ -92,7 +81,6 @@ function App() {
       }
     },
     show: {
-
       y: window.innerHeight<=960?"0rem":"0vh",
       display: "inherit",
       transition: {
@@ -104,15 +92,36 @@ function App() {
   return (
 	<AnimatePresence>
 		<motion.div className="Content" key="Content" variants={pageTransition} initial="show" layout animate={showMenu?"hidden":"show"} > 
-			<Routes>
-				<Route path="/" element={<HomePage />} />
-				<Route path="/About" element={<AboutPage />} />
-				<Route path="/Shop" element={<ShopPage />} />
-					<Route path="/Shop/Product/:name" element={<ProductPage key="ProductPageComponent" />} />
-				<Route path="/Cart" element={<CartPage />} />
-          <Route path="/Cart/Checkout" element={<CheckoutPage />} />
-				<Route path="/Contact" element={<ContactPage />} />
-			</Routes>
+        	<Routes>
+          		<Route path="/" element={
+            		<AnimatePresence mode="wait" key="ContentRoute">
+						<motion.div key="HomePageRoute" initial={{opacity: 0}} animate={{opacity: 1 }} exit={{opacity: 0}}>
+							<HomePage />
+						</motion.div>
+					</AnimatePresence>
+				} />
+				<Route path="/About" element={
+					<AnimatePresence mode="wait" key="ContentRoute">
+						<motion.div key="AboutPageRoute" initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
+							<AboutPage />
+						</motion.div>
+					</AnimatePresence>
+				} />
+				<Route path="/Shop"  element={
+					<AnimatePresence mode="wait" key="ContentRoute">
+						<motion.div key="ShopPageRoute" initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
+							<ShopPage />
+						</motion.div>
+					</AnimatePresence>
+				} />
+            		<Route path="/Shop/Product/:name" element={
+                      <ProductPage key="ProductPageComponent:name" />
+                } />
+          		<Route path="/Cart" element={<CartPage />} />
+            		<Route path="/Cart/Checkout" element={<CheckoutPage />} />
+          		<Route path="/Contact" element={<ContactPage />} />
+        	</Routes>
+			{/* <LoadingPageComponent /> */}
 		</motion.div>
 	</AnimatePresence>
   );

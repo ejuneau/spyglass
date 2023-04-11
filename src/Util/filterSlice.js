@@ -11,7 +11,6 @@ export const filterSlice = createSlice({
 			state.gender = state.gender===action.payload?"":action.payload;
         },
         handleSunglassesChange: (state, action) => {
-            console.log(action.payload);
             state.sunglasses = action.payload;
         }
          

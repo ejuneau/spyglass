@@ -9,11 +9,6 @@ import menuReducer from './menuSlice';
 import filterReducer from "./filterSlice";
 import rotateReducer from "./rotateSlice";
 
-// export default configureStore({
-//     reducer: {
-//         cart: cartReducer,
-//     },
-// })
 const persistConfig = {
     key: 'root',
     storage: storage,
@@ -28,7 +23,8 @@ export const store = configureStore({
         cart: persistedCartReducer,
         menu: menuReducer,
         rotate: rotateReducer,
-        filter: filterReducer},
+        filter: filterReducer
+    },
     devTools: process.env.NODE_ENV !== 'production',
     middleware: [thunk]
 })

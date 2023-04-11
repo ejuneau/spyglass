@@ -27,7 +27,7 @@ export default function ProductPage(props) {
     const {front, back, action} = product.variants[searchParams.get("variant")?searchParams.get("variant"):0].detailPhotos;
     const srcArray = [front, back, action];
     useEffect(() => {
-        dispatch(setMenuColor('var(--white'));
+        dispatch(setMenuColor('var(--red'));
 
     }, [])
     const componentVariants = {
@@ -90,19 +90,20 @@ export default function ProductPage(props) {
                 {
                 product.variants.map(variant => {
                     return  (
-                        <img 
+                        <Link to={`/Shop/Product/${product.name}?variant=${product.variants.indexOf(variant)}`} key={`VariantButtonLink${product.variants.indexOf(variant)}`} replace>
+                         <img 
                         key={`variant${product.variants.indexOf(variant)}`}   
                         style={{borderRadius: "50%", }} src={variant.circleColor} 
                         fill={variant.circleColor} 
                         className={`Variant ${Number(searchParams.get("variant")) === product.variants.indexOf(variant) && "activeVariant"}`}
                         onClick={()=>{
-                            setSearchParams({variant: product.variants.indexOf(variant)}); 
-                            setQuantity(cart.filter(item => item.id === product.id)
-                            .find(item=>item.variant !== Number(searchParams.get("variant")))?
-                                cart.filter(item => item.id === product.id)
-                                .find(item=>item.variant !== Number(searchParams.get("variant"))).quantity
-                                :1)}} 
-                        />
+                             setQuantity(cart.filter(item => item.id === product.id)
+                             .find(item=>item.variant !== Number(searchParams.get("variant")))?
+                                 cart.filter(item => item.id === product.id)
+                                 .find(item=>item.variant !== Number(searchParams.get("variant"))).quantity
+                                 :1)}} 
+                         />
+                        </Link>
                         )
                 }
                 )}
@@ -123,6 +124,7 @@ export default function ProductPage(props) {
                     {"back"}
                 </motion.div>
             </Link>
+            <div className="cutoutSpacer" />
             <div className="spacer" />
         </motion.div>
     )
@@ -149,9 +151,7 @@ function CartButtons(props) {
         setDecCounter(prevNumber => prevNumber + 1);
     }
     useEffect(()=> {
-        console.log(incCounter, decCounter);
         setDecDirection(incCounter > decCounter ? {initial: "1rem", exit: "-1rem"} : {initial: "-1rem", exit: "1rem"});
-        console.log(decDirection)
     }, [incCounter, decCounter])
 
 

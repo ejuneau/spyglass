@@ -10,6 +10,11 @@
         height: 80vh;
     }
     .prev, .next {
-        display: none;
+        top: 65%;
+
+
+    }
+    .prev {
+        left: 10%;
     }
     }

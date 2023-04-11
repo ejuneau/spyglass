@@ -12,14 +12,14 @@ header{
 }
 
 .menu-cart {
-display: flex;
-min-height: 3rem;
-max-height: 3rem;
-margin-left: 5vw;
-margin-right: auto;
-width: 4rem;
-justify-content: space-between;
-align-items: center;
+  display: flex;
+  min-height: 3rem;
+  max-height: 3rem;
+  margin-left: 5vw;
+  margin-right: auto;
+  width: 4rem;
+  justify-content: space-between;
+  align-items: center;
 
 }
 .SpacerLogo {
@@ -35,45 +35,31 @@ align-items: center;
     height: 3rem;
 }
 .menu-cart p {
-    font-size: 3em;
-    margin: 0;
-    margin-bottom: -0.5rem;
-    width: 3rem;
-    text-align: center;
+  font-size: 3em;
+  margin: 0;
+  margin-bottom: -0.5rem;
+  width: 3rem;
+  text-align: center;
 
 }
 .cartCountContainer {
   position: relative;
   margin: 0;
   z-index: 10;
-  width: 2vw;
   display: flex;
   justify-content: center;
   align-items: flex-end;
   height: auto;
   margin-left: auto;
-  right: max(5vw, 3rem);
-
-}
-#shoppingBag {
-  height: 125%;
-  min-width: 5rem;
-  object-fit: contain;
-  position: absolute;
-  margin-left: 1vw;
-  top: min(-2vh, -1rem);
-  min-height: 3rem;
-  transition: opacity 0.2s ease;
+  right: max(5vw, 2.5rem);
+  width: 2rem;
 
 }
 .cartCountContainer p {
-  font-size: max(4vw, 3rem);
+
   margin: 0;
   position: relative;
   z-index: 5;
-
-
-
 }
 .hamburger-container {
 
@@ -89,10 +75,6 @@ align-items: center;
     -ms-transform: scale(0.9, -1);
     transform: scale(0.9, -1);
   }
-  p#cart-count {
-position: relative;
-bottom : 0vh;
-  }
 
 .logo {
   width: 50vw;
@@ -104,3 +86,30 @@ max-width: 840px;
 user-select: none;
 cursor: pointer;
 }
+
+p#cart-count {
+  position: relative;
+  font-family: "Portia";
+  color: var(--red);
+  right: -0.5rem;
+  font-size: max(4vw, 3rem);
+  top: min(0.5rem, 0.7vh);
+  }
+  #shoppingBag {
+    transition: opacity 0.2s ease;
+    height: 150%;
+    position: absolute;
+    top: -30%;
+    /* object-fit: contain;
+    position: absolute;
+    top: min(-2vh, -1rem);
+    min-height: 3rem; */
+  }
+  .ShoppingBagContainer {
+    height: 150%;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

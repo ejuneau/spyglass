@@ -1,16 +1,14 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import logoWhite from '../Assets/Images/Logo (White, slogan).png';
-import logoBlack from '../Assets/Images/Logo (Black, slogan).png';
 import {AnimatePresence, motion} from 'framer-motion';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Menu from './Menu';
 import './Header.css';
 import {useSelector, useDispatch} from 'react-redux';
 import { toggleMenu } from './menuSlice';
-import shoppingBag from '../Assets/Images/shoppingBag.png';
-import { useEffect } from 'react';
+import { ReactComponent as ShoppingBag} from '../Assets/Images/shoppingBag.svg';
+
 
 
 
@@ -19,10 +17,9 @@ export default function Header(props) {
     const cart = useSelector((state) => state.cart.count);
     const showMenu = useSelector((state) => state.menu.showMenu);
     const dispatch = useDispatch();
-    const menuColor = useSelector((state) => state.menu.menuColor);
-
     const [isHover, setIsHover] = useState(false);
-    const handleHoverChange = () => {setIsHover(!isHover)};
+    const [clickCount, setClickCount] = useState(0);
+
 
     const hamburger = {
         hidden: {
@@ -51,7 +48,9 @@ export default function Header(props) {
             scale: 0.9
         }
     }
-
+    function onTap() {
+        setClickCount(clickCount => clickCount + 1);
+      }
     const spacerLogo = {
         show: {
             filter: "blur(0px) invert(100%)",
@@ -87,7 +86,6 @@ export default function Header(props) {
             }
         },
     }
-    useEffect(() => {console.log(menuColor)}, [])
     return (
         <div className="HeaderComponent">
             <header>
@@ -106,16 +104,27 @@ export default function Header(props) {
                 </Link>
                 <Link to="/Cart" className="cartCountContainer" onClick={()=>{dispatch(toggleMenu(false))}}>
                     <AnimatePresence mode="popLayout">
-                        <motion.p 
-                        key={`KartKount ${cart}`} 
-                        initial={{y:0}} 
-                        animate={{y: ["0rem", "0.5rem", "0rem"], scaleX: [-1,1], transition: {duration: 0.25}}} 
-                        exit={{opacity:0, y:"-1rem"}}
-                        id="cart-count" 
-                        style={{"fontFamily": "Portia", "color": "var(--white)", "opacity":cart>0?1:0}}>
-                            {cart}
+                        <motion.div key={`ShoppingBagContainer${cart}`} className="ShoppingBagContainer"
+                            initial={{y:"0.5rem"}}
+                            animate={{y: "0rem", rotate: ["0deg", "5deg", "0deg"], x: showMenu?1000:0, transition: {duration: 0.25, rotate: { duration: 0.2}, }}}
+                            exit={{opacity: 0, transition: {duration: 0.01, delay: -0.02}}}
+                            whileHover={{scale: 1.15}}
+                            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                            whileTap={{scaleX: [1, -1, 1], transition: {duration: 0.3}}}
+                            
+                        >
+                            <motion.p 
+                                key={`KartKount ${cart}`} 
+                                initial={{y:0}} 
+                                animate={{y: ["0rem", "0.5rem", "0rem"], scaleX: [-1,1], skew: '1deg, -15deg', transition: {duration: 0.25}}} 
+                                exit={{opacity:0, y:"-1rem"}}
+                                id="cart-count" 
+                                style={{"opacity": cart>1?1:0}}
+                            >
+                                {cart}
                             </motion.p>
-                            <img src={shoppingBag} style={{opacity: cart>0?1:0}} id="shoppingBag" alt="icon of shopping bag"/>
+                            <ShoppingBag  style={{"opacity": cart>0?1:0}} id="shoppingBag" alt="Shopping Bag icon" />
+                        </motion.div>
                     </AnimatePresence>
                     </Link>
             </div>

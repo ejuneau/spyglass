@@ -18,7 +18,6 @@
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    border: 1px solid blue;
 
 }
 #IGMYOY {
@@ -27,6 +26,8 @@
     mix-blend-mode: multiply;
     pointer-events: none;
     opacity: 0.5;
+    left: 0;
+    z-index: 1;
 
 }
 #productImages img {
