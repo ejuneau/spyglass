@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/spyglass/static/css/main.41c91829.css",
-    "main.js": "/spyglass/static/js/main.859decd4.js",
+    "main.css": "/spyglass/static/css/main.15d0e094.css",
+    "main.js": "/spyglass/static/js/main.8ddbec3c.js",
     "static/js/496.4f6299c2.chunk.js": "/spyglass/static/js/496.4f6299c2.chunk.js",
     "static/media/ProductPageFront.png": "/spyglass/static/media/ProductPageFront.a8a5d25afcf05f51e6e9.png",
     "static/media/ProductPageBack.png": "/spyglass/static/media/ProductPageBack.58d9c683978e16574d74.png",
@@ -15,10 +15,11 @@
     "static/media/A Box For 3.ttf": "/spyglass/static/media/A Box For 3.636c12c25ad6291c0e00.ttf",
     "static/media/binos.png": "/spyglass/static/media/binos.b3c819667715b13e1d3a.png",
     "static/media/IGMYOY.png": "/spyglass/static/media/IGMYOY.5a8ec8529a0630c944d8.png",
+    "static/media/shoppingBag.svg": "/spyglass/static/media/shoppingBag.efd5c98f3a7ee72fd1025d4319d353fc.svg",
     "static/media/Got_Heroin.ttf": "/spyglass/static/media/Got_Heroin.10a96edd773f9045535c.ttf",
     "static/media/FITS.png": "/spyglass/static/media/FITS.1b4374aedc759ac77ff5.png",
     "static/media/NTSH.png": "/spyglass/static/media/NTSH.30fbcfd5de8d23a4462a.png",
-    "static/media/gramophone.png": "/spyglass/static/media/gramophone.45a6eab67444ed13733e.png",
+    "static/media/gramophone.png": "/spyglass/static/media/gramophone.404a3a953a3cbd749f2f.png",
     "static/media/VarygraphiePersonalUseOnlyRegular-nRWX1.otf": "/spyglass/static/media/VarygraphiePersonalUseOnlyRegular-nRWX1.71dda03d3f8d7b4bdc1c.otf",
     "static/media/A Box For.ttf": "/spyglass/static/media/A Box For.1adc5923f1345faf83a0.ttf",
     "static/media/A Box For 2.ttf": "/spyglass/static/media/A Box For 2.de9c03b33edb0f613c59.ttf",
@@ -32,19 +33,18 @@
     "static/media/LWYS.webp": "/spyglass/static/media/LWYS.448ef4ff908e2b136632.webp",
     "static/media/Portia.otf": "/spyglass/static/media/Portia.37d0b97bcc33d5c4647d.otf",
     "static/media/Logo (White, slogan).png": "/spyglass/static/media/Logo (White, slogan).16d8169314de2ab4905e.png",
-    "static/media/Logo (Black, slogan).png": "/spyglass/static/media/Logo (Black, slogan).cecb9361a02c45f640dd.png",
     "static/media/MYL.png": "/spyglass/static/media/MYL.7c15347f71938b871805.png",
     "static/media/believe.webp": "/spyglass/static/media/believe.1c32978a09f593ff467d.webp",
     "static/media/Noir_regular.otf": "/spyglass/static/media/Noir_regular.60dea6f6bd568d740696.otf",
-    "static/media/WLTHFY.webp": "/spyglass/static/media/WLTHFY.3c53c7481c05c083f9ae.webp",
-    "static/media/result.svg": "/spyglass/static/media/result.dbf26cca6b53c360af5fd47e28ef1e89.svg",
+    "static/media/WLTHFY.webp": "/spyglass/static/media/WLTHFY.7b79743b04b30c827066.webp",
+    "static/media/nextCopy.svg": "/spyglass/static/media/nextCopy.6159928b57e9e9a39d34287a23a4861c.svg",
     "index.html": "/spyglass/index.html",
-    "main.41c91829.css.map": "/spyglass/static/css/main.41c91829.css.map",
-    "main.859decd4.js.map": "/spyglass/static/js/main.859decd4.js.map",
+    "main.15d0e094.css.map": "/spyglass/static/css/main.15d0e094.css.map",
+    "main.8ddbec3c.js.map": "/spyglass/static/js/main.8ddbec3c.js.map",
     "496.4f6299c2.chunk.js.map": "/spyglass/static/js/496.4f6299c2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.41c91829.css",
-    "static/js/main.859decd4.js"
+    "static/css/main.15d0e094.css",
+    "static/js/main.8ddbec3c.js"
   ]
 }
