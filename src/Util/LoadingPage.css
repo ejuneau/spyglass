@@ -5,14 +5,18 @@
     background-color: var(--black);
     top: 0;
     z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #LoadingImage {
     filter: invert(100%);
     mix-blend-mode: exclusion;
     opacity: 0.5;
-    position: absolute;
-    width: 50%;
-    top: 50%;
-    left: 25%;
 
 }
+.MYL {
+    width: 50%;
+}
+.A {
+    width: 10%;}

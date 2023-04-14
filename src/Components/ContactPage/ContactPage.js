@@ -2,15 +2,12 @@ import React, { useState } from "react";
 import { send } from 'emailjs-com';
 import './ContactPage.css';
 import './ContactPageDesktop.css';
-import gramophone from '../../Assets/Images/gramophone.png';
-import WLTYFY from '../../Assets/Images/WLTHFY.webp';
+import gramophone from '../../Assets/Images/ContactPage/gramophone.png';
+import WLTYFY from '../../Assets/Images/ContactPage/WLTHFY.webp';
 import { motion } from "framer-motion";
-import { setMenuColor } from '../../Util/menuSlice';
-import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
 export default function ContactPage(props) {
-  const dispatch = useDispatch();
   const animations = {
     rotate: {
       clipPath: [
@@ -35,9 +32,11 @@ export default function ContactPage(props) {
   transition: {repeat: Infinity, repeatType: "loop"}
 },
 }
-  useEffect(()=> {
-    dispatch(setMenuColor('var(--red)'));
-  },[])
+
+useEffect(() => {
+  const emoji = ["🤓","👀","🕶️","😎","🥸","👓","🥽","🔍","🔎","🔭"];
+  document.title = `Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;
+}, [])
     const [toSend, setToSend] = useState({
         from_name: '',
         to_name: '',

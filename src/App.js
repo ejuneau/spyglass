@@ -8,8 +8,7 @@ import ProductPage from './Components/ShopPage/ProductPage/ProductPage.js';
 import CartPage from './Components/CartPage/CartPage';
 import ContactPage from './Components/ContactPage/ContactPage';
 import CheckoutPage from './Components/CartPage/CheckoutPage/CheckoutPage';
-import Menu from './Util/Menu';
-import Header from './Util/Header';
+
 
 
 import "./Assets/Fonts/Mustasurma.ttf";
@@ -19,17 +18,16 @@ import "./Assets/Fonts/Noir_regular.otf";
 import "./Assets/Fonts/Got_Heroin.ttf";
 
 import React, { useState, useEffect } from 'react';
-import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route, useLocation, Routes } from 'react-router-dom';
-import { AnimatePresence, motion, LayoutGroup } from "framer-motion";
+import {  Route, Routes } from 'react-router-dom';
+import { AnimatePresence, motion } from "framer-motion";
 import {useSelector, useDispatch} from 'react-redux';
-import { handleRotateChange } from './Util/rotateSlice';
-import { faCropSimple } from '@fortawesome/free-solid-svg-icons';
-import LoadingPageComponent from './Util/LoadingPage';
+import { handleRotateChange } from './Util/Store/rotateSlice';
 
 
 function App() {
 	const showMenu = useSelector((state) => state.menu.showMenu);
   const rotateBy = useSelector((state) => state.rotate.rotateBy);
+  const isLoading = useSelector((state) => state.loading.isLoading);
   const dispatch = useDispatch();
   //Calculate vh for mobile
   let vh = window.innerHeight * 0.01;
@@ -89,27 +87,54 @@ function App() {
     }
   }
 
+  const navigationTransitions = {
+    slideLeft: {
+      initial: {
+        x: '-100%'
+      },
+      animate: {
+        x: 0
+      },
+      exit: {
+        x: '100%',
+        transition: { duration: 0.2}
+      }
+    },
+    slideRight: {
+      initial: {
+        x: '100%'
+      },
+      animate: {
+        x: 0
+      },
+      exit: {
+        x: '-100%',
+        transition: { duration: 0.5}
+      }
+    }
+  }
+
   return (
 	<AnimatePresence>
 		<motion.div className="Content" key="Content" variants={pageTransition} initial="show" layout animate={showMenu?"hidden":"show"} > 
         	<Routes>
           		<Route path="/" element={
-            		<AnimatePresence mode="wait" key="ContentRoute">
-						<motion.div key="HomePageRoute" initial={{opacity: 0}} animate={{opacity: 1 }} exit={{opacity: 0}}>
+            		<AnimatePresence mode="popLayout" key="ContentRoute">
+						<motion.div key="HomePageRoute" variants={navigationTransitions.slideLeft} initial="initial" animate="animate" exit="exit" >
 							<HomePage />
 						</motion.div>
 					</AnimatePresence>
 				} />
 				<Route path="/About" element={
-					<AnimatePresence mode="wait" key="ContentRoute">
-						<motion.div key="AboutPageRoute" initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
+					<AnimatePresence mode="popLayout" key="ContentRoute">
+						<motion.div key="AboutPageRoute" variants={navigationTransitions.slideLeft} initial="initial" animate="animate" exit="exit">
 							<AboutPage />
 						</motion.div>
 					</AnimatePresence>
 				} />
 				<Route path="/Shop"  element={
-					<AnimatePresence mode="wait" key="ContentRoute">
-						<motion.div key="ShopPageRoute" initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
+					<AnimatePresence mode="popLayout" key="ContentRoute">
+						<motion.div key="ShopPageRoute" variants={navigationTransitions.slideLeft} initial="initial" animate="animate" exit="exit">
 							<ShopPage />
 						</motion.div>
 					</AnimatePresence>
@@ -121,7 +146,6 @@ function App() {
             		<Route path="/Cart/Checkout" element={<CheckoutPage />} />
           		<Route path="/Contact" element={<ContactPage />} />
         	</Routes>
-			{/* <LoadingPageComponent /> */}
 		</motion.div>
 	</AnimatePresence>
   );

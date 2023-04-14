@@ -1,68 +1,61 @@
-import action1 from '../Assets/Images/ProductPhotos/1/action.png';
-import front1 from '../Assets/Images/ProductPhotos/1/front.png';
-import back1 from '../Assets/Images/ProductPhotos/1/back.png';
-import productFront1 from '../Assets/Images/ProductPhotos/1/ProductPageFront.png';
-import productBack1 from '../Assets/Images/ProductPhotos/1/ProductPageBack.png';
-import productAction1 from '../Assets/Images/ProductPhotos/1/ProductPageAction.png';
-import thumbnailFront1 from '../Assets/Images/ProductPhotos/1/thumbnails/front.png';
-import thumbnailAction1 from '../Assets/Images/ProductPhotos/1/thumbnails/action.png';
+import action1 from '../Assets/Images/ShopPage/ProductPhotos/1/action.png';
+import front1 from '../Assets/Images/ShopPage/ProductPhotos/1/front.png';
+import productFront1 from '../Assets/Images/ShopPage/ProductPhotos/1/ProductPageFront.png';
+import productBack1 from '../Assets/Images/ShopPage/ProductPhotos/1/ProductPageBack.png';
+import productAction1 from '../Assets/Images/ShopPage/ProductPhotos/1/ProductPageAction.png';
+import thumbnailFront1 from '../Assets/Images/ShopPage/ProductPhotos/1/thumbnails/front.png';
+import thumbnailAction1 from '../Assets/Images/ShopPage/ProductPhotos/1/thumbnails/action.png';
 
 
-import action2 from '../Assets/Images/ProductPhotos/2/action.png';
-import front2 from '../Assets/Images/ProductPhotos/2/front.png';
-import back2 from '../Assets/Images/ProductPhotos/2/back.png';
-import productFront2 from '../Assets/Images/ProductPhotos/2/ProductPageFront.png';
-import productBack2 from '../Assets/Images/ProductPhotos/2/ProductPageBack.png';
-import productAction2 from '../Assets/Images/ProductPhotos/2/ProductPageAction.png';
-import thumbnailFront2 from '../Assets/Images/ProductPhotos/2/thumbnails/front.png';
-import thumbnailAction2 from '../Assets/Images/ProductPhotos/2/thumbnails/action.png';
+import action2 from '../Assets/Images/ShopPage/ProductPhotos/2/action.png';
+import front2 from '../Assets/Images/ShopPage/ProductPhotos/2/front.png';
+import productFront2 from '../Assets/Images/ShopPage/ProductPhotos/2/ProductPageFront.png';
+import productBack2 from '../Assets/Images/ShopPage/ProductPhotos/2/ProductPageBack.png';
+import productAction2 from '../Assets/Images/ShopPage/ProductPhotos/2/ProductPageAction.png';
+import thumbnailFront2 from '../Assets/Images/ShopPage/ProductPhotos/2/thumbnails/front.png';
+import thumbnailAction2 from '../Assets/Images/ShopPage/ProductPhotos/2/thumbnails/action.png';
 
-import action3 from '../Assets/Images/ProductPhotos/3/action.png';
-import front3 from '../Assets/Images/ProductPhotos/3/front.png';
-import back3 from '../Assets/Images/ProductPhotos/3/back.png';
-import productFront3 from '../Assets/Images/ProductPhotos/3/ProductPageFront.png';
-import productBack3 from '../Assets/Images/ProductPhotos/3/ProductPageBack.png';
-import productAction3 from '../Assets/Images/ProductPhotos/3/ProductPageAction.png';
-import thumbnailFront3 from '../Assets/Images/ProductPhotos/3/thumbnails/front.png';
-import thumbnailAction3 from '../Assets/Images/ProductPhotos/3/thumbnails/action.png';
+import action3 from '../Assets/Images/ShopPage/ProductPhotos/3/action.png';
+import front3 from '../Assets/Images/ShopPage/ProductPhotos/3/front.png';
+import productFront3 from '../Assets/Images/ShopPage/ProductPhotos/3/ProductPageFront.png';
+import productBack3 from '../Assets/Images/ShopPage/ProductPhotos/3/ProductPageBack.png';
+import productAction3 from '../Assets/Images/ShopPage/ProductPhotos/3/ProductPageAction.png';
+import thumbnailFront3 from '../Assets/Images/ShopPage/ProductPhotos/3/thumbnails/front.png';
+import thumbnailAction3 from '../Assets/Images/ShopPage/ProductPhotos/3/thumbnails/action.png';
 
-import action4 from '../Assets/Images/ProductPhotos/4/action.png';
-import front4 from '../Assets/Images/ProductPhotos/4/front.png';
-import back4 from '../Assets/Images/ProductPhotos/4/back.png';
-import transparent from '../Assets/Images/transparent.png';
-import productFront4 from '../Assets/Images/ProductPhotos/4/ProductPageFront.png';
-import productBack4 from '../Assets/Images/ProductPhotos/4/ProductPageBack.png';
-import productAction4 from '../Assets/Images/ProductPhotos/4/ProductPageAction.png';
-import thumbnailFront4 from '../Assets/Images/ProductPhotos/4/thumbnails/front.png';
-import thumbnailAction4 from '../Assets/Images/ProductPhotos/4/thumbnails/action.png';
+import action4 from '../Assets/Images/ShopPage/ProductPhotos/4/action.png';
+import front4 from '../Assets/Images/ShopPage/ProductPhotos/4/front.png';
+import transparent from '../Assets/Images/ShopPage/transparent.png';
+import productFront4 from '../Assets/Images/ShopPage/ProductPhotos/4/ProductPageFront.png';
+import productBack4 from '../Assets/Images/ShopPage/ProductPhotos/4/ProductPageBack.png';
+import productAction4 from '../Assets/Images/ShopPage/ProductPhotos/4/ProductPageAction.png';
+import thumbnailFront4 from '../Assets/Images/ShopPage/ProductPhotos/4/thumbnails/front.png';
+import thumbnailAction4 from '../Assets/Images/ShopPage/ProductPhotos/4/thumbnails/action.png';
 
-import action5 from '../Assets/Images/ProductPhotos/5/action.png';
-import front5 from '../Assets/Images/ProductPhotos/5/front.png';
-import back5 from '../Assets/Images/ProductPhotos/5/back.png';
-import leopardPrint from '../Assets/Images/leopardPrint.png';
-import productFront5 from '../Assets/Images/ProductPhotos/5/ProductPageFront.png';
-import productBack5 from '../Assets/Images/ProductPhotos/5/ProductPageBack.png';
-import productAction5 from '../Assets/Images/ProductPhotos/5/ProductPageAction.png';
-import thumbnailFront5 from '../Assets/Images/ProductPhotos/5/thumbnails/front.png';
-import thumbnailAction5 from '../Assets/Images/ProductPhotos/5/thumbnails/action.png';
+import action5 from '../Assets/Images/ShopPage/ProductPhotos/5/action.png';
+import front5 from '../Assets/Images/ShopPage/ProductPhotos/5/front.png';
+import leopardPrint from '../Assets/Images/ShopPage/leopardPrint.png';
+import productFront5 from '../Assets/Images/ShopPage/ProductPhotos/5/ProductPageFront.png';
+import productBack5 from '../Assets/Images/ShopPage/ProductPhotos/5/ProductPageBack.png';
+import productAction5 from '../Assets/Images/ShopPage/ProductPhotos/5/ProductPageAction.png';
+import thumbnailFront5 from '../Assets/Images/ShopPage/ProductPhotos/5/thumbnails/front.png';
+import thumbnailAction5 from '../Assets/Images/ShopPage/ProductPhotos/5/thumbnails/action.png';
 
-import action6 from '../Assets/Images/ProductPhotos/6/action.png';
-import front6 from '../Assets/Images/ProductPhotos/6/front.png';
-import back6 from '../Assets/Images/ProductPhotos/6/back.png';
-import productFront6 from '../Assets/Images/ProductPhotos/6/ProductPageFront.png';
-import productBack6 from '../Assets/Images/ProductPhotos/6/ProductPageBack.png';
-import productAction6 from '../Assets/Images/ProductPhotos/6/ProductPageAction.png';
-import thumbnailFront6 from '../Assets/Images/ProductPhotos/6/thumbnails/front.png';
-import thumbnailAction6 from '../Assets/Images/ProductPhotos/6/thumbnails/action.png';
+import action6 from '../Assets/Images/ShopPage/ProductPhotos/6/action.png';
+import front6 from '../Assets/Images/ShopPage/ProductPhotos/6/front.png';
+import productFront6 from '../Assets/Images/ShopPage/ProductPhotos/6/ProductPageFront.png';
+import productBack6 from '../Assets/Images/ShopPage/ProductPhotos/6/ProductPageBack.png';
+import productAction6 from '../Assets/Images/ShopPage/ProductPhotos/6/ProductPageAction.png';
+import thumbnailFront6 from '../Assets/Images/ShopPage/ProductPhotos/6/thumbnails/front.png';
+import thumbnailAction6 from '../Assets/Images/ShopPage/ProductPhotos/6/thumbnails/action.png';
 
-import action7 from '../Assets/Images/ProductPhotos/7/action.png';
-import front7 from '../Assets/Images/ProductPhotos/7/front.png';
-import back7 from '../Assets/Images/ProductPhotos/7/back.png';
-import productFront7 from '../Assets/Images/ProductPhotos/7/ProductPageFront.png';
-import productBack7 from '../Assets/Images/ProductPhotos/7/ProductPageBack.png';
-import productAction7 from '../Assets/Images/ProductPhotos/7/ProductPageAction.png';
-import thumbnailFront7 from '../Assets/Images/ProductPhotos/7/thumbnails/front.png';
-import thumbnailAction7 from '../Assets/Images/ProductPhotos/7/thumbnails/action.png';
+import action7 from '../Assets/Images/ShopPage/ProductPhotos/7/action.png';
+import front7 from '../Assets/Images/ShopPage/ProductPhotos/7/front.png';
+import productFront7 from '../Assets/Images/ShopPage/ProductPhotos/7/ProductPageFront.png';
+import productBack7 from '../Assets/Images/ShopPage/ProductPhotos/7/ProductPageBack.png';
+import productAction7 from '../Assets/Images/ShopPage/ProductPhotos/7/ProductPageAction.png';
+import thumbnailFront7 from '../Assets/Images/ShopPage/ProductPhotos/7/thumbnails/front.png';
+import thumbnailAction7 from '../Assets/Images/ShopPage/ProductPhotos/7/thumbnails/action.png';
 
 const Products = [
     {
@@ -70,7 +63,7 @@ const Products = [
         name: "Mercury",
         sunglasses: true,
         gender: ["women", "enby"],
-        price: 290.00,
+        price: 190.00,
         variants: [
             {
                 frameColor: ["gold"],
@@ -123,7 +116,7 @@ const Products = [
         name: "Blend",
         sunglasses: false,
         gender: ["enby", "men", "women"],
-        price: 240.00,
+        price: 140.00,
         variants: [
             {
                 frameColor: ["translucent", "brown"],

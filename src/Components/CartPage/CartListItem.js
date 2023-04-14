@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import Products from "../../Util/Products";
 import { useSearchParams } from "react-router-dom";
-import { modifyQuantity, removeFromCart } from "../../Util/cartSlice";
+import { modifyQuantity, removeFromCart } from "../../Util/Store/cartSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 

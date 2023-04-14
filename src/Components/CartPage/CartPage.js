@@ -3,15 +3,14 @@ import './CartPage.css';
 import './CartPageDesktop.css';
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { addToCart, modifyQuantity, removeFromCart, clearCart } from "../../Util/cartSlice";
-import binos from '../../Assets/Images/binos.png';
-import NTSH from '../../Assets/Images/NTSH.png';
+import { clearCart } from "../../Util/Store/cartSlice";
+import binos from '../../Assets/Images/CartPage/binos.png';
+import NTSH from '../../Assets/Images/CartPage/NTSH.png';
 import { motion, AnimatePresence } from "framer-motion";
-import Products from "../../Util/Products";
-import LWYS from '../../Assets/Images/LWYS.webp';
+import LWYS from '../../Assets/Images/CartPage/LWYS.webp';
 import CartListItem from './CartListItem';
 import { useState } from 'react';
-import { setMenuColor } from "../../Util/menuSlice";
+import { setMenuColor } from "../../Util/Store/menuSlice";
 import { useEffect } from "react";
 
 export default function CartPage(props) {

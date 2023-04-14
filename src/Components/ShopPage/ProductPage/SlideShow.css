@@ -1,16 +1,16 @@
 
   .SlideShow {
     width: 100%;
-    min-height: 60vh; 
     min-width: 100%;
     touch-action: pan-x;
+    transition: height 0.2s ease;
   }
 .SlideShow img {
     /* height: max(60vh, 36rem); */
     width: 100%;
     position: relative;
     height: auto;
-    min-height: 40vh;
+    transition: height 0.2s ease;
     /* clip-path: polygon(0 0, 100% calc(var(--rotatedClipHeight) * -100%), 100% 100%, 0 calc(100% -(var(--rotatedClipHeight) * -100%)));  */
     /* clip-path: polygon(100% 15%, 100% 100%, 0 85%, 0% 0%); */
 
@@ -19,33 +19,50 @@
   .next,
   .prev {
     position: absolute;
-    width: 10vw;
+    width: 20vw;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     -webkit-user-select: none;
     user-select: none;
     cursor: pointer;
     z-index: 2;
-    top: 50%;
+    height: 100%;
     mix-blend-mode: exclusion;
+    rotate: var(--antiRotateBy);
+    transition: mix-blend-mode 0.2s ease;
+    
+  }
+  .next:active, .prev:active {
+    mix-blend-mode: normal;
   }
   .next > svg, .prev > svg {
-    width: 100% !important;
+    width: 50% !important;
+  }
+  .next > svg {
+    padding-bottom: 6rem;
+  }
+  .prev> svg {
+    padding-bottom: 5rem;
   }
   .next > svg * {
     width: 100% !important;
+    rotate: var(--antiRotateBy);
   }
   
   .next {
-    bottom: -7.5%;
-    right: 20%;
+    top: 0;
+    right: -1%;
     transform: scale(-1, 1);
+    
   }
   
   .prev {
-    bottom: -7.5%;
-    left: -5%;
+    top: 0%;
+    left: -1%;
+  }
+  .prev > svg * {
+    rotate: var(--rotateBy);
   }
   
 

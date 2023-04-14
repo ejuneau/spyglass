@@ -1,24 +1,23 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
-import logoWhite from '../Assets/Images/Logo (White, slogan).png';
+import logoWhite from '../Assets/Images/Util/Logo (White, slogan).png';
 import {AnimatePresence, motion} from 'framer-motion';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 import {useSelector, useDispatch} from 'react-redux';
-import { toggleMenu } from './menuSlice';
-import { ReactComponent as ShoppingBag} from '../Assets/Images/shoppingBag.svg';
+import { toggleMenu } from './Store/menuSlice';
+import { ReactComponent as ShoppingBag} from '../Assets/Images/Util/shoppingBag.svg';
 
 
 
 
 
-export default function Header(props) {
+export default function Header() {
     const cart = useSelector((state) => state.cart.count);
     const showMenu = useSelector((state) => state.menu.showMenu);
     const dispatch = useDispatch();
     const [isHover, setIsHover] = useState(false);
-    const [clickCount, setClickCount] = useState(0);
 
 
     const hamburger = {
@@ -48,12 +47,18 @@ export default function Header(props) {
             scale: 0.9
         }
     }
-    function onTap() {
-        setClickCount(clickCount => clickCount + 1);
-      }
     const spacerLogo = {
+        // show: {
+        //     filter: "blur(0px) invert(100%)",
+        //     opacity: 1,
+        //     mixBlendMode: "normal",
+        //     transition: {
+        //         duration: 0.1,
+        //         mixBlendMode: {delay: 0.1}
+        //     }
+        // },
         show: {
-            filter: "blur(0px) invert(100%)",
+            filter: "blur(0px) invert(0%)",
             opacity: 1,
             mixBlendMode: "normal",
             transition: {
@@ -64,7 +69,6 @@ export default function Header(props) {
         hidden: {
             mixBlendMode: isHover?"normal":"exclusion",
             filter: `blur(${isHover?0:3}px) invert(0%)`,
-            // opacity: isHover?1:0.75,
             scale: isHover?1.1:1,
             transition: {
                 duration: 0.1,
@@ -98,7 +102,8 @@ export default function Header(props) {
                     <motion.img key="logo" src={logoWhite} variants={Logo} animate={showMenu?"show":"hidden"} onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)} alt="Spyglass Logo" id="logo" />
                 </Link>
             </header>
-            <div className="header-spacer">
+            {/* <div className="header-spacer" style={{backgroundColor: showMenu?'var(--white)':'transparent'}}> */}
+            <div className="header-spacer" style={{backgroundColor: 'transparent'}}>
                 <Link to="/" className="logo" onClick={() => {dispatch(toggleMenu(false))}}>
                     <motion.img key="logo1" src={logoWhite} variants={spacerLogo} animate={showMenu?"show":"hidden"} onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)} alt="Spyglass Logo" id="logo" className="SpacerLogo" />
                 </Link>

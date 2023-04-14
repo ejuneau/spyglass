@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {persistor, store} from './Util/store';
+import {persistor, store} from './Util/Store/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';

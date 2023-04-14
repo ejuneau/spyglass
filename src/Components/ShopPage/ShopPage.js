@@ -1,17 +1,16 @@
 import React, {useEffect, useState } from 'react';
 import {motion, AnimatePresence} from 'framer-motion';
-import { Link } from 'react-router-dom';
 import './ShopPage.css';
 import './ShopPageDesktop.css';
 import Products from '../../Util/Products';
 import Product from './Product/Product';
 import {useSelector, useDispatch} from 'react-redux';
-import { handleGenderChange, handleSunglassesChange } from '../../Util/filterSlice';
+import { handleGenderChange, handleSunglassesChange } from '../../Util/Store/filterSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
-import { setMenuColor } from '../../Util/menuSlice';
 
-
+import { setLoading } from '../../Util/Store/LoadingSlice';
+import LoadingPage from '../../Util/LoadingPage';
 
 
 
@@ -24,19 +23,19 @@ export default function ShopPage(props) {
   const [priceSort, setPriceSort] = useState(undefined);
   const [priceSortCounter, setPriceSortCounter] = useState(0);
   const [nameSortCounter, setNameSortCounter] = useState(0);
-  const [sunglassesCounter, setSunglassesCounter] = useState(0);
 
 
   const genderFilter = useSelector((state) => state.filter.gender)
   const sunglassesFilter = useSelector((state) => state.filter.sunglasses);
+  const isLoading = useSelector((state) => state.loading.isLoading);
   const dispatch = useDispatch();
 
   const emoji = ["🤓","👀","🕶️","😎","🥸","👓"];
   document.title = `Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;
 
   useEffect(() => {
-    dispatch(setMenuColor('var(--red'));
-  }, [])
+    dispatch(setLoading(false))
+  }, [dispatch])
 const filterButton1 = {
   initial: {
     scale: 1,
@@ -87,77 +86,8 @@ const filterButton3 = {
     }
   }
 }
-  const filterButton4 = {
-    hidden: {
-      scale: 1,
-      rotate: 0,
-      skew: 0,
-      width: 0,
-      display: "none",
-      transition: {
-        display: {
-          delay: 0.2
-        },
-        width: {
-          duration: 0.2
-        }
-      }
-    },
-    show: {
-      width: "auto",
-      rotate: 2,
-      display: "inherit",
-      transition: {
-        width: {
-          duration: 0.2
-        },
-        display: {
-          delay: 0.2
-        }
-      }
-    },
-    hover: {
-      scale: (Math.random() * (1.5-1.1) + 1.1),
-      rotate: Math.ceil(Math.random() * 15) * (Math.round(Math.random()) ? 1 : -1),
-      skew: Math.ceil(Math.random() * 15) * (Math.round(Math.random()) ? 1 : -1),
-      transition: {
-        duration: 0.2,
-        
-      }
-    }
-}
-const filterButtonsContainer = {
-    hidden: {
-      opacity: 0,
-      height: 0,
-      transition: {
-          duration: 0.,
-          when: "afterChildren",
-          staggerChildren: 0.05,
-          height: {
-              type: "spring",
-              duration: 0.2
-          }
-      }
-  },
-  show: {
-      opacity: 1,
-      x:0,
-      transition: {
-          x: {
-              delay: 0.25,
-              duration: 0.2
-          },
-          height: {
-              duration: 0.2
-          },
-          staggerChildren: 0.05,
-          when: "beforeChildren",
-          type: "linear"
-          
-      }
-  }
-}
+
+
 function priceAsc(obj1, obj2) {
   if ( obj1.price  <  obj2.price ) { return -1 }
   if ( obj1.price  >  obj2.price ) { return  1 }
@@ -208,7 +138,6 @@ const animationVariants = {
   }
 } 
 const sortModes = [undefined, "asc", "desc"];
-const sunglassesModes = [undefined, true, false];
 function clearRadio(group) {
   var ele = document.getElementsByName(group);
   for(var i=0;i<ele.length;i++)
@@ -218,7 +147,6 @@ function clearRadio(group) {
   setPriceSortCounter(0)
 }
 async function handlePriceClick() {
-  // setSortedProducts(priceSort==="asc"?sortedProductsPriceAsc:priceSort==="desc"?sortedProductsPriceDesc:Products);
   setNameSortCounter(0);
   setPriceSortCounter(priceSortCounter => priceSortCounter + 1)
 }
@@ -278,16 +206,10 @@ function setSunglassesSort(sort) {
   dispatch(handleSunglassesChange(sort));
 }
 
-
-
-
-
-
-
-
-
-  return <AnimatePresence>
-    <div className="ShopPageComponent">
+  return (
+  <AnimatePresence>
+    {isLoading && <LoadingPage key="unloaded"/>}
+    <div className="ShopPageComponent" key="loaded">
       <div className="filter-buttons-container">
         <motion.div key="filterbuttonmen"    variants={filterButton1} initial="initial" whileHover="hover" className={`button filterButtons filterButtonsMen   ${genderFilter === "men"?"activeSort":""}`}   onClick={() => dispatch(handleGenderChange("men"))}  ><p>Men</p></motion.div>
         <motion.div key="filterbuttonwomen"  variants={filterButton2} initial="initial" whileHover="hover" className={`button filterButtons filterButtonsWomen ${genderFilter === "women"?"activeSort":""}`} onClick={() => dispatch(handleGenderChange("women"))}><p>Women</p></motion.div>
@@ -371,6 +293,6 @@ function setSunglassesSort(sort) {
       </div>
       <div className="spacer"></div>
   </div>
-</AnimatePresence>
+</AnimatePresence>)
 }
 

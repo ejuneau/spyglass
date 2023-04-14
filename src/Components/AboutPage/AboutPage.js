@@ -1,12 +1,12 @@
 import './AboutPage.css';
 import './AboutPageDesktop.css';
-import MYL from '../../Assets/Images/MYL.png';
+import MYL from '../../Assets/Images/AboutPage/MYL.png';
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import {useSelector, useDispatch} from 'react-redux';
 import { Link } from 'react-router-dom';
 import Button from '../../Util/Button';
-import { setMenuColor } from '../../Util/menuSlice';
+import { setMenuColor } from '../../Util/Store/menuSlice';
 
 export default function AboutPage(props) {
     const rotateBy = useSelector((state)=>state.rotate.antiRotateBy);
@@ -16,27 +16,19 @@ export default function AboutPage(props) {
         container: filterRef,
     });
   
+    useEffect(() => {
+        const emoji = ["🤓","👀","🕶️","😎","🥸","👓","🥽","🔍","🔎","🔭"];
+        document.title = `Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;
+    }, [])
 
-
-    // const [OA, setOA] = useState(((window.innerHeight/100)*15) / (window.innerWidth));
-    // const [angle, setAngle] = useState(Math.atan(OA));
-    // const [rotateBy, setRotateBy] = useState(`${1 - angle}rad`)
     const [height, setHeight] = useState("200vh");
 
     // //Calculate minimum angle to rotate by when 15vh becomes 9rem
     // //9rem in pixels
-    // const minHeight = 9 * parseFloat(getComputedStyle(document.documentElement).fontSize); 
-    // const [minAngle, setMinAngle] = useState(Math.atan(minHeight / window.innerWidth));
 
 
     useMotionValueEvent(scrollYProgress, "change", (latest) => {setHeight(`${Math.min(((1 - latest) * 1000), 100)}vh`);});
-    //     useEffect(() => {
-    //         setOA(((window.innerHeight/100)*15) / (window.innerWidth));
-    //         setAngle(Math.atan(OA));
-    //         setMinAngle(Math.atan(minHeight / window.innerWidth));
-    //         setRotateBy(`${Math.max(angle, minAngle)}rad`);
-    //         console.log("Rotation: "+rotateBy);
-    //     }, [window.innerHeight, window.innerWidth]);
+
     useEffect(() => {
         dispatch(setMenuColor('var(--red)'));
 
@@ -46,12 +38,6 @@ export default function AboutPage(props) {
 
             <div className="AboutUsContainer">
                 <div className="AboutUsSpacer"></div>
-                {/* <p>When Spyglass' founder, Karl Spirass, started selling handmade frames from carved wood, he encountered many obstacles in his path. But he perservered with a singular mantra:</p>
-                <p>"Eyewear, Everywhere."</p>
-                <p>If you'll excuse the play on words, Karl had a vision.</p>
-                <p>And we intend to stick by it.</p>
-                <p>Karl may have passed on, but we intend to do him proud. We've taken his saying to heart, and we strive to put ourselves into all we do. We like to think Karl is watching over us (through a pair of his signature frames, of course.)</p>
-                <Link to="/Shop">Shop the looks</Link> */}
                 <p>Karl Spirass founded Spyglass Eyewear on July 27, 1998. More accurately, Karl sold his first pair of frames on that day - he had been making his own frames for several years leading up to that point.</p>
                 <p>The son of a carpenter and fashion designer, Karl found the wood from his mother's toolshed and sought his father's stylistic counsel. According to his father, little Karl had been making accessories out of modelling clay as soon as he got his  hands on it. A tiny handbag here, a brightly coloured (yet proportionally accurate) shoe there, and yes - even glasses.</p>
                 <p>Karl studied pharmacology at university where he discovered a love for the human body, but he always knew his passion lied outside of life sciences. After years of dissatisfaction within this field, he decided to make a career switch - This proved difficult, as he did not quite know what he was switching to.</p>

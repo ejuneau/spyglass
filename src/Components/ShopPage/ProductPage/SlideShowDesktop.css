@@ -10,11 +10,15 @@
         height: 80vh;
     }
     .prev, .next {
-        top: 65%;
-
-
+        width: 10vw;
     }
-    .prev {
-        left: 10%;
+    .next > svg, .prev > svg {
+        width: 100% !important;
+      }
+    .prev > svg {
+        padding-bottom: 1rem;
+    }
+    .next > svg {
+        padding-bottom: 2rem;
     }
     }

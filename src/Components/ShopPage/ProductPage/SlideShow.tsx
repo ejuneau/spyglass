@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { wrap } from "popmotion";
 import './SlideShow.css';
 import './SlideShowDesktop.css';
-import { ReactComponent as BackButton} from '../../../Assets/Images/nextCopy.svg';
+import { ReactComponent as BackButton} from '../../../Assets/Images/Util/nextprev.svg';
 
 
 /**

@@ -8,6 +8,7 @@
     align-items: center;
     overflow-y: scroll;
     overflow-x: hidden;
+    background-color: var(--black);
     scroll-behavior: smooth;
 }
 /* */
@@ -15,7 +16,7 @@
 
 .backButton {
     position: absolute;
-    bottom: max(6.67vh, 4rem);
+    bottom: max(10vh, 6rem);
     right: 15vw;
     color: var(--white);
     font-size: min(15vw, 3rem);
@@ -25,24 +26,24 @@
     width: 10%;
     align-self: flex-end;
     z-index: 10;
-    mix-blend-mode: difference;
-
 
 }
 .productTitleContainer {
-    background-color: var(--white);
-    width: 100vw;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+     /* min-height: max(25vh, 15rem); */
+     /* clip-path: polygon(0 0, 100% 0, 100% 40%, 0 100%); */
+    position: relative;
+    top: -5rem;
+    left: 2rem;
+     z-index: 15;
 
-
-
-     min-height: max(25vh, 15rem);
-     clip-path: polygon(0 0, 100% 0, 100% 40%, 0 100%);
-
-     z-index: 5;
-
+}
+.TitleDescription {
+    position: relative;
+    background-color: var(--black);
 }
 .cartOptionsContainer {
     background-color: var(--black);
@@ -51,18 +52,18 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
-
-    min-height: max(25vh, 15rem);
-    clip-path: polygon(0 60%, 100% 0, 100% 100%, 0 100%);
-    
+    flex-wrap: wrap;
+    height: max(30vh, 18rem);
+    clip-path: polygon(0 50%, 100% 0, 100% 100%, 0 100%);
+    transform: translateZ(0);    
     position: relative;
     z-index: 2;
     margin-top: min(-15vh, -9rem);
 
+
 }
 .priceContainer {
     display: flex;
-    color: var(--white);
     font-family: 'portia';
     justify-content: flex-end;
     margin-right: 2vw;
@@ -70,23 +71,21 @@
 }
 #price {
     font-size: max(4rem);
+    color: var(--white);
 
 }
 #cents {
     font-size: max(2rem);
-
+    color: var(--white);
     line-height: 7rem;
 }
 .ProductPageComponent h1, .ProductPageComponent h2 {
-    
+    color: var(--white);
     margin: 0;
-    text-align: left;
 
     
 }
 .slideShowContainer {
-/* min-height: max(60vh, 36rem); */
-margin-top: min(-15vh, -9rem);
 min-width: 100vw;
 }
 .ProductPageComponent h1 {
@@ -155,16 +154,22 @@ min-width: 100vw;
     margin: 0;
 }
 .variantsContainer {
-    position: relative;
+    position: absolute;
     z-index: 50;
-    width: 100vw;
-    background-color: var(--white);
-    height: 0;
-    /* clip-path: polygon(100% 50%, 100% 100%, 0 100%, 0 20%); */
+    display: flex;
+    align-self: flex-end;
+    right: 0;
+    top: 15%;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.variantsContainer > * {
+    padding: 0 1rem;
 }
 .variantsContainer img {
     
-    position: absolute;
     height: max(5vh, 2rem);
     right: 2vw;
     bottom: -10vh;
@@ -183,7 +188,7 @@ min-width: 100vw;
     max-width: 70%;
     display: flex;
     justify-content: space-between;
-    margin-top: 5vh;
+    margin-top: max(5vh, 3rem);
 }
 
 #ICNIC {
@@ -201,6 +206,7 @@ min-width: 100vw;
     background: var(--red);
     z-index: 10;
     clip-path: polygon(13% 31%, 100% 0, 90% 81%, 0 100%);
+    transform: scaleZ(1);
 }
 #removeCart p {
     margin: 0;
@@ -209,7 +215,6 @@ min-width: 100vw;
 }
 .variantsContainer p {
     color: var(--white);
-    position: absolute;
     right: 5vw;
     font-family: 'Noir';
     bottom: -5vh;

@@ -1,18 +1,17 @@
 import './Menu.css';
 import './MenuDesktop.css';
-import { ReactComponent as ActiveNavButton} from '../Assets/Images/activeNavButton.svg';
-import React, {useState, useEffect} from 'react';
-import {motion, AnimatePresence} from 'framer-motion';
+import { ReactComponent as ActiveNavButton} from '../Assets/Images/Util/activeNavButton.svg';
+import React, { useEffect} from 'react';
+import {motion} from 'framer-motion';
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleMenu } from './menuSlice';
+import { toggleMenu } from './Store/menuSlice';
 import {Link} from 'react-router-dom';
-export default function Menu(props) {
+export default function Menu() {
 
     const cart = useSelector((state) => state.cart.count);
     const showMenu = useSelector((state) => state.menu.showMenu);
     const dispatch = useDispatch();
     const rotateBy = useSelector((state) => state.rotate.rotateBy);
-    const menuColor = useSelector((state) => state.menu.menuColor);
 
 
 

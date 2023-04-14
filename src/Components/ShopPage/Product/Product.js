@@ -1,22 +1,20 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, {useState, useEffect} from "react";
 import { isMobile } from "react-device-detect";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import './Product.css';
 import './ProductDesktop.css';
-import { Link, useSearchParams } from "react-router-dom";
-import IGMYOY from '../../../Assets/Images/IGMYOY.png';
-import ProgressiveImg from '../../../Util/ProgressiveImg';
+import { Link } from "react-router-dom";
+import IGMYOY from '../../../Assets/Images/ShopPage/IGMYOY.png';
 
 
 
 export default function Product(props) {
-	const boundaries = useRef(null);
     const [currentVariant, setCurrentVariant] = useState(0);
     const cart = useSelector((state) => state.cart.contents)
     const [isHover, setIsHover] = useState(false);
-    const [rotateBy, setRotateBy] = useState((Math.random() * (0.1 - 0.01) + 0.01)*(Math.random() > 0.5?1:-1));
-    const handleHoverChange = (state) => {
+	const rotateBy = useSelector((state) => state.rotate.rotateBy)
+	const handleHoverChange = (state) => {
         setIsHover(state);
     }
     
@@ -36,11 +34,8 @@ export default function Product(props) {
 useEffect(() => {
 
 }, [])
-// function FrontImage()  { return  <img key={`Product ID:${props.product.id} image-front`}  src={props.product.variants[currentVariant].photos.front} style={{paddingRight: "2rem", }} id={isMobile?"mobileImg1":"Img1"} /> }
-// function ActionImage() { return  <img key={`Product ID:${props.product.id} image-action`} src={props.product.variants[currentVariant].photos.action} style={{paddingLeft: "2rem", }} id={isMobile?"mobileImg2":"Img2"} /> }
-
-function FrontImage()  { return  <ProgressiveImg key={ `Product ID:${props.product.id} image-front`  }  placeholderSrc={ props.product.variants[currentVariant].thumbnailPhotos.front  }  src={ props.product.variants[currentVariant].photos.front  }  style={{ paddingRight: "2rem" }} id={isMobile?"mobileImg1":"Img1"} /> }
-function ActionImage() { return  <ProgressiveImg key={ `Product ID:${props.product.id} image-action` } placeholderSrc={ props.product.variants[currentVariant].thumbnailPhotos.action } src={ props.product.variants[currentVariant].photos.action } style={{ paddingLeft:  "2rem" }} id={isMobile?"mobileImg2":"Img2"} /> }
+function FrontImage()  { return  <img key={ `Product ID:${props.product.id} image-front`  } src={ props.product.variants[currentVariant].photos.front  } style={{ paddingRight: "2rem" }} id={isMobile?"mobileImg1":"Img1"} alt="Front view of Frames"/> }
+function ActionImage() { return  <img key={ `Product ID:${props.product.id} image-action` } src={ props.product.variants[currentVariant].photos.action } style={{ paddingLeft:  "2rem" }} id={isMobile?"mobileImg2":"Img2"} alt="Model wearing Frames"/> }
 
 const isInCart = cart.filter(item => item.id === props.product.id).find(item=>item.variant === currentVariant);     
 return (
@@ -74,7 +69,7 @@ return (
 							style ={{   overflowX: "scroll",
 							scrollSnapType: "x mandatory",}}
 						>
-							<ProgressiveImg 
+							{/* <ProgressiveImg 
 								key={ `Product ID:${props.product.id} image-front`  } 
 								placeholderSrc={ props.product.variants[currentVariant].thumbnailPhotos.front  } 
 								src={ props.product.variants[currentVariant].photos.front  } 
@@ -87,7 +82,9 @@ return (
 								src={ props.product.variants[currentVariant].photos.action } 
 								style={{ paddingLeft:  "2rem" }} 
 								id={isMobile?"mobileImg2":"Img2"} 
-							/>
+							/> */}
+							<FrontImage />
+							<ActionImage />
 				
 						</motion.div>
 					):(
@@ -98,7 +95,7 @@ return (
 							initial={{x: "0%"}}
 							whileHover={{x: "calc(-100% - 4rem)"}}
 						>
-							<ProgressiveImg 
+							{/* <ProgressiveImg 
 								key={ `Product ID:${props.product.id} image-front`  } 
 								placeholderSrc={ props.product.variants[currentVariant].thumbnailPhotos.front  } 
 								src={ props.product.variants[currentVariant].photos.front  } 
@@ -111,7 +108,9 @@ return (
 								src={ props.product.variants[currentVariant].photos.action } 
 								style={{ paddingLeft:  "2rem" }} 
 								id={isMobile?"mobileImg2":"Img2"} 
-							/>
+							/> */}
+							<FrontImage />
+							<ActionImage />
 						</motion.div>
 
 					)}
@@ -129,6 +128,7 @@ return (
 					return  (
 						<img 
 						key={`variant${props.product.variants.indexOf(variant)}`}   
+						alt={`Variant button ${variant}`}
 						style={{border: currentVariant===props.product.variants.indexOf(variant)?"3px solid var(--red)":"3px solid var(--black)"}} 
 						src={variant.circleColor} onClick={()=>{setCurrentVariant(props.product.variants.indexOf(variant)); }} />
 						)})}
