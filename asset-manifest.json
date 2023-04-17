@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/spyglass/static/css/main.8294cc51.css",
-    "main.js": "/spyglass/static/js/main.44662634.js",
+    "main.css": "/spyglass/static/css/main.b5ad57ad.css",
+    "main.js": "/spyglass/static/js/main.fe9f50dd.js",
     "static/js/496.4f6299c2.chunk.js": "/spyglass/static/js/496.4f6299c2.chunk.js",
     "static/media/ProductPageFront.png": "/spyglass/static/media/ProductPageFront.a8a5d25afcf05f51e6e9.png",
     "static/media/ProductPageBack.png": "/spyglass/static/media/ProductPageBack.58d9c683978e16574d74.png",
@@ -32,6 +32,7 @@
     "static/media/transparent.png": "/spyglass/static/media/transparent.1ab4004eee6a63de7c6c.png",
     "static/media/LWYS.webp": "/spyglass/static/media/LWYS.448ef4ff908e2b136632.webp",
     "static/media/Portia.otf": "/spyglass/static/media/Portia.37d0b97bcc33d5c4647d.otf",
+    "static/media/EyewearEverywhere.png": "/spyglass/static/media/EyewearEverywhere.54a33387c625858c3f3a.png",
     "static/media/Logo (White, slogan).png": "/spyglass/static/media/Logo (White, slogan).16d8169314de2ab4905e.png",
     "static/media/MYL.png": "/spyglass/static/media/MYL.7c15347f71938b871805.png",
     "static/media/believe.webp": "/spyglass/static/media/believe.1c32978a09f593ff467d.webp",
@@ -39,12 +40,12 @@
     "static/media/WLTHFY.webp": "/spyglass/static/media/WLTHFY.7b79743b04b30c827066.webp",
     "static/media/nextprev.svg": "/spyglass/static/media/nextprev.6159928b57e9e9a39d34287a23a4861c.svg",
     "index.html": "/spyglass/index.html",
-    "main.8294cc51.css.map": "/spyglass/static/css/main.8294cc51.css.map",
-    "main.44662634.js.map": "/spyglass/static/js/main.44662634.js.map",
+    "main.b5ad57ad.css.map": "/spyglass/static/css/main.b5ad57ad.css.map",
+    "main.fe9f50dd.js.map": "/spyglass/static/js/main.fe9f50dd.js.map",
     "496.4f6299c2.chunk.js.map": "/spyglass/static/js/496.4f6299c2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8294cc51.css",
-    "static/js/main.44662634.js"
+    "static/css/main.b5ad57ad.css",
+    "static/js/main.fe9f50dd.js"
   ]
 }
