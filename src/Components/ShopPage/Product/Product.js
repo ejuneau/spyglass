@@ -13,10 +13,9 @@ export default function Product(props) {
     const [currentVariant, setCurrentVariant] = useState(0);
     const cart = useSelector((state) => state.cart.contents)
     const [isHover, setIsHover] = useState(false);
-	const rotateBy = useSelector((state) => state.rotate.rotateBy)
-	const handleHoverChange = (state) => {
-        setIsHover(state);
-    }
+	// const rotateBy = useSelector((state) => state.rotate.rotateBy)
+	const [rotateBy, setRotateBy] = useState(Math.ceil(Math.random() * 5) * (Math.round(Math.random()) ? 1 : -1));
+	const handleHoverChange = (state) => {setIsHover(state)}
     
 
     const clipX= 15;
@@ -25,15 +24,16 @@ export default function Product(props) {
     const variants = {
 
         show: {
-            rotate: isHover?0:`${rotateBy}rad`,
+            rotate: isHover?0:rotateBy,
+			scale: isHover? 1.25 : 1
         }
     }
     
 
     
 useEffect(() => {
-
-}, [])
+	setRotateBy(Math.ceil(Math.random() * 5) * (Math.round(Math.random()) ? 1 : -1))
+}, [handleHoverChange])
 function FrontImage()  { return  <img key={ `Product ID:${props.product.id} image-front`  } src={ props.product.variants[currentVariant].photos.front  } style={{ paddingRight: "2rem" }} id={isMobile?"mobileImg1":"Img1"} alt="Front view of Frames"/> }
 function ActionImage() { return  <img key={ `Product ID:${props.product.id} image-action` } src={ props.product.variants[currentVariant].photos.action } style={{ paddingLeft:  "2rem" }} id={isMobile?"mobileImg2":"Img2"} alt="Model wearing Frames"/> }
 
@@ -56,7 +56,7 @@ return (
 			<motion.div  
 				key={`container for ${props.product.id} ${currentVariant}`} 
 				style={{overflow:"hidden"}} 
-				animate={{rotate: isHover?`0`:`-${rotateBy}rad`, clipPath: `polygon(${isHover?0:clipX}% 0%, 100% ${isHover?0:clipX}%, ${isHover?100:clipY}% 100%, 0% ${isHover?100:clipY}%)`, 
+				animate={{rotate: isHover?`0`:`-${rotateBy}deg`, clipPath: `polygon(${isHover?"0":clipX}% 0%, 100% ${isHover?"0":clipX}%, ${isHover?"100":clipY}% 100%, 0% ${isHover?"100":clipY}%)`, 
 				transition: {duration: 0.3, type: "spring", damping: 10, stiffness: 100}}}
 			>
 				<Link to={props.product.variants.length>1?`/Shop/Product/${props.product.name}?variant=${currentVariant}`:`/Shop/Product/${props.product.name}`}>
@@ -69,20 +69,6 @@ return (
 							style ={{   overflowX: "scroll",
 							scrollSnapType: "x mandatory",}}
 						>
-							{/* <ProgressiveImg 
-								key={ `Product ID:${props.product.id} image-front`  } 
-								placeholderSrc={ props.product.variants[currentVariant].thumbnailPhotos.front  } 
-								src={ props.product.variants[currentVariant].photos.front  } 
-								style={{ paddingRight: "2rem" }} 
-								id={isMobile?"mobileImg1":"Img1"} 
-							/> 
-							<ProgressiveImg 
-								key={ `Product ID:${props.product.id} image-action` } 
-								placeholderSrc={ props.product.variants[currentVariant].thumbnailPhotos.action } 
-								src={ props.product.variants[currentVariant].photos.action } 
-								style={{ paddingLeft:  "2rem" }} 
-								id={isMobile?"mobileImg2":"Img2"} 
-							/> */}
 							<FrontImage />
 							<ActionImage />
 				
@@ -95,20 +81,6 @@ return (
 							initial={{x: "0%"}}
 							whileHover={{x: "calc(-100% - 4rem)"}}
 						>
-							{/* <ProgressiveImg 
-								key={ `Product ID:${props.product.id} image-front`  } 
-								placeholderSrc={ props.product.variants[currentVariant].thumbnailPhotos.front  } 
-								src={ props.product.variants[currentVariant].photos.front  } 
-								style={{ paddingRight: "2rem" }} 
-								id={isMobile?"mobileImg1":"Img1"} 
-							/> 
-							<ProgressiveImg 
-								key={ `Product ID:${props.product.id} image-action` } 
-								placeholderSrc={ props.product.variants[currentVariant].thumbnailPhotos.action } 
-								src={ props.product.variants[currentVariant].photos.action } 
-								style={{ paddingLeft:  "2rem" }} 
-								id={isMobile?"mobileImg2":"Img2"} 
-							/> */}
 							<FrontImage />
 							<ActionImage />
 						</motion.div>

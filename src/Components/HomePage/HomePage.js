@@ -27,6 +27,8 @@ const dispatch = useDispatch();
 const isLoading = useSelector((state) => state.loading.isLoading);
 useEffect(()=> {
   dispatch(setLoading(false))
+  dispatch(handleGenderChange(false));
+  dispatch(handleSunglassesChange(undefined));
 }, [dispatch])
 
 useEffect(() => {

@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { send } from 'emailjs-com';
 import './ContactPage.css';
 import './ContactPageDesktop.css';
 import gramophone from '../../Assets/Images/ContactPage/gramophone.png';
 import WLTYFY from '../../Assets/Images/ContactPage/WLTHFY.webp';
 import { motion } from "framer-motion";
-import { useEffect } from "react";
 
 export default function ContactPage(props) {
+  const [isHover, setIsHover] = useState(false);
   const animations = {
+    none: {
+      clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)"
+    },
     rotate: {
       clipPath: [
         "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", 
@@ -33,10 +36,10 @@ export default function ContactPage(props) {
 },
 }
 
-useEffect(() => {
-  const emoji = ["🤓","👀","🕶️","😎","🥸","👓","🥽","🔍","🔎","🔭"];
-  document.title = `Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;
-}, [])
+// useEffect(() => {
+//   const emoji = ["🤓","👀","🕶️","😎","🥸","👓","🥽","🔍","🔎","🔭"];
+//   document.title = `Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;
+// }, [])
     const [toSend, setToSend] = useState({
         from_name: '',
         to_name: '',
@@ -55,7 +58,7 @@ useEffect(() => {
           .then((response) => {
             console.log('SUCCESS!', response.status, response.text);
             window.alert("Your message has been sent. Thank you for your feedback!")
-            window.location="/"
+            window.location="/spyglass"
           })
           .catch((err) => {
             console.log('FAILED...', err);
@@ -98,7 +101,7 @@ useEffect(() => {
                     onChange={handleChange}
                 />
 
-                <motion.button key="submit" id="submit" variants={animations} whileHover="rotate" onTap="rotateSubmit" type='submit'>SEND</motion.button>
+                <motion.button key="submit" id="submit" variants={animations} animate={isHover?"rotate":"none"} onMouseEnter={()=>{setIsHover(true)}} onMouseLeave={()=>{setIsHover(false)}} onTap="rotateSubmit" type='submit'>SEND</motion.button>
 
                 
             </form>

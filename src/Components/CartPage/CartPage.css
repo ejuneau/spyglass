@@ -8,20 +8,10 @@ input[type=number]::-webkit-inner-spin-button {
     height: auto;
     object-fit: contain;
 }
-#dumpCart {
-    border: none;
-    background-color: var(--red);
-    color: var(--white);
-    font-family: 'Noir';
-    padding: 2vh 2vw;
-    font-size: 1.2rem;
-    float: right;
-    clip-path: polygon(30% 0%, 92% 0, 100% 30%, 100% 86%, 63% 100%, 13% 100%, 0% 70%, 0 11%);
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-#dumpCart:hover {
-    background-color: var(--black);
+.cartList > div > img ~ div {
+    margin-left: auto;
+    width: -moz-fit-content;
+    width: fit-content;
 }
 
 .CartPageComponent {
@@ -62,7 +52,7 @@ input[type=number]::-webkit-inner-spin-button {
 } */
 
 .cartListItem {
-    padding: 1vh 2vw;
+    padding: 3vh 3vw;
     margin-top: 2vh;
     margin-bottom: 2vh;
     color: var(--white);
@@ -78,7 +68,7 @@ input[type=number]::-webkit-inner-spin-button {
     font-family: 'Noir';
     color: var(--white);
     font-size: 1.2rem;
-    height: 10vh;
+    height: 5vh;
 }    
 .cartPageOptionsContainer {
     width: 20vw;
@@ -93,8 +83,15 @@ input[type=number]::-webkit-inner-spin-button {
 #cartPageOptions {
     display: flex; 
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+
+}
+.cartPageComponent #quantButton {
+    width: 10vh;
+    font-size: 1rem;
+    cursor: pointer;
+    
 }
 #cartPageOptions > .cartPageOptionsContainer {
 
@@ -111,17 +108,22 @@ input[type=number]::-webkit-inner-spin-button {
     color: var(--black);
     padding: 1vh 1vw;
     border: none;
+    transition: background-color 0.2s ease;
+}
+#removeFromCart:hover {
+    background-color: #E8E8E8;
+    font-weight: 600;
 }
 #titlePic {
     max-height: 100%;
-    width: 40%;
+    width: 50%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 #cartImg {
-    width: 100%;
+    height: 75%;
 }
 .NTSH {
     display: flex;
@@ -163,18 +165,41 @@ input[type=number]::-webkit-inner-spin-button {
 .cartListItem h1 {
     font-family: 'Portia';
     width: 100%;
-
+    text-align: center;
     margin: 0;
+    font-size: 2rem;
 }
 .total {
     font-family: 'Noir';
     font-size: max(3vw, 2rem);
     text-align: right;
     margin-right: 1rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-end;
+}
+.total > div {
+    display: flex;
+    align-items: baseline;
+}
+.total p {
+    display: inline;
+    width: -moz-fit-content;
+    width: fit-content;
+    display: block;
+    width: 25%;
+
+    transform-origin: 200% 100%;
 }
 #checkoutButton {
-    background: var(--black);
-    color: var(--red);
-    padding: 2vh 2vw;
-
+    display: block;
+    width: -moz-fit-content;
+    width: fit-content;
+}
+#mathematics {
+    font-family: 'A Box For 1';
+    text-align: center;
+    font-size: max(2rem, 5vw);
+    margin: 0;
 }

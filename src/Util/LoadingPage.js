@@ -2,9 +2,10 @@ import React from "react";
 import { motion } from "framer-motion";
 import MYL from '../Assets/Images/LoadingPage/MYL.gif';
 import A from '../Assets/Images/LoadingPage/A.png';
+import EyewearEverywhere from '../Assets/Images/LoadingPage/EyewearEverywhere.png';
 import './LoadingPage.css';
 export default function LoadingPage() {
-    const images = [[MYL, "MYL"], [A, "A"]];
+    const images = [[MYL, "MYL"], [A, "A"], [EyewearEverywhere, "EyewearEverywhere"]];
     const imageIndex = Math.floor(Math.random() * images.length);
     const variantString = images[imageIndex][1];
 
@@ -28,13 +29,24 @@ export default function LoadingPage() {
                 scaleX: 1,
             },
             animate: {
-                scaleX: [1, -1],
+                scaleX: [-1, 1],
                 transition: {
                     duration: 0.3,
                     repeat: Infinity,
                     repeatDelay: 0.5
                 }
 
+            }
+        },
+        {
+            initial: {
+                x: 0,
+            },
+            animate: {
+                x: '-100vw',
+                transition: {
+                    duration: 2
+                }
             }
         }
     ]

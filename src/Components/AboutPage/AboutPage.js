@@ -16,10 +16,10 @@ export default function AboutPage(props) {
         container: filterRef,
     });
   
-    useEffect(() => {
-        const emoji = ["🤓","👀","🕶️","😎","🥸","👓","🥽","🔍","🔎","🔭"];
-        document.title = `Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;
-    }, [])
+    // useEffect(() => {
+    //     const emoji = ["🤓","👀","🕶️","😎","🥸","👓","🥽","🔍","🔎","🔭"];
+    //     document.title = `Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;
+    // }, [])
 
     const [height, setHeight] = useState("200vh");
 

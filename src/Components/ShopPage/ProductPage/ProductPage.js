@@ -11,33 +11,61 @@ import { SlideShow } from "./SlideShow.tsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import Button from "../../../Util/Button";
+import { setLoading } from "../../../Util/Store/LoadingSlice";
+import LoadingPage from "../../../Util/LoadingPage";
+
 
 export default function ProductPage(props) {
+
+    const dispatch = useDispatch();
     const [searchParams] = useSearchParams();
     const [quantity, setQuantity] = useState(1);
-    let { name } = useParams(); 
-    const emoji = ["🤓","👀","🕶️","😎","🥸","👓"];
-    document.title = `The ${name} | Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;
+
+
     const tanRotateBy = useSelector((state) => state.rotate.tanRotateBy);
     const cart = useSelector((state) => state.cart.contents);
     const rotateBy = useSelector((state) => state.rotate.rotateBy);
     const antiRotateBy = useSelector((state) => state.rotate.antiRotateBy);
-    const product = Products[Products.map(function(e) { return e.name; }).indexOf(name)];
-    const {front, back, action} = product.variants[searchParams.get("variant")?searchParams.get("variant"):0].detailPhotos;
-    const srcArray = [front, back, action];
+    const isLoading = useSelector((state) => state.loading.isLoading)
+
+    const [name, setName] = useState(useParams().name);
+    const [product, setProduct] = useState( Products[Products.map(e => e.name).indexOf(name)] );
+    let initialPhotos = product.variants[searchParams.get("variant")?searchParams.get("variant"):0].detailPhotos
+    const [srcArray, setSrcArray] = useState([initialPhotos.front, initialPhotos.back, initialPhotos.action])
+
     useEffect(() => {
-
-    }, [])
+        setProduct(Products[Products.map(e => e.name).indexOf(name)])
+        const emoji = ["🤓","👀","🕶️","😎","🥸","👓","🥽","🔍","🔎","🔭"];
+        document.title = `The ${name} ${emoji[Math.floor(Math.random()*emoji.length)]} Spyglass Eyewear `;
+        return () => {
+            document.title = `Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;
+        }
+    }, []);
+    useEffect(() => {
+        dispatch(setLoading(true))
+        let {front, back, action} = product.variants[searchParams.get("variant")?searchParams.get("variant"):0].detailPhotos;
+        setSrcArray([front, back, action]);
+    }, [setProduct]);
+    useEffect(() => {
+        dispatch(setLoading(false))
+        const newImgs = product.variants[searchParams.get("variant")?searchParams.get("variant"):0].detailPhotos;
+        const newArray = [...srcArray]
+        newArray[0] = newImgs.front;
+        newArray[1] = newImgs.back;
+        newArray[2] = newImgs.action
+        setSrcArray(newArray);
+    }, [searchParams])
     const componentVariants = {
-        initial: {
-
-        },
+        initial: {},
         show: {
-
             transition: {
-                staggerChildren: 0.3,
+                staggerChildren: 0.2,
                 staggerDirection: -1
             }
+        },
+        exit: {
+            staggerChildren: 0.2,
+            staggerDiretion: 1
         }
     }
     const backButtonVariants = {
@@ -55,27 +83,60 @@ export default function ProductPage(props) {
             y:0,     
         }
     }
+    // const slideShowVariants = {
+    //     initial:{
+    //         x: "-100vw",
+    //         y: `calc(100vw * ${tanRotateBy})`,
+    //         opacity: 0
+    //     }, 
+    //     show:{
+    //         x:0,
+    //         y: 0,
+    //         opacity: 1,
+    //         // transition: {
+    //         //     x: { type: "spring", stiffness: 300, damping: 30 },
+    //         //     y: { type: "spring", stiffness: 300, damping: 30 },
+    //         //     opacity: { duration: 0.2 }
+    //         // }
+    // },
+    //     exit:{
+    //         x:"100vw",
+    //         y:`calc(-100vw * ${tanRotateBy})`,
+    //         opacity: 0
+    //     }
+    // }
     const slideShowVariants = {
-        initial:{
-            x: "-100vw",
-            y: `calc(100vw * ${tanRotateBy})`,
+        enter: (direction) => {
+          return {
+            x: direction > 0 ? 1000 : -1000,
+            scale: 1.2,
+            // y: direction > 0 ? props.tanRotateBy * 1000 :  props.tanRotateBy * -1000,
             opacity: 0
-        }, 
-        show:{
-            x:0,
-            y: 0,
-            opacity: 1,
-            transition: {
-                x: { type: "spring", stiffness: 300, damping: 30 },
-                y: { type: "spring", stiffness: 300, damping: 30 },
-                opacity: { duration: 0.2 }
-        }}
-    }
+          };
+        },
+        center: {
+          zIndex: 1,
+          x: 0,
+          // y: 50,
+          opacity: 1,
+          scale: 1.2,
+        },
+        exit: (direction) => {
+          return {
+            zIndex: 0,
+            x: direction < 0 ? 1000 : -1000,
+            // y: direction < 0 ? props.tanRotateBy * 1000 :  props.tanRotateBy * -1000,
+            opacity: 0
+          };
+        }
+      };
     return (
-        <motion.div key="ProductPageComponent" className="ProductPageComponent" variants={componentVariants} initial="initial" animate="show">
-            <motion.div key="slideShowContainer" className="slideShowContainer" variants={slideShowVariants} > 
-                <SlideShow id="test" srcArray={srcArray} antiRotateBy={antiRotateBy} rotateBy={rotateBy} tanRotateBy={tanRotateBy}/>
-            </motion.div>
+        <motion.div key="ProductPageComponent" className="ProductPageComponent" variants={componentVariants} initial="initial" animate="show" exit="exit">
+            <AnimatePresence mode="wait">
+                <motion.div key={`slideShowContainer ${searchParams.get("variant")?searchParams.get("variant"):0}`} className="slideShowContainer" variants={slideShowVariants} > 
+                    <SlideShow id="test" srcArray={srcArray} antiRotateBy={antiRotateBy} rotateBy={rotateBy} tanRotateBy={tanRotateBy}/>
+                </motion.div>
+            </AnimatePresence>
             <div className="desktopDivider">
                 <div className="cartOptionsContainer">
                     <CartButtons product={product} quantity={quantity} setQuantity={setQuantity}/>
@@ -104,10 +165,11 @@ export default function ProductPage(props) {
                                 className={`Variant ${Number(searchParams.get("variant")) === product.variants.indexOf(variant) && "activeVariant"}`}
                                 onClick={()=>{
                                     setQuantity(cart.filter(item => item.id === product.id)
-                                    .find(item=>item.variant !== Number(searchParams.get("variant")))?
+                                        .find(item=>item.variant !== Number(searchParams.get("variant"))) ?
                                         cart.filter(item => item.id === product.id)
-                                        .find(item=>item.variant !== Number(searchParams.get("variant"))).quantity
-                                        :1)}} 
+                                            .find(item=>item.variant !== Number(searchParams.get("variant"))).quantity
+                                            : 1 );
+                                    }} 
                                 />
                             </Link>
                         )})}
@@ -126,7 +188,7 @@ export default function ProductPage(props) {
             <div className="cutoutSpacer" />
             <div className="spacer" />
         </motion.div>
-    )
+        )
 }
 
 function CartButtons(props) {

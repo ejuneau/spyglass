@@ -3,6 +3,7 @@
         align-items: flex-start;
         flex-direction: row;
         flex-wrap: wrap;
+        background-color: var(--white);
     }
     
 .slideShowContainer {
@@ -56,6 +57,11 @@
 }
 #productTrash {
     color: var(--black);
+}
+#quantButton {
+    width: 10vh;
+    font-size: 2rem;
+    cursor: pointer;
 }
 
 .cartOptionsContainer p {

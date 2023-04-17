@@ -30,8 +30,6 @@ export default function ShopPage(props) {
   const isLoading = useSelector((state) => state.loading.isLoading);
   const dispatch = useDispatch();
 
-  const emoji = ["🤓","👀","🕶️","😎","🥸","👓"];
-  document.title = `Spyglass Eyewear ${emoji[Math.floor(Math.random()*emoji.length)]}`;
 
   useEffect(() => {
     dispatch(setLoading(false))

@@ -12,6 +12,9 @@ import CartListItem from './CartListItem';
 import { useState } from 'react';
 import { setMenuColor } from "../../Util/Store/menuSlice";
 import { useEffect } from "react";
+import Button from "../../Util/Button";
+import { setLoading } from "../../Util/Store/LoadingSlice";
+import LoadingPage from "../../Util/LoadingPage";
 
 export default function CartPage(props) {
     const cart = useSelector((state) => state.cart);
@@ -19,6 +22,7 @@ export default function CartPage(props) {
     const antiRotateBy = useSelector((state) => state.rotate.antiRotateBy);
     const rotateBy = useSelector((state) => state.rotate.rotateBy);
     const [hoverLink, sethoverLink] = useState(false);
+    const isLoading = useSelector((state) => state.loading.isLoading);
     const dispatch = useDispatch();
 
     const animationVariants = {
@@ -65,15 +69,21 @@ export default function CartPage(props) {
             }
           }
         }
-      
-        useEffect(() => {
+        useEffect(
+          () => {
           cart.contents.length === 0 ? dispatch(setMenuColor('var(--white')) : dispatch(setMenuColor('var(--red)'));
+          dispatch(setLoading(false))
+          return () => {
+            dispatch(setMenuColor('var(--red)'))
+          }
         }, [])
     const  formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'CAD',
     } );
     return (
+      isLoading ? <LoadingPage /> :
+(
         <div className="CartPageComponent">
             <div className="CartPageSpacer" />
             {cart.contents.length === 0 && <motion.div id="outline" key="outline" variants={outlineVariants} initial="initial" animate="animate" ></motion.div>}
@@ -87,7 +97,9 @@ export default function CartPage(props) {
                     cart.contents.length > 0 && <motion.div key="LWYS" initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
                     
                     <img src={LWYS} alt="like what you see?" id="LWYS" />
-                    <button id="dumpCart" onClick={()=> {dispatch(clearCart())}}>Dump entire cart</button> </motion.div>
+                    {/* <button id="dumpCart" onClick={()=> {dispatch(clearCart())}}>Dump entire cart</button>  */}
+                    <Button text="Clear Cart" onClick={() => {dispatch(clearCart())}}/>
+                    </motion.div>
                 }
                 {
                 cart.contents.length > 0 && cart.contents.map((item) => {
@@ -111,14 +123,25 @@ export default function CartPage(props) {
                 {
                     cart.contents.length > 0 &&
                     <motion.div key="Total" initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}} className="total">
-                        <p>Total: {formatter.format(cart.total)}</p>
-                        <Link id="checkoutButton" to="./Checkout">Checkout</Link>
+                     
+                      <motion.div key="totalCostContainer" style={{position: 'relative'}} layout>
+                        <motion.p key="totalTitleText" layout style={{display: "inline", marginRight: "18rem", width: 'fit-content'}}>Total:</motion.p>
+                        <AnimatePresence mode="sync" >
+                          <motion.p 
+                            key={`total${cart.total}`} 
+                            initial={{rotate: -90, opacity: 0}} 
+                            animate={{rotate: 0, opacity: 1}} 
+                            style={{position: 'absolute', left: '9rem', width: 'fit-content'}}
+                            exit={{rotate: 90, opacity: 0, transition: {duration: 0.5}}} >{formatter.format(cart.total)}</motion.p>
+                        </AnimatePresence>
+                      </motion.div>
+                      <Link id="checkoutButton" to="./Checkout"><Button text="Checkout" /></Link>
                     </motion.div>
                 }
                 </AnimatePresence>
             </motion.div>
             <div className="CartPageSpacer" />
         </div>
-
+      )
     )
 }

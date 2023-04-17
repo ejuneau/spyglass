@@ -57,11 +57,9 @@
     clip-path: polygon(0 50%, 100% 0, 100% 100%, 0 100%);
     transform: translateZ(0);    
     position: relative;
-    z-index: 2;
     margin-top: min(-15vh, -9rem);
-
-
 }
+
 .priceContainer {
     display: flex;
     font-family: 'portia';
@@ -87,6 +85,7 @@
 }
 .slideShowContainer {
 min-width: 100vw;
+transition: height 0.2s ease;
 }
 .ProductPageComponent h1 {
     font-family: 'Portia';
@@ -143,19 +142,24 @@ min-width: 100vw;
 .ProductPageComponent .spacer {
     background-color: var(--black);
 }
-#quantButton {
+.ProductPageComponent #quantButton {
     width: 10vh;
     font-size: 2rem;
-
+    cursor: pointer;
     
 }
 #quantButton p {
-
+    -webkit-user-select: none;
+    user-select: none;
     margin: 0;
+}
+#ICNIC p {
+    -webkit-user-select: none;
+    user-select: none;
 }
 .variantsContainer {
     position: absolute;
-    z-index: 50;
+    z-index: 5;
     display: flex;
     align-self: flex-end;
     right: 0;
@@ -164,9 +168,12 @@ min-width: 100vw;
     align-items: center;
     flex-wrap: wrap;
     width: 100%;
+    pointer-events: none;
 }
 .variantsContainer > * {
     padding: 0 1rem;
+    z-index: 7;
+    pointer-events: all;
 }
 .variantsContainer img {
     
@@ -189,6 +196,7 @@ min-width: 100vw;
     display: flex;
     justify-content: space-between;
     margin-top: max(5vh, 3rem);
+
 }
 
 #ICNIC {
