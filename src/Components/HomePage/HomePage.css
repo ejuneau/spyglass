@@ -80,7 +80,7 @@
 
 
 .FITSSection {
-    background-color: var(--blue);
+    background-color: var(--green);
 
     background-repeat: no-repeat;
     background-size: cover;
@@ -92,12 +92,16 @@
 }
 #FITS {
     position: absolute;
-    width: 100%;
+    height: 115%;
     bottom: -15%;
+    right: 0;
+    z-index: 1;
 }
 .FITSSection > h1, .FITSSection > h2 {
     color: var(--white);
     font-family: 'Varygraphie';
+    position: relative;
+    z-index: 2;
 }
 .FITSSection > h2 {
     margin-top: max(15vh, 9rem);
@@ -115,11 +119,14 @@
 }
 #FITSButton {
     position: absolute;
-    bottom: 15%;
+    bottom: 15%; 
+    width: -moz-fit-content;
+    width: fit-content;
     left: 20%;
+    z-index: 2;
 }
 .AboutSection {
-    background-color: var(--green);
+    background-color: var(--black);
     position: relative;
     top: min(-10vh, -6rem);
     flex-direction: column;
@@ -148,7 +155,7 @@
 }
 .spacerSection {
     background: rgb(252,81,48);
-background: linear-gradient(0deg, var(--black) 1%, rgba(124,169,130,1) 100%);
+background: linear-gradient(180deg, var(--black) 70%, rgba(124,169,130,0) 100%);
 position: relative;
 top: min(-15vh, -9rem);
 margin-bottom: min(-15vh, -9rem);
@@ -158,10 +165,9 @@ margin-bottom: min(-15vh, -9rem);
 @media only screen and (max-width: 1500px) {
     #FITS {
 
-        height: 150%;
-        width: auto;
-        bottom: min(-15vh, -9rem);
-        right: max(-60vw, -18rem);
+        transform: scaleX(-1);
+        left: 0;
+        bottom : -40%;
 
     }
     .YWBYESection{
@@ -219,15 +225,19 @@ margin-bottom: min(-15vh, -9rem);
     .FITSSection > h2 { 
         font-size: 1.5rem;
         align-self: center;
-        margin-top: max(10vh, 6rem);
+        margin-top: 15%;
+        margin-left: unset;
     }
     .FITSSection > h1 {
         font-size: 2.6rem;
         align-self: center;
+        margin-left: unset;
     }
     #FITSButton {
-        bottom: 25%;
-        left: 5%;
+        bottom: 10%;
+        left: unset;
+        align-self: center;
+   
     }
     .AboutSection > p {
         font-size: 5vw;

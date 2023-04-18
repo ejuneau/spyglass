@@ -6,6 +6,7 @@ import './Product.css';
 import './ProductDesktop.css';
 import { Link } from "react-router-dom";
 import IGMYOY from '../../../Assets/Images/ShopPage/IGMYOY.png';
+import verbose from '../../../Util/Store/verbose'
 
 
 
@@ -34,8 +35,9 @@ export default function Product(props) {
 useEffect(() => {
 	setRotateBy(Math.ceil(Math.random() * 5) * (Math.round(Math.random()) ? 1 : -1))
 }, [handleHoverChange])
-function FrontImage()  { return  <img key={ `Product ID:${props.product.id} image-front`  } src={ props.product.variants[currentVariant].photos.front  } style={{ paddingRight: "2rem" }} id={isMobile?"mobileImg1":"Img1"} alt="Front view of Frames"/> }
-function ActionImage() { return  <img key={ `Product ID:${props.product.id} image-action` } src={ props.product.variants[currentVariant].photos.action } style={{ paddingLeft:  "2rem" }} id={isMobile?"mobileImg2":"Img2"} alt="Model wearing Frames"/> }
+
+function FrontImage()  { return  <img key={ `Product ID:${props.product.id} image-front`  } src={ props.product.variants[currentVariant].photos.front  } style={{ paddingRight: "2rem" }} id={isMobile?"mobileImg1":"Img1"} alt="Front view of Frames" onLoad={() => console.log(props.product.name + ": front loaded")}/> }
+function ActionImage() { return  <img key={ `Product ID:${props.product.id} image-action` } src={ props.product.variants[currentVariant].photos.action } style={{ paddingLeft:  "2rem" }} id={isMobile?"mobileImg2":"Img2"} alt="Model wearing Frames" onLoad={() => console.log(props.product.name + ": action loaded")}/> }
 
 const isInCart = cart.filter(item => item.id === props.product.id).find(item=>item.variant === currentVariant);     
 return (
@@ -69,8 +71,10 @@ return (
 							style ={{   overflowX: "scroll",
 							scrollSnapType: "x mandatory",}}
 						>
-							<FrontImage />
-							<ActionImage />
+							{/* <FrontImage /> */}
+							<img key={ `Product ID:${props.product.id} image-front`  } src={ props.product.variants[currentVariant].photos.front  } style={{ paddingRight: "2rem" }} id={isMobile?"mobileImg1":"Img1"} alt="Front view of Frames" onLoad={() => {props.incrementImgCounter(); verbose && console.log(props.product.name + ": front loaded")}}/>
+							{/* <ActionImage /> */}
+							<img key={ `Product ID:${props.product.id} image-action` } src={ props.product.variants[currentVariant].photos.action } style={{ paddingLeft:  "2rem" }} id={isMobile?"mobileImg2":"Img2"} alt="Model wearing Frames" onLoad={() => {props.incrementImgCounter(); verbose && console.log(props.product.name + ": action loaded")}}/>
 				
 						</motion.div>
 					):(
@@ -81,8 +85,10 @@ return (
 							initial={{x: "0%"}}
 							whileHover={{x: "calc(-100% - 4rem)"}}
 						>
-							<FrontImage />
-							<ActionImage />
+							{/* <FrontImage /> */}
+							<img key={ `Product ID:${props.product.id} image-front`  } src={ props.product.variants[currentVariant].photos.front  } style={{ paddingRight: "2rem" }} id={isMobile?"mobileImg1":"Img1"} alt="Front view of Frames" onLoad={() => {props.incrementImgCounter(); verbose && console.log(props.product.name + ": front loaded")}}/>
+							{/* <ActionImage /> */}
+							<img key={ `Product ID:${props.product.id} image-action` } src={ props.product.variants[currentVariant].photos.action } style={{ paddingLeft:  "2rem" }} id={isMobile?"mobileImg2":"Img2"} alt="Model wearing Frames" onLoad={() => {props.incrementImgCounter(); verbose && console.log(props.product.name + ": action loaded")}}/>
 						</motion.div>
 
 					)}

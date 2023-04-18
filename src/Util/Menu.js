@@ -6,6 +6,7 @@ import {motion} from 'framer-motion';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleMenu } from './Store/menuSlice';
 import {Link} from 'react-router-dom';
+import { setLoading } from './Store/LoadingSlice';
 export default function Menu() {
 
     const cart = useSelector((state) => state.cart.count);
@@ -158,7 +159,7 @@ export default function Menu() {
                             </motion.div>}
                         </motion.li>
 
-                        <motion.li key="shopButton" variants={menuListItem} onClick={() => {window.scrollTo({top:0,behavior:'smooth'}); dispatch(toggleMenu())}}>
+                        <motion.li key="shopButton" variants={menuListItem} onClick={() => {window.scrollTo({top:0,behavior:'smooth'}); dispatch(toggleMenu()); window.location.hash !== "#/Shop" && dispatch(setLoading(true))}}>
                             <Link className={`menuButton ${window.location.hash === "#/Shop" && "activeNavButton"}`} to="/Shop">Shop</Link>
                             {window.location.hash === "#/Shop" && 
                                 <motion.div 

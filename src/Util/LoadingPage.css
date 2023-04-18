@@ -9,15 +9,15 @@
     justify-content: center;
     align-items: center;
 }
-#LoadingImage {
+.LoadingImage {
     filter: invert(100%);
     mix-blend-mode: exclusion;
     opacity: 0.5;
 
 }
-.MYL {
+#MYL {
     width: 50%;
 }
-.A {
+#A {
     width: 10%;
 }

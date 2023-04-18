@@ -23,6 +23,13 @@ export default function ShopPage(props) {
   const [priceSort, setPriceSort] = useState(undefined);
   const [priceSortCounter, setPriceSortCounter] = useState(0);
   const [nameSortCounter, setNameSortCounter] = useState(0);
+  const [imgCounter, setImgCounter] = useState(0);
+
+  function incrementImgCounter()  {
+    imgCounter < 12 && setImgCounter(oldCount => oldCount + 1);
+  }
+
+  const ProductImagesCount = 12; //The number of images to load, 2 for every frame (The rascal's second variant is loaded when it is selected)
 
 
   const genderFilter = useSelector((state) => state.filter.gender)
@@ -32,8 +39,9 @@ export default function ShopPage(props) {
 
 
   useEffect(() => {
-    dispatch(setLoading(false))
-  }, [dispatch])
+    imgCounter === ProductImagesCount && dispatch(setLoading(false)); 
+  }, [dispatch, incrementImgCounter]);
+
 const filterButton1 = {
   initial: {
     scale: 1,
@@ -266,7 +274,7 @@ function setSunglassesSort(sort) {
                     initial="initial" 
                     animate="animate" 
                     exit="exit" >
-                        <Product product={product} key={product.id} />
+                        <Product product={product} key={product.name} incrementImgCounter={incrementImgCounter}/>
                     </motion.div>
                     )
                   }
@@ -280,7 +288,7 @@ function setSunglassesSort(sort) {
                     initial="initial" 
                     animate="animate" 
                     exit="exit" >
-                        <Product product={product} key={product.id} />
+                        <Product product={product} key={product.name} incrementImgCounter={incrementImgCounter}/>
                     </motion.div>
                     )
                 }

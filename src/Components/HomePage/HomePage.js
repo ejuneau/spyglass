@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import './HomePage.css';
 import './HomePageDesktop.css';
 import { handleSunglassesChange, handleGenderChange } from '../../Util/Store/filterSlice';
-import FITS from '../../Assets/Images/HomePage/FITS.png';
+import FITS from '../../Assets/Images/HomePage/FITS2.png';
 import model from '../../Assets/Images/HomePage/Model.png';
 import Button from '../../Util/Button';
 import LoadingPage from '../../Util/LoadingPage';
@@ -27,7 +27,7 @@ const dispatch = useDispatch();
 const isLoading = useSelector((state) => state.loading.isLoading);
 useEffect(()=> {
   dispatch(setLoading(false))
-  dispatch(handleGenderChange(false));
+  dispatch(handleGenderChange(""));
   dispatch(handleSunglassesChange(undefined));
 }, [dispatch])
 

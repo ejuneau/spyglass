@@ -1,4 +1,4 @@
-import React from "react";
+import React , {useState} from "react";
 import { motion } from "framer-motion";
 import MYL from '../Assets/Images/LoadingPage/MYL.gif';
 import A from '../Assets/Images/LoadingPage/A.png';
@@ -6,11 +6,11 @@ import EyewearEverywhere from '../Assets/Images/LoadingPage/EyewearEverywhere.pn
 import './LoadingPage.css';
 export default function LoadingPage() {
     const images = [[MYL, "MYL"], [A, "A"], [EyewearEverywhere, "EyewearEverywhere"]];
-    const imageIndex = Math.floor(Math.random() * images.length);
+    const [imageIndex] = useState(Math.floor(Math.random() * images.length));
     const variantString = images[imageIndex][1];
 
     const variants = [
-        {
+        { //MYL variants
             initial: {
                 y: 0,
             },
@@ -24,7 +24,7 @@ export default function LoadingPage() {
 
             }
         },
-        {
+        { //A variants
             initial: {
                 scaleX: 1,
             },
@@ -38,14 +38,15 @@ export default function LoadingPage() {
 
             }
         },
-        {
+        { //EyewearEverywhere variants
             initial: {
                 x: 0,
             },
             animate: {
                 x: '-100vw',
                 transition: {
-                    duration: 2
+                    duration: 2,
+                    repeat: Infinity,
                 }
             }
         }
@@ -55,11 +56,11 @@ export default function LoadingPage() {
         <motion.div id="LoadingPageComponent" key="LoadingPageComponent" initial={false} animate={{opacity: 1}} exit={{y: '-150%', transition: {delay: 1}}}>
             <motion.img 
                 key="LoadingImage" 
-                id="LoadingImage" 
+                id={variantString}
                 variants={variants[imageIndex]}
                 initial="initial"
                 animate="animate"
-                className={variantString}
+                className="LoadingImage"
                 src={images[imageIndex][0]} />
         </motion.div>
     )

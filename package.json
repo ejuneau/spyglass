@@ -1,7 +1,7 @@
 {
   "name": "spyglass",
   "homepage": "https://ejuneau.github.io/spyglass/",
-  "version": "0.1.0",
+  "version": "1.2.0",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
