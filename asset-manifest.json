@@ -1,12 +1,13 @@
 {
   "files": {
-    "main.css": "/spyglass/static/css/main.b5ad57ad.css",
-    "main.js": "/spyglass/static/js/main.fe9f50dd.js",
+    "main.css": "/spyglass/static/css/main.f831b55e.css",
+    "main.js": "/spyglass/static/js/main.d6adde9b.js",
     "static/js/496.4f6299c2.chunk.js": "/spyglass/static/js/496.4f6299c2.chunk.js",
     "static/media/ProductPageFront.png": "/spyglass/static/media/ProductPageFront.a8a5d25afcf05f51e6e9.png",
     "static/media/ProductPageBack.png": "/spyglass/static/media/ProductPageBack.58d9c683978e16574d74.png",
     "static/media/ProductPageAction.png": "/spyglass/static/media/ProductPageAction.76028ae959c6ceef2187.png",
     "static/media/front.png": "/spyglass/static/media/front.065f35bd3bfe41196660.png",
+    "static/media/FITS2.png": "/spyglass/static/media/FITS2.0f3081a182a850d8caa8.png",
     "static/media/action.png": "/spyglass/static/media/action.27ee5693bcd933039859.png",
     "static/media/Mustasurma.ttf": "/spyglass/static/media/Mustasurma.c4f0e97dd6a3b0884853.ttf",
     "static/media/Model.png": "/spyglass/static/media/Model.7b25a4151b0a50644b4d.png",
@@ -17,7 +18,6 @@
     "static/media/MYL.gif": "/spyglass/static/media/MYL.11a3a9328b984eac2557.gif",
     "static/media/shoppingBag.svg": "/spyglass/static/media/shoppingBag.efd5c98f3a7ee72fd1025d4319d353fc.svg",
     "static/media/Got_Heroin.ttf": "/spyglass/static/media/Got_Heroin.10a96edd773f9045535c.ttf",
-    "static/media/FITS.png": "/spyglass/static/media/FITS.1b4374aedc759ac77ff5.png",
     "static/media/NTSH.png": "/spyglass/static/media/NTSH.30fbcfd5de8d23a4462a.png",
     "static/media/gramophone.png": "/spyglass/static/media/gramophone.404a3a953a3cbd749f2f.png",
     "static/media/VarygraphiePersonalUseOnlyRegular-nRWX1.otf": "/spyglass/static/media/VarygraphiePersonalUseOnlyRegular-nRWX1.71dda03d3f8d7b4bdc1c.otf",
@@ -40,12 +40,12 @@
     "static/media/WLTHFY.webp": "/spyglass/static/media/WLTHFY.7b79743b04b30c827066.webp",
     "static/media/nextprev.svg": "/spyglass/static/media/nextprev.6159928b57e9e9a39d34287a23a4861c.svg",
     "index.html": "/spyglass/index.html",
-    "main.b5ad57ad.css.map": "/spyglass/static/css/main.b5ad57ad.css.map",
-    "main.fe9f50dd.js.map": "/spyglass/static/js/main.fe9f50dd.js.map",
+    "main.f831b55e.css.map": "/spyglass/static/css/main.f831b55e.css.map",
+    "main.d6adde9b.js.map": "/spyglass/static/js/main.d6adde9b.js.map",
     "496.4f6299c2.chunk.js.map": "/spyglass/static/js/496.4f6299c2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b5ad57ad.css",
-    "static/js/main.fe9f50dd.js"
+    "static/css/main.f831b55e.css",
+    "static/js/main.d6adde9b.js"
   ]
 }
