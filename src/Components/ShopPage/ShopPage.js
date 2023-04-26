@@ -11,6 +11,7 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 import { setLoading } from '../../Util/Store/LoadingSlice';
 import LoadingPage from '../../Util/LoadingPage';
+import verbose from '../../Util/Store/verbose';
 
 
 
@@ -37,9 +38,9 @@ export default function ShopPage(props) {
   const isLoading = useSelector((state) => state.loading.isLoading);
   const dispatch = useDispatch();
 
-
   useEffect(() => {
     imgCounter === ProductImagesCount && dispatch(setLoading(false)); 
+    verbose && console.log("All images loaded!");
   }, [dispatch, incrementImgCounter]);
 
 const filterButton1 = {

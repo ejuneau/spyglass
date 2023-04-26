@@ -14,7 +14,6 @@ export default function Product(props) {
     const [currentVariant, setCurrentVariant] = useState(0);
     const cart = useSelector((state) => state.cart.contents)
     const [isHover, setIsHover] = useState(false);
-	// const rotateBy = useSelector((state) => state.rotate.rotateBy)
 	const [rotateBy, setRotateBy] = useState(Math.ceil(Math.random() * 5) * (Math.round(Math.random()) ? 1 : -1));
 	const handleHoverChange = (state) => {setIsHover(state)}
     
@@ -71,10 +70,8 @@ return (
 							style ={{   overflowX: "scroll",
 							scrollSnapType: "x mandatory",}}
 						>
-							{/* <FrontImage /> */}
-							<img key={ `Product ID:${props.product.id} image-front`  } src={ props.product.variants[currentVariant].photos.front  } style={{ paddingRight: "2rem" }} id={isMobile?"mobileImg1":"Img1"} alt="Front view of Frames" onLoad={() => {props.incrementImgCounter(); verbose && console.log(props.product.name + ": front loaded")}}/>
-							{/* <ActionImage /> */}
-							<img key={ `Product ID:${props.product.id} image-action` } src={ props.product.variants[currentVariant].photos.action } style={{ paddingLeft:  "2rem" }} id={isMobile?"mobileImg2":"Img2"} alt="Model wearing Frames" onLoad={() => {props.incrementImgCounter(); verbose && console.log(props.product.name + ": action loaded")}}/>
+							<img key={ `Product ID:${props.product.id} image-front`  } src={ props.product.variants[currentVariant].photos.front  } style={{ paddingRight: "2rem" }} id="Img1" alt="Front view of Frames" onLoad={() => {props.incrementImgCounter(); verbose && console.log(props.product.name + ": front loaded")}}/>
+							<img key={ `Product ID:${props.product.id} image-action` } src={ props.product.variants[currentVariant].photos.action } style={{ paddingLeft:  "2rem" }} id="Img2" alt="Model wearing Frames" onLoad={() => {props.incrementImgCounter(); verbose && console.log(props.product.name + ": action loaded")}}/>
 				
 						</motion.div>
 					):(
@@ -85,10 +82,10 @@ return (
 							initial={{x: "0%"}}
 							whileHover={{x: "calc(-100% - 4rem)"}}
 						>
-							{/* <FrontImage /> */}
-							<img key={ `Product ID:${props.product.id} image-front`  } src={ props.product.variants[currentVariant].photos.front  } style={{ paddingRight: "2rem" }} id={isMobile?"mobileImg1":"Img1"} alt="Front view of Frames" onLoad={() => {props.incrementImgCounter(); verbose && console.log(props.product.name + ": front loaded")}}/>
-							{/* <ActionImage /> */}
-							<img key={ `Product ID:${props.product.id} image-action` } src={ props.product.variants[currentVariant].photos.action } style={{ paddingLeft:  "2rem" }} id={isMobile?"mobileImg2":"Img2"} alt="Model wearing Frames" onLoad={() => {props.incrementImgCounter(); verbose && console.log(props.product.name + ": action loaded")}}/>
+
+							<img key={ `Product ID:${props.product.id} image-front`  } src={ props.product.variants[currentVariant].photos.front  } style={{ paddingRight: "2rem" }} id="Img1" alt="Front view of Frames" onLoad={() => {props.incrementImgCounter(); verbose && console.log(props.product.name + ": front loaded")}}/>
+
+							<img key={ `Product ID:${props.product.id} image-action` } src={ props.product.variants[currentVariant].photos.action } style={{ paddingLeft:  "2rem" }} id="Img2" alt="Model wearing Frames" onLoad={() => {props.incrementImgCounter(); verbose && console.log(props.product.name + ": action loaded")}}/>
 						</motion.div>
 
 					)}
