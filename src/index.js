@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import {persistor, store} from './Util/Store/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import Menu from './Util/Menu';
 import Header from './Util/Header';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
@@ -16,7 +16,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   
 	<React.StrictMode>
-		<HashRouter>
+		<BrowserRouter>
 			<Provider store={store}>
 				<PersistGate persistor={persistor}>
 					<Menu  key="MenuComponent"/>	
@@ -24,7 +24,7 @@ root.render(
 					<App />
 				</PersistGate>
 			</Provider>
-		</HashRouter>
+		</BrowserRouter>
 		<PWAPrompt
 			promptOnVisit={1}
 			timesToShow={3}
